@@ -21,8 +21,10 @@ public class Sample13 {
 				{0,0,0,1,0,0,0,0,0}, //8
 				{0,0,0,0,0,1,1,1,0}, //9
 		};
-		for(int i = 1; i<SIZE; i++) 
+		for(int i = 1; i<SIZE; i++) {
 			board[0][i] = board[i][0] = (char)(i+'0');
+		//	System.out.print(i);
+		}
 		Scanner scanner = new Scanner(System.in);
 		
 		while(true) {
