@@ -1,4 +1,4 @@
-package Workshop;
+package com.workshop;
 import java.util.*;
 //각 과목별 성적이 2.5이상(한 과목이라도 2.5 미만시 ,과락으로 장학금 탈락
 	//좀더 간결한 코드가 없을런지...?
@@ -37,7 +37,24 @@ public class WorkShop2 {
 		System.out.println("배드민턴 성적을 성적을 입력하세요 :");
 			a4 = getUserInput();
 		System.out.println("==========================");
+
+// boolean 이용 확인 하는 방법		
+//	boolean acheck = (a >= 2.5)? true : false;
+//	boolean a1check = (a1 >= 2.5)? true : false;	
+//	boolean a2check = (a2 >= 2.5)? true : false;
+//	boolean a3check = (a3 >= 2.5)? true : false;
+//	boolean a4check = (a4 >= 2.5)? true : false;
+//	boolean allcheck = acheck && a1check && a2check && a3check && a4check;
+//	if(avg >= 3.7) {
+//		if(allcheck) {
+//			System.out.println("다음 학기 장학금 대상자 입니다.");
+//		}
+//	}
+	
+	
+	
 		double avg = (a+a1+a2+a3+a4) /5;
+//		double avg2 = totalScoreFunc(a, a1, a2, a3, a4); 
 		System.out.println("평균은"+avg+"점 입니다.");
 		// 평점 3.7이상 , 각 과목별 2.5이상 장학금 혜택 조건문
 		 if((a >= 2.5 && a1 >= 2.5 && a2 >= 2.5 && a3 >= 2.5 && a4 >= 2.5) && (avg >=3.7) ) {
@@ -55,6 +72,11 @@ public class WorkShop2 {
 			}
  	
  		}
+ //오류 확인하기 
+// 	public static float totalScoreFunc(float a, float a1, 
+// 			float a2, float a3, float a4) {
+// 			return (a + a1 + a2 + a3 + a4)/5;
+// 	}
 	}
 
 }

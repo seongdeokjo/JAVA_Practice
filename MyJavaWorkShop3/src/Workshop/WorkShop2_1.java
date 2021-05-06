@@ -1,29 +1,36 @@
 package Workshop;
 import java.util.*;
-//각 과목별 성적이 2.5이상(한 과목이라도 2.5 미만시 ,과락으로 장학금 탈락
-	//좀더 간결한 코드가 없을런지...?
-	// 삼항 연산자 조건....?
-	// 조건1) 평균이 3.7 이상 2)각 과목별 성적이 2.5이상 (2.5미만이라면 장학금 탈락)
-// 성적을 계속 입력할수 있도록 만들기 
-public class WorkShop2 {
+// 매소드 호출로 만들어보는 변형 
+public class WorkShop2_1 {
 	public static double getUserInput() {
 		Scanner scanner = new Scanner(System.in);
 		Double inputString = scanner.nextDouble();
 		return inputString;
 	}
-	
+	public static int getUserInput1() {
+		 Scanner scanner1 = new Scanner(System.in);
+			System.out.println("########메뉴########");
+			System.out.println("     1.성적입력     ");
+			System.out.println("     2.프로그램 종료     ");
+			System.out.println("###################");
+			System.out.print("번호를 선택해주세요:"); // 성적입력과 종료를 선택하는 문장
+			String inputString1 = scanner1.nextLine();
+			int num = Integer.parseInt(inputString1);
+			return num;
+	}
 	public static void main(String[] args) {
  for(;;) { //반복작업 할 수 있는 반복문 설정
-	 Scanner scanner1 = new Scanner(System.in);
-		System.out.println("########메뉴########");
-		System.out.println("     1.성적입력     ");
-		System.out.println("     2.프로그램 종료     ");
-		System.out.println("###################");
-		System.out.print("번호를 선택해주세요:"); // 성적입력과 종료를 선택하는 문장
-		String inputString1 = scanner1.nextLine();
-		int num = Integer.parseInt(inputString1);
-	
-	if(num == 1) {
+//	 Scanner scanner1 = new Scanner(System.in);
+//		System.out.println("########메뉴########");
+//		System.out.println("     1.성적입력     ");
+//		System.out.println("     2.프로그램 종료     ");
+//		System.out.println("###################");
+//		System.out.print("번호를 선택해주세요:"); // 성적입력과 종료를 선택하는 문장
+//		String inputString1 = scanner1.nextLine();
+//		int num = Integer.parseInt(inputString1);
+		System.out.println("dsadasasd");
+		getUserInput1();
+	if(getUserInput1() == 1) {
 		
 		double a,a1,a2,a3,a4;
 		System.out.println("Computer Science 성적을 입력하세요 :");
@@ -46,7 +53,7 @@ public class WorkShop2 {
 			System.out.println();
 			}
 	
-	}else if(num == 2) {
+	}else if(getUserInput1() == 2) {
 		System.out.println("프로그램이 종료됩니다.");
 		break;
 	}else {

@@ -1,0 +1,2 @@
+module MyWorkShop04 {
+}
