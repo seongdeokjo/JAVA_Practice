@@ -23,6 +23,7 @@ public class Sample13 {
 		};
 		for(int i = 1; i<SIZE; i++) {
 			board[0][i] = board[i][0] = (char)(i+'0');
+		//System.out.print(board[i]);
 		//	System.out.print(i);
 		}
 		Scanner scanner = new Scanner(System.in);
