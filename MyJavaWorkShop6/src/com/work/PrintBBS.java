@@ -1,5 +1,5 @@
 package com.work;
-import com.work.BBSItem;
+import com.work.BBSItem ;
 public class PrintBBS {
 
 	public static void main(String[] args) {

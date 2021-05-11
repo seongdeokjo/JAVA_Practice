@@ -1,3 +1,4 @@
+
 package com.work;
 
 public class BBSItem {
@@ -25,4 +26,3 @@ public class BBSItem {
 	
 	
 }
-

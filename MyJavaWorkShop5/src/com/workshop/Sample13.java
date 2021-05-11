@@ -4,7 +4,7 @@ public class Sample13 {
 	static int add(int x, int y) {
 		return x + y;
 	}
-	static void test(String msg) { //void type의 return은 호출한 곳으로 돌아ㅏㄴ다.
+	static void test(String msg) { //void type의 return은 호출한 곳으로 돌아간다
 		if(msg == "OK") {
 			return;
 		}

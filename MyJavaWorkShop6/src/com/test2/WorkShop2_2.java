@@ -1,12 +1,6 @@
 package com.test2;
 class SubscriberInfo {
 	String name, id, password, phoneNo, address;
-	public void setPhoneNo(String phoneNo) {
-		this.phoneNo = phoneNo;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
 	SubscriberInfo() {}
 	SubscriberInfo(String name, String id, String password){
 		this.name = name;
@@ -20,13 +14,14 @@ class SubscriberInfo {
 			this.phoneNo = phoneNo;
 			this.address = address;
 	}
-	
-	
-		
-	
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 }
 public class WorkShop2_2 {
-
 	public static void main(String[] args) {
 		SubscriberInfo obj1, obj2, obj3;
 		obj1 = new SubscriberInfo("박유신","1017db","daewi");
@@ -38,7 +33,6 @@ public class WorkShop2_2 {
 		obj1.setAddress("교직원1숙사");
 		obj1.setPhoneNo("133-1234-5678");
 		printSubscriberInfo(obj1);
-
 	}
 	static void printSubscriberInfo(SubscriberInfo obj) {
 		System.out.println("이름:" + obj.name);

@@ -9,7 +9,9 @@ class Cat{
 }
 
 public class Sample14 {
-	static void test(int x) {}
+	static void test(int x) { //int x = a;
+		System.out.println(x);
+	}
 	static void test2(Cat c) { //Cat c = cat;
 		c.meowing();
 	} 
