@@ -6,6 +6,7 @@ public class PhoneBookManager {
 	final int MAX_CNT = 100;
 	PhoneInfo[] pi = new PhoneInfo[MAX_CNT];
 	int num;
+	
 	Scanner scan = new Scanner(System.in);
 	
 	public void inputData() {
@@ -19,6 +20,7 @@ public class PhoneBookManager {
 		
 		pi[num] = new PhoneInfo(name, phoneNumber, birth);
 		num++;
+		
 		
 		System.out.println("데이터 입력이 완료되었습니다.");
 		}
