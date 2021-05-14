@@ -32,16 +32,16 @@ public class VehicleManager {
 	//배열에 저장되어 있는 modelname 의 오름차순으로 정렬을 수행하도록 
 	//이중 for문을 사용해 코드를 작성한다. 
 	public void sortByModelName(String name) {
-		System.out.println(name);
-		vehicleArr = new Vehicle;
-		
-		for (int i = 0; i < vehicleArr.length(); i++) {
-			for(int j = i+1; j < vehicleArr.length; j++) {
-				if(vehicleArr[i] < vehicleArr[j]) {
-					
-				}
-			}
-		}
+//		System.out.println(name);
+//		vehicleArr = new Vehicle;
+//		
+//		for (int i = 0; i < vehicleArr.length(); i++) {
+//			for(int j = i+1; j < vehicleArr.length; j++) {
+//				if(vehicleArr[i] < vehicleArr[j]) {
+//					
+//				}
+//			}
+//		}
 
 		System.out.println();
 
