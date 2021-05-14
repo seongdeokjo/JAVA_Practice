@@ -1,13 +1,29 @@
 package ws1.java2.entity;
 
-public class Vehicle {
+public class Vehicle implements Comparable<Vehicle>{
 	private String modelName;
 	private int maxSpeed;
 	private int numberLimit;
 	private boolean available;
-	public Vehicle(String modelName) {
-		this.modelName = modelName;
+	
+	public String print() {
+		return modelName + "("+maxSpeed+")";
 	}
+	
+	@Override
+	public int compareTo(Vehicle o) {
+		if(this.maxSpeed < o.maxSpeed ) {
+			return -1;
+		}else if(this.maxSpeed == o.maxSpeed) {
+			return 0;
+		}else {
+			return 1;
+		}
+//		String compareTo(Vehicle a) {
+//			
+//		}
+			}
+	
 	public Vehicle(String modelName, int maxSpeed, int numberLimit) {
 		this.modelName = modelName;
 		this.maxSpeed = maxSpeed;
@@ -52,4 +68,6 @@ public class Vehicle {
 		System.out.println(" 최고속도 : " + maxSpeed + "km/h");
 		System.out.println(" 최대정원 : " + numberLimit + "명");
 	}
+
+	
 }
