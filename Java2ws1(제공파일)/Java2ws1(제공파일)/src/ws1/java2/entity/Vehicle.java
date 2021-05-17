@@ -1,28 +1,15 @@
 package ws1.java2.entity;
-
-public class Vehicle implements Comparable<Vehicle>{
+import java.util.*;
+public class Vehicle implements Comparator<Vehicle> {
 	private String modelName;
 	private int maxSpeed;
 	private int numberLimit;
 	private boolean available;
-	
+
 	public String print() {
-		return modelName + "("+maxSpeed+")";
+		return modelName + "(" + maxSpeed + ")";
 	}
-	
-	@Override
-	public int compareTo(Vehicle o) {
-		if(this.maxSpeed < o.maxSpeed ) {
-			return -1;
-		}else if(this.maxSpeed == o.maxSpeed) {
-			return 0;
-		}else {
-			return 1;
-		}
-//		String compareTo(Vehicle a) {
-//			
-//		}
-			}
+	public Vehicle() {}
 	
 	public Vehicle(String modelName, int maxSpeed, int numberLimit) {
 		this.modelName = modelName;
@@ -67,7 +54,27 @@ public class Vehicle implements Comparable<Vehicle>{
 		System.out.println(" 모 델 명 : " + modelName);
 		System.out.println(" 최고속도 : " + maxSpeed + "km/h");
 		System.out.println(" 최대정원 : " + numberLimit + "명");
+		
+
 	}
 
+	public String toString() {
+		return "[modelName] : " + modelName + ", [maxSpeed] : " + maxSpeed + ", [numberLimit] :" + numberLimit;
+	}
+
+
+	@Override
 	
+	public int compare(Vehicle a, Vehicle b) {
+		// a 먼저 작성하고 b 와 비교하면 오름차순
+		// b 먼저 작성하고 a 와 비교하면 내림차순 
+		return a.getModelName().compareTo(b.getModelName());
+	}
+
+//	@Override
+//	public int compare(Vehicle o1, Vehicle o2) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
+
 }

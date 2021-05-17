@@ -6,27 +6,29 @@ public class AccountTest {
 	public static void main(String[] args) throws InvalidValueException, AccountNotFoundException {
 		int num = 0;
 		Scanner scan = new Scanner(System.in);
-		AccountInfo ac;
+		AccountManager ac = new AccountManager();
 		while (num != 9) {
 			printMenu();
+		
 			try {
 				num = scan.nextInt();
 				scan.nextLine();
-				ac = new AccountInfo(null, null, 0);
 				switch (num) {
-				case 1:
+				case 1:  //계좌생성
 					ac.create();
 					break;
-				case 2:
-					ac.showInfo();
+				case 2: //계좌 출력
+					ac.showData();
+					System.out.println();
 					break;
-				case 3:
+				case 3: // 입금
+						
 					ac.deposit();
 					break;
-				case 4:
+				case 4: // 출금
 					ac.withdraw();
 					break;
-				case 9:
+				case 9: //종료
 					System.out.println("종료합니다.");
 					break;
 				}

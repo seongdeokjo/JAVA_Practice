@@ -9,17 +9,21 @@ public class Airplane extends Vehicle {
 		this.numOfEngine = numOfEngine;
 	}
 
-//	public int getNumOfEngine() {
-//		return numOfEngine;
-//	}
-//
-//	public void setNumOfEngine(int numOfEngine) {
-//		this.numOfEngine = numOfEngine;
-//	}
+	public int getNumOfEngine() {
+		return numOfEngine;
+	}
+
+	public void setNumOfEngine(int numOfEngine) {
+		this.numOfEngine = numOfEngine;
+	}
 
 	public void displayInfo() {
 
 		super.displayInfo();
 		System.out.println(" 엔진개수 : " + numOfEngine + "개");
+	}
+	public String toString() {
+		return "[modelName] : "+super.getModelName()+", [maxSpeed] : "+super.getMaxSpeed()+", "
+				+ "[numberLimit] :"+ super.getNumberLimit()+", [numOfEngine] :"+numOfEngine;
 	}
 }

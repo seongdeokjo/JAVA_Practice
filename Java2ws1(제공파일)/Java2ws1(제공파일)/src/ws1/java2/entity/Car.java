@@ -21,4 +21,8 @@ public class Car extends Vehicle {
 		super.displayInfo();
 		System.out.println(" Æò±Õ¿¬ºñ : " + mileage + "km/l");
 	}
+	public String toString() {
+		return "[modelName] : "+super.getModelName()+", [maxSpeed] : "+super.getMaxSpeed()+", "
+				+ "[numberLimit] :"+ super.getNumberLimit()+", [mileage] :"+mileage;
+	}
 }

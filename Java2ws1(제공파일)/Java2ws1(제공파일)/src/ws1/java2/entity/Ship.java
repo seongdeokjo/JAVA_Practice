@@ -19,4 +19,8 @@ public class Ship extends Vehicle {
 		super.displayInfo();
 		System.out.println(" ¹è ¼ö ·® : " + replacement + "Åæ");
 	}
+	public String toString() {
+		return "[modelName] : "+super.getModelName()+", [maxSpeed] : "+super.getMaxSpeed()+", "
+				+ "[numberLimit] :"+ super.getNumberLimit()+", [replacement] :"+replacement;
+	}
 }
