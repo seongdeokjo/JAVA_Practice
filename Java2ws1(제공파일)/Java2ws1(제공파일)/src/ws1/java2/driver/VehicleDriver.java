@@ -1,10 +1,7 @@
 package ws1.java2.driver;
-
 import java.util.Scanner;
-
 //구동 클래스
 import ws1.java2.controller.VehicleManager;
-
 public class VehicleDriver {
 	public static void main(String[] args) {
 		VehicleManager vm = new VehicleManager();
@@ -15,10 +12,8 @@ public class VehicleDriver {
 		System.out.println("삭제할 이름을 작성해주세요.>>");
 		name1 = scan.nextLine();
 		vm.delete(name1);
-
 		vm.sortBymodelName("오름차순 정렬");
 	}
-
 	public static void print() {
 		System.out.println();
 		System.out.println("##################<메뉴>###################");

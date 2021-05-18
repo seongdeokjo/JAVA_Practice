@@ -5,12 +5,7 @@ public class Vehicle implements Comparator<Vehicle> {
 	private int maxSpeed;
 	private int numberLimit;
 	private boolean available;
-
-	public String print() {
-		return modelName + "(" + maxSpeed + ")";
-	}
 	public Vehicle() {}
-	
 	public Vehicle(String modelName, int maxSpeed, int numberLimit) {
 		this.modelName = modelName;
 		this.maxSpeed = maxSpeed;

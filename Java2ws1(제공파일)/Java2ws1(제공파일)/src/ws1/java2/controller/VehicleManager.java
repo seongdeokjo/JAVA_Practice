@@ -1,5 +1,4 @@
 package ws1.java2.controller;
-
 import ws1.java2.entity.*;
 import java.util.*;
 // 사용자 정의 클래스를 만들어서 사용할 수 있다. 
@@ -10,11 +9,8 @@ import java.util.*;
 //		return a.getModelName().compareTo(b.getModelName());
 //	}
 //} 
-
 public class VehicleManager {
-
 	ArrayList<Vehicle> al = new ArrayList(7);
-
 	public VehicleManager() {
 		// 이메서드안에서 초기화되게 분리
 		al.add(new Airplane("보잉747", 1300, 300, 4));
@@ -24,9 +20,7 @@ public class VehicleManager {
 		al.add(new Car("스타렉스", 150, 10, 11));
 		al.add(new Ship("크루즈2", 30, 400, 35000));
 		al.add(new Ship("노틸러스", 25, 150, 15000));
-
 	}
-
 	public void sortBymodelName(String input) {
 		System.out.println(input);
 		Collections.sort(al, new Vehicle());
@@ -34,11 +28,8 @@ public class VehicleManager {
 			System.out.print("[" + vehicle.getModelName() + "]" + ", ");
 			// vehicle.displayInfo();
 			// System.out.println(vehicle.toString());
-
 		}
-
 	}
-
 	public void displayVehicles1() {
 		for (int i = 0; i < al.size(); i++) {
 			Object o = al.get(i);
@@ -46,7 +37,6 @@ public class VehicleManager {
 			a.displayInfo();
 		}
 	}
-
 	public void displayVehicles2() {
 		Iterator itr = al.iterator();
 		while (itr.hasNext()) {
@@ -55,10 +45,8 @@ public class VehicleManager {
 			v.displayInfo();
 		}
 	}
-
 	public void delete(String name) {
 		Vehicle model = new Vehicle();
-
 		for (int i = al.size() - 1; i >= 0; i--) { // 자바에서 문자열이 입력되면 1번재부터 세어지는게 아니라
 													// 0번째 부터 시작함. 그래서 al.size()-1을 해주는것이다.
 			Object o = al.get(i);
@@ -68,6 +56,5 @@ public class VehicleManager {
 			}
 		}
 		System.out.println(name + " 가 삭제되었습니다. ");
-
 	}
 }
