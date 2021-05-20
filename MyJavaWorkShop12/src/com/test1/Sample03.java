@@ -1,13 +1,12 @@
 package com.test1;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 
 public class Sample03 {
 
 	public static void main(String[] args) {
 		ArrayList al = new ArrayList();
-		al.add(1); //value type이 아닌 refernece type으로 바뀌어서 들어간다.
+		al.add(1, al); //value type이 아닌 refernece type으로 바뀌어서 들어간다.
 		al.add("람다");
 		al.add(20.0);
 		
