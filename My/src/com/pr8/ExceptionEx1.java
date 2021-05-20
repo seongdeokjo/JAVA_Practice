@@ -1,6 +1,6 @@
-package comp.pr8;
+package com.pr8;
 
-import java.io.*;
+import java.io.File;
 
 public class ExceptionEx1 {
 
