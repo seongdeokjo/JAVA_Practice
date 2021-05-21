@@ -4,58 +4,55 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.*;
-class Emp {
-	private int empid;
-	private String empName;
-	private String empAddress;
-	Emp(int empid, String empName, String empAddress) {
-		this.empid = empid;
-		this.empName = empName;
-		this.empAddress = empAddress;
-	}
-	public int getEmpid() {
-		return empid;
-	}
 
-	public void setEmpid(int empid) {
-		this.empid = empid;
+class Employee {
+	private int empNo;
+	private String firstName;
+	private String gender;
+	public Employee(int empNo, String firstName, String gender) {
+		this.empNo = empNo;
+		this.firstName = firstName;
+		this.gender = gender;
 	}
-
-	public String getEmpName() {
-		return empName;
+	public int getEmpNo() {
+		return empNo;
 	}
-
-	public void setEmpName(String empName) {
-		this.empName = empName;
+	public void setEmpNo(int empNo) {
+		this.empNo = empNo;
 	}
-
-	public String getEmpAddress() {
-		return empAddress;
+	public String getFirstName() {
+		return firstName;
 	}
-
-	public void setEmpAddress(String empAddress) {
-		this.empAddress = empAddress;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
 }
-
 public class SampleJdbc {
 	public static void main(String[] args) {
-		ArrayList<Emp> emps = null;
+		List<Employee> emps = new ArrayList<>();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb", "test", "1234");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/employees", "root", "1234");
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from emp");
-			emps = new ArrayList<Emp>();
+			ResultSet rs = stmt.executeQuery("select emp_no, first_name, gender FROM employees.employees");
 			while (rs.next()) {
-				emps.add(new Emp(rs.getInt(1), rs.getString(2), rs.getString(3)));
+//				System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getString(3));
+			emps.add(new Employee(rs.getInt(1), rs.getString(2),rs.getString(3)));;
 			}
-			con.close();
+			
+				con.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		for (Emp e : emps) {
-			System.out.println(e.getEmpid() + ", " + e.getEmpName() + ", " + e.getEmpAddress());
+		for(Employee e : emps) {
+			System.out.println(e.getEmpNo()+", "+e.getFirstName()+", "+e.getGender());
 		}
 	}
 }

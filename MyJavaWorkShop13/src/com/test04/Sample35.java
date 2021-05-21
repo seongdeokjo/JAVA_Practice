@@ -19,7 +19,7 @@ class Info<T> {
 		return this.pass;
 	}
 }
-class Login<T> implements IMap<T> {
+class Login<T extends Info> implements IMap<T> {
 	
 
 			
