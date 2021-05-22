@@ -1,7 +1,6 @@
 package com.test04;
 
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 interface IMap<T>{
 	void check();
 }
@@ -19,19 +18,13 @@ class Info<T> {
 		return this.pass;
 	}
 }
-class Login<T extends Info> implements IMap<T> {
-	
 
-			
-	
-	@Override
-	public void check() {
-		
-	}
-	
-}
 public class Sample35 {
-
+	public static String getInput() {
+		Scanner s = new Scanner(System.in);
+		String input = s.nextLine();
+			return input;
+	}
 	public static void main(String[] args) {
 		HashMap map = new HashMap();
 		map.put("myId", "1234");
@@ -39,16 +32,14 @@ public class Sample35 {
 		map.put("asdf", "1234");
 		map.put("1111", "1111");
 		
-		Scanner s = new Scanner(System.in);
+	
 		
 		while(true) {
 			System.out.println("id와 password를 입력하세요.");
 			System.out.println("id :");
-			String id = s.nextLine().trim();
-			
+			String id = getInput();	
 			System.out.println("password :");
-			String pass = s.nextLine().trim();
-			System.out.println();
+			String pass = getInput();
 			
 			if(!map.containsKey(id)) {
 				System.out.println("입력하신 id는 존재하지 않습니다. 다시 입력해");

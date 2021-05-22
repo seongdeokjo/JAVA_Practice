@@ -31,7 +31,7 @@ public class ArrayDivideTest {
 				 	}
 				 	while(itr1.hasNext()) {
 				 		itr1.next();
-				 		System.out.println(itr1.g);
+				 		System.out.println(itr1);
 				 	}
 				 	
 				 
