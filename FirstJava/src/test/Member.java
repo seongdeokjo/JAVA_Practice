@@ -2,8 +2,8 @@ package test;
 public class Member {
 
 	public static void main(String[] args) {
-		System.out.println("Á¶¼º´ö");
-		//ÀÎ½ºÅÏ½º »ı¼º 
+		System.out.println("ì¡°ì„±ë•");
+		//ì¸ìŠ¤í„´ìŠ¤ìƒì„± ã„¹
 		Calculator calc = new Calculator();
 		calc.add(20, 30);
 		
