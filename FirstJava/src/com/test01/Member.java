@@ -21,7 +21,7 @@ public class Member {
 	}
 	public int checkBirth() {
 		if (birth != 0) {
-			if (2006 <= birth && birth >= 1956) {
+			if (2006 <= birth || birth <= 1956) {
 				System.out.println("무료 예방접종이 가능합니다.");
 			} else {
 				System.out.println("무료 접종 대상이 아닙니다.");

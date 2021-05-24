@@ -1,7 +1,5 @@
 package com.test02;
-
-public class Student {
-	
+public class Student {	
 	private String name; 
 	private int kor;
 	private int eng;

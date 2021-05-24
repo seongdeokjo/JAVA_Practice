@@ -1,4 +1,4 @@
-package com.pr1;
+package com.pr1.src.com.pr1;
 
 public class PhoneUnivInfo extends PhoneInfo {
 	String major;

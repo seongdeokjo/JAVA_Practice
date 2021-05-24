@@ -1,5 +1,4 @@
 package com.test01;
-
 public class Person {
 	String name;
 	//주민등록 번호 rrn(resident registration number)
