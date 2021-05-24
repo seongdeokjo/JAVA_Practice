@@ -8,7 +8,15 @@ public class Member {
 		Calculator calc = new Calculator(); // 메모리에 메소드 코드,저장. 주소가 저장 
 		calc.add(20, 30); 
 		calc.add(50, 30);
+		
+		
 		calc.divide(10, 3);
+		
+		String name = "joe";
+		int age = 27;
+		double height = 170.0;
+		boolean hasBook = true;
+		System.out.println(name+", "+age+", "+height+", "+hasBook);
 	}
 
 }
