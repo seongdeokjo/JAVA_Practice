@@ -44,9 +44,11 @@ public class Member {
 				if (birth < 1982) {
 					System.out.println("40세 이상이므로 암 검사도 무료로 검사를 할 수 있습니다.");
 				}
+				//20세 미만은 불가
 			}else {
 				System.out.println("20세 이상 신청가능합니다.");
 			}
+			// 출생연도가 기입되지 않은 경우 
 		} else {
 			System.out.println("출생연도를 기입해주세요.");
 		}
