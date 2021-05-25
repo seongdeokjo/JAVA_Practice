@@ -1,17 +1,16 @@
 package com.test01;
-
 public class Calculator {
-	void add(int a, int b) {
-		System.out.println(a + b);
+	public int add(int a, int b) {
+		return(a + b);
 	}
-	void sub(int a, int b) {
-		System.out.println(a - b);
+	public int sub(int a, int b) {
+		return(a - b);
 	}
-	void multi(int a, int b) {
-		System.out.println(a * b);
+	public int multi(int a, int b) {
+		return(a * b);
 	}
-	void divide(int a, int b) {
-		System.out.println(a / b);
+	public  double divide(int a, int b) {
+			return(a / b);
 	}
 	public double circleRadius(double r) { //원의 둘레
 		return 2 * Math.PI * r;
