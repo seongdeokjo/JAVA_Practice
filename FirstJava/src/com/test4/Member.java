@@ -19,42 +19,13 @@ public class Member {
 		this.birth = birth;
 		this.address = address;
 	}
-	public void checkBirth() {
-		if (birth != 0) {
-			if (2006 <= birth || birth <= 1956) {
-				System.out.println("무료 예방접종이 가능합니다.");
-			} else {
-				System.out.println("무료 접종 대상이 아닙니다.");
-			}
-		} else {
-			System.out.println("출생연도를 입력해주세요.");
-		}
-	}
-	public void testBirth() {
-		if (birth != 0) {
-			// 대한민국 20세 이상
-			if (birth < 2001) {
-				// 무료로 2년마다 건강검진을 받을 수 있고
-				System.out.println("무료로 2년마다 건강 검진을 받을 수 있습니다.");
-				// 짝수해에 태어난 사람은 올해가 짝수년이라면 검사 대상이 되고
-				if (birth % 2 == 0) {
-					System.out.println("올해 건강검진 대상자 입니다.");
-				}
-				// 40이상의 경우는 암 검사도 무료로 검사를 할 수 있다.
-				if (birth < 1982) {
-					System.out.println("40세 이상이므로 암 검사도 무료로 검사를 할 수 있습니다.");
-				}
-				//20세 미만은 불가
-			}else {
-				System.out.println("20세 이상 신청가능합니다.");
-			}
-			// 출생연도가 기입되지 않은 경우 
-		} else {
-			System.out.println("출생연도를 기입해주세요.");
-		}
-	}
 	public void info() {
-		System.out
-				.println(name + ", " + ph + ", " + major + ", " + grade + ", " + email + ", " + birth + ", " + address);
+		System.out.println("이름: "+name);
+		System.out.println("전화번호: "+ph);
+		System.out.println("전공: "+major);
+		System.out.println("학년: "+grade);
+		System.out.println("이메일주소: "+email);
+		System.out.println("생년월일: "+birth);
+		System.out.println("주소: "+address);
 	}
 }
