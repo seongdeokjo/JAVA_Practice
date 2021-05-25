@@ -13,7 +13,12 @@ public class CalcTest {
 		System.out.print("반지름을 입력하세요. >");
 		String input = scan.nextLine();
 		double r = Double.parseDouble(input);
-		System.out.println("원의 둘레는: "+calc.circleRadius(r)+" 입니다.");
-		System.out.println("원의 넓이는 : "+calc.circleArea(r)+" 입니다.");
+		//Math.round 를 사용해서 소수점 2자리까지만 출력
+		System.out.println("원의 둘레는: "+Math.round(calc.circleRadius(r)*100) / 100.0+" 입니다.");
+		System.out.println("원의 넓이는 : "+Math.round(calc.circleArea(r)*100) / 100.0+" 입니다.");
+		
+		
+		
+//		System.out.println(Math.round(calc.circleRadius(r)*100) / 100.0);
 	}
 }
