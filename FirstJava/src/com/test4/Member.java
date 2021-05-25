@@ -19,7 +19,7 @@ public class Member {
 		this.birth = birth;
 		this.address = address;
 	}
-	public int checkBirth() {
+	public void checkBirth() {
 		if (birth != 0) {
 			if (2006 <= birth || birth <= 1956) {
 				System.out.println("무료 예방접종이 가능합니다.");
@@ -29,9 +29,8 @@ public class Member {
 		} else {
 			System.out.println("출생연도를 입력해주세요.");
 		}
-		return birth;
 	}
-	public int testBirth() {
+	public void testBirth() {
 		if (birth != 0) {
 			// 대한민국 20세 이상
 			if (birth < 2001) {
@@ -45,11 +44,12 @@ public class Member {
 				if (birth < 1982) {
 					System.out.println("40세 이상이므로 암 검사도 무료로 검사를 할 수 있습니다.");
 				}
+			}else {
+				System.out.println("20세 이상 신청가능합니다.");
 			}
 		} else {
 			System.out.println("출생연도를 기입해주세요.");
 		}
-		return birth;
 	}
 	public void info() {
 		System.out

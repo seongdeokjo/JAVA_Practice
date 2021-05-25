@@ -1,16 +1,16 @@
 package com.test01;
 public class Calculator {
-	public int add(int a, int b) {
-		return(a + b);
+	public long add(int a, int b) {
+		return((long)a + b);
 	}
-	public int sub(int a, int b) {
-		return(a - b);
+	public long sub(int a, int b) {
+		return((long)a - b);
 	}
-	public int multi(int a, int b) {
-		return(a * b);
+	public long multi(int a, int b) {
+		return((long)a * b);
 	}
 	public  double divide(int a, int b) {
-			return(a / b);
+			return((double)a / b);
 	}
 	public double circleRadius(double r) { //원의 둘레
 		return 2 * Math.PI * r;
