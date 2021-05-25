@@ -21,7 +21,7 @@ public class Member1 {
 		int age = ageCal(birthYear); // 나이연산
 		boolean check1 = birthYear % 2 ==0 && 2021 % 2 == 0 ||
 				birthYear % 2 ==1 && 2021% 2 ==1;
-//											결과 1.0
+//			짝수 년이면 짝수 해 / 홀수 해 이면 홀수 해 가 검진대상 이되도록 
 		boolean check2 = birthYear % 2 == 2021 % 2;
 		if(age >= 20 && check2) {
 			System.out.println("검진 대상자 입니다.");
