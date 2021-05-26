@@ -7,6 +7,12 @@ public class StudentTest {
 		double sumClass = 0;
 		double avgClass = 0;
 		//Student 객체배열을 만들고 인스턴스와 생성자 초기화 
+		
+		//student 타입의 인스턴스를 생성하고 배열에 저장하는 코드를 정의 해봅시다. 
+		//Student[] students = new Student[10];
+		//student[0] = new Student("홍길동",80,80,80);
+		// ....
+		//student[9] = new Student("김",90,90,90);
 		Student[] stu = {
 			new Student("김씨",95,90,80),
 			new Student("이씨",90,80,70),
@@ -19,7 +25,24 @@ public class StudentTest {
 			new Student("하씨",95,90,70),
 			new Student("구씨",75,75,80)
 		};
-	
+		//각 과목마다 총합을 구하여 평균 값을 구하는 기능을 추가해보자 
+		System.out.print("이름 \t\t수학 \t 영어 \t 국어 \t 총점\t 평균");
+		System.out.println("\n==================================================================");
+		for(int i = 0; i <stu.length; i++) {
+			System.out.print(stu[i].getName());
+			System.out.print("\t\t");
+			System.out.print(stu[i].getMath());
+			System.out.print(" \t");
+			System.out.print(stu[i].getEng());
+			System.out.print(" \t");
+			System.out.print(stu[i].getKor());
+			System.out.print(" \t");
+			System.out.print(stu[i].getTotal());
+			System.out.print(" \t");
+			System.out.println(stu[i].getAvg());
+		}
+		
+				
 		// 개인 총점과, 개인평균을 구하기 위한 반복문 작성 
 		for(int i =0; i <stu.length; i++) {		
 			System.out.println("["+(i+1)+"]"+stu[i]+"-> 개인 총점: "+stu[i].getTotal()+
