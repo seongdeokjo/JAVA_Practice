@@ -12,10 +12,10 @@ public class CalcTest {
 		int num2 = scan.nextInt();
 		System.out.println(num1+"+"+num2+"="+calc.add(num1, num2) );
 			
-		System.out.println("add= "+calc.add(20, 30)); 
-		System.out.println("sub= "+calc.substract(2021, 65));
-		System.out.println("multi= "+calc.multiply(2, 7));
-		System.out.println("divide= "+calc.divide(1996, 2));
+//		System.out.println("add= "+calc.add(20, 30)); 
+//		System.out.println("sub= "+calc.substract(2021, 65));
+//		System.out.println("multi= "+calc.multiply(2, 7));
+//		System.out.println("divide= "+calc.divide(1996, 2));
 		
 		System.out.println("반지름을 입력하세요. >");
 		double r = scan.nextDouble();
