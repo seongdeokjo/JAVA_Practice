@@ -40,28 +40,47 @@ public class StudentTest {
 			System.out.print(stu[i].getTotal());
 			System.out.print(" \t");
 			System.out.println(stu[i].getAvg());
-		}
-		
-				
-		// 개인 총점과, 개인평균을 구하기 위한 반복문 작성 
-		for(int i =0; i <stu.length; i++) {		
-			System.out.println("["+(i+1)+"]"+stu[i]+"-> 개인 총점: "+stu[i].getTotal()+
-								", 개인 평균:"+Math.round(stu[i].getAvg()*100)/100.0);
-		//sum1과 출력문의 순서가 바뀌게 된다면 avg() 메서드안에 개인 총점 점수가 저장되어있지않기 때문에 avg1값은 0이 출력된다.			
 			sumClass += stu[i].getAvg();
-		// 각 과목의 평균값을 구하기 위해 각각의 get메소드를 이용하여 필요한 값만 호출한다. 	
 			mathSum += stu[i].getMath();
 			engSum += stu[i].getEng();
 			korSum += stu[i].getKor();
+			
 		}
-		//반평균을 구하기 위해  저장된 개인 평균 값에 배열의 수 만큼 나눠주면 반 평균 점수가 된다./			
-		avgClass = sumClass / stu.length;
-		System.out.println("반 평균: "+Math.round(avgClass*100)/100.0);
-		System.out.println();
-		System.out.println("==============각 과목의 평균==============");
-		System.out.println("수학 과목의 평균은 =>"+(double)mathSum/stu.length);
-		System.out.println("영어과목의 평균은 =>"+(double)engSum/stu.length);
-		System.out.println("국어 과목의 평균은 =>"+(double)korSum/stu.length);
+			System.out.println("=================================================================");
+			System.out.print("각 과목 평균");
+			System.out.print("\t");
+			System.out.print((double)mathSum/stu.length);
+			System.out.print("\t");
+			System.out.print((double)engSum/stu.length);
+			System.out.print("\t");
+			System.out.print((double)korSum/stu.length);
+			System.out.print("\t\t");
+//			System.out.print(sumClass);
+//			System.out.print("\t");
+			System.out.print((double)sumClass/stu.length);
+			
+			
+		
+				
+//		 개인 총점과, 개인평균을 구하기 위한 반복문 작성 
+//		for(int i =0; i <stu.length; i++) {		
+//			System.out.println("["+(i+1)+"]"+stu[i]+"-> 개인 총점: "+stu[i].getTotal()+
+//								", 개인 평균:"+Math.round(stu[i].getAvg()*100)/100.0);
+//		sum1과 출력문의 순서가 바뀌게 된다면 avg() 메서드안에 개인 총점 점수가 저장되어있지않기 때문에 avg1값은 0이 출력된다.			
+//			sumClass += stu[i].getAvg();
+//		 각 과목의 평균값을 구하기 위해 각각의 get메소드를 이용하여 필요한 값만 호출한다. 	
+//			mathSum += stu[i].getMath();
+//			engSum += stu[i].getEng();
+//			korSum += stu[i].getKor();
+//		}
+//		//반평균을 구하기 위해  저장된 개인 평균 값에 배열의 수 만큼 나눠주면 반 평균 점수가 된다./			
+//		avgClass = sumClass / stu.length;
+//		System.out.println("반 평균: "+Math.round(avgClass*100)/100.0);
+//		System.out.println();
+//		System.out.println("==============각 과목의 평균==============");
+//		System.out.println("수학 과목의 평균은 =>"+(double)mathSum/stu.length);
+//		System.out.println("영어과목의 평균은 =>"+(double)engSum/stu.length);
+//		System.out.println("국어 과목의 평균은 =>"+(double)korSum/stu.length);
 		
 	}
 }

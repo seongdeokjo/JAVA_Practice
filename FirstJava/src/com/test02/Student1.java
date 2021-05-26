@@ -7,8 +7,7 @@ public class Student1 {
 		int[] korScore = new int[10];
 		int[] engScore = new int[10];
 		int[] mathScore = new int[10];
-		
-		
+				
 		korScore[0] = 100;
 		korScore[1] = 90;
 		korScore[2] = 80;
