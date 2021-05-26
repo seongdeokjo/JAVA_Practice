@@ -25,6 +25,7 @@ class Person {
 		System.out.println("안녕하세요 저는 " + name + "입니다." + ageCal(rrn) + "살 입니다.");
 	}
 	int ageCal(String rrn) {
+		//char 배열을 이용하여 문자열에 저장되어있는 값 중 8번째 자리값을 출력해준다.
 		char[] a = rrn.toCharArray();
 		// 뒷자리 첫번째 숫자가 1,2 일 경우  1900년대 생 
 		if(a[7] == '1' || a[7] == '2') {

@@ -46,6 +46,5 @@ public class Member1 {
 		int brithYear = scan.nextInt();
 		member1.vaccinCheck(brithYear);
 		member1.checkUp(brithYear);
-		System.out.println((double)2021 % 2);
 	}
 }
