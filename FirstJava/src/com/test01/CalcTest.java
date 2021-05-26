@@ -4,6 +4,7 @@ public class CalcTest {
 	public static void main(String[] args) {
 		//인스턴스생성 => 클래스의 정의가 필요(필요한 변수,필요한 메소드)
 //	       클래스이름     참조변수 = new  클래스이름 
+		
 		Calculator calc = new Calculator1(); // 메모리에 메소드 코드,저장. 주소가 저장 
 		Scanner scan = new Scanner(System.in);
 		System.out.println("덧셈을 합니다.\n숫자1을 입력해주세요. ");

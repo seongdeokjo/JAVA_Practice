@@ -6,8 +6,6 @@ public class Student {
 	private int kor;
 	private int eng;
 	private int math;
-	int sum;
-	double avg;
 
 	// 생성자 정의
 	public Student(String name, int kor, int eng, int math) {
@@ -18,14 +16,14 @@ public class Student {
 	}
 
 	// 총점과 평균을 구해 결과를 반환하는 메소드를 정의 합니다.
-	public int total() {
-		sum = this.kor + this.eng + this.math;
-		return sum;
+	public int getTotal() {
+		return this.kor + this.eng + this.math;
+		
 	}
 
-	public double avg() {
-		this.avg = (double) sum / 3;
-		return this.avg;
+	public double getAvg() {
+		
+		return  (double) getTotal() / 3;
 	}
 
 	// 변수는 캡슐화 getter/setter메소드를 정의 합니다.
