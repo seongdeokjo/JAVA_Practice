@@ -37,6 +37,7 @@ public class Member {
 	public Member(String name, String ph, String major) {
 		this(name, ph, major, 0, null, null, null);
 	}
+	//final ph 생성자를 통한 초기화 
 	 Member() {
 		this.ph = "010-9999-9999";
 	}
