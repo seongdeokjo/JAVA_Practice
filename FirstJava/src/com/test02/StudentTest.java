@@ -55,7 +55,7 @@ public class StudentTest {
 			System.out.print("\t");
 			System.out.print((double)korSum/stu.length);
 			System.out.print("\t\t");
-			System.out.print((double)sumClass/stu.length);
+			System.out.print(sumClass/stu.length);
 			
 //		 개인 총점과, 개인평균을 구하기 위한 반복문 작성 
 //		for(int i =0; i <stu.length; i++) {		

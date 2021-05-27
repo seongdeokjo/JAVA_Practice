@@ -8,7 +8,7 @@ public class ArrayExam01 {
 		int mini = arr[0];
 		for(int i =0; i<arr.length; i++) {
 			
-			mini = (Integer) (mini > arr[i] ? mini: arr[i]);
+			mini = mini > arr[i] ? mini: arr[i];
 		}
 		return mini;		
 	}
@@ -16,7 +16,7 @@ public class ArrayExam01 {
 	public static int maxValue(int[] arr) {
 		int max = arr[0];
 		for(int i = 0; i <arr.length; i++) {
-			max = (Integer)(max < arr[i] ? max : arr[i]);
+			max = max < arr[i] ? max : arr[i];
 		}
 		return max;
 	}

@@ -9,6 +9,7 @@ public class Person {
 		this.name = name;
 		this.personNumber = personNumber;
 	}
+	@Override
 	public boolean equals(Object obj) {
 		boolean result = false;
 		if(obj instanceof Person) {

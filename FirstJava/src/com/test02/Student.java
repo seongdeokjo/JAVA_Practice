@@ -59,6 +59,7 @@ public class Student {
 		this.math = math;
 	}
 
+	@Override
 	public String toString() {
 		return name;
 	}

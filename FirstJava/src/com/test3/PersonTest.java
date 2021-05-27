@@ -66,6 +66,7 @@ class Male extends Person {
 
 	}
 
+	@Override
 	public void insa() {
 		System.out.println("안녕하세요 저는 " + name + "입니다." + ageCal(rrn) + "살 입니다.");
 		System.out.println("성별은 " + gender + "입니다.");
@@ -91,6 +92,7 @@ class Female extends Person {
 		this.hobby = hobby;
 	}
 
+	@Override
 	public void insa() {
 		System.out.println("안녕하세요 저는 " + name + "입니다." + ageCal(rrn) + "살 입니다.");
 		System.out.println("성별은 " + gender + "입니다.");
