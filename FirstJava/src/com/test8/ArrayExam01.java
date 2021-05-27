@@ -37,5 +37,4 @@ public class ArrayExam01 {
 		System.out.println("최대값은: "+maxValue(check));
 		
 	}
-
 }
