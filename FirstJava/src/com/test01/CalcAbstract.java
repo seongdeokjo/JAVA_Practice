@@ -6,13 +6,9 @@ public abstract class CalcAbstract implements Calculator {
 	//일반메서드가 추상메서드를 호출 할 수 있다.
 	//완성된 설계도가 아니므로 인스턴스를 생성할 수 없다.
 	//다른 클래스를 작성하는데 도움을 줄 목적으로 작성된다. 
-	@Override
 	public abstract long add(long n1, long n2) ;
-	@Override
 	public abstract  long substract(long n1, long n2);
-	@Override
 	public abstract long multiply(long n1, long n2);
-	@Override
 	public abstract double divide(double n1, double n2);
 	
 	
