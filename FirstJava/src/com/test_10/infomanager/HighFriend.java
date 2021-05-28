@@ -17,5 +17,6 @@ public class HighFriend extends Friend {
 	public void showBasicInfo() {
 		System.out.println("이     름: "+name);
 		System.out.println("전화번호: "+phoneNumber);
+		System.out.println("직     업: "+work);
 	}	
 }
