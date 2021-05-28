@@ -17,7 +17,7 @@ public class FriendInfoHandler {
 	// 데이터의 입력 처리
 	// 사용자로부터 친구의 정보를 입력받아서 -> 인스턴스를 생성 -> 배열에 저장한다.
 	public void addFriend(int choice) { // choice -> 1.(고교) or 2.(대학)
-
+		
 		System.out.println("이름을 입력해주세요.>> ");
 		String name = scan.nextLine();
 		System.out.println("전화번호를 입력헤주세요 >> ");
@@ -112,6 +112,5 @@ public class FriendInfoHandler {
 			// 마지막 배열에 null값이 저장되기 때문에 배열의 길이를 한칸 없앤다.
 			numOfFriend--;
 		}
-
 	}
 }
