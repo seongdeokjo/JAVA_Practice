@@ -1,4 +1,4 @@
-package com.pr1.src.com.pr1;
+package com.pr1;
 
 public class PhoneInfo {
 	String name;
@@ -12,9 +12,9 @@ public class PhoneInfo {
 	}
 	
 	public void showInfo() {
-		System.out.println("ÀÌ¸§ : " + name);
-		System.out.println("ÀüÈ­¹øÈ£ : "+phoneNumber);
-		System.out.println("»ýÀÏ : "+ birth);
+		System.out.println("ï¿½Ì¸ï¿½ : " + name);
+		System.out.println("ï¿½ï¿½È­ï¿½ï¿½È£ : "+phoneNumber);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ : "+ birth);
 	}
 
 }

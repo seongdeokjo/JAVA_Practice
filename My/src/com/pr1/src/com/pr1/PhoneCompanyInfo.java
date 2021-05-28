@@ -1,4 +1,4 @@
-package com.pr1.src.com.pr1;
+package com.pr1;
 
 public class PhoneCompanyInfo extends PhoneInfo {
 	String company;
@@ -9,10 +9,10 @@ public class PhoneCompanyInfo extends PhoneInfo {
 		this.company = company;
 	}
 	 public void showInfo() {
-	 	System.out.println("ÀÌ¸§ : " + name);
-		System.out.println("ÀüÈ­¹øÈ£ : "+phoneNumber);
-		System.out.println("»ýÀÏ : "+ birth);
-		System.out.println("È¸»ç : "+ company);
+	 	System.out.println("ï¿½Ì¸ï¿½ : " + name);
+		System.out.println("ï¿½ï¿½È­ï¿½ï¿½È£ : "+phoneNumber);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ : "+ birth);
+		System.out.println("È¸ï¿½ï¿½ : "+ company);
 	 }
 	
 	

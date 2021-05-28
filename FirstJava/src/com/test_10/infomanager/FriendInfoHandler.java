@@ -18,13 +18,13 @@ public class FriendInfoHandler {
 	// 사용자로부터 친구의 정보를 입력받아서 -> 인스턴스를 생성 -> 배열에 저장한다.
 	public void addFriend(int choice) { // choice -> 1.(고교) or 2.(대학)
 
-		
 		System.out.println("이름을 입력해주세요.>> ");
 		String name = scan.nextLine();
 		System.out.println("전화번호를 입력헤주세요 >> ");
 		String phoneNumber = scan.nextLine();
 		System.out.println("주소를 입력해주세요 >>");
 		String address = scan.nextLine();
+		// 이름이 중복되지 않게 하는 코드 작성해보기
 
 		if (choice == 1) { // 고교 친구
 			System.out.println("직업을 입력해주세요 >>");
@@ -35,22 +35,33 @@ public class FriendInfoHandler {
 			addFriendInfo(new HighFriend(name, phoneNumber, address, work));
 			// 배열에 요소 추가
 			// friends[numOfFriend++] = hFriend;
-		} else { // if(choice == 2) 대학
+		} else if (choice == 2) { // 2.대학
 			System.out.println("전공을 입력해주세요 >>");
 			String major = scan.nextLine();
 			// 인스턴스 생성
-			addFriendInfo(new UnivFriend(name, phoneNumber, address, major));
+			// addFriendInfo(new UnivFriend(name, phoneNumber, address, major));
+			System.out.println("email을 입력해주세요>>");
+			String email = scan.nextLine();
+			System.out.println("학년을 입력해주세요.");
+			int year = Integer.parseInt(scan.nextLine());
+			addFriendInfo(new PhoneUnivInfor(name, phoneNumber, address, major, email, year));
+
 			// 배열에 요소 추가
 			// friends[numOfFriend++] = univFriend;
+		} else { // 3.
+			// System.out.println("전공을 입력해주세요 >>");
+			// String major = scan.nextLine();
+
 		}
+
 	}
 
+	// Friend 클래스를 상속하는 타입의 인스턴스를 받아 배열에 저장
 	public void addFriendInfo(Friend f) {
 		friends[numOfFriend++] = f;
 		System.out.println("정보가 저장되었습니다.");
 	}
 
-	
 	public void showAllBasicData() {
 		System.out.println("친구의 모든 기본 정보를 출력합니다.");
 		System.out.println("------------------------------");
@@ -64,6 +75,7 @@ public class FriendInfoHandler {
 		}
 		System.out.println("------------------------------");
 	}
+
 	// 모든 데이터를 출력하는 메소드
 	public void showAllData() {
 		System.out.println(" 모든 정보를 출력합니다.");
@@ -78,13 +90,28 @@ public class FriendInfoHandler {
 		}
 		System.out.println("------------------------------");
 	}
-//	public void deletData() {
-//		System.out.println("삭제할 이름을 입력해주세요.");
-//		String name = scan.nextLine();
-//		for(int i = 0; i < numOfFriend; i++) {
-//			
-//		}
-//	}
-	
 
+	public void deletData() {
+		System.out.println("삭제할 이름을 입력해주세요.");
+		String name = scan.nextLine();
+		boolean isTrue = false;
+		int point = 0;
+		for (int i = 0; i < numOfFriend; i++) {
+			if ((friends[i].name).equals(name)) {
+				isTrue = true;
+				point = i;
+
+			}
+		}
+		if (isTrue == true) {
+			// 삭제할 데이터부터 배열의 길이 끝까지 한칸씩 앞으로 밀면서 저장한다.
+			for (int i = point; i < numOfFriend; i++) {
+				friends[i] = friends[i + 1];
+				System.out.println("[" + name + "] 의 데이터가 삭제되었습니다.");
+			}
+			// 마지막 배열에 null값이 저장되기 때문에 배열의 길이를 한칸 없앤다.
+			numOfFriend--;
+		}
+
+	}
 }

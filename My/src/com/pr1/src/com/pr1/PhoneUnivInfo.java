@@ -1,4 +1,4 @@
-package com.pr1.src.com.pr1;
+package com.pr1;
 
 public class PhoneUnivInfo extends PhoneInfo {
 	String major;
@@ -11,8 +11,8 @@ public class PhoneUnivInfo extends PhoneInfo {
 	}
 	public void showInfo() {
 		super.showInfo();
-		System.out.println("Àü°ø : "+major);
-		System.out.println("ÇÐ³â : "+year);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ : "+major);
+		System.out.println("ï¿½Ð³ï¿½ : "+year);
 	}
 	
 	

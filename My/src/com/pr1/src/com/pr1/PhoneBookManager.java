@@ -1,4 +1,4 @@
-package com.pr1.src.com.pr1;
+package com.pr1;
 
 import java.util.Scanner;
 
@@ -10,57 +10,57 @@ public class PhoneBookManager {
 	Scanner scan = new Scanner(System.in);
 	
 	public void inputData() {
-		System.out.println("µ¥ÀÌÅÍ ÀÔ·Â ½ÃÀÛ");
-		System.out.println("ÀÌ¸§ : ");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½");
+		System.out.println("ï¿½Ì¸ï¿½ : ");
 		String name = scan.nextLine();
-		System.out.println("ÀüÈ­¹øÈ£ : ");
+		System.out.println("ï¿½ï¿½È­ï¿½ï¿½È£ : ");
 		String phoneNumber = scan.nextLine();
-		System.out.println("»ýÀÏ : ");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ : ");
 		String birth = scan.nextLine();
 		
 		pi[num] = new PhoneInfo(name, phoneNumber, birth);
 		num++;
 		
 		
-		System.out.println("µ¥ÀÌÅÍ ÀÔ·ÂÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 		}
 		public void inputUnivData() {
-			System.out.println("µ¥ÀÌÅÍ ÀÔ·Â ½ÃÀÛ");
-			System.out.println("ÀÌ¸§ : ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½");
+			System.out.println("ï¿½Ì¸ï¿½ : ");
 			String name = scan.nextLine();
-			System.out.println("ÀüÈ­¹øÈ£ : ");
+			System.out.println("ï¿½ï¿½È­ï¿½ï¿½È£ : ");
 			String phoneNumber = scan.nextLine();
-			System.out.println("»ýÀÏ : ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ : ");
 			String birth = scan.nextLine();
-			System.out.println("Àü°ø : ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ : ");
 			String major = scan.nextLine();
-			System.out.println("ÇÐ³â : ");
+			System.out.println("ï¿½Ð³ï¿½ : ");
 			int year = scan.nextInt();
 			scan.nextLine();
 			
 			pi[num] = new PhoneUnivInfo(name, phoneNumber, birth, major, year);
 			num ++;
 			
-			System.out.println("µ¥ÀÌÅÍ ÀÔ·ÂÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 		}
 		public void inputCompanyData() {
-			System.out.println("µ¥ÀÌÅÍ ÀÔ·Â ½ÃÀÛ");
-			System.out.println("ÀÌ¸§ : ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½");
+			System.out.println("ï¿½Ì¸ï¿½ : ");
 			String name = scan.nextLine();
-			System.out.println("ÀüÈ­¹øÈ£ : ");
+			System.out.println("ï¿½ï¿½È­ï¿½ï¿½È£ : ");
 			String phoneNumber = scan.nextLine();
-			System.out.println("»ýÀÏ : ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ : ");
 			String birth = scan.nextLine();
-			System.out.println("È¸»ç : ");
+			System.out.println("È¸ï¿½ï¿½ : ");
 			String company = scan.nextLine();
 			
 			pi[num] = new PhoneCompanyInfo(name, phoneNumber, birth, company);
 			
-			System.out.println("µ¥ÀÌÅÍ ÀÔ·ÂÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 		}
 		
 		public void searchData() {
-			System.out.println("°Ë»öÇÒ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä");
+			System.out.println("ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 			String name = scan.nextLine();
 			boolean isTrue = false;
 			for(int j = 0; j < num; j++) {
@@ -69,10 +69,10 @@ public class PhoneBookManager {
 					isTrue = true;
 				}
 			}
-			System.out.print(isTrue == true ? "" : "µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.");
+			System.out.print(isTrue == true ? "" : "ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 		}
 		public void deleteData() {
-			System.out.println("»èÁ¦ÇÒ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä. :");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½. :");
 			String name = scan.nextLine();
 			boolean isTrue = false;
 			int point = 0;
