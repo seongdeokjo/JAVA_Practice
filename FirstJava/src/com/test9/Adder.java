@@ -1,6 +1,9 @@
 package com.test9;
 
+
 class Adder {
+
+	
 	public static int val = 0;
 	public void add(int num) {
 		val += num;
