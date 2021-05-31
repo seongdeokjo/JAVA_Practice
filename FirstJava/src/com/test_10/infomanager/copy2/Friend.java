@@ -1,6 +1,6 @@
 package com.test_10.infomanager.copy2;
 	//상속을 목적으로 하는 클래스 
-public abstract class Friend {
+public abstract class Friend implements ShowData {
 	// 이름, 전화번호, 주소
 	 String name;
 	 String phoneNumber;
@@ -17,5 +17,5 @@ public abstract class Friend {
 		System.out.println("전화번호: "+phoneNumber);
 		System.out.println("주     소: "+address);
 	}
-	public abstract void showBasicInfo();
+//	public abstract void showBasicInfo();
 }
