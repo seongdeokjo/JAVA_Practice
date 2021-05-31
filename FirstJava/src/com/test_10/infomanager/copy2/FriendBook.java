@@ -1,10 +1,12 @@
-package com.test_10.infomanager;
+package com.test_10.infomanager.copy2;
 
 import java.util.Scanner;
 
 public class FriendBook {
 
 	public static void main(String[] args) {
+		// 추상클래스는 인스턴스를 생성할 수 없다.
+//		Friend friend = new Friend("","","");
 		FriendInfoHandler handler = new FriendInfoHandler(100);
 
 		while (true) {

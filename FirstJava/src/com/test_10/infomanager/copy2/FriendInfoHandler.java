@@ -1,4 +1,4 @@
-package com.test_10.infomanager;
+package com.test_10.infomanager.copy2;
 
 import java.util.*;
 

@@ -12,7 +12,6 @@ public class Buyer {
 		this.cart = new Product[10];
 		this.cnt = 0;
 	} 
-	
 	//제품들을 구매
 	void buy(Product p) {
 		//보유금액을 확인하고 구매여부 체크
@@ -25,10 +24,8 @@ public class Buyer {
 		
 //******************구매내역에 제품을 추가***********************중요
 		cart[cnt++] = p;
-		
 		System.out.println(p + "구매");
 	}
-	
 	void summary() {
 		//구매 상품 리스트, 구매금액의 총합 출력
 		int sum = 0; // 구매 총액 
