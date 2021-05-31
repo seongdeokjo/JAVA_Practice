@@ -1,18 +1,20 @@
-package com.test_10.infomanager.copy2;
+package com.test_10.infomanager3;
 
 import java.util.*;
 
 public class FriendInfoHandler {
 	// 저장 데이터(객체)를 배열로 저장하고 관리하는 기능을 가지는 클래스
-
-	Friend[] friends;
-	int numOfFriend; // 배열의 입력 index역활, 정보의 개수
+// 2021 -05-31 배열 -> 컬렉션
+//	Friend[] friends;
+//	int numOfFriend; // 배열의 입력 index역활, 정보의 개수
+	ArrayList<Friend> friends;
 	Scanner scan = new Scanner(System.in);
 
 	// 생성자
 	public FriendInfoHandler(int num) {
-		this.friends = new Friend[num];
-		numOfFriend = 0; // 안해줘도 되지만 명시적으로 표시해주기위해 사용
+		friends = new ArrayList<Friend>(num);
+//		this.friends = new Friend[num];
+//		numOfFriend = 0; // 안해줘도 되지만 명시적으로 표시해주기위해 사용
 	}
 
 	// 데이터의 입력 처리
@@ -59,16 +61,21 @@ public class FriendInfoHandler {
 	}
 	// Friend 클래스를 상속하는 타입의 인스턴스를 받아 배열에 저장
 	public void addFriendInfo(Friend f) {
-		friends[numOfFriend++] = f;
+	// 배열에 요소 추가
+		//		friends[numOfFriend++] = f;
+		// List에 요소 추가
+		friends.add(f);
 		System.out.println("정보가 저장되었습니다.");
 	}
 
 	public void showAllBasicData() {
 		System.out.println("친구의 모든 기본 정보를 출력합니다.");
 		System.out.println("------------------------------");
-		if (numOfFriend > 0) {
-			for (int i = 0; i < numOfFriend; i++) {
-				friends[i].showBasicInfo();
+		// 2021-05-31 수정 : List 출력 수정
+		if (!friends.isEmpty()) {
+			for (int i = 0; i < friends.size(); i++) {
+//				friends[i].showBasicInfo();
+				friends.get(i).showBasicInfo();
 				System.out.println("------------------------------");
 			}
 		} else {
@@ -80,9 +87,12 @@ public class FriendInfoHandler {
 	public void showAllData() {
 		System.out.println(" 모든 정보를 출력합니다.");
 		System.out.println("------------------------------");
-		if (numOfFriend > 0) {
-			for (int i = 0; i < numOfFriend; i++) {
-				friends[i].showData();
+		//2021-05-31 : 수정
+		// 요소의 저장방식이 배열-> 컬렉션 => 반복문 수정
+		if ( friends.size()> 0) {
+			for (int i = 0; i < friends.size(); i++) {
+//				friends[i].showData();
+				friends.get(i).showData();
 				System.out.println("------------------------------");
 			}
 		} else {
@@ -94,25 +104,36 @@ public class FriendInfoHandler {
 	public void deletData() {
 		System.out.println("삭제할 이름을 입력해주세요.");
 		String name = scan.nextLine();
-		
 		boolean isTrue = false;
-		int point = 0;
-		for (int i = 0; i < numOfFriend; i++) {
-			if ((friends[i].name).equals(name)) {
+//		int point = 0;
+//		for (int i = 0; i < numOfFriend; i++) {
+//			if ((friends[i].name).equals(name)) {
+//				isTrue = true;
+//				point = i;
+//			}
+//		}
+//		if (isTrue == true) {
+//			// 삭제할 데이터부터 배열의 길이 끝까지 한칸씩 앞으로 밀면서 저장한다.
+//			for (int i = point; i < numOfFriend; i++) {
+//				friends[i] = friends[i + 1];
+//				System.out.println("[" + name + "] 의 데이터가 삭제되었습니다.");
+//			}
+//			// 마지막 배열에 null값이 저장되기 때문에 배열의 길이를 한칸 없앤다.
+//			numOfFriend--;
+//		}else {
+//			System.out.println("데이터에 저장된 이름이 없습니다.");
+//		}
+		//2021-05-31 배열 -> 컬렉션 
+		for(int i =0; i < friends.size(); i++) {
+			if(friends.get(i).name.equals(name)) {
 				isTrue = true;
-				point = i;
+				friends.remove(i);
 			}
 		}
-		if (isTrue == true) {
-			// 삭제할 데이터부터 배열의 길이 끝까지 한칸씩 앞으로 밀면서 저장한다.
-			for (int i = point; i < numOfFriend; i++) {
-				friends[i] = friends[i + 1];
-				System.out.println("[" + name + "] 의 데이터가 삭제되었습니다.");
-			}
-			// 마지막 배열에 null값이 저장되기 때문에 배열의 길이를 한칸 없앤다.
-			numOfFriend--;
-		}else {
-			System.out.println("데이터에 저장된 이름이 없습니다.");
+		if(isTrue == false) {
+			System.out.println("입력된 데이터가 없습니다.");
 		}
+		
+		
 	}
 }
