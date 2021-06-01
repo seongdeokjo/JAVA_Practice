@@ -10,8 +10,8 @@ public class Test {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("이름을 입력하세요.");
 		String name = scan.nextLine();
-		scan.
-		if(name != "" && name != null)  {
+		
+		if(name )  {
 			System.out.println(name);
 		}else {
 			System.out.println("공백x");
