@@ -10,7 +10,7 @@ public class Test {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("이름을 입력하세요.");
 		String name = scan.nextLine();
-		
+		// name != null / !name.trim().isEmpty()
 		if(name.trim().length() == 0 )  {
 			System.out.println("공백이 입력되었습니다.");
 		}else {

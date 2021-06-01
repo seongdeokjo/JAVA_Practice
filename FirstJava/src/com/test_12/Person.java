@@ -11,13 +11,12 @@ public class Person {
 // 	Person클래스의 equals()메소드를 오버라이딩 해서 
 //	주민등록 번호가 같으면 인스턴스로 판별하는 프로그램을 만들어보자. 
 	public boolean equals(Object obj) {
-		if(obj instanceof Person) {
+		boolean check = false;
+		if(obj != null && obj instanceof Person) {
 			Person p = (Person)obj;
-		return	this.personNumber == p.personNumber;
-			
-		}else {
-			return false;
+			 check =this.personNumber == p.personNumber; 
 		}
+		return check;
 	}
 	
 	public static void main(String args[]) {
