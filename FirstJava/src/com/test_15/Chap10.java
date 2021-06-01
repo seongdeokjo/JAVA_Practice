@@ -2,7 +2,8 @@ package com.test_15;
 
 import java.util.Scanner;
 
-public class BadIdInputExceptionTest {
+public class Chap10  {
+	
 	public static String getUserInput() {
 		Scanner scan = new Scanner(System.in);
 		String id = scan.nextLine();
@@ -13,21 +14,19 @@ public class BadIdInputExceptionTest {
 		System.out.print("사용자 아이디를 입력하세요. >>");
 		try {
 			String id = getUserInput();
-			char[] chk = id.toCharArray();
-
-			for (int i = 0; i < chk.length; i++) {
+			char[] t = id.toCharArray();
+			for (int i = 0; i < t.length; i++) {
 				//유니코드 
 				// 숫자 : 48~57  					/소문자 65 ~ 90						//대문자 97~122	
-				if ((48 > chk[i] || chk[i] > 57) && (65 > chk[i] || chk[i] > 90) && (97 > chk[i] || chk[i] > 122)) {
+				if ((48 > t[i] || t[i] > 57) && (65 > t[i] || t[i] > 90) && (97 > t[i] || t[i] > 122)) {
 					throw new BadIdInputException("에러 발생");
 				}	
+				System.out.print(t[i]);
 			}
-			for(char a : chk) {
-				System.out.print(a);
-			}
-
+			
 		} catch (BadIdInputException e) {
 			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 }
