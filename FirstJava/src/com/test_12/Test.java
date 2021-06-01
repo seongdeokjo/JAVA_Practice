@@ -11,10 +11,10 @@ public class Test {
 		System.out.println("이름을 입력하세요.");
 		String name = scan.nextLine();
 		
-		if(name )  {
-			System.out.println(name);
+		if(name.trim().length() == 0 )  {
+			System.out.println("공백이 입력되었습니다.");
 		}else {
-			System.out.println("공백x");
+			System.out.println(name+"가 입력되었습니다.");
 		}
 	}
 }

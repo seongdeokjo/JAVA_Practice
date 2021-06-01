@@ -14,6 +14,8 @@ public class FootballPlayerHashSet {
 		set.add(new FootballPlayer("박지상",7,"첼시",34));
 		set.add(new FootballPlayer("박지성",7,"맨유",31));
 		
+		System.out.println("요소의 개수 : "+ set.size());
+		
 		Iterator itr = set.iterator();
 		while(itr.hasNext()) {
 			System.out.println(itr.next());

@@ -22,7 +22,8 @@ public class FootballPlayerTreeSet {
 		treeSet.add(new FootballPlayer("조하트", 1, "맨시티", 28));
 		treeSet.add(new FootballPlayer("덕배", 5, "맨시티", 32));
 		treeSet.add(new FootballPlayer("에투", 8, "가나", 32));
-
+		
+		System.out.println("요소의 개수"+treeSet.size());
 		Iterator itr = treeSet.iterator();
 		while (itr.hasNext()) {
 			System.out.println(itr.next());
