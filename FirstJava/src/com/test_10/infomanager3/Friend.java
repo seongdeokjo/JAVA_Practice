@@ -17,5 +17,6 @@ public abstract class Friend implements ShowData {
 		System.out.println("전화번호: "+phoneNumber);
 		System.out.println("주     소: "+address);
 	}
-//	public abstract void showBasicInfo();
+	public abstract void showBasicInfo();
+	
 }
