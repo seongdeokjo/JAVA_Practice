@@ -46,8 +46,29 @@ public class HashSetTest2 {
 class SimpleNumber {
 	int num;
 	SimpleNumber(int n) {
-		num = n;
+		this.num = n;
 	}
+	
+	@Override
+	public int hashCode() {
+		return num % 3; // 0, 1, 2 3개의 그룹이 만들어짐 
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		boolean result = false;
+		// obj 는 null이 아니고, obj는 SimpleNumber 타입으로 형변환이 가능해야 한다. 
+		if(obj != null && obj instanceof SimpleNumber) {
+			SimpleNumber sNum = (SimpleNumber) obj;
+			if(this.num == sNum.num) {
+				result =  true;
+				//return true ; 리턴 값을 직접반환하는 것보단 변수를 통해 값을 보내는 것이 좀 더 안전하다.!
+			}
+		}
+		
+		return result;
+	}
+
 	public String toString() {
 		return String.valueOf(num);
 	}
