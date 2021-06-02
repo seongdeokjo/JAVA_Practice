@@ -13,6 +13,8 @@ public class PlayerList {
 		player.add(new Player("park",7,"mu",37));
 		player.add(new Player("ebra",3,"mu",38));
 		
+		
+		
 		Iterator itr = player.iterator();
 		while(itr.hasNext()) {
 			System.out.println(itr.next());

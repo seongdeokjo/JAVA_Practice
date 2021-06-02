@@ -10,7 +10,7 @@ public class StringReader {
 	public static void main(String[] args) {
 		try {
 			
-			BufferedReader in = new BufferedReader(new FileReader("String.txt"));
+			BufferedReader in = new BufferedReader(new FileReader("text.txt"));
 			String str;
 			while(true) {
 				str = in.readLine();
