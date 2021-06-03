@@ -18,6 +18,5 @@ public class ShowThread extends Thread {
 		}catch(InterruptedException e) {
 			e.printStackTrace();
 		}
-	}
-	
+	}	
 }
