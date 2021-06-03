@@ -10,13 +10,13 @@ public class HighLowMain {
 
 		Count ct = new Count();
 		CheckNumber num = new CheckNumber();
-		// 4.10초 이전에 맞추면 미션 성공, 10초가 지나면 프로그램 종료하는 흐름으로 만들어봅시다.
+		// 4.10초 이전에 맞추면 미션 성공, 10초가 지나면 프로그램 종료하는 흐름으로 만드리
 		num.start();
 		ct.start();
 	}
 }
 
-// 3.10초 카운팅은 스레드를 이용해서 처리해봅시다.
+// 3.10초 카운팅은 스레드를 이용해서 처리
 class Count extends Thread {
 
 	@Override
@@ -46,15 +46,13 @@ class CheckNumber extends Thread {
 
 	@Override
 	public void run() {
-		// 1.1~100 사이의 랜덤 한 숫자를 추출합니다.
+		// 1.1~100 사이의 랜덤 숫자를 설정합니다.
 
 		int random = (int) (Math.random() * 100) + 1;
 
 		System.out.println(random);
 
 		// 2.사용자에게 숫자를 입력 받고, 랜덤 숫자와 비교하고, 높은 숫자인지 낮은 숫자인지 출력
-
-
 		
 		while (!HighLowMain.check) {
 			String answer = JOptionPane.showInputDialog("숫자를 입력해주세요: ");

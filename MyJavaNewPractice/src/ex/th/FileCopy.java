@@ -38,7 +38,8 @@ public class FileCopy extends Thread {
 			}
 			in.close();
 			out.close();
-			System.out.println(copybyte);
+			System.out.println("파일의 복사가 완료되었습니다.");
+			System.out.println("데이터의 크기는:"+copybyte);
 
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
