@@ -10,5 +10,4 @@ public class ShowThreadMian {
 		 r1.start();
 		 r2.start();
 	}
-
 }
