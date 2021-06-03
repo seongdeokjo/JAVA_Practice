@@ -1,6 +1,7 @@
 package ex.th;
 
-import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 public class HighLowMain {
 	public static boolean check = false;
@@ -53,25 +54,20 @@ class CheckNumber extends Thread {
 
 		// 2.사용자에게 숫자를 입력 받고, 랜덤 숫자와 비교하고, 높은 숫자인지 낮은 숫자인지 출력
 
-		Scanner scan = new Scanner(System.in);
 
-		boolean ck = false;
-
-		while (!ck) {
-			System.out.println("숫자를 입력해주세요. >>");
-			int num = scan.nextInt();
-			if (num != random) {
-				if (num > random) {
-					System.out.println("입력하신 숫자보다 작은 수로 입력하세요.");
-				} else {
-					System.out.println("입력하신 숫자보다 큰 수로 입력하세요.");
-				}
-				ck = false;
-			} else {
-				HighLowMain.check = true;
+		
+		while (!HighLowMain.check) {
+			String answer = JOptionPane.showInputDialog("숫자를 입력해주세요: ");
+			int num = Integer.parseInt(answer);
+			int result = num - random;
+			if (result > 0) {
+				System.out.println("낮은 숫자를 입력해주세요.");
+			}else if(result < 0) {
+				System.out.println("높은 숫자를 입력해주세요.");
+			}else {
 				System.out.println("정답입니다.");
-				ck = true;
-				break;
+				HighLowMain.check =true;
+				return;
 			}
 		}
 	}

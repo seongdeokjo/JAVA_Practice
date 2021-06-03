@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class TextFunction_bitcamp {
+
+	
 	public static String getUserInput() {
 		Scanner scan = new Scanner(System.in);
 		String input = scan.nextLine();
