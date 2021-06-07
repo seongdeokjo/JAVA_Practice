@@ -12,11 +12,16 @@ public class FootballPlayerList {
 		list.add(new FootballPlayer("손흥민",7,"토트넘",30));
 		list.add(new FootballPlayer("메시",5,"바르셀로나",31));
 		list.add(new FootballPlayer("이영표",3,"토트넘",40));
+		list.add(new FootballPlayer("이영표",3,"토트넘",41));
+		list.add(new FootballPlayer("메시",5,"바르셀로나",41));
 		
+		
+	
 		//데이터 처리
 		Iterator itr = list.iterator();
 		while(itr.hasNext()) {
 			System.out.println(itr.next());
+			
 		}	
 	}
 }

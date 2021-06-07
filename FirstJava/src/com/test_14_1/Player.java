@@ -40,6 +40,7 @@ public class Player implements Comparable<Player>{
 		return check;
 	}
 	
+	
 	public String toString() {
 		return "["+name+", "+number+", "+team+", "+age+"]";
 	}

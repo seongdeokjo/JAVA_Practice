@@ -25,7 +25,7 @@
 					"_parent": {
 						"$ref": "AAAAAAF55ba3GnpxOu8="
 					},
-					"name": "UseCaseDiagram1",
+					"name": "rentCar",
 					"ownedViews": [
 						{
 							"_type": "UMLActorView",
@@ -5861,6 +5861,24 @@
 						"$ref": "AAAAAAF55ba3GnpxOu8="
 					},
 					"name": "이동업무를 처리한다."
+				}
+			]
+		},
+		{
+			"_type": "UMLModel",
+			"_id": "AAAAAAF55ePyzZsKgV0=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "Model2",
+			"ownedElements": [
+				{
+					"_type": "UMLUseCaseDiagram",
+					"_id": "AAAAAAF55ePyzpsLW7U=",
+					"_parent": {
+						"$ref": "AAAAAAF55ePyzZsKgV0="
+					},
+					"name": "UseCaseDiagram1"
 				}
 			]
 		}
