@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class MemoUtil {
 	File[] list;
-	File utilMemo;
+private	File utilMemo;
 
 	//현재 시간을 저장하는 메서드
 	public static String nowDateTime() {		
@@ -30,12 +30,17 @@ public class MemoUtil {
 	}
 	
 	public void listFile() {
-//		findFile();
+		System.out.println("찾을 경로의 폴더를 입력해주세요.");
+		String rootFolder = getUserInput();
+		utilMemo = new File(rootFolder);
+		if(utilMemo.exists()) {
 		list = utilMemo.listFiles();
 		for(int i = 0; i < list.length; i++) {
 			System.out.println(list[i].getName());
+			}
+		}else {
+			System.out.println("잘못된 경로입니다 다시 입력하세요.");
 		}
-		
 	}
 	
 	public void findFile() {
