@@ -63,7 +63,7 @@ public class Contact {
 	}
 	
 	public String toString() {
-		return getName() +", "+getPh()+", " + getEmail()+", " + getAddress()+", " + getBirth()+", " + getGroup(); 
+		return "이름: ["+getName()+"], 전화번호: ["+getPh()+"], 이메일: [" + getEmail()+"], 주소: [" + getAddress()+"], "
+				+ "생일: [" + getBirth()+"], 그룹: [" + getGroup()+"]"; 
 	}
-	
 }
