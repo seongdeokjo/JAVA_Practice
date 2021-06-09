@@ -110,7 +110,7 @@ public class FriendInfoHandler {
 		System.out.println("삭제할 이름을 입력해주세요.");
 		String name = scan.nextLine();
 		boolean isTrue = false;
-		Iterator itr = friends.iterator();
+	
 
 		// int point = 0;
 		// for (int i = 0; i < numOfFriend; i++) {
