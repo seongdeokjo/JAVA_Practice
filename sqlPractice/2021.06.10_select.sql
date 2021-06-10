@@ -56,3 +56,65 @@ from emp
 --where sal >= 2000 and sal <= 3000
 where sal between 2000 and 3000
 ;
+
+--between 연산자는 날짜의 연산도 가능 
+-- 1981년에 입사한 사원들의 리스트를 출력 
+select *
+from emp
+--where hiredate >= '81/01/01' and hiredate <= '81/12/31'
+where hiredate between '81/01/01' and '81/12/31' 
+ORDER BY hiredate 
+;
+
+--연산자 in => 여러개의 or 연산자 사용시 대체 할 수 있다.
+--커미션이 300 또는 500 또는 1400 
+select *
+from emp
+--where comm = 300 or comm = 500 or comm = 1400
+where comm in(300,500,1400)
+;
+
+--패턴 검색 : 키워드 검색 많이 사용 (게시판) 
+-- 컬럼 like '%'
+--ename like 'F%' - > F로 시작하는 문자열
+--ename like '%F' - > F로 끝나는 문자열
+--ename like '%F%' - > F를 포함하는 문자열
+--'java' 단어를 포함하는지 -> title like '%java%'
+--F 로 시작하는 이름을 가진 사원을 검색
+select ename 
+from emp
+--where ename like 'F%'
+--where ename like '%ES'
+where ename like '%A%'
+;
+
+--자리수 패턴 : 컬럼의 값이 자리수가 정해져 있고 값에 패턴이 있는 경우
+--이름에 두번째 문자에 'A'를 포함하는 사원의 리스트 
+select *
+from emp
+--where ename like '_A%'
+where ename like '__A%' -- 세번째 문자가 A인 이름 
+--where ename   not like '__A%'
+;
+
+-- null 값을 확인하는 연산자 -> is null, is not null
+--커미션이 등록되어 있지 않은 사원의 리스트 
+select *
+from emp
+--where comm is null 
+where comm is not null
+order by comm 
+;
+                         --오름차순 | 내림차순
+--결과 행의 정렬 : order by 컬럼 [asc | desc]
+-- 급여가 적은 사원부터 출력 : 오름차순 asc 
+select ename, sal
+from emp
+--order by sal asc
+order by sal -- 정렬의 기본은 오름차순이다 
+;
+-- 급여가 많은 사람부터 출력 : 내림차순 desc 
+select ename, sal 
+from emp
+order by sal desc
+;
