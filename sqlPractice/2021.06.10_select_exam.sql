@@ -39,7 +39,9 @@ where hiredate between '81/02/20' and '81/05/01'
 --7. 부서번호가 20 및 30에 속한 사원의 이름과 부서번호를 출력, 이름을 기준(내림차순)으로 영문자순으로 출력하시오.
 select ename, deptno 
 from emp
-where deptno <>10
+--where deptno <>10
+--where deptno = 20 or deptno = 30
+where deptno in(20,30)
 order by ename desc
 ;
 ​
