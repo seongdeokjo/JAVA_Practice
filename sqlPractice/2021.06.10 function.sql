@@ -4,8 +4,7 @@
 -- 다중행(집합) 함수:여러행의 특정 컬럼값들을 대상으로 연산하고 반환
 --숫자함수
 select abs(10), abs(-10)
-from dual
-;
+from dual;
 
 select floor(15.7)
 from dual;
@@ -90,40 +89,34 @@ select *from dept;
 -- 20 REASEARCH
 --30 SALES
 --40 POEATIONS
-select enmae, deptm, decode(deptno, 10, 'ACCouting',
-                                    20,'REASEARCH"
-                                    30, 'SALES'
-                                    40, 'Oerations') as dname
+select ename, deptno, decode(deptno, 10, 'ACCOUNTING',
+                                    20,'REASEARCH',
+                                    30, 'SALES',
+                                    40, 'OPEATIONS')
+                                    as dname
 from emp;
 
 --직급에 따라 급여를 인상하도록 하자.
 --직급이 'ANALYST' 인 사원은 5%,
-        'SALEMAN' 인 사원이은 10,
-        'MANAGER' 인 사원은 15%,
-        'CLERK' 인 사원은 20% 인상한다.
-    select ename, sal decode(job,'ANALYST,sal*1.05 -- 인상'
-                            'SALESMAN' , sal * 1.05 -- 10up
-                            'MANAGER' , sal * 1.1
+--     'SALESMAN' 인 사원이은 10,
+-- 'MANAGER' 인 사원은 15%,
+--'CLERK' 인 사원은 20% 인상한다.
+ --------------------------------------   
+    select empno,ename,job,sal, decode(job,'ANALYST',sal*1.05, 
+                            'SALESMAN' , sal * 1.05, 
+                            'MANAGER' , sal * 1.1,
                             'CLERK' , sal *1.2                     
-                            ) as upsal
-    
-    
-    from emp;
+                            ) as upsal                      
+from emp
+order by job desc;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+--case 함수도 분기할 때 사용 
+--case when 조건식 then 참일때 값 
+select ename, deptno, 
+    case when deptno = 10 then 'ACCOUNTING'
+         when deptno = 20 then 'REASEARCH'
+         when deptno = 30 then 'SALES'
+         when deptno = 40 then 'OPERATIONS'
+        end as deptname        
+from emp        
+order by deptno desc;
