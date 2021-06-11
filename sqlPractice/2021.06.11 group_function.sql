@@ -47,7 +47,55 @@ group by publisher;
 --group by 그룹핑할 기준의 칼럼
 select deptno
 from emp
+group by deptno
+order by deptno;
+
+--부서별 급여 평균을 구해보자
+select avg(sal) from emp where deptno = 10;
+select avg(sal) from emp where deptno = 20;
+select avg(sal) from emp where deptno = 30;
+
+--부서별
+select deptno, 
+    round(avg(sal),2) as "부서의 급여 평균",
+    count(*) as "부서 인원",
+    sum(sal) as "부서 급여 합", 
+    max(sal) as "부서의 최대 급여액",
+    min(sal) as "부서의 최소 급여액"
+from emp
+group by deptno 
+order by deptno;
+
+--직급별
+select job, count(*)
+from emp
+group by job
+order by job;
+
+--부서별 사원 수와 커미션을 받는 사원들의 수
+select deptno, count(comm) as "커미션 받는 사원의 수", count(*) as "부서별 사원 수"
+from emp
 group by deptno;
 
+select * from emp;
 
+--group by 그룹함수의 결과 비교 사용시에는 having 절 이용 
+--select
+--from
+--where
+--group by
+--having 그룹함수 연산자 값 (= != > < >= <=)
+--평균 급여가 2000 이상인(having)
+--부서번호와 부서별 평균 급여를 출력
+select deptno, trunc(avg(sal))
+from emp
+group by deptno
+having avg(sal) >= 2000;
 
+--부서의 급여의  최대값과 최소값을 구하되 
+--최대 급여가 2900이상인 부서만 출력.
+select deptno, max(sal), min(sal)
+from emp
+group by deptno
+having max(sal) >= 2900
+order by deptno;
