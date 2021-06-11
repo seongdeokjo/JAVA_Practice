@@ -54,6 +54,76 @@ from dual ;
 select to_char(sysdate,'yyyy.MM.DD. hh24:mi:ss' )
 from dual;
 
--- 문자 -> 날짜, 문자-> 숫자
+select ename, hiredate, to_char(hiredate, 'yyyy.mm.dd')
+from emp;
+
+select * from orders;
+select orderid, orderdate, to_char(orderdate,'yyyy.mm.dd')
+from orders;
+
+--숫자 -> 문자
+select to_char(123456,'0,000,000,000'), to_char(123456,'L9,999,999,999')
+from dual;
+
+select empno, ename, sal, to_char(sal*1100,'L999,999,999')
+from emp;
+
+-- 문자 -> 숫자
+--'1,000,000' + 100000
+--to_number(문자열,패턴) 
+select to_number('1,000,000', '9,999,999'),  to_number('1,000,000', '9,999,999') + 100000,  to_number('1,000,000', '9999999')
+from dual;
+
+--문자 -> 날짜
+--to_date(문자열, 패턴)
+select TO_DATE('2012.05.17', 'YYYY.MM.DD'), trunc((sysdate - to_date('2012.05.17','YYYY.MM.DD')) /365)
+from dual;
+
+--decode 함수 : 분기를 위해 사용 switch-case 유사
+--decode(컬럼,= 조건1 값,저건 1의 참일때 사용할 값
+--      ,조건2 값, 조곤2의 참일때 사용할 값
+--      ,.....
+--)
+--emp 테이블에서 부서번호에 맞는 부설이름 출력 
+select *from dept;
+--10 ACCOUNTTing
+-- 20 REASEARCH
+--30 SALES
+--40 POEATIONS
+select enmae, deptm, decode(deptno, 10, 'ACCouting',
+                                    20,'REASEARCH"
+                                    30, 'SALES'
+                                    40, 'Oerations') as dname
+from emp;
+
+--직급에 따라 급여를 인상하도록 하자.
+--직급이 'ANALYST' 인 사원은 5%,
+        'SALEMAN' 인 사원이은 10,
+        'MANAGER' 인 사원은 15%,
+        'CLERK' 인 사원은 20% 인상한다.
+    select ename, sal decode(job,'ANALYST,sal*1.05 -- 인상'
+                            'SALESMAN' , sal * 1.05 -- 10up
+                            'MANAGER' , sal * 1.1
+                            'CLERK' , sal *1.2                     
+                            ) as upsal
+    
+    
+    from emp;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
