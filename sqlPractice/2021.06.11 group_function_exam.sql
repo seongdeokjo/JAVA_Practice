@@ -91,10 +91,10 @@ group by deptno;
 ​
 --30. 각 부서에 대해 부서번호 이름, 지역 명, 사원 수, 부서내의 모든 사원의 평균 급여를 출력하시오. 
 --    평균 급여는 정수로 반올림 하시오. DECODE 사용.
-select d.dname,d.loc,count(*)
+select e.deptno,d.dname,d.loc,count(*),round(avg(sal))
 from dept d,emp e
 where d.deptno = e.deptno
-group by d.deptno,d.dname,d.loc;
+group by e.deptno,d.dname,d.loc;
 
 select count(deptno), trunc (avg(sal)),
         decode(deptno, 10, 'ACCOUNTING', 20,'RESEARCH', 30, 'SALES',40, 'OPERATIONS') as dname,
@@ -107,9 +107,9 @@ group by deptno;
 --    별칭은 각 job, dno, 부서 10, 부서 20, 부서 30, 총액으로 지정하시오. 
 --   ( hint. Decode, group by )
 
-select  job,deptno as "dno",decode(deptno, 10, sum(sal))  as "부서 10",
-                    decode(deptno, 20, sum(sal)) as "부서 20",
-                    decode(deptno, 30, sum(sal)) as "부서 30",
+select  job,deptno as "dno",nvl(decode(deptno, 10, sum(sal)),0)  as "부서 10",
+                    nvl(decode(deptno, 20, sum(sal)),0) as "부서 20",
+                    nvl(decode(deptno, 30, sum(sal)),0) as "부서 30",
                     sum(sal) as "총액"
 from emp
 group by deptno,job
