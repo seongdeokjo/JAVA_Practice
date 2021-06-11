@@ -1,31 +1,34 @@
 --16. SUBSTR 함수를 사용하여 사원들의 입사한 년도와 입사한 달만 출력하시오.
-select ename,substr(hiredate,0,5)
+select ename,substr(hiredate,1,5)
 from emp;
-
+--db인덱스는 1부터 시작
 ​
 --17. SUBSTR 함수를 사용하여 4월에 입사한 사원을 출력하시오.
 select ename,hiredate 
 from emp
-where substr(hiredate,4,2) like '%04%'; 
+--where substr(hiredate,4,2) like '%04%'
+where substr(hiredate,4,2) = '04'; 
 
-​
 --18. MOD 함수를 사용하여 사원번호가 짝수인 사람만 출력하시오.
 select ename,empno
 from emp
 where mod(empno,2) = 0 ;
 
 --19. 입사일을 년도는 2자리(YY), 월은 숫자(MM)로 표시하고 요일은 약어 (DY)로 지정하여 출력하시오.
-select ename,to_char(hiredate,'yy-mm-dy')
+select hiredate,to_char(hiredate,'yy-MM-Dy')
+--select ename,to_char(hiredate,'yy') as "입사 년도",to_char(hiredate,'mm') as "입사 월", to_char(hiredate,'dy') as "입사 일"
 from emp;
 
 --20. 올해 몇 칠이 지났는지 출력하시오. 
 --현재날짜에서 올해 1월 1일을 뺀 결과를 출력하고 
 --TO_DATE 함수를 사용하여 데이터 형을 일치 시키시오.
-select (sysdate - to_date('20210101','yyyy-mm-dd'))
+select (sysdate - to_date('2021/01/01','yyyy-mm-dd'))
 from dual;
 ​
 --21. 사원들의 상관 사번을 출력하되 상관이 없는 사원에 대해서는 NULL 값 대신 0으로 출력하시오.
 select ename,nvl(mgr,0)
+--nvi(타입,대체 값)
+-- 타입- > 숫자, 문자,날짜 구분 해서 사용 
 from emp;
 ​
 --22. DECODE 함수로 직급에 따라 급여를 인상하도록 하시오. 
@@ -53,18 +56,20 @@ from emp
 group by job
 order by job desc;
 
---25. COUNT(*) 함수를 이용하여 담당업무가 동일한 사원 수를 출력하시오.
+--25. COUNT(*) 함수를 이용하여 담당업무가 동일한 -> 업무별로 그룹핑
+--사원 수를 출력하시오.
 select job, count(*)
 from emp
 group by job
 order by job;
 ​
 --26. 관리자 수를 출력하시오.
+-- 하나의 관리자가 다수의 사원을 관리할 수 있기 때문에 중복을 뺀 결과를 구해야 한다. 
 select count(distinct mgr)
 from emp;
 ​
 --27. 급여 최고액, 급여 최저액의 차액을 출력하시오.
-select max(sal) - min(sal) as "차액"
+select max(sal) as "급여 최고액",min(sal) as "급여 최소액",max(sal) - min(sal) as "차액"
 from emp;
 ​
 --28. 직급별 사원의 최저 급여를 출력하시오. 
@@ -73,8 +78,9 @@ from emp;
 
 select job, min(sal),count(mgr)
 from emp
+where mgr is not null
 group by job
-having min(sal) > 2000 and (count(mgr) != 0)
+having min(sal) >= 2000 --and (count(mgr) != 0)
 order by job desc;
 ​
 --29. 각 부서에 대해 부서번호, 사원 수, 부서 내의 모든 사원의 평균 급여를 출력하시오. 
@@ -85,8 +91,10 @@ group by deptno;
 ​
 --30. 각 부서에 대해 부서번호 이름, 지역 명, 사원 수, 부서내의 모든 사원의 평균 급여를 출력하시오. 
 --    평균 급여는 정수로 반올림 하시오. DECODE 사용.
-select * from dept;
-select * from emp;
+select d.dname,d.loc,count(*)
+from dept d,emp e
+where d.deptno = e.deptno
+group by d.deptno,d.dname,d.loc;
 
 select count(deptno), trunc (avg(sal)),
         decode(deptno, 10, 'ACCOUNTING', 20,'RESEARCH', 30, 'SALES',40, 'OPERATIONS') as dname,
@@ -106,4 +114,5 @@ select  job,deptno as "dno",decode(deptno, 10, sum(sal))  as "부서 10",
 from emp
 group by deptno,job
 order by deptno;
+
 

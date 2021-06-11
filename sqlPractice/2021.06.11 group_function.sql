@@ -16,6 +16,7 @@ select count(*) as "사원의 수",
         round(avg(sal),2) as "급여 평균",
         max(sal) as "최대 급여",
         min(sal) as "최소 급여",
+        
         sum(comm) as "커미션의 총 합", -- 그룹함수는 null 값을 제외하고 연산!!!!
        round(avg(comm),2) as "커미션의 평균",
         count(comm) as "커미션 받는 사원의 수"
