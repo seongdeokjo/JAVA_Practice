@@ -42,3 +42,18 @@ from dual;
 --replace : 특정 문자열(패턴) 다른 문자열 (패턴)으로 변경
 select replace('jack and jue','j','**')
 from dual;
+
+-------------------------------------------------------------------------------------
+--2021.06.11
+-- 형변환 함수 
+-- 날짜 -> 문자, 숫자 -> 문자
+--to_char(날짜 데이터, '패턴'), to char(숫자,'패턴')
+select sysdate
+from dual ;
+                    -- 년도   월 일  24시기준 : 분 : 초 
+select to_char(sysdate,'yyyy.MM.DD. hh24:mi:ss' )
+from dual;
+
+-- 문자 -> 날짜, 문자-> 숫자
+
+
