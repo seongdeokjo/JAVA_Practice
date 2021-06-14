@@ -59,7 +59,7 @@ where e.ename = 'SCOTT'
 --단, 비교하는 컬럼의 이름이 같을 때 
 --on 절을 생략하고 -> using 을 이용하면 조건식은 간략하게 처리
 select * 
-from emp e inner join dept d
+from emp e join dept d
 --on e.deptno = d.deptno
 using(deptno)
 where e.ename = 'SCOTT'
@@ -86,7 +86,7 @@ on e.mgr = m.empno
 ;
 
 --회원별 구매 내역출력
-select c.name, count(*) as "구매 횟수"
+select c.name, count(o.orderid) as "구매 횟수", avg(o.saleprice)
 from orders o, customer c
 where o.custid(+) = c.custid
 group by c.name
