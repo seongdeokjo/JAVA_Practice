@@ -16,6 +16,7 @@ public class MessageClinet {
 		DataOutputStream dout = null;
 		
 		try {
+											//중복되지않는 포트번호부여
 			 socket = new Socket("localhost",8888);
 			 
 			 din = new DataInputStream(socket.getInputStream());

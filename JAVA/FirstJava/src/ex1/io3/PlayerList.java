@@ -29,11 +29,7 @@ public class PlayerList {
 		player.add(new Player("cha",1,"ger",33));
 		player.add(new Player("ji",5,"ch",22));
 		player.add(new Player("son",10,"tot",27));
-		
-		
-		
-		
-		
+				
 		out.writeObject(player);
 		out.close();
 		System.out.println("저장을 완료하였습니다.");
@@ -50,13 +46,7 @@ public class PlayerList {
 			Iterator itr = rePlayer.iterator();
 			while(itr.hasNext()) {
 		System.out.println(itr.next());
-				
-			}
-//			System.out.println();
-//			for(Player a : rePlayer) {
-//				a.showData();
-//				}
-//		
-	}
 
+			}
+	}
 }

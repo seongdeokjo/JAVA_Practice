@@ -58,6 +58,4 @@ public class Player implements Serializable,Comparable<Player>{
 	public String toString() {
 		return team+ name +age +number;
 	}
-	
-	
 }

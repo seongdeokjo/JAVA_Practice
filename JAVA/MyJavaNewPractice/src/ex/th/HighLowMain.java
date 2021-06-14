@@ -1,6 +1,5 @@
 package ex.th;
 
-
 import javax.swing.JOptionPane;
 
 public class HighLowMain {
@@ -19,7 +18,7 @@ public class HighLowMain {
 // 3.10초 카운팅은 스레드를 이용해서 처리
 class Count extends Thread {
 
-	@Override
+	@Override // 쓰레드 클래스를 상속시 run() 메서드를 오버라이딩, 구현부를 작성해준다.
 	public void run() {
 		for (int i = 10; i > 0; i--) {
 			// 10초이내에 정답입력시
