@@ -107,10 +107,21 @@ and b.publisher in (select publisher
 --전체 출판사
 select bookid,publisher
 from book;
---고객이 구매한 출판사 -- 서로다른 2개 이상의 출판사를 구매한 고객의 custid = 1,2,3 
-select b.publisher,o.custid
+ 
+--서로 다른 2개 이상의 출판사를 구매한 고객의 custid = 1,2,3 
+select o.custid
 from orders o, book b
-where o.bookid = b.bookid
+where o.bookid = b.bookid 
+group by o.custid
+having count(distinct b.publisher) >= 2
 ;
-
-
+--답 
+select c.name,c.custid
+from customer c,  (select       o.custid
+                                from orders o, book b
+                                where o.bookid = b.bookid 
+                                group by o.custid
+                                having count(distinct b.publisher) >= 2
+                  )ob
+where c.custid = ob.custid
+;
