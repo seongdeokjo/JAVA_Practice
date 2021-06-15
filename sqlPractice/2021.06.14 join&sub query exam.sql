@@ -4,30 +4,44 @@ select * from customer;
 select * from book;
 select * from orders where custid =1;
 --(5) 박지성이구매한도서의출판사수
-select count(publisher)
-from book b,orders o
-where b.bookid = o.bookid and o.custid = 1
+select count(distinct publisher)
+from book b,orders o,customer c
+where b.bookid = o.bookid and c.custid = o.custid and  c.name = '박지성'
+--o.custid = 1
 ;
 
 --(6) 박지성이구매한도서의이름, 가격, 정가와판매가격의차이
+
+--join
 select b.bookname, (b.price - o.saleprice) as "pricegap"
+from orders o, book b,customer c
+where  b.bookid = o.bookid  and c.custid = o.custid and c.name = '박지성'
+--o.custid =1 
+;
+
+--다른 방법 
+select b.bookname, b.price - o.saleprice
 from orders o, book b
-where o.custid =1 and b.bookid = o.bookid 
+where o.bookid = b.bookid
 ;
 
 
 --(7) 박지성이구매하지않은 도서의이름
 select  bookname
 from book
-where bookid not in (select bookid from orders where custid =1)
+where bookid not in (select o.bookid from orders o, customer c where o.custid = c.custid and c.name = '박지성')
 ;
 
---2 마당서점의운영자와경영자가요구하는다음질문에대해SQL 문을작성하시오.
+--2 마당서점의 운영자와 경영자가 요구하는 다음질문에대해 SQL 문을작성하시오.
 --(8) 주문하지않은고객의이름(부속질의사용)
- 
 select name
 from customer c
 where not exists(select * from orders o where c.custid = o.custid );
+
+--outer join
+select distinct c.name
+from orders o, customer c
+where o.custid(+) = c.custid and o.orderid is null;
 
 --(9) 주문금액의총액과 주문의평균금액
 -- 주문 금액의 총액
@@ -35,9 +49,16 @@ select sum(saleprice),avg(saleprice)
 from orders;
 
 --(10) 고객의이름과고객별구매액
-select (select name from customer c where c.custid = o.custid ) as name ,sum(o.saleprice)
+select (select c.name from customer c where c.custid = o.custid ) as name ,sum(o.saleprice)
 from orders o
 group by o.custid;
+
+--join
+select c.name, sum(o.saleprice)
+from customer c, orders o
+where o.custid = c.custid
+group by c.name
+--;
 
 --(11) 고객의이름과고객이구매한도서목록
 --고객이름 customer custid = orders custid / name
@@ -61,7 +82,8 @@ where o.bookid = b.bookid and b.price - o.saleprice = (select max(b1.price - o1.
                                 from orders o1, book b1
                                 where o1.bookid = b1.bookid )
 ;
---(13) 도서의판매액평균보다자신의구매액평균이더높은고객의이름
+--(13) 도서의판매액평균보다
+--자신의구매액평균이더높은 고객의이름
 --도서의 판매 평균값
 select avg(saleprice)
 from orders; -- 11800
@@ -95,7 +117,7 @@ where bookid in(select bookid from orders where custid = 1);
 select c.name
 from orders o, book b, customer c
 where o.custid = c.custid and b.bookid = o.bookid and c.custid != 1 
-and b.publisher in (select publisher
+and b.publisher in (select +publisher
                     from book 
                     where bookid in(
                             select bookid 
