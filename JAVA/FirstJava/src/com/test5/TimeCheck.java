@@ -1,4 +1,4 @@
-package com.test6;
+package com.test5;
 
 public class TimeCheck {
 
