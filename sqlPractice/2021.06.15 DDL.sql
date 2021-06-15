@@ -21,11 +21,12 @@
 --사원 테이블과 유사한 구조의
 -- 사원번호,사원이름,급여 3개의 칼럼으로 구성된
 --EMP01 테이블을 생성해 보자.
-
+drop table emp01;
 create table emp01 (
         empno number(4), --사원번호
         ename varchar2(20), -- 사원이름
-        sal number(6,2) 
+        sal number(6,2),
+        job varchar2(9)
 );
 
 
@@ -50,23 +51,28 @@ select * from emp04;
 
 create table emp05
 as 
---구조만 복사
-select * from emp where 1=0;
+--주소만 복사
+select * from emp where 1=2;
 
 
 --테이블의 변경 alter table add 
---alter bae
--alter talvbeb
+--alter table {테이블 이름} add
+--alter table {테이블 이름} modify
+--alter table {테이블 이름} drop
 
---emp() 데이블에 걸러를 추가해보자
-emp01 tavbe 
-
+--emp01 테이블의 job 컬럼의 사이즈를 수정 9->30
+alter table emp01
+modify(job varchar(130) not null)
+;
 --emp01 테이블블의 데이터 job 컬럼의 사이즈를 수정 =9->30
-alter tbale em01
-modify(job varchar(130) not null  ;)
+alter table emp01
+modify(job varchar2(130) not null) 
+;
+desc emp01;
 
-emp01 : 테이블의 job 컬럼을 삭제 
-alter table drop column
+--emp01 : 테이블의 job 컬럼을 삭제 
+alter table emp01
+drop column job;
 
 --테이블 삭제
 drop table emp06;
@@ -76,7 +82,7 @@ drop table emp03;
 
 select *from emp02;
 
---모든 행을 삭제하는 trucate
+--모든 행을 삭제하는 trucate : 롤백이 안된다.
 TRUNCATE  table emp02;
 select * from emp02;
 
@@ -136,7 +142,3 @@ create table emp03 (
     constraint emp03_empno_pk PRIMARY KEY (empno), -- PK 제약
     constraint emp03_deptno FOREIGN KEY (deptno) REFERENCES dept(deptno)
     );
-    
-
-
-

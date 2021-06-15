@@ -76,12 +76,14 @@ select max(b.price - o.saleprice)
 from orders o, book b
 where o.bookid = b.bookid ;
 
-select * 
+select b.bookname, b.price-o.saleprice as "pricegap" 
 from orders o, book b
 where o.bookid = b.bookid and b.price - o.saleprice = (select max(b1.price - o1.saleprice)
                                 from orders o1, book b1
                                 where o1.bookid = b1.bookid )
 ;
+
+select 
 --(13) 도서의판매액평균보다
 --자신의구매액평균이더높은 고객의이름
 --도서의 판매 평균값
@@ -137,13 +139,9 @@ where o.bookid = b.bookid
 group by o.custid
 having count(distinct b.publisher) >= 2
 ;
---답 
-select c.name,c.custid
-from customer c,  (select       o.custid
-                                from orders o, book b
-                                where o.bookid = b.bookid 
-                                group by o.custid
-                                having count(distinct b.publisher) >= 2
-                  )ob
-where c.custid = ob.custid
+select c.name, count(distinct b.publisher)
+from orders o, customer c, book b
+where o.custid = c.custid and b.bookid = o.bookid
+group by c.name
+having count(distinct b.publisher) >= 2
 ;

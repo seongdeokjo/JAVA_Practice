@@ -11,7 +11,6 @@ public class UnivFriend extends Friend {
 		super.showData();
 		System.out.println("전      공: "+ major);
 	}
-	@Override
 	public void showBasicInfo() {
 		System.out.println("이     름: "+name);
 		System.out.println("전화번호: "+phoneNumber);

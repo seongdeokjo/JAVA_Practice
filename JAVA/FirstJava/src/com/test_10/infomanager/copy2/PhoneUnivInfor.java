@@ -18,7 +18,6 @@ public class PhoneUnivInfor extends Friend {
 		System.out.println("학     년: "+year);
 		
 	}
-	@Override
 	public void showBasicInfo() {
 		System.out.println("이    름:"+ name);
 		System.out.println("전화 번호: "+phoneNumber);

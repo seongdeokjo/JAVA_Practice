@@ -18,4 +18,9 @@ public abstract class Friend implements ShowData {
 		System.out.println("주     소: "+address);
 	}
 //	public abstract void showBasicInfo();
+
+	public void showBasicInfo() {
+		// TODO Auto-generated method stub
+		
+	}
 }

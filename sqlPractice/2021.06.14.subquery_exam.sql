@@ -85,10 +85,7 @@ from emp
 where empno  not in (select distinct mgr from emp
                       where mgr is not null 
 );
--------------다시 풀기 --------------------------
-where empno = exists (select distinct mgr from emp
-                      where mgr is not null
-                     );                     
+                    
 
 select distinct mgr 
 from emp
@@ -171,16 +168,23 @@ where sal > (select avg(sal) from emp) and deptno in (select distinct deptno fro
 ; --서브쿼리 2개이상 들어갈때는 성능적인부분을 고려하자.
 
 --58. 평균급여가 가장 적은 업무를 찾으시오.
--------------------다시 풀어보기---------------------------
-select job
+-------------------다시 풀어보기--------------------------- ok
+select avg(sal)
+from emp
+group by job;
+
+select job, avg(sal)
 from emp
 group by job
-having avg(sal) <=all (select avg(sal) from emp group by job)
+having avg(sal) <= all(select avg(sal) from emp group by job)
 ;
 --59. 담당업무가 MANAGER 인 사원이 소속된 부서와 동일한 부서의 사원을 표시하시오.
-----------------다시 풀어보기--------------------------------
-select distinct deptno from emp where job ='MANAGER';
-
-select *
+----------------다시 풀어보기-------------------------------- ok
+select deptno
 from emp
-where deptno in (select distinct deptno from emp where job ='MANAGER');
+where job ='MANAGER';
+
+select ename
+from emp
+where deptno in(select deptno from emp where job = 'MANAGER')
+;

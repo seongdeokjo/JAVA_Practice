@@ -13,7 +13,7 @@ public class HighFriend extends Friend {
 		super.showData();
 		System.out.println("직     업: "+work);
 	}
-	@Override
+	
 	public void showBasicInfo() {
 		System.out.println("이     름: "+name);
 		System.out.println("전화번호: "+phoneNumber);
