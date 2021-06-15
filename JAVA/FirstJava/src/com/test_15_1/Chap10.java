@@ -1,6 +1,8 @@
-package com.test_15;
+package com.test_15_1;
 
 import java.util.Scanner;
+
+import com.test_15.BadIdInputException;
 
 public class Chap10  {
 	

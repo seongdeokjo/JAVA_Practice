@@ -1,6 +1,8 @@
-package com.test_15_1;
+package com.test_15;
 
 import java.util.Scanner;
+
+import com.test_15_1.BadIdInputException;
 
 public class CheckExcption {
 	public static String getUserInput() {
