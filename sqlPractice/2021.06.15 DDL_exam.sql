@@ -30,19 +30,3 @@ create table phoneInfo_com (
     fr_ref number(6) not null constraint pIc_fr_ref_fk references phoneInfo_basic (idx) 
 );
 
-desc phoneInfo_basic;
-select * from phoneInfo_basic;
-
-desc phoneInfo_univ;
-select * from phoneInfo_univ;
-
-desc phoneInfo_com;
-select * from phoneInfo_com;
-
-insert into phoneinfo_basic(idx,fr_name,fr_phonenumber,fr_email,fr_address) values(900000,'홍길동','010-xxxx-yyyy-','h@naver.com','seoul') ;
-insert into phoneinfo_basic(idx,fr_name,fr_phonenumber,fr_email,fr_address) values(900001,'길동','010-xxxx-yyyx-','k@naver.com','busan') ;
-insert into phoneinfo_com(idx,fr_c_company,fr_ref) values(800000,'티맵',900000) ;
-insert into phoneinfo_com(idx,fr_c_company,fr_ref) values(800001,'카카오맵',900001) ;
-select  *
-from phoneinfo_com pc, phoneinfo_basic pb
-where pc.fr_ref = pb.idx and pc.fr_ref = 900001;
