@@ -72,3 +72,7 @@ where idx = 4
 select  *
 from phoneinfo_basic pb, phoneinfo_com pc,phoneinfo_univ pu
 where pb.idx = pc.fr_ref  and pb.idx =pu.fr_ref;
+
+--부모 테이블의 삭제는 자식 테이블 먼저 삭제후 수행
+delete from phoneinfo_basic
+where idx = 1;
