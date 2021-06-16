@@ -1,14 +1,11 @@
 --2021.06.16
 --dml exam
+--insert : C reate
+--select : R ead
+--update : U pdate
+--delete : D elete
 
 
-insert into phoneinfo_com(idx,fr_c_company,fr_ref) values(800000,'티맵',900000) ;
-insert into phoneinfo_com(idx,fr_c_company,fr_ref) values(800001,'카카오맵',900001) ;
-select  *
-from phoneinfo_com pc, phoneinfo_basic pb
-where pc.fr_ref = pb.idx and pc.fr_ref = 900001;
-delete  phoneinfo_basic;
-delete phoneinfo_com;
 --앞에서 생성한 전화번호부 테이블을 기준으로 DML 을 작성해봅시다.
 --1. phoneInfo_basic 테이블의 SELECT, UPDATE, DELETE, INSERT 하는 SQL
 desc phoneInfo_basic;
