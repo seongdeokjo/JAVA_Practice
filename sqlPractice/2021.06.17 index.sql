@@ -20,3 +20,6 @@ select * from emp01 where ename ='KING';
 select * from emp01 where ename = 'SON';
 
 --emp01 테이블에 ename 컬럼을 index 설정 
+create index index_emp01_ename 
+on emp01(ename)
+;
