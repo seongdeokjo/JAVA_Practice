@@ -74,6 +74,11 @@ public class JDBCTestDeptDML3 {
 			e.printStackTrace();
 		} catch (SQLException e) {
 		//	System.out.println("데이터 베이스 연결 실패!");
+			try {
+				conn.rollback();
+			}catch (SQLException e1) {
+				e1.printStackTrace();
+			}			
 			e.printStackTrace();
 		}finally {
 			//4. close()
