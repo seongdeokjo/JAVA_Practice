@@ -25,9 +25,9 @@ public class DeptMain {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
 			System.out.println("데이터베이스 연결 성공!!");
 				
-			DeptDao dao = new DeptDao();
+			DeptDao dao = DeptDao.getInstance(); //new DeptDao();
 			
-			List<Dept> list = dao.getDeptList(conn);
+//			List<Dept> list = dao.getDeptList(conn);
 			
 		/*	for(Dept dept : list) {
 				System.out.println(dept);
@@ -52,7 +52,7 @@ public class DeptMain {
 		}*/
 		
 		
-		System.out.println("부서수정을 시작합니다.");
+		/* System.out.println("부서수정을 시작합니다.");
 		System.out.println("수정하고자하는 부서번호 새부서이름  새부서위치 순으로 입력해주세요.");
 		System.out.println("예) 50 dev seoul");
 		String deptData = scan.nextLine();
@@ -66,9 +66,18 @@ public class DeptMain {
 			System.out.println("수정 성공!");
 		}else {
 			System.out.println("수정 실패");
+		} */
+		
+		System.out.println("부서 정보를 삭제합니다.");
+		System.out.println("삭제할 부서번호를 입력해주세요.");
+		String deptno = scan.nextLine();
+		int result = dao.deleteDept(conn, Integer.parseInt(deptno));
+		
+		if(result > 0) {
+			System.out.println("삭제 완료!");
+		}else {
+			System.out.println("삭제 실패: 해당 번호의 부서가 존재하지 않습니다.");
 		}
-		
-		
 		
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
