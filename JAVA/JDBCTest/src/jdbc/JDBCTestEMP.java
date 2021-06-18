@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class JDBCTest {
+public class JDBCTestEMP {
 
 	public static void main(String[] args) {
 		
@@ -33,41 +33,26 @@ public class JDBCTest {
 			System.out.println("데이터베이스 연결 성공!!");
 				
 			//3.sql 처리
+			//사원 번호, 사원이름, 직급, sal, 부서이름, 부서위치
+			
+			//1. Statement
 			stmt = conn.createStatement();
 			
-			int dno = 10;
-			String otype = "deptno";
-			String sqlSelect = "select * from dept order by deptno";
+			//2. sql 작성 
+			String sql = "select e.empno, e.ename, e.job, e.sal, d.dname, d.loc from dept d, emp e where d.deptno = e.deptno";
+		
+			//3. ResultSet 객체로 데이터 받기
+			rs = stmt.executeQuery(sql);		
 			
-			rs = stmt.executeQuery(sqlSelect);
-			//rs.next() -> 다음행의 존재 유무 확인
+			//4. 출력
 			while(rs.next()) {
-				int deptno = rs.getInt("deptno");
-				System.out.print(deptno+"\t");
-				String dname = rs.getString("dname");
-				System.out.print(dname+"\t");
-				String loc = rs.getString("loc");
-				System.out.print(loc+"\t");
-			}
-			System.out.println();
-			System.out.println("PreparedStatement 사용");
-			System.out.println("=======================================================");
-			////////////////////////////////////////////
-			// preparedStatement -> sql 먼저등록 -> 매개변수처럼 ?를 이용해서 나중에 변수를 바인딩
-			String sqlSelect2 = "select * from dept where deptno =?";
-			pstmt = conn.prepareStatement(sqlSelect2);
-			//? 변수
-			pstmt.setInt(1,10);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				int deptno = rs.getInt("deptno");
-				System.out.print(deptno+"\t");
-				String dname = rs.getString("dname");
-				System.out.print(dname+"\t");
-				String loc = rs.getString("loc");
-				System.out.print(loc+"\t");
+				System.out.println(rs.getInt(1)+"\t"+rs.getString(2));
 			}
 			
+			
+			
+			
+	
 			
 			
 			
