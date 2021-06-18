@@ -12,87 +12,97 @@ public class JDBCTestDeptDML2 {
 
 	public static void main(String[] args) {
 		
-		//¿¬°á °´Ã¼ : ¿¬°á Á¤º¸¸¦ °¡Áø´Ù.
+		// ì—°ê²° ê°ì²´ : ì—°ê²° ì •ë³´ë¥¼ ê°€ì§„ë‹¤.
 		Connection conn = null;
-		//sqlÀ» ½ÇÇà ÇÒ ¸Ş¼Òµå Á¦°ø -> sql executeQuery(), executeUdate()
+		// sqlì„ ì‹¤í–‰ í•   ë©”ì†Œë“œ ì œê³µ
 		Statement stmt = null;
-		// executeQuery() ¹İÈ¯Å¸ÀÔ -> selectÀÇ °á°ú(Ç¥)¸¦ ´ã´Â °´Ã¼
+		// executeQuery() ë°˜í™˜íƒ€ì… -> selectì˜ ê²°ê³¼(í‘œ)ë¥¼ ë‹´ëŠ” ê°ì²´ 
 		ResultSet rs = null;
-		//Statement -> PrepardeStatement :¼º´É °³¼±
+		//Statement -> PreparedStatement  : ì„±ëŠ¥ê°œì„ 
 		PreparedStatement pstmt = null;
 		
-		Scanner scan = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		
 		try {
-			//1. µå¶óÀÌ¹ö ·Îµå
+			// 1. ë“œë¼ì´ë²„ ë¡œë“œ
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println("µå¶óÀÌ¹ö ·Îµå ¼º°ø!");
-			//2. ¿¬°á -> Áß¿ä  ¿©·¯¹ø »ç¿ëÇØº¼°Í !
+			System.out.println("ë“œë¼ì´ë²„ ë¡œë“œ ì„±ê³µ!");
+			
+			// 2. ì—°ê²°
 			String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 			String user = "hr";
 			String pw = "tiger";
 			
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
-			System.out.println("µ¥ÀÌÅÍº£ÀÌ½º ¿¬°á ¼º°ø!!");
+			System.out.println("ë°ì´í„°ë² ì´ìŠ¤ ì—°ê²° ì„±ê³µ!!!");
 			
-			//Æ®·£Àè¼Ç ¼³Á¤
+			// íŠ¸ë Œì ì…˜ ì„¤ì •
 			conn.setAutoCommit(false);
 			
 			
-			System.out.println("ºÎ¼­ Á¤º¸ÀÇ »èÁ¦¸¦ ½ÃÀÛÇÕ´Ï´Ù.");
-			System.out.println("ºÎ¼­ ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
-			String deptno = scan.nextLine();
+			System.out.println("ë¶€ì„œ ì •ë³´ì˜ ì‚­ì œë¥¼ ì‹œì‘í•©ë‹ˆë‹¤.");
+			System.out.println("ë¶€ì„œ ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+			String deptno = sc.nextLine();
 			
-				
-			//3.sql Ã³¸®
-			//»ç¿ëÀÚ¿¡°Ô Á¤º¸¸¦ ¹Ş¾Æ ºÎ¼­ µ¥ÀÌÅÍ¸¦ »èÁ¦ÇÏ´Â ÇÁ·Î±×·¥À» ¸¸µé¾îº¸ÀÚ
-			String sql ="delete from dept01 where deptno = ?";
+			
+			
+			// 3. sql ì²˜ë¦¬
+			// ì‚¬ìš©ìì—ê²Œ ì •ë³´ë¥¼ ë°›ì•„ ë¶€ì„œ ë°ì´í„°ë¥¼ ì…ë ¥í•˜ëŠ” í”„ë¡œê·¸ë¨ì„ ë§Œë“¤ì–´ë³´ì
+			String sql = "delete from dept01 where deptno=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1,Integer.parseInt(deptno));
 			
-			//¹İ¿µµÇ¾î ÀÖ´Â ÇàÀÇ °³¼ö
 			int result = pstmt.executeUpdate();
 			
-			if(result > 0) {
-				System.out.println(result+"°³ ÇàÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.");
-			}else {
-				System.out.println("Á¶°Ç¿¡ ¸Â´Â µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+			if(result>0) {
+				System.out.println(result+"ê°œ í–‰ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
+			} else {
+				System.out.println("ì¡°ê±´ì— ë§ëŠ” ë°ì´í„°ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 			}
 			
-			//Æ®·£Àè¼Ç ¿Ï·á(¼º°ø)
+			
+			
+			
+			
+			
+			
+			
+			// íŠ¸ë Œì ì…˜ ì™„ë£Œ(ì„±ê³µ)
 			conn.commit();
 			
 			
-			
 		} catch (ClassNotFoundException e) {
-			System.out.println("µå¶óºñ¾î Å¬·¡½º¸¦ Ã£Áö ¸øÇÔ!");
-			
+			System.out.println("ë“œë¼ì´ë²„ í´ë˜ìŠ¤ë¥¼ ì°¾ì§€ëª»í•¨!!!");
 			e.printStackTrace();
 		} catch (SQLException e) {
-		//	System.out.println("µ¥ÀÌÅÍ º£ÀÌ½º ¿¬°á ½ÇÆĞ!");
-			e.printStackTrace();
-		}finally {
-			//4. close()
-			if(pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			//System.out.println("ë°ì´í„°ë² ì´ìŠ¤ ì—°ê²° ì‹¤íŒ¨!!!");
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
+			e.printStackTrace();
+			
+		} finally {
+			
+			// 4. close
 			
 			if(rs != null) {
 				try {
 					rs.close();
 				} catch (SQLException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
+			
 			
 			if(stmt != null) {
 				try {
 					stmt.close();
 				} catch (SQLException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -101,11 +111,22 @@ public class JDBCTestDeptDML2 {
 			if(conn != null) {
 				try {
 					conn.close();
-				} 	catch (SQLException e) {
-					System.out.println("µ¥ÀÌÅÍ º£ÀÌ½º¸¦ Á¾·áÇÕ´Ï´Ù.");
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}	
+			}
+			
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+
 	}
+
 }
