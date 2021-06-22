@@ -1,12 +1,12 @@
-package dept;
+package dept01_test;
 
 //부서 정보를 저장하는 기능 클래스
 public class Dept {
-
-	private int deptno; // 부서번호
-	private String dname; // 부서이름
-	private String loc; // 부서위치
-
+	
+	private int deptno; // 부서 번호
+	private String dname; // 부서 이름
+	private String loc; // 부서 위치
+	
 	public Dept(int deptno, String dname, String loc) {
 		this.deptno = deptno;
 		this.dname = dname;
@@ -36,7 +36,7 @@ public class Dept {
 	public void setLoc(String loc) {
 		this.loc = loc;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Dept [deptno=" + deptno + ", dname=" + dname + ", loc=" + loc + "]";

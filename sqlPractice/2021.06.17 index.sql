@@ -23,3 +23,26 @@ select * from emp01 where ename = 'SON';
 create index index_emp01_ename 
 on emp01(ename)
 ;
+
+
+desc dept;
+desc emp;
+
+create or replace view emp_view2
+as 
+select e.ename,e.deptno,e.job,e.comm,e.hiredate,e.mgr,e.sal,d.loc,d.dname
+from emp e, dept d
+where e.deptno = d.deptno
+order by deptno;
+
+select * from emp_view2
+where deptno = 30;
+
+create or replace view emp_ttt
+as
+select *
+from emp e natural join dept d;
+
+desc emp_ttt;
+
+

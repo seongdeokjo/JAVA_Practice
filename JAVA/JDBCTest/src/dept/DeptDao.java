@@ -21,13 +21,7 @@ public class DeptDao {
 	public static DeptDao getInstance() {
 		return dao;
 	}
-	
-	
-	
-	
-	
-	
-	
+		
 	
 	// 1. 전체 데이터 검색 기능
 	// 반환 타입 List<Dept>
@@ -199,9 +193,4 @@ public class DeptDao {
 		return result;
 		
 	}
-
-
-
-
-
 }
