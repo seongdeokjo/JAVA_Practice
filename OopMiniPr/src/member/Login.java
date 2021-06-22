@@ -35,4 +35,20 @@ public class Login {
 //	}
 //
 //}
+	
+	//관리자 login()
+	
+	//회원 login()
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
