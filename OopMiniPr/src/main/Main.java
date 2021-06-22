@@ -1,8 +1,15 @@
 package main;
 
 import java.util.Scanner;
+import car.*;
+import member.*;
+import manager.*; 
 
 public class Main {
+	//사용자,관리자 로그인 하여 
+	
+	// 
+	
 	//처음 출력 화면에서 프로그램이 시작 창
 	public void menu() {
 		Scanner scan = new Scanner(System.in);
@@ -35,6 +42,9 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
+		
+		MemberManage mm = new MemberManage(ManagerDao.getInstance());
+		
 		// 회원가입 (비회원)
 		// 로그인 ( 관리자, 회원)
 		// 객체 car,member,manager => Dao 인스턴스 생성 

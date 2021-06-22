@@ -2,6 +2,8 @@ package manager;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
@@ -17,18 +19,46 @@ public class MemberManage {
 	
 	private ManagerDao dao;
 	private Scanner scan;
+	private Connection conn;
 	
 	public MemberManage(ManagerDao dao) {
 		this.dao = dao;
 		scan = new Scanner(System.in);
 	}
+	//멤버의 db연결 로그인	
+	public int login(String mId, String Pw) {
+	conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select pw from manager where mid = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString(1).contentEquals(Pw)) {
+					return 1; //로그인 성공
+				}
+			}else {
+				return 0; // 비밀 번호 불일치
+			}
+			
+			return -1; // 아이디가 없음
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return -2; // db 오류
+	}
+	
+	
+	
 	
 	//회원 리스트 출력 메소드 
 	//Dao에서 데이터 리스트를 받고 출력 처리
-	void memberList() {
+public	void memberList() {
 		
 	//Connection 객체 생성 -> 트랜잭션 처리
-	Connection conn = null;
+	 conn = null;
 		
 	//2.연결
 	
@@ -64,8 +94,8 @@ public class MemberManage {
 	}
 	
 	//회원 정보 삭제 메소드
-	void deletMember() {
-		Connection conn = null;
+public  void deletMember() {
+		conn = null;
 		
 		String jdbcUrl = "jdbc:oracle:thin:localhost:1521:xe";
 		String user = "hr";

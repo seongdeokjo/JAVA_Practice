@@ -15,12 +15,15 @@ public class ManagerDao {
 	private ManagerDao() {
 	}
 	//2. 클래스 내부에서 인스턴스를 만들고
-	static private ManagerDao mDao = new ManagerDao(); 	
+	static private ManagerDao mDao = new ManagerDao();
+		
 	//3. 메소드를 통해서 반환 하도록 처리
 	public static ManagerDao getInstance() {
 		return mDao;
 	}	
-	//매니저의 db연결 로그인	
+
+	
+	
 	//멤버의 정보 조회
 	 ArrayList<Member> getMemberList(Connection conn) {
 		ArrayList<Member> list = null;

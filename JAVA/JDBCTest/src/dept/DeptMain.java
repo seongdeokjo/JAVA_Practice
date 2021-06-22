@@ -10,7 +10,7 @@ public class DeptMain {
 		DeptManager manager = new DeptManager(DeptDao.getInstance());
 		
 		Scanner scan = new Scanner(System.in);
-
+		
 		// 1. 드라이버 로드
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
