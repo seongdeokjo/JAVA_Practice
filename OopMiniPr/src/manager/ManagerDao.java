@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import car.CarInfo;
-import member.Member;
+import carT.*;
+import memberT.*;
 
 public class ManagerDao {
 	//1.외부 클래스 또는 인스턴스에서 해당 클래스로 인스턴스를 생성하지 못하도록 처리
@@ -16,13 +16,12 @@ public class ManagerDao {
 	}
 	//2. 클래스 내부에서 인스턴스를 만들고
 	static private ManagerDao mDao = new ManagerDao();
+	private Connection conn;
 		
 	//3. 메소드를 통해서 반환 하도록 처리
 	public static ManagerDao getInstance() {
 		return mDao;
 	}	
-
-	
 	
 	//멤버의 정보 조회
 	 ArrayList<Member> getMemberList(Connection conn) {
@@ -43,11 +42,19 @@ public class ManagerDao {
 			
 			//데이터를 member 객체로 생성 -> list에 저장
 			// ()안에 member table의 데이터 작성해야함
-			Member m = new Member();
-			list.add(m);
-			
-			
-		} catch (SQLException e) {
+		
+			while(rs.next()) {
+				list.add(
+					new Member(rs.getInt(1),
+							rs.getString(2),
+							rs.getString(3),
+							rs.getString(4),
+							rs.getString(5),
+							rs.getString(6),
+							rs.getString(7))
+				);	
+				}
+			} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			if(rs != null) {
@@ -68,6 +75,43 @@ public class ManagerDao {
 		
 		 return list;
 	}
+	 //멤버의 정보 입력
+	 int insertMember(Connection conn, Member member) {
+			
+			int result = 0;
+			
+			//전달받은 Member 객체의 데이터로 Member 테이블에 저장 -> 결과값을 반환
+			PreparedStatement pstmt = null;
+			
+				
+				try {
+					String sql = "insert into member values(MEMBER_mCode_SEQ.nextval, ?, ?, ?, ?, ?, ?)"; //이부분 확인해야함
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, member.getId());
+					pstmt.setString(2, member.getPw());
+					pstmt.setString(3, member.getName());
+					pstmt.setString(4, member.getCarreg());
+					pstmt.setString(5, member.getEmail());
+					pstmt.setString(6, member.getAddress());
+					
+					result = pstmt.executeUpdate();
+				
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					if(pstmt != null) {
+						try {
+							pstmt.close();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+				return result;
+	 }
+	 
+	 
+	 
 	//멤버의 정보 삭제
 	 int deleteMember(Connection conn, int membercode) {
 		 int result = 0;
@@ -97,13 +141,13 @@ public class ManagerDao {
 	 }
 	 
 	 //차량 정보 조회
-	 ArrayList<CarInfo> getCarList(Connection conn) {
-		 ArrayList<CarInfo> list = null;
+	 ArrayList<Car> getCarList(Connection conn) {
+		 ArrayList<Car> list = null;
 		 
 		 Statement stmt = null;
 		 ResultSet rs = null;
 		 
-		 String sql = "select * from car order by carreg";
+		 String sql = "select * from car order by carnumber";
 		 
 		 try {
 			stmt = conn.createStatement();
@@ -112,8 +156,17 @@ public class ManagerDao {
 			
 			list = new ArrayList<>();
 			
-			CarInfo car = new CarInfo();
-			list.add(car);
+			while(rs.next()) {
+			list.add(
+				new Car(rs.getInt(1),
+						rs.getString(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getInt(5),
+						rs.getInt(6),
+						rs.getString(7))
+			);
+			}
 						
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -137,24 +190,24 @@ public class ManagerDao {
 	 }
 	 
 	//차량 등록
-	 int insertCar(Connection conn, CarInfo car) {
+	 int insertCar(Connection conn, Car car) {
 		 int result = 0;
 		 
 		 PreparedStatement pstmt = null;
 		 
 		 // sequence 생성 
-		 String sql = "insert inot car values(?,?,?,?,?,?,?)";
+		 String sql = "insert inot car values(car_cCode_SEQ.nextVal,?,?,?,?,?,?)";
 		 
 		 try {
 			pstmt = conn.prepareStatement(sql);
 			
-//			pstmt.setInt(1, carInfo.getCarcode());
-//			pstmt.setInt(2, carInfo.getYear());
-//			pstmt.setInt(3, carInfo.getCarseat());
-//			pstmt.setString(4, carInfo.getfuel());
-//			pstmt.setString(5, carInfo.getCarname());
-//			pstmt.setString(6, carInfo.getCarsize());
-//			pstmt.setInt(7, carInfo.getCarnumber());
+			pstmt.setString(1, car.getCarnumber());
+			pstmt.setString(2, car.getCarname());
+			pstmt.setString(3, car.getCarsize());
+			pstmt.setInt(4, car.getCarseat());
+			pstmt.setInt(5, car.getCaryear());
+			pstmt.setString(6, car.getFuel()
+					);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

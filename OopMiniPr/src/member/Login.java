@@ -8,47 +8,126 @@ package member;
 
   //	login 기능 구현 예제 참고 코드
 public class Login {
-	
-//	public UserDAO() {
-//	 	// ...
-//	}
-//	// 여기서 부터 
-//	public int login(String userID, String userPassword) { // 어떤 계정에 대한 실제로 로그인을 시도하는 함수, 인자값으로 ID와 Password를 받아 login을 판단함.
-//		String SQL = "SELECT userPassword FROM USER WHERE userID = ?"; // 실제로 DB에 입력될 명령어를 SQL 문장으로 만듬.
-//		try {
-//			pstmt = conn.prepareStatement(SQL);
-//			pstmt.setString(1,  userID);
-//			rs = pstmt.executeQuery(); // 어떠한 결과를 받아오는 ResultSet 타입의 rs 변수에 쿼리문을 실행한 결과를 넣어줌 
-//			if (rs.next()) {
-//				if (rs.getString(1).contentEquals(userPassword)) {
-//					return 1; // 로그인 성공
-//				}
-//				else {
-//					return 0; // 비밀번호 불일치
-//				}
-//			}
-//			return -1; // 아이디가 없음
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return -2; // DB 오류 
-//	}
-//
-//}
-	
-	//관리자 login()
-	
-	//회원 login()
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
+}
+
+class LoginProgram {
+    private String id;
+    private String password;
+    static boolean loginFlag = false;
+    HashMap<String,String> memberTable = new HashMap<String,String>();
+    public void setId(String id) {
+        this.id = id;
+    }
+    public String getId() {
+        return id;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public String getPassword() {
+        return password;
+    }
+    //메뉴 출력 메소드
+    public char display() {
+        System.out.println("1.로그인   2.가  입   3. 로그아웃  4.종료");
+        System.out.print(">>>");
+        return input().charAt(0);
+    }
+    
+    
+    //입력 메소드
+    public String input() {
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
+    }
+    
+    //회원가입 메소드
+    public void Join() {
+        if (loginFlag) {
+            System.out.println("자동로그아웃하고 새로운 회원가입을 시작합니다.");
+            loginFlag = false;
+        }
+        while(true) {
+            System.out.print("가입 id : ");
+            String newId = input();
+            if(memberTable.containsKey(newId)) {
+                System.out.println("이미 존재하는 아이디 입니다.");
+                continue;
+            }
+            System.out.print("가입 pw : ");
+            String newPwd = input();
+            memberTable.put(newId, newPwd);
+            break;
+        }
+        System.out.println("저장 완료");
+    }
+    //로그인 메소드
+    public void loginVaild() {
+        if (loginFlag) {
+            System.out.println("이미 로그인되어 있는 상태입니다.");
+            return;
+        }
+    }    
+        
+        
+    public void isMemberCheck(String id, String pw) {    
+        if (memberTable.containsKey(id)) {
+            if (!memberTable.get(id).equals(pw)) {
+                System.out.println("비밀번호가 맞지 않습니다. 인증 실패");
+            } else {
+                System.out.println("인증 성공");
+                loginFlag = true;
+            }
+        } else {
+            System.out.println("존재하지 않는 아이디 입니다.");
+        }
+    }
+    
+    //로그아웃 메소드
+    public void logout() {
+        if (!loginFlag) {
+            System.out.println("먼저 사용자 로그인이 필요합니다.");
+            return;
+        }
+        System.out.println("로그아웃 합니다.");
+        loginFlag = false;
+    }
+}
+public class LoginQuiz {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        LoginProgram program = new LoginProgram();
+        while (true) {
+            char select = program.display();
+            
+            switch (select) {
+            case '1':
+                program.loginVaild();
+                if (LoginProgram.loginFlag) {
+                    break;
+                }
+                System.out.print("아이디 입력 :");
+                String myId = input.nextLine();
+                program.setId(myId);
+                System.out.print("비밀번호 입력 : ");
+                String myPw = input.nextLine();
+                program.setPassword(myPw);
+                program.isMemberCheck(program.getId(), program.getPassword());
+                break;
+            case '2':
+                program.Join();
+                break;
+            case '3':
+                program.logout();
+                break;
+            case '4':    
+                System.exit(0);
+            default:
+                System.out.println("잘못된 값 입력");
+                break;
+            }
+        }
+ 
+    }
 }

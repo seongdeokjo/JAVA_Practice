@@ -1,4 +1,4 @@
-package dept;
+"dpackage dept;
 
 
 import java.util.Scanner;
