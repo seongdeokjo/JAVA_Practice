@@ -24,7 +24,7 @@ public class CarManager {
 		Connection conn = null;
 		String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
-		String pw = "tiger";
+		String pw = "1234";
 		
 		
 		try {
@@ -66,7 +66,7 @@ public class CarManager {
 		Connection conn = null;
 		String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
-		String pw = "tiger";
+		String pw = "1234";
 		
 		try {
 			conn = DriverManager.getConnection(OOP1, user, pw);
@@ -102,7 +102,7 @@ public class CarManager {
 		
 		String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
-		String pw = "tiger";
+		String pw = "1234";
 		
 		try {
 			conn = DriverManager.getConnection(OOP1,user,pw);
@@ -137,7 +137,7 @@ public class CarManager {
 		Connection conn = null;
 		String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
-		String pw = "tiger";
+		String pw = "1234";
 		
 		try {
 			conn = DriverManager.getConnection(OOP1,user,pw);

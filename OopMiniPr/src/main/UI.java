@@ -88,6 +88,7 @@ public class UI {
 			case 2 :
 				//대여 메서드
 				System.out.println("대여합니다.");
+				cm.carList();
 				break;
 			case 3 : 
 				//반납 메서드
@@ -96,6 +97,7 @@ public class UI {
 			case 4 : 
 				//차량 정보 메서드
 				System.out.println("차량 정보를 나타냅니다.");
+				cm.carList();
 				break;
 			case 5 :
 				System.out.println("로그아웃 합니다.");
