@@ -11,8 +11,13 @@ public class UI {
 	CarManage cm = new CarManage(ManagerDao.getInstance());
 	static boolean ck = false;
 	
+	// 멤버 로그인
 	public void checkLogin() {
 		ck = !ck;
+	}
+	// 멤버 로그아웃
+	public void logout() {
+		ck = false;
 	}
 	
 	//전체 메뉴
@@ -57,14 +62,12 @@ public class UI {
 			System.out.println("아이디 또는 비밀번호를 확인하세요");
 		}	
 	}
-//	멤버 로그아웃
-	public void logout() {
-		ck = false;
-	}
+
 	
 	public void menuMember() {
 	// 회원은 로그인을 먼저 진행해주세요.
 		//1.로그인 2.대여 3.반납 4.차량 정보 5.로그아웃 
+		//회원정보수정 기능은 아직 추가 x
 		int num = 0;
 		System.out.println("회원 로그인을 진행해주세요.");
 		while(true) {
@@ -114,7 +117,9 @@ public class UI {
 	}
 	
 	//3번 관리자 선택시
+	//	1. 관리자 로그인 2. 회원 리스트 3.회원 정보 삭제 4.차량 등록 5.차량 삭제 6. 관리자 로그아웃
 	public void menuManager() {
+		
 		
 	}
 	

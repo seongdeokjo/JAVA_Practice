@@ -23,16 +23,7 @@ public class Main_test {
 	public void checkLogin() {
 		ck = !ck;
 	}
-/*	System.out.println("프로그램을 시작합니다.");
-	System.out.println("1.회원 2.비회원 3.관리자  선택하세요.");
-	// 1번 선택시
-	System.out.println("1.로그인 2.회원 기능 3.차량 정보 조회 4.로그아웃 ");
-	// 2번 선택시
-	System.out.println("1.회원가입");
-	System.out.println("다시 처음으로 돌아가서 회원 선택할 수 있게");
-	// 3번 선택시
-	System.out.println("1.관리자 로그인 2.회원 리스트 3. 회원 정보 삭제 4.차량 등록 5.차량 삭제 6.관리자 로그아웃");
-	*/
+
 	public void start() {
 		System.out.println("프로그램을 시작합니다.");
 		System.out.println("1.회원 2.비회원 3.관리자 4. 종료  선택하세요.");
