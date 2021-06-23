@@ -35,7 +35,7 @@ public class MemberManage {
 		
 		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
-		String pw = "1234";
+		String pw = "tiger";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select pw from member where id = ?";
@@ -72,7 +72,7 @@ public int login2(String id, String Pw) {
 		
 		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
-		String pw = "1234";
+		String pw = "tiger";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select mpw from manager where mid = ?";
@@ -116,7 +116,7 @@ public	void memberList() {
 	
 	String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 	String user = "hr";
-	String pw = "1234";
+	String pw = "tiger";
 	
 	try {
 		conn = DriverManager.getConnection(jdbcUrl,user,pw);
@@ -148,7 +148,7 @@ public void insertMember() {
 	
 	String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 	String user = "hr";
-	String pw = "1234";
+	String pw = "tiger";
 	
 	try {
 		conn = DriverManager.getConnection(jdbcUrl, user, pw);
@@ -190,7 +190,7 @@ public  void deletMember() {
 		
 		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
-		String pw = "1234";
+		String pw = "tiger";
 		
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);

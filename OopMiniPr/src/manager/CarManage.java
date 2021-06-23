@@ -25,7 +25,7 @@ public class CarManage {
 		// 2.연결
 		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
-		String pw = "1234";
+		String pw = "tiger";
 
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
@@ -62,7 +62,7 @@ public class CarManage {
 
 		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
-		String pw = "1234";
+		String pw = "tiger";
 
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
@@ -104,7 +104,7 @@ public class CarManage {
 
 		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
-		String pw = "1234";
+		String pw = "tiger";
 
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
