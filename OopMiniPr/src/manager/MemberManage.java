@@ -44,18 +44,19 @@ public class MemberManage {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,id);
 			rs = pstmt.executeQuery();
-			if(rs.next() ) {
+			if(rs.next()) {
 				if(rs.getString(1).contentEquals(Pw)) {
-					System.out.println("성공");
+					System.out.println("로그인 되었습니다.");
 					
 					return 1; //로그인 성공
 				}
 			}else {
 				System.out.println("아이디가 존재하지 않습니다.");
-				return 0; // 비밀 번호 불일치 -- 아이디 존재 x
+				return 0; //  아이디 존재 x
 			}
 			System.out.println("비밀번호 불일치");
-			return -1; // 아이디가 없음 --불일치
+			return -1; // 비밀번호 불일치
+		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

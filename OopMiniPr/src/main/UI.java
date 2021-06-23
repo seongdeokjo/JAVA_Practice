@@ -24,38 +24,42 @@ public class UI {
 		
 		num = Integer.parseInt(getUserInput());
 			switch(num) {
+			// 1번은 회원의 기능
 			case 1 :
 				menuMember();
 				break;
+			// 2번은 비회원 회원가입
 			case 2 :
 				menuNoneMM();
 				break;
+			// 3번은 관리자 기능	
 			case 3 :
 				break;
-				
+			// 4번은 프로그램 강제 종료
 			case 4 :
 				System.out.println("프로그램을 종료 합니다.");
-				return;
+				System.exit(0);
 			}
 		}
 	}
 	//1번 회원 선택시
 	// 멤버 로그인
 	public void memberLogin() {
-	
+		
 		System.out.println("멤버 로그인");
 		System.out.println("회원의 아이디를 입력하세요.");
 		String id = getUserInput();
 		System.out.println("회원의 비밀번호를 입력하세요.");
 		String pw = getUserInput();
-		
-		mm.login(id, pw);
-		checkLogin();
-	
+		if(mm.login(id, pw) > 0) {
+			checkLogin();
+		}else {
+			System.out.println("아이디 또는 비밀번호를 확인하세요");
+		}	
 	}
-	//멤버 로그아웃
+//	멤버 로그아웃
 	public void logout() {
-		checkLogin();
+		ck = false;
 	}
 	
 	public void menuMember() {
@@ -93,6 +97,7 @@ public class UI {
 			case 5 :
 				System.out.println("로그아웃 합니다.");
 				logout();
+				
 				start();
 				
 			}					
