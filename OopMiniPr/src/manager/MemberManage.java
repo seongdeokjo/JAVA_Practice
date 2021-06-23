@@ -27,7 +27,7 @@ public class MemberManage {
 	}
 	//멤버의 db연결 로그인
 
-	
+	//member 로그인 메서드
 	public int login(String id, String Pw) {
 		
 		
@@ -64,6 +64,46 @@ public class MemberManage {
 		return -2; // db 오류
 	}
 		
+	//manager 로그인  메서드
+public int login2(String id, String Pw) {
+		
+		
+		Connection	conn = null;
+		
+		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "hr";
+		String pw = "1234";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select mpw from manager where mid = ?";
+		try {
+			conn = DriverManager.getConnection(jdbcUrl, user, pw);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString(1).contentEquals(Pw)) {
+					System.out.println("로그인 되었습니다.");
+					
+					return 1; //로그인 성공
+				}
+			}else {
+				System.out.println("아이디가 존재하지 않습니다.");
+				return 0; //  아이디 존재 x
+			}
+			System.out.println("비밀번호 불일치");
+			return -1; // 비밀번호 불일치
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println("오류");
+		return -2; // db 오류
+	}
+	
+	
+	
+	
 	
 	//회원 리스트 출력 메소드 
 	//Dao에서 데이터 리스트를 받고 출력 처리

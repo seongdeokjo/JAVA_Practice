@@ -39,6 +39,7 @@ public class UI {
 				break;
 			// 3번은 관리자 기능	
 			case 3 :
+				menuManager();
 				break;
 			// 4번은 프로그램 강제 종료
 			case 4 :
@@ -62,48 +63,68 @@ public class UI {
 			System.out.println("아이디 또는 비밀번호를 확인하세요");
 		}	
 	}
+	// 관리자 로그인
+	public void managerLogin() {
+		System.out.println("관리자 로그인");
+		System.out.println("관리자의 아이디를 입력하세요.");
+		String id = getUserInput();
+		System.out.println("관리자의 비밀번호를 입력하세요.");
+		String pw = getUserInput();
+		if(mm.login2(id, pw) > 0) {
+			checkLogin();
+		}else {
+			System.out.println("아이디 또는 비밀번호를 확인하세요");
+		}	
+	}
 
 	
 	public void menuMember() {
 	// 회원은 로그인을 먼저 진행해주세요.
 		//1.로그인 2.대여 3.반납 4.차량 정보 5.로그아웃 
+		// 2021 06 23
 		//회원정보수정 기능은 아직 추가 x
+		//대여,반납 기능 아직 추가 x
 		int num = 0;
 		System.out.println("회원 로그인을 진행해주세요.");
+		//로그인
+		if(ck == false) {
+			System.out.println("로그인을 합니다.");
+			memberLogin();
+		}else {
+			System.out.println("이미 로그인 중입니다.");
+		}
+		
 		while(true) {
 			System.out.println("메뉴 선택을 해주세요.");
-			System.out.println("1.로그인 2.대여 3.반납 4.차량 정보 5.로그아웃");
+			System.out.println("1.대여 2.반납 3.차량 정보 4.로그아웃");
 			num = Integer.parseInt(getUserInput());
-			switch(num) {
-			case 1:
-				//로그인
-			if(ck == false) {
-				System.out.println("로그인을 합니다.");
-				memberLogin();
-				break;
-			}else {
-				System.out.println("이미 로그인 중입니다.");
-				continue;
-			}
-			case 2 :
+			switch(num) {	
+			case 1 :
 				//대여 메서드
 				System.out.println("대여합니다.");
 				cm.carList();
 				break;
-			case 3 : 
+			case 2 : 
 				//반납 메서드
 				System.out.println("반납을 합니다.");
 				break;
-			case 4 : 
+			case 3 : 
 				//차량 정보 메서드
 				System.out.println("차량 정보를 나타냅니다.");
 				cm.carList();
 				break;
-			case 5 :
-				System.out.println("로그아웃 합니다.");
+			case 4 :
+				//로그인 상태일 경우
+				if(ck == true) {
+				System.out.println("로그아웃되었습니다.");
 				logout();
-				
-				start();
+				break;
+				//로그인 상태가 아닌경우 
+				}else {
+					System.out.println("로그인 상태가 아닙니다.");
+					System.out.println("회원 사용을 종료합니다.");
+					start();
+				}
 				
 			}					
 		}		
@@ -113,16 +134,63 @@ public class UI {
 	public void menuNoneMM() {
 		System.out.println("회원가입을 시작합니다.");
 		mm.insertMember();
-		System.out.println("회원가입이 완료되었습니다.");
-		//다시 메인으로
+		System.out.println("회원가입이 완료되었습니다.");		
 		start();
 	}
 	
 	//3번 관리자 선택시
 	//	1. 관리자 로그인 2. 회원 리스트 3.회원 정보 삭제 4.차량 등록 5.차량 삭제 6. 관리자 로그아웃
 	public void menuManager() {
+		System.out.println("관리자모드로 접속합니다.");
+		System.out.println("로그인을 진행합니다.");
 		
+//	관리자 로그인
+		if(ck == false) {
+			System.out.println("로그인을 합니다.");
+			managerLogin();			
+		}else {
+			System.out.println("이미 로그인 중입니다.");		
+		}
 		
+		int num = 0;
+		while(true) {
+			System.out.println("메뉴를 선택해주세요.");
+			System.out.println("1.회원 리스트 2.회원 정보 삭제 3.차량 등록 4.차량 삭제 5.관리자 로그아웃");
+			num = Integer.parseInt(getUserInput());
+			switch(num) {
+			//회원 리스트
+			case 1 :
+				System.out.println("회원의 리스트를 출력합니다.");
+				mm.memberList();	
+				break;
+			//회원 삭제
+			case 2 :
+				System.out.println("회원의 정보를 삭제합니다.");
+				mm.deletMember();				
+				break;
+			// 차량 등록	
+			case 3 :
+				cm.inputCar();
+				break;
+			//차량 삭제
+			case 4 :
+				cm.deleteCar();
+				break;
+			//관리자 로그아웃
+			case 5 :	
+				//로그인 상태일 경우
+				if(ck == true) {
+				System.out.println("로그아웃되었습니다.");
+				logout();
+				break;
+				//로그인 상태가 아닌경우 
+				}else {
+					System.out.println("로그인 상태가 아닙니다.");
+					System.out.println("관리자모드를 종료합니다.");
+					start();
+				}
+			}	
+		}		
 	}
 	
 	public static String getUserInput() {

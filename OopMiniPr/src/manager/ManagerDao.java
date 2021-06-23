@@ -196,7 +196,7 @@ public class ManagerDao {
 		 PreparedStatement pstmt = null;
 		 
 		 // sequence 생성 
-		 String sql = "insert inot car values(car_cCode_SEQ.nextVal,?,?,?,?,?,?)";
+		 String sql = "insert into car values(car_cCode_SEQ.nextVal,?,?,?,?,?,?)";
 		 
 		 try {
 			pstmt = conn.prepareStatement(sql);
@@ -230,7 +230,7 @@ public class ManagerDao {
 		
 		PreparedStatement pstmt = null;
 		
-		String sql = "delete from car where carcode = ?";
+		String sql = "delete from car where carcode = (select carcode from rent where carcode = ?)";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

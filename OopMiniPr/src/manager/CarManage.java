@@ -72,7 +72,7 @@ public class CarManage {
 			System.out.println("예시) 2021 4 휘발유 그랜저 중 111111 ");
 			String inputData = scan.nextLine();
 			String[] carData = inputData.split(" ");
-			// carInfo 생성자 : car 테이블
+			// car 생성자 : car 테이블
 			Car car = new Car(
 					0, 
 					carData[0], 
