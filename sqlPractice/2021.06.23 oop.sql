@@ -44,18 +44,26 @@ mpw varchar2(20) not null
 
 create table rent(
 rentcode number(4) constraint rent_rentcode_pk primary key,
-pay INTEGER not null,
+pay number(6) not null,
 rentperiod number(1) not null,
+rent_date date default sysdate , --대여 날짜
 carcode number constraint rent_carcode_fk REFERENCES car(carcode) on delete cascade,
 membercode number constraint rent_membercode_fk REFERENCES member(membercode) on delete cascade,
 managercode number constraint rent_managercode_fk REFERENCES manager(managercode) on delete cascade
 )
 ;
 
+select sysdate from dual;
+
+
+insert into rent values(rent_rentcode_seq.nextval,10000,3,sysdate+3,(select carcode from car where carnumber = 1111),(select membercode from member where carreg = 1111),1);
+select * from rent where 
+select to_char(rent_date, 'yyyy-mm-dd hh24:mi:ss') from rent;
+select * from rent;
 --데이터 출력
 desc member;
 select * from member;
-
+select * from car;
 --데이터 보기
 desc car;
 select * from car;
@@ -137,6 +145,14 @@ alter table rent drop constraint rent_manacode_fk;
 alter table rent add constraint rent_ccode_fk FOREIGN key (carcode) REFERENCES car(carcode) on delete cascade;
 alter table rent add constraint rent_memcode_fk FOREIGN key (membercode) REFERENCES member(membercode) on delete cascade;
 alter table rent add constraint rent_manacode_fk FOREIGN key (managercode) REFERENCES manager(managercode) on delete cascade;
+
+
+
+
+
+
+
+
 
 --커밋
 commit;

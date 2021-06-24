@@ -8,12 +8,12 @@ import java.util.Scanner;
 
 import car.*;
 
-public class CarManage {
+public class CarManage2 {
 
-	private ManagerDao dao;
+	private ManagerDao2 dao;
 	private Scanner scan;
 
-	public CarManage(ManagerDao dao) {
+	public CarManage2(ManagerDao2 dao) {
 		this.dao = dao;
 		scan = new Scanner(System.in);
 	}
@@ -123,7 +123,38 @@ public class CarManage {
 			e.printStackTrace();
 		}
 	}
-
+	
+	//렌트 정보 저장 
+	public void rentSaveInfo() {
+		Connection conn = null;
+		
+		
+		String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "hr";
+		String pw = "tiger";
+		
+		try {
+			conn = DriverManager.getConnection(OOP1, user, pw);
+			
+			System.out.println("대여하실 기간을 입력해주세요");
+			int period = Integer.parseInt(scan.nextLine());
+			System.out.println("대여하실 자동차의 번호를 입력하세요.");
+			String carnumber = scan.nextLine();
+			System.out.println("대여하시는 사람의 운전면허 번호를 입력하세요.");
+			String carreg = scan.nextLine();
+			
+			int result = dao.rentSaveInfo(conn, period, carnumber, carreg);
+			if(result > 0) {
+				System.out.println("대여가 정보가 저장되었습니다.");
+			}else {
+				System.out.println("저장 실패");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	// 자동차 대여
 public	void rentCar() {
 		Connection conn = null;

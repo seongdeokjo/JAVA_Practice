@@ -10,16 +10,16 @@ import java.util.ArrayList;
 import car.*;
 import memberT.*;
 
-public class ManagerDao {
+public class ManagerDao2 {
 	//1.외부 클래스 또는 인스턴스에서 해당 클래스로 인스턴스를 생성하지 못하도록 처리
-	private ManagerDao() {
+	private ManagerDao2() {
 	}
 	//2. 클래스 내부에서 인스턴스를 만들고
-	static private ManagerDao mDao = new ManagerDao();
+	static private ManagerDao2 mDao = new ManagerDao2();
 	private Connection conn;
 		
 	//3. 메소드를 통해서 반환 하도록 처리
-	public static ManagerDao getInstance() {
+	public static ManagerDao2 getInstance() {
 		return mDao;
 	}	
 	
@@ -253,9 +253,48 @@ public class ManagerDao {
 		
 		return result;
 	}
+	//차량 렌트 정보 저장
+	int rentSaveInfo(Connection conn, int rentperiod, String carnumber, String carreg,String rent) {
+	int result = 0;
 	
-	//자동차 대여
+	PreparedStatement pstmt = null;
+	PreparedStatement Cpstmt = null;
+	String sql = "insert into rent values(rent_rentcode_seq.nextval,10000,?,sysdate+?,(select carcode from car where carnumber = ?),(select membercode from member where carreg = ?),1)";
+	
+	try {
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setInt(1, rentperiod);
+		pstmt.setInt(2, rentperiod);
+		pstmt.setString(3, carnumber);
+		pstmt.setString(4, carreg);
+		
+		result = pstmt.executeUpdate();
+		String sql2 = 
+				"update car set rent=? where rent != 1 and carnumber=? ";	 // 
 
+		Cpstmt = conn.prepareStatement(sql2);
+		Cpstmt.setString(1, rent);
+		
+		Cpstmt.setString(2, carnumber);
+		
+		result = Cpstmt.executeUpdate();
+
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}finally {
+		if(pstmt != null) {
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	return result;
+	}
 	// 자동차 대여
 	int rentCar(Connection conn, String rent, String carnumber) {
 		// 원래는 boolean 타입을 사용하여 차량번호만 받아 대여 상태를 표시하고 싶었지만
