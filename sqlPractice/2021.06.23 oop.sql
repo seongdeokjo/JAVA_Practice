@@ -45,10 +45,10 @@ mpw varchar2(20) not null
 create table rent(
 rentcode number(4) constraint rent_rentcode_pk primary key,
 pay number(6) not null,
-rentperiod number(1) not null,
+rentperiod number(1) constraint rent_period_ck check(rentperiod between 1 and 3)  not null,
 rent_date date default sysdate , --대여 날짜
-carcode number constraint rent_carcode_fk REFERENCES car(carcode) on delete cascade,
-membercode number constraint rent_membercode_fk REFERENCES member(membercode) on delete cascade,
+carcode number constraint rent_carcode_fk REFERENCES car(carcode) on delete cascade constraint rent_carcode_uk unique,
+membercode number constraint rent_membercode_fk REFERENCES member(membercode) on delete cascade constraint rent_membercode_uk unique,
 managercode number constraint rent_managercode_fk REFERENCES manager(managercode) on delete cascade
 )
 ;
