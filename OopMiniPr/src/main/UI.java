@@ -104,7 +104,7 @@ public class UI {
 				//대여 메서드
 				System.out.println("대여합니다.");
 				cm2.rentSaveInfo();
-				cm.rentCar();
+			
 				break;
 			case 2 : 
 				//반납 메서드
@@ -124,13 +124,10 @@ public class UI {
 				if(ck == true) {
 				System.out.println("로그아웃되었습니다.");
 				logout();
-				break;
+				start();
 				//로그인 상태가 아닌경우 
-				}else {
-					System.out.println("로그인 상태가 아닙니다.");
-					System.out.println("회원 사용을 종료합니다.");
-					start();
-				}		
+				}
+						
 			}					
 		}		
 	}
@@ -187,12 +184,8 @@ public class UI {
 				if(ck == true) {
 				System.out.println("로그아웃되었습니다.");
 				logout();
-				break;
+				start();
 				//로그인 상태가 아닌경우 
-				}else {
-					System.out.println("로그인 상태가 아닙니다.");
-					System.out.println("관리자모드를 종료합니다.");
-					start();
 				}
 			}	
 		}		

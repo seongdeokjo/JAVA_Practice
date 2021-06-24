@@ -16,7 +16,6 @@ public class ManagerDao2 {
 	}
 	//2. 클래스 내부에서 인스턴스를 만들고
 	static private ManagerDao2 mDao = new ManagerDao2();
-	private Connection conn;
 		
 	//3. 메소드를 통해서 반환 하도록 처리
 	public static ManagerDao2 getInstance() {
@@ -254,11 +253,11 @@ public class ManagerDao2 {
 		return result;
 	}
 	//차량 렌트 정보 저장
-	int rentSaveInfo(Connection conn, int rentperiod, String carnumber, String carreg,String rent) {
+	int rentSaveInfo(Connection conn, int rentperiod, String carnumber, String carreg) {
 	int result = 0;
 	
 	PreparedStatement pstmt = null;
-	PreparedStatement Cpstmt = null;
+	
 	String sql = "insert into rent values(rent_rentcode_seq.nextval,10000,?,sysdate+?,(select carcode from car where carnumber = ?),(select membercode from member where carreg = ?),1)";
 	
 	try {
@@ -269,18 +268,8 @@ public class ManagerDao2 {
 		pstmt.setString(3, carnumber);
 		pstmt.setString(4, carreg);
 		
+	
 		result = pstmt.executeUpdate();
-		String sql2 = 
-				"update car set rent=? where rent != 1 and carnumber=? ";	 // 
-
-		Cpstmt = conn.prepareStatement(sql2);
-		Cpstmt.setString(1, rent);
-		
-		Cpstmt.setString(2, carnumber);
-		
-		result = Cpstmt.executeUpdate();
-
-		
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}finally {

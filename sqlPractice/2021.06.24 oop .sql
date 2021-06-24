@@ -33,10 +33,10 @@ select * from rent;
 
 -- 대여완료시 -> 렌트 코드가 생성되면서 렌트 정보가 나타나게 
 
+desc rent;
 
-
-
-
+select to_char(sysdate+1, 'yyyy-mm-dd hh24:mi:ss')
+from dual;
 
 
 

@@ -52,11 +52,13 @@ membercode number constraint rent_membercode_fk REFERENCES member(membercode) on
 managercode number constraint rent_managercode_fk REFERENCES manager(managercode) on delete cascade
 )
 ;
+delete from rent where membercode = 1;
+select * from rent;
 
 select sysdate from dual;
 
 
-insert into rent values(rent_rentcode_seq.nextval,10000,3,sysdate+3,(select carcode from car where carnumber = 1111),(select membercode from member where carreg = 1111),1);
+insert into rent values(rent_rentcode_seq.nextval,10000,3,sysdate+3,(select carcode from car where carnumber = 3333),(select membercode from member where carreg = 1113),1);
 select * from rent where 
 select to_char(rent_date, 'yyyy-mm-dd hh24:mi:ss') from rent;
 select * from rent;

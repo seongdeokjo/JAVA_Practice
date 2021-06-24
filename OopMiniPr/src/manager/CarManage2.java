@@ -142,15 +142,14 @@ public class CarManage2 {
 			String carnumber = scan.nextLine();
 			System.out.println("대여하시는 사람의 운전면허 번호를 입력하세요.");
 			String carreg = scan.nextLine();
-			System.out.println("대여할거면  1 을 입력");
-			String rent = scan.nextLine();
-			int result = dao.rentSaveInfo(conn, period, carnumber, carreg,rent);
+			
+			int result = dao.rentSaveInfo(conn, period, carnumber, carreg);
 			if(result > 0) {
-				System.out.println("대여가 정보가 저장되었습니다.");
+				
+				System.out.println("저장 되었습니다.");
 			}else {
 				System.out.println("저장 실패");
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
