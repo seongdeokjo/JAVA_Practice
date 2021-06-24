@@ -25,7 +25,7 @@ public class RentManager {
 			//연결
 			String jdbcUrl  = "jdbc:oracle:thin:@localhost:1521:xe";
 			String user = "hr";
-			String pw = "1234";
+			String pw = "tiger";
 			
 			
 				try {
@@ -70,7 +70,7 @@ public class RentManager {
 			
 			String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 			String user = "hr";
-			String pw = "1234";
+			String pw = "tiger";
 			
 			
 					try {
@@ -108,7 +108,7 @@ public class RentManager {
 			
 			String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 			String user = "hr";
-			String pw = "1234";
+			String pw = "tiger";
 			
 			
 					try {
@@ -141,7 +141,7 @@ public class RentManager {
 			
 			String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 			String user = "hr";
-			String pw = "1234";
+			String pw = "tiger";
 			
 			
 					try {

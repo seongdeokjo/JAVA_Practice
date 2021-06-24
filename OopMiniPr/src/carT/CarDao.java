@@ -47,7 +47,9 @@ public class CarDao {
 						Crs.getString(4),
 						Crs.getInt(5),
 						Crs.getInt(6),
-						Crs.getString(7)));
+						Crs.getString(7),
+						Crs.getString(8)
+						));
 			}
 
 		} catch (SQLException e) {
@@ -82,7 +84,7 @@ public class CarDao {
 
 		try {
 			String sql = 
-					"insert into Car values (car_cCode_SEQ.nextval,?,?,?,?,?,?)";
+					"insert into Car values (car_cCode_SEQ.nextval,?,?,?,?,?,?,0)";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, car.getCarnumber());
@@ -153,7 +155,7 @@ public class CarDao {
 	
 	// 테이블 데이터 삭제
 	// 사용자한테 코드번호 받아서 처리
-	int deleteCar(Connection conn, int carcode) {
+	int deleteCar(Connection conn, int carnumber) {
 		
 		int result = 0;
 		
@@ -161,11 +163,11 @@ public class CarDao {
 		PreparedStatement Cpstmt = null;
 		
 		
-		String sql = "delete from Car where idx=?";
+		String sql = "delete from Car where carnumber=?";
 		
 		try {
 			Cpstmt = conn.prepareStatement(sql);
-			Cpstmt.setInt(1, carcode);
+			Cpstmt.setInt(1, carnumber);
 			
 			result = Cpstmt.executeUpdate();
 			

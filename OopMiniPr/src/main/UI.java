@@ -76,14 +76,13 @@ public class UI {
 			System.out.println("아이디 또는 비밀번호를 확인하세요");
 		}	
 	}
-
 	
 	public void menuMember() {
 	// 회원은 로그인을 먼저 진행해주세요.
-		//1.로그인 2.대여 3.반납 4.차량 정보 5.로그아웃 
+		//1.대여 2.반납 3.결제 4.차량 정보 5.로그아웃 
 		// 2021 06 23
 		//회원정보수정 기능은 아직 추가 x
-		//대여,반납 기능 아직 추가 x
+		//대여,반납,결제 기능 아직 추가 x
 		int num = 0;
 		System.out.println("회원 로그인을 진행해주세요.");
 		//로그인
@@ -96,7 +95,7 @@ public class UI {
 		
 		while(true) {
 			System.out.println("메뉴 선택을 해주세요.");
-			System.out.println("1.대여 2.반납 3.차량 정보 4.로그아웃");
+			System.out.println("1.대여 2.반납 3.차량 정보 4.결제 정보 5.로그아웃");
 			num = Integer.parseInt(getUserInput());
 			switch(num) {	
 			case 1 :
@@ -114,6 +113,9 @@ public class UI {
 				cm.carList();
 				break;
 			case 4 :
+				//결제 정보
+				break;
+			case 5 :
 				//로그인 상태일 경우
 				if(ck == true) {
 				System.out.println("로그아웃되었습니다.");
@@ -124,8 +126,7 @@ public class UI {
 					System.out.println("로그인 상태가 아닙니다.");
 					System.out.println("회원 사용을 종료합니다.");
 					start();
-				}
-				
+				}		
 			}					
 		}		
 	}

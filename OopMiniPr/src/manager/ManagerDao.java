@@ -85,7 +85,7 @@ public class ManagerDao {
 			
 				
 				try {
-					String sql = "insert into member values(MEMBER_mCode_SEQ.nextval, ?, ?, ?, ?, ?, ?)"; //이부분 확인해야함
+					String sql = "insert into member values(MEMBER_membercode_SEQ.nextval, ?, ?, ?, ?, ?, ?)";
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, member.getId());
 					pstmt.setString(2, member.getPw());
@@ -164,7 +164,8 @@ public class ManagerDao {
 						rs.getString(4),
 						rs.getInt(5),
 						rs.getInt(6),
-						rs.getString(7))
+						rs.getString(7),
+						rs.getString(8))
 			);
 			}
 						
@@ -196,7 +197,7 @@ public class ManagerDao {
 		 PreparedStatement pstmt = null;
 		 
 		 // sequence 생성 
-		 String sql = "insert into car values(car_cCode_SEQ.nextVal,?,?,?,?,?,?)";
+		 String sql = "insert into car values(car_carcode_SEQ.nextVal,?,?,?,?,?,?,?)";
 		 
 		 try {
 			pstmt = conn.prepareStatement(sql);
@@ -206,8 +207,8 @@ public class ManagerDao {
 			pstmt.setString(3, car.getCarsize());
 			pstmt.setInt(4, car.getCarseat());
 			pstmt.setInt(5, car.getCaryear());
-			pstmt.setString(6, car.getFuel()
-					);
+			pstmt.setString(6, car.getFuel());
+			pstmt.setString(7,car.getRent());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -225,17 +226,17 @@ public class ManagerDao {
 	 }
 	
 	//차량 삭제
-	int deleteCar(Connection conn, int carcode) {
+	int deleteCar(Connection conn, int carnumber) {
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
 		
-		String sql = "delete from car where carcode = (select carcode from rent where carcode = ?)";
+		String sql = "delete from car where carnumber = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, carcode);
+			pstmt.setInt(1, carnumber);
 			
 			result = pstmt.executeUpdate();
 			

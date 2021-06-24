@@ -24,7 +24,7 @@ public class CarManager {
 		Connection conn = null;
 		String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
-		String pw = "1234";
+		String pw = "tiger";
 		
 		
 		try {
@@ -66,7 +66,7 @@ public class CarManager {
 		Connection conn = null;
 		String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
-		String pw = "1234";
+		String pw = "tiger";
 		
 		try {
 			conn = DriverManager.getConnection(OOP1, user, pw);
@@ -78,7 +78,7 @@ public class CarManager {
 			String[] cardata = inputCarData.split(" ");
 			
 			Car car = new Car(0, cardata[0], cardata[1],cardata[2],
-					Integer.parseInt(cardata[3]), Integer.parseInt(cardata[4]), cardata[5]);
+					Integer.parseInt(cardata[3]), Integer.parseInt(cardata[4]), cardata[5],cardata[6]);
 			
 			int result = Cdao.insertCar(conn, car);
 			
@@ -114,7 +114,7 @@ public class CarManager {
 			String[] ecardata = editCarData.split(" ");
 			
 			Car car = new Car(Integer.parseInt(ecardata[0]), ecardata[1], ecardata[2],ecardata[3],
-					Integer.parseInt(ecardata[4]), Integer.parseInt(ecardata[5]), ecardata[6]);
+					Integer.parseInt(ecardata[4]), Integer.parseInt(ecardata[5]), ecardata[6],ecardata[7]);
 			
 			int result = Cdao.editCar(conn, car);
 			
@@ -137,7 +137,7 @@ public class CarManager {
 		Connection conn = null;
 		String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
-		String pw = "1234";
+		String pw = "tiger";
 		
 		try {
 			conn = DriverManager.getConnection(OOP1,user,pw);

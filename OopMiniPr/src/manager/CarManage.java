@@ -68,8 +68,8 @@ public class CarManage {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
 
 			System.out.println("차 정보를 입력합니다.");
-			System.out.println("차번호 차이름 차크기 탑승인원 연식 연료 형식으로 입력해주세요.");
-			System.out.println("예시) 2021 4 휘발유 그랜저 중 111111 ");
+			System.out.println("차번호 차이름 차크기 탑승인원 연식 연료 0 형식으로 입력해주세요.");
+			System.out.println("예시) 123456 sonata middle 5 2020 휘발유 0");
 			String inputData = scan.nextLine();
 			String[] carData = inputData.split(" ");
 			// car 생성자 : car 테이블
@@ -80,7 +80,8 @@ public class CarManage {
 					carData[2], 
 					Integer.parseInt(carData[3]),
 					Integer.parseInt(carData[4]),
-					carData[5]
+					carData[5],
+					carData[6]
 							);
 
 			int result = dao.insertCar(conn, car);
