@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import carT.*;
+import car.*;
 import memberT.*;
 
 public class ManagerDao {
@@ -52,7 +52,7 @@ public class ManagerDao {
 							rs.getString(5),
 							rs.getString(6),
 							rs.getString(7))
-				);	
+						);	
 				}
 			} catch (SQLException e) {
 			e.printStackTrace();
@@ -362,7 +362,7 @@ public class ManagerDao {
 			}
 			return Clist;
 		}
-
+		//렌트 이용가능한 메서드
 		ArrayList<Car> availableList(Connection conn){
 
 			ArrayList<Car> Clist = null;

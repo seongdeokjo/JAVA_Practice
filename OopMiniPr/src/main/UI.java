@@ -2,9 +2,7 @@ package main;
 
 import java.util.Scanner;
 
-import manager.CarManage;
-import manager.ManagerDao;
-import manager.MemberManage;
+import manager.*;
 
 public class UI {
 	MemberManage mm = new MemberManage(ManagerDao.getInstance());
@@ -84,6 +82,8 @@ public class UI {
 		// 2021 06 23
 		//회원정보수정 기능은 아직 추가 x
 		//대여,반납,결제 기능 아직 추가 x
+		//2021 06 24
+		//회원정보 수정, 결제기능 추가 x
 		int num = 0;
 		System.out.println("회원 로그인을 진행해주세요.");
 		//로그인

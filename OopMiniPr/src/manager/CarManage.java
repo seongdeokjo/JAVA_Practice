@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
-import carT.*;
+import car.*;
 
 public class CarManage {
 

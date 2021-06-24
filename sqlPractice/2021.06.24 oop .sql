@@ -25,5 +25,19 @@ insert into car values(CAR_CARCODE_SEQ.nextval, '3333', 'RAY', 'big', 5, 2018, '
 --rent table 데이터 추가
 insert into rent values(rent_rentcode_seq.nextval,10000,2,(select carcode from car where carnumber = 1111),(select membercode from member where carreg = 1111),1);
 select * from member where membercode = (select membercode from rent);
-select * from car;
+select * from car
+where rent != 1
+;
+
+select * from rent;
+
+-- 대여완료시 -> 렌트 코드가 생성되면서 렌트 정보가 나타나게 
+
+
+
+
+
+
+
+
 commit;
