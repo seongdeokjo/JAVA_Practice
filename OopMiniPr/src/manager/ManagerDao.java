@@ -162,8 +162,8 @@ public class ManagerDao {
 						rs.getString(4),
 						rs.getInt(5),
 						rs.getInt(6),
-						rs.getString(7),
-						rs.getString(8))
+						rs.getString(7)
+						)
 			);
 			}
 						
@@ -195,7 +195,7 @@ public class ManagerDao {
 		 PreparedStatement pstmt = null;
 		 
 		 // sequence 생성 
-		 String sql = "insert into car values(car_carcode_SEQ.nextVal,?,?,?,?,?,?,?)";
+		 String sql = "insert into car values(car_carcode_SEQ.nextVal,?,?,?,?,?,?)";
 		 
 		 try {
 			pstmt = conn.prepareStatement(sql);
@@ -206,7 +206,7 @@ public class ManagerDao {
 			pstmt.setInt(4, car.getCarseat());
 			pstmt.setInt(5, car.getCaryear());
 			pstmt.setString(6, car.getFuel());
-			pstmt.setString(7,car.getRent());
+			
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -257,7 +257,7 @@ public class ManagerDao {
 	//자동차 대여
 
 	// 자동차 대여
-	int rentCar(Connection conn, String rent, String carnumber) {
+	int rentCar(Connection conn, String period, String carnumber,String carreg,int rentck) {
 		// 원래는 boolean 타입을 사용하여 차량번호만 받아 대여 상태를 표시하고 싶었지만
 		// sql에서 boolean타입을 처리하는법과 대여 메소드를 만드는 법을 해결하지 못하여
 		// 사용자에게 0 과1 을 입력 받음으로 자동차의 대여현황이 변화는 방법으로 선회하였습니다.
@@ -267,12 +267,15 @@ public class ManagerDao {
 		PreparedStatement Cpstmt = null;
 		try {
 			String sql = 
-					"update car set rent=? where rent != 1 and carnumber=? ";	 // 
+					"insert into rent values(rent_rentcode_seq.nextval,10000,?,sysdate+?,(select carcode from car where carnumber = ?),(select membercode from member where carreg = ?),1,?)";	 // 
 
 			Cpstmt = conn.prepareStatement(sql);
-			Cpstmt.setString(1, rent);
+			Cpstmt.setString(1, period);
+			Cpstmt.setString(2, period);
+			Cpstmt.setString(3, carnumber);
+			Cpstmt.setString(4, carreg);
+			Cpstmt.setInt(5, rentck);
 			
-			Cpstmt.setString(2, carnumber);
 			
 			result = Cpstmt.executeUpdate();
 
@@ -290,7 +293,7 @@ public class ManagerDao {
 		return result;
 	}
 	// 자동차 반납
-		int returnCar(Connection conn, String rent, String carnumber) {
+		int returnCar(Connection conn, int rentck, String carnumber) {
 
 			int result = 0;
 
@@ -298,10 +301,10 @@ public class ManagerDao {
 			PreparedStatement Cpstmt = null;
 			try {
 				String sql = 
-						"update car set rent=? where rent !=0 and carnumber=? ";		
+						"update rent set rentck=? where rentck !=0 and carcode=(select carcode from car where carnumber = ?) ";		
 
 				Cpstmt = conn.prepareStatement(sql);
-				Cpstmt.setString(1, rent);
+				Cpstmt.setInt(1, rentck);
 				Cpstmt.setString(2, carnumber);
 
 				result = Cpstmt.executeUpdate();
@@ -345,8 +348,8 @@ public class ManagerDao {
 							Crs.getString(4),
 							Crs.getInt(5),
 							Crs.getInt(6),
-							Crs.getString(7),
-							Crs.getString(8)));
+							Crs.getString(7)
+							));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -387,8 +390,8 @@ public class ManagerDao {
 							Crs.getString(4),
 							Crs.getInt(5),
 							Crs.getInt(6),
-							Crs.getString(7),
-							Crs.getString(8)));
+							Crs.getString(7)
+							));
 				}
 
 			} catch (SQLException e) {

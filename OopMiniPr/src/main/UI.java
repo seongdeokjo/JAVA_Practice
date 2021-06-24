@@ -7,7 +7,7 @@ import manager.*;
 public class UI {
 	MemberManage mm = new MemberManage(ManagerDao.getInstance());
 	CarManage cm = new CarManage(ManagerDao.getInstance());
-	CarManage2 cm2 = new CarManage2(ManagerDao2.getInstance());
+//	CarManage2 cm2 = new CarManage2(ManagerDao2.getInstance());
 	static boolean ck = false;
 	
 	// 멤버 로그인
@@ -74,6 +74,7 @@ public class UI {
 			checkLogin();
 		}else {
 			System.out.println("아이디 또는 비밀번호를 확인하세요");
+			start();
 		}	
 	}
 	
@@ -103,7 +104,7 @@ public class UI {
 			case 1 :
 				//대여 메서드
 				System.out.println("대여합니다.");
-				cm2.rentSaveInfo();
+				cm.rentCar();
 			
 				break;
 			case 2 : 

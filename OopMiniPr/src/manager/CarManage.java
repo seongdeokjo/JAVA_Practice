@@ -17,6 +17,14 @@ public class CarManage {
 		this.dao = dao;
 		scan = new Scanner(System.in);
 	}
+	//2021.06.24 
+	
+	//rent 테이블을 이용 
+	//회원의 기본 정보 수정
+	//회원의 
+	
+	
+	
 
 	// 차량 정보 리스트 출력
 	public void carList() {
@@ -65,8 +73,8 @@ public class CarManage {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
 
 			System.out.println("차 정보를 입력합니다.");
-			System.out.println("차번호 차이름 차크기 탑승인원 연식 연료 0 형식으로 입력해주세요.");
-			System.out.println("예시) 123456 sonata middle 5 2020 휘발유 0");
+			System.out.println("차번호 차이름 차크기 탑승인원 연식 연료  형식으로 입력해주세요.");
+			System.out.println("예시) 123456 sonata middle 5 2020 휘발유 ");
 			String inputData = scan.nextLine();
 			String[] carData = inputData.split(" ");
 			// car 생성자 : car 테이블
@@ -77,8 +85,8 @@ public class CarManage {
 					carData[2], 
 					Integer.parseInt(carData[3]),
 					Integer.parseInt(carData[4]),
-					carData[5],
-					carData[6]
+					carData[5]
+//					,carData[6]
 							);
 
 			int result = dao.insertCar(conn, car);
@@ -134,27 +142,27 @@ public	void rentCar() {
 		
 		try {
 			conn = DriverManager.getConnection(OOP1,user,pw);
-			availableList();
-			System.out.println("대여할 차량번호 입력");
+//			availableList();
+			System.out.println("대여할 기간을 입력하세요.");
+			String period = scan.nextLine();
+			System.out.println("자동차 번호를 입력하세요.");
 			String carnumber = scan.nextLine();
-			System.out.println("대여할거면  1 을 입력");
-			String rent = scan.nextLine();
+			System.out.println("이용자의 운전면허 번호를 입력하세요.");
+			String carreg = scan.nextLine();
+			System.out.println("대여를 확정하시려면 '1'번을 입력하세요.");
+			int rentck = Integer.parseInt(scan.nextLine());
 			//2021 06.24
 		//예외 처리 추가 1이외에 다른 데이터가 들어올시 예외처리 
 		//문제점 : 차번호 입력시 db에 없는 값이 들어와도 대여완료가 출력
 						
-			if(rent.equals("1")) {
-			int result = dao.rentCar(conn, rent, carnumber);
+			
+			int result = dao.rentCar(conn, period, carnumber,carreg,rentck);
 						
 				if(result > 0) {
 					System.out.println("대여가 완료 되었습니다.");
 				}else {
 					System.out.println("번호를 다시 입력하세요.");
-				} 
-			}else {
-				System.out.println("반드시 1을 입력하세요.");
-				return;
-			}
+				} 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -169,28 +177,25 @@ public	void returnCar() {
 		
 		try {
 			conn = DriverManager.getConnection(OOP1,user,pw);
-			rentList();
+//			rentList();
 			System.out.println("반납할 차량번호 입력");
 			String carnumber = scan.nextLine();
 			System.out.println("반납할거면 0 을 입력");
-			String rent = scan.nextLine();
-			
-			if(rent.equals("0")) {
-				int result = dao.returnCar(conn, rent, carnumber);
+			int rentck = Integer.parseInt(scan.nextLine());
+				
+				int result = dao.returnCar(conn, rentck, carnumber);
 		
 				if(result > 0) {
 					System.out.println("반납 완료");
 				} else  {
 					System.out.println("반납 실패");
 				}
-			}else {
-				System.out.println("반드시 0을 입력하세요.");
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	// 렌트 중인 차량 목록
+
 	//데이터 삭제
 	// 사용자한테 idx입력받아 데이터삭제
 		
