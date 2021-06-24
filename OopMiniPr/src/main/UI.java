@@ -61,6 +61,7 @@ public class UI {
 			checkLogin();
 		}else {
 			System.out.println("아이디 또는 비밀번호를 확인하세요");
+			start();
 		}	
 	}
 	// 관리자 로그인
@@ -95,20 +96,21 @@ public class UI {
 		
 		while(true) {
 			System.out.println("메뉴 선택을 해주세요.");
-			System.out.println("1.대여 2.반납 3.차량 정보 4.결제 정보 5.로그아웃");
+			System.out.println("1.대여 2.반납 3.차량이용현황 4.결제 정보 5.로그아웃");
 			num = Integer.parseInt(getUserInput());
 			switch(num) {	
 			case 1 :
 				//대여 메서드
 				System.out.println("대여합니다.");
-				cm.carList();
+				cm.rentCar();
 				break;
 			case 2 : 
 				//반납 메서드
 				System.out.println("반납을 합니다.");
+				cm.returnCar();
 				break;
 			case 3 : 
-				//차량 정보 메서드
+				//차량 이용 현황 메서드
 				System.out.println("차량 정보를 나타냅니다.");
 				cm.carList();
 				break;

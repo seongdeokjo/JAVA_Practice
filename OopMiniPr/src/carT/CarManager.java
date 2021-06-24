@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class CarManager {
 	
 	private CarDao Cdao;
@@ -55,14 +56,9 @@ public class CarManager {
 			e.printStackTrace();
 		}
 		
-	}
-	
-	
+	}	
 //	Scanner 입력 -< insertCar 메소드로 저장
-	void inputCarData() {
-
-
-		
+	void inputCarData() {		
 		Connection conn = null;
 		String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
@@ -102,7 +98,7 @@ public class CarManager {
 		
 		String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
-		String pw = "1234";
+		String pw = "tiger";
 		
 		try {
 			conn = DriverManager.getConnection(OOP1,user,pw);
@@ -144,9 +140,9 @@ public class CarManager {
 		
 		CarList();
 		System.out.println("삭제를 원하시는 코드번호를 입력해주세요");
-		int idx = Integer.parseInt(sc.nextLine());
+		int carcode = Integer.parseInt(sc.nextLine());
 		
-		int result = Cdao.deleteCar(conn, idx);
+		int result = Cdao.deleteCar(conn, carcode);
 		
 		if(result > 0) {
 			System.out.println("삭제 완료");
@@ -161,9 +157,142 @@ public class CarManager {
 		
 				
 	}
+
+	// 자동차 대여
+	void rentCar() {
+		Connection conn = null;
+		
+		String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "hr";
+		String pw = "tiger";
+		
+		try {
+			conn = DriverManager.getConnection(OOP1,user,pw);
+			availableList();
+			System.out.println("대여할거면  1 을 입력");
+			String rent = sc.nextLine();
+			System.out.println("대여할 차량번호 입력");
+			String carnumber = sc.nextLine();
+		
+			int result = Cdao.rentCar(conn, rent, carnumber);
+			
+			if(result > 0) {
+				System.out.println("수정 완료");
+			} else {
+				System.out.println("수정 실패");
+			}		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// 자동차 반납
+	void returnCar() {
+		Connection conn = null;
+		
+		String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "hr";
+		String pw = "tiger";
+		
+		try {
+			conn = DriverManager.getConnection(OOP1,user,pw);
+			rentList();
+			System.out.println("반납할거면 0 을 입력");
+			String rent = sc.nextLine();
+			System.out.println("반납할 차량번호 입력");
+			String carnumber = sc.nextLine();
+			
+			int result = Cdao.rentCar(conn, rent, carnumber);
+		
+			if(result > 0) {
+				System.out.println("반납 완료");
+			} else  {
+				System.out.println("반납 실패");
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// 렌트 중인 차량 목록
+	//데이터 삭제
+	// 사용자한테 idx입력받아 데이터삭제
 	
 	
+	void rentList() {
+		Connection conn = null;
+		String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "hr";
+		String pw = "tiger";
+		
+		
+		try {
+			conn = DriverManager.getConnection(OOP1, user, pw);
+			
+			List<Car> Clist = Cdao.rentList(conn);
+			
+			System.out.println("렌트 중인 차량 목록");
+			System.out.println("------------------");
+			System.out.println("코드번호\t차번호\t차이름 \t차크기\t탑승인원 \t연식\t연료");
+			System.out.println("--------------------------------------------------");
+			
+			for(Car car : Clist) {
+				System.out.printf("%d\t%s\t%s\t%s\t%d\t%d\t%s\n",
+				car.getCarcode(),
+				car.getCarnumber(),
+				car.getCarname(),
+				car.getCarsize(),
+				car.getCarseat(),
+				car.getCaryear(),
+				car.getFuel());
+			}
+			
+			System.out.println("------------------------------------------");
+							
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	// 이용 가능 차량 목록
 	
+	void availableList() {
+		Connection conn = null;
+		String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "hr";
+		String pw = "tiger";
+		
+		
+		try {
+			conn = DriverManager.getConnection(OOP1, user, pw);
+			
+			List<Car> Clist = Cdao.availableList(conn);
+			
+			System.out.println("대여 가능 차량 목록");
+			System.out.println("------------------");
+			System.out.println("코드번호\t차번호\t차이름 \t차크기\t탑승인원 \t연식\t연료");
+			System.out.println("--------------------------------------------------");
+			
+			for(Car car : Clist) {
+				System.out.printf("%d\t%s\t%s\t%s\t%d\t%d\t%s\n",
+				car.getCarcode(),
+				car.getCarnumber(),
+				car.getCarname(),
+				car.getCarsize(),
+				car.getCarseat(),
+				car.getCaryear(),
+				car.getFuel());
+			}
+			
+			System.out.println("------------------------------------------");
+							
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 	
