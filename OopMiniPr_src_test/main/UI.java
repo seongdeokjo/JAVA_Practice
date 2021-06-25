@@ -3,7 +3,6 @@ package main;
 //문제점 : 1.로그인 확인후 회원의 렌트 현황에서 새로운 메소드를 추가해야하지 하는지? -> 회원의 id or 이름을 입력 받아야하는 번거로움 
 //2. 
 
-
 import java.util.Scanner;
 
 import manager.*;
@@ -11,7 +10,6 @@ import manager.*;
 public class UI {
 	MemberManage mm = new MemberManage(ManagerDao.getInstance());
 	CarManage cm = new CarManage(ManagerDao.getInstance());
-//	CarManage2 cm2 = new CarManage2(ManagerDao2.getInstance());
 	static boolean ck = false;
 	
 	// 멤버 로그인
@@ -37,8 +35,7 @@ public class UI {
 				menuMember();
 				break;
 			// 2번은 비회원 회원가입
-			case 2 :
-				
+			case 2 :	
 				menuNoneMM();
 				break;
 			// 3번은 관리자 기능	
@@ -54,20 +51,7 @@ public class UI {
 	}
 	//1번 회원 선택시
 	// 멤버 로그인
-	public void memberLogin() {
-		
-		System.out.println("멤버 로그인");
-		System.out.println("회원의 아이디를 입력하세요.");
-		String id = getUserInput();
-		System.out.println("회원의 비밀번호를 입력하세요.");
-		String pw = getUserInput();
-		if(mm.login(id, pw) > 0) {
-			checkLogin();
-		}else {
-			System.out.println("아이디 또는 비밀번호를 확인하세요");
-			start();
-		}	
-	}
+
 	// 관리자 로그인
 	public void managerLogin() {
 		System.out.println("관리자 로그인");
@@ -91,32 +75,37 @@ public class UI {
 		//2021 06 24
 		//회원정보 수정, 결제기능 추가 x -> 
 		int num = 0;
-		System.out.println("회원 로그인을 진행해주세요.");
-		//로그인
-		if(ck == false) {
-			System.out.println("로그인을 합니다.");
-			memberLogin();
-		}else {
-			System.out.println("이미 로그인 중입니다.");
-		}
-		
+	
+									
 		while(true) {
+			System.out.println("회원 로그인을 진행합니다.");
+			//로그인
+				
+			if(ck == false) {
+					
+				if(mm.memberLogin() == true) {
+					checkLogin();
+				}else {
+					
+					menuMember();
+				}		
+				}else {
+					System.out.println("이미 로그인 중입니다.");
+				}
 			System.out.println("메뉴 선택을 해주세요.");
 			System.out.println("1.대여 2.반납 3.대여이용현황 4.결제 정보 5.로그아웃");
 			num = Integer.parseInt(getUserInput());
-			switch(num) {	
+			switch(num) {				
+			
 			case 1 :
 				//대여 메서드
 				System.out.println("대여합니다.");
 				cm.rentCar();
-				cm.rentCar2();
-			
 				break;
 			case 2 : 
 				//반납 메서드
 				System.out.println("반납을 합니다.");
 				cm.returnCar();
-				cm.returnCar2();
 				break;
 			case 3 : 
 				//차량 이용 현황 메서드
@@ -142,7 +131,7 @@ public class UI {
 	//2번 비회원 선택시
 	public void menuNoneMM() {
 		System.out.println("회원가입을 시작합니다.");
-		mm.insertMember();
+		mm.addMember();
 		System.out.println("회원가입이 완료되었습니다.");		
 		start();
 	}
@@ -168,22 +157,20 @@ public class UI {
 			num = Integer.parseInt(getUserInput());
 			switch(num) {
 			//회원 리스트
-			case 1 :
-				System.out.println("회원의 리스트를 출력합니다.");
+			case 1 :				
 				mm.memberList();	
 				break;
 			//회원 삭제
-			case 2 :
-				System.out.println("회원의 정보를 삭제합니다.");
+			case 2 :			
 				mm.deletMember();				
 				break;
 			// 차량 등록	
 			case 3 :
-				cm.inputCar();
+				cm.addCar();
 				break;
 			//차량 삭제
 			case 4 :
-				cm.deleteCar();
+				cm.removeCar();
 				break;
 			//관리자 로그아웃
 			case 5 :	
