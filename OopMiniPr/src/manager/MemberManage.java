@@ -137,6 +137,10 @@ public	void memberList() {
 			e.printStackTrace();
 		}	
 	}
+//회원 가입 메서드
+
+//2021.06.25 각각의 예외 사항 : 회원가입시 발생할 수 있는 예외 처리 -> db 제약조건에 따라 자바에서도 처리 해줄 수 있게
+//정보추가 : 생년월일, 운전경력 등 
 public void insertMember() {
 	Connection	conn = null;
 	

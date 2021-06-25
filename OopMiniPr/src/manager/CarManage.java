@@ -12,7 +12,7 @@ public class CarManage {
 
 	private ManagerDao dao;
 	private Scanner scan;
-
+	private Connection conn;
 	public CarManage(ManagerDao dao) {
 		this.dao = dao;
 		scan = new Scanner(System.in);
@@ -20,13 +20,11 @@ public class CarManage {
 	//2021.06.24 
 	
 	//rent 테이블을 이용 
-	//회원의 기본 정보 수정
-	//회원의 
+	//회원의 기본 정보 수정 
 	
 	// 차량 정보 리스트 출력
 	public void carList() {
-		Connection conn = null;
-
+	
 		// 2.연결
 		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
@@ -58,7 +56,7 @@ public class CarManage {
 	}
 	// 차량 등록
 	public void inputCar() {
-		Connection conn = null;
+	
 
 		// 2.연결
 
