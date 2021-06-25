@@ -1,8 +1,5 @@
 package manager;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,7 +9,6 @@ public class CarManage {
 
 	private ManagerDao dao;
 	private Scanner scan;
-	private Connection conn;
 	public CarManage(ManagerDao dao) {
 		this.dao = dao;
 		scan = new Scanner(System.in);
@@ -24,50 +20,28 @@ public class CarManage {
 	
 	// 차량 정보 리스트 출력
 	public void carList() {
-	
-		// 2.연결
-		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "hr";
-		String pw = "tiger";
-
-		try {
-			conn = DriverManager.getConnection(jdbcUrl, user, pw);
-
-			List<Car> list = dao.getCarList(conn);
+			List<Car> list = dao.getCarList();
 
 			System.out.println("자동차 정보 리스트");
 			System.out.println("------------------------------------------------------------------");
-			System.out.println("차코드 \t 차번호 \t 차이름 \t 차크기 \t 탑승인원 \t 연식 \t 연료 \t");
+			System.out.println("차번호 \t 차이름 \t 차크기 \t 탑승가능인원 \t 연식 \t 연료 \t");
 			System.out.println("------------------------------------------------------------------");
 
 			for (Car car : list) {
-				System.out.printf("%d \t %s \t %s \t %s \t %d \t %d \t %s \n", 
-						car.getCarcode(), 
-						car.getCarnumber(),
+				System.out.printf("%s \t %s \t %s \t %d \t %d \t %s \n", 
+						car.getCarnumber(), 
 						car.getCarname(),
-						car.getCarsize(), 
+						car.getCarsize(),
 						car.getCarseat(), 
 						car.getCaryear(), 
-						car.getFuel());
+						car.getFuel()
+						);
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 	// 차량 등록
-	public void inputCar() {
-	
+	public void addCar() {
 
-		// 2.연결
-
-		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "hr";
-		String pw = "tiger";
-
-		try {
-			conn = DriverManager.getConnection(jdbcUrl, user, pw);
-
-			System.out.println("차 정보를 입력합니다.");
+			System.out.println("새로운 차량을 등록합니다.");
 			System.out.println("차번호 차이름 차크기 탑승인원 연식 연료  형식으로 입력해주세요.");
 			System.out.println("예시) 123456 sonata middle 5 2020 휘발유 ");
 			String inputData = scan.nextLine();
@@ -83,83 +57,50 @@ public class CarManage {
 					carData[5],
 					0);
 							
-
-			int result = dao.insertCar(conn, car);
+			int result = dao.insertCar(car);
 
 			if (result > 0) {
 				System.out.println("새로운 차량이 등록되었습니다.");
 			} else {
 				System.out.println("등록이 실패되었습니다.");
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 
 	// 차량 삭제
-	public void deleteCar() {
-		Connection conn = null;
-
-		// 2.연결
-
-		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "hr";
-		String pw = "tiger";
-
-		try {
-			conn = DriverManager.getConnection(jdbcUrl, user, pw);
-
+	public void removeCar() {
+			
+			System.out.println("차량의 삭제를 시작합니다.");
 			carList();
-
-			System.out.println("삭제를 원하는 차량 번호를 입력하세요.");
+			System.out.println("차량 번호로 입력하세요.");
 			int carreg = Integer.parseInt(scan.nextLine());
 
-			int result = dao.deleteCar(conn, carreg);
+			int result = dao.deleteCar( carreg);
 
 			if (result > 0) {
 				System.out.println("차량이 삭제되었습니다.");
 			} else {
 				System.out.println("차량의 정보가 없습니다.");
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
+	
+	//차량 대여
 	public void rentCar() {
-		Connection conn = null;
-		
-		String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "hr";
-		String pw = "tiger";
-		
-		try {
-			conn = DriverManager.getConnection(OOP1,user,pw);
+			System.out.println("대여가능한 차량의 목록을 나타냅니다.");
 			availableList();
 			System.out.println("대여할 차량번호 입력");
 			String carnumber = scan.nextLine();
 			
-			int result = dao.checkRentCar(conn, carnumber);
+			int result = dao.checkRentCar(carnumber);
 			
 			if(result > 0)	{
-				System.out.println("대여할 차량의 정보가 변경되었습니다.");
+				System.out.println("대여를 시작합니다.");
+				rentCar2();
 			}else {
 				System.out.println("수정 실패");
 			}
-			
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 	// 자동차 대여
-public	void rentCar2() {
-		Connection conn = null;
-		
-		String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "hr";
-		String pw = "tiger";
-		
-		try {
-			conn = DriverManager.getConnection(OOP1,user,pw);
+	public	void rentCar2() {
 			
 			System.out.println("대여할 기간을 입력하세요.");
 			String period = scan.nextLine();
@@ -171,84 +112,51 @@ public	void rentCar2() {
 			//2021 06.24
 		//예외 처리 추가 1이외에 다른 데이터가 들어올시 예외처리 
 		//문제점 : 차번호 입력시 db에 없는 값이 들어와도 대여완료가 출력		
-			int result = dao.rentCar(conn, period, carnumber,carreg);
+			int result = dao.addRentCar(period, carnumber,carreg);
 						
 				if(result > 0) {
 					System.out.println("대여가 완료 되었습니다.");
+					
 				}else {
 					System.out.println("번호를 다시 입력하세요.");
-				} 			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+				} 				
 	}
 
 	// 자동차 반납
-public	void returnCar() {
-		Connection conn = null;
-		
-		String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "hr";
-		String pw = "tiger";
-		
-		try {
-			conn = DriverManager.getConnection(OOP1,user,pw);
+	public	void returnCar() {
 			rentList();
 			System.out.println("반납할 차량번호 입력");
 			String carnumber = scan.nextLine();
 					
-				int result = dao.checkReturnCar(conn,carnumber);
+				int result = dao.checkReturnCar(carnumber);
 		
 				if(result > 0) {
-					System.out.println("차량의 정보가 변경되었습니다.");
+					System.out.println("반납을 시작합니다.");
+					returnCar2();				
 				} else  {
 					System.out.println("변경되지 않았습니다.");
 				}				
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 	//렌트 현황 삭제
-public void returnCar2() {
-	Connection conn = null;
-	
-	String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
-	String user = "hr";
-	String pw = "tiger";
-	
-	try {
-		conn = DriverManager.getConnection(OOP1,user,pw);
+	public void returnCar2() {
 		
 		System.out.println("회원아이디를 입력하세요");
 		String id = scan.nextLine();
 		
-		int result = dao.deleteRentInfo(conn, id);
+		int result = dao.deleteRentInfo(id);
 		
 		if(result > 0) {
 			System.out.println("반납이 완료되었습니다.");
 		}else {
 			System.out.println("반납 실패");
-		}
-		
-	}catch(SQLException e) {
-		e.printStackTrace();
-	}
+		}	
 }
 	// 렌트 중인 차량 목록
 
-	//데이터 삭제
-	// 사용자한테 idx입력받아 데이터삭제
 		
-public	void rentList() {
-		Connection conn = null;
-		String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "hr";
-		String pw = "tiger";
-				
-		try {
-			conn = DriverManager.getConnection(OOP1, user, pw);
+	public	void rentList() {
 			
-			List<Car> Clist = dao.rentList(conn);
+			List<Car> Clist = dao.rentList();
 			
 			System.out.println("렌트 중인 차량 목록");
 			System.out.println("---------------------------------------------------");
@@ -267,29 +175,18 @@ public	void rentList() {
 			}
 			
 			System.out.println("----------------------------------------------");
-							
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}	
 	}
-	// 이용 가능 차량 목록
 	
-public	void availableList() {
-		Connection conn = null;
-		String OOP1 = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "hr";
-		String pw = "tiger";
-				
-		try {
-			conn = DriverManager.getConnection(OOP1, user, pw);
+	// 이용 가능 차량 목록
+	public	void availableList() {
 			
-			List<Car> Clist = dao.availableList(conn);
+			List<Car> Clist = dao.availableList();
 			
 			System.out.println("대여 가능 차량 목록");
 			System.out.println("--------------------------------------------------");
 			System.out.println("코드번호\t차번호\t차이름 \t차크기\t탑승인원 \t연식\t연료");
 			System.out.println("--------------------------------------------------");
-			
+						
 			for(Car car : Clist) {
 				System.out.printf("%d\t%s\t%s\t%s\t%d\t%d\t%s\n",
 				car.getCarcode(),
@@ -301,12 +198,7 @@ public	void availableList() {
 				car.getFuel(),
 				car.getRentck()
 				);
-			}
-			
+			}			
 			System.out.println("--------------------------------------------------");
-							
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}		
 	}
 }

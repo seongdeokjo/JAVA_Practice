@@ -27,6 +27,17 @@ public class Car {
 
 
 
+	public Car(String carnumber, String carname, String carsize, int carseat, int caryear, String fuel) {
+		this.carnumber = carnumber;
+		this.carname = carname;
+		this.carsize = carsize;
+		this.carseat = carseat;
+		this.caryear = caryear;
+		this.fuel = fuel;
+	}
+
+
+
 	public int getCarcode() {
 		return carcode;
 	}
