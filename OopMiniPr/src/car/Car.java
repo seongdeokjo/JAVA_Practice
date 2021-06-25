@@ -10,9 +10,10 @@ public class Car {
 	private int carseat;
 	private int caryear;
 	private String fuel;
-	
+	private int rentck;
+
 	public Car(int carcode, String carnumber, String carname,
-			String carsize, int carseat, int caryear, String fuel) {
+			String carsize, int carseat, int caryear, String fuel,int rentck) {
 		this.carcode = carcode;
 		this.carnumber = carnumber;
 		this.carname = carname;
@@ -20,6 +21,7 @@ public class Car {
 		this.carseat = carseat;
 		this.caryear = caryear;
 		this.fuel = fuel;
+		this.rentck = rentck;
 
 	}
 
@@ -105,6 +107,14 @@ public class Car {
 
 	public void setFuel(String fuel) {
 		this.fuel = fuel;
+	}
+		
+	public int getRentck() {
+		return rentck;
+	}
+
+	public void setRentck(int rentck) {
+		this.rentck = rentck;
 	}
 
 

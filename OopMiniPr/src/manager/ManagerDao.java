@@ -162,7 +162,8 @@ public class ManagerDao {
 						rs.getString(4),
 						rs.getInt(5),
 						rs.getInt(6),
-						rs.getString(7)
+						rs.getString(7),
+						rs.getInt(8)
 						)
 			);
 			}
@@ -195,7 +196,7 @@ public class ManagerDao {
 		 PreparedStatement pstmt = null;
 		 
 		 // sequence 생성 
-		 String sql = "insert into car values(car_carcode_SEQ.nextVal,?,?,?,?,?,?)";
+		 String sql = "insert into car values(car_carcode_SEQ.nextVal,?,?,?,?,?,?,0)";
 		 
 		 try {
 			pstmt = conn.prepareStatement(sql);
@@ -256,8 +257,8 @@ public class ManagerDao {
 	
 	//자동차 대여
 
-	// 자동차 대여
-	int rentCar(Connection conn, String period, String carnumber,String carreg,int rentck) {
+	//  rent 테이블에 새로운 데이터 입력
+	int rentCar(Connection conn, String period, String carnumber,String carreg) {
 		// 원래는 boolean 타입을 사용하여 차량번호만 받아 대여 상태를 표시하고 싶었지만
 		// sql에서 boolean타입을 처리하는법과 대여 메소드를 만드는 법을 해결하지 못하여
 		// 사용자에게 0 과1 을 입력 받음으로 자동차의 대여현황이 변화는 방법으로 선회하였습니다.
@@ -267,14 +268,14 @@ public class ManagerDao {
 		PreparedStatement Cpstmt = null;
 		try {
 			String sql = 
-					"insert into rent values(rent_rentcode_seq.nextval,10000,?,sysdate+?,(select carcode from car where carnumber = ?),(select membercode from member where carreg = ?),1,?)";	 // 
+					"insert into rent values(rent_rentcode_seq.nextval,10000,?,sysdate+?,(select carcode from car where carnumber = ?),(select membercode from member where carreg = ?),1)";	 // 
 
 			Cpstmt = conn.prepareStatement(sql);
 			Cpstmt.setString(1, period);
 			Cpstmt.setString(2, period);
 			Cpstmt.setString(3, carnumber);
 			Cpstmt.setString(4, carreg);
-			Cpstmt.setInt(5, rentck);
+		
 			
 			
 			result = Cpstmt.executeUpdate();
@@ -292,8 +293,39 @@ public class ManagerDao {
 		}
 		return result;
 	}
+	//자동차 대여
+	//자동차 테이블의 대여 이용 가능의 rentck 를 1로 변경
+	int checkRentCar(Connection conn, String carnumber) {
+		int result = 0;
+
+		//전달받은 Car객체의 데이터로 테이블에 저장 -> 결과값 반환
+		PreparedStatement Cpstmt = null;
+		try {
+			String sql = 
+					"update car set rentck=1 where rentck !=1 and carnumber = ? ";		
+
+			Cpstmt = conn.prepareStatement(sql);		
+			Cpstmt.setString(1, carnumber);
+
+			result = Cpstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(Cpstmt != null) {
+				try {
+					Cpstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return result;
+	
+	}
+	
 	// 자동차 반납
-		int returnCar(Connection conn, int rentck, String carnumber) {
+		int checkReturnCar(Connection conn, String carnumber) {
 
 			int result = 0;
 
@@ -301,11 +333,10 @@ public class ManagerDao {
 			PreparedStatement Cpstmt = null;
 			try {
 				String sql = 
-						"update rent set rentck=? where rentck !=0 and carcode=(select carcode from car where carnumber = ?) ";		
+						"update car set rentck=0 where rentck !=0 and carnumber = ? ";		
 
-				Cpstmt = conn.prepareStatement(sql);
-				Cpstmt.setInt(1, rentck);
-				Cpstmt.setString(2, carnumber);
+				Cpstmt = conn.prepareStatement(sql);		
+				Cpstmt.setString(1, carnumber);
 
 				result = Cpstmt.executeUpdate();
 
@@ -322,6 +353,37 @@ public class ManagerDao {
 			}
 			return result;
 		}
+		//렌트 대여 정보 삭제
+		
+		int deleteRentInfo(Connection conn, String id) {
+
+			int result = 0;
+
+			//전달받은 Car객체의 데이터로 테이블에 저장 -> 결과값 반환
+			PreparedStatement Cpstmt = null;
+			try {
+				String sql = 
+						"delete from rent where membercode = (select membercode from member where id = ?) ";		
+
+				Cpstmt = conn.prepareStatement(sql);		
+				Cpstmt.setString(1, id);
+
+				result = Cpstmt.executeUpdate();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if(Cpstmt != null) {
+					try {
+						Cpstmt.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return result;
+		}
+		
 
 		// 렌트 중인 차량 목록
 		ArrayList<Car> rentList(Connection conn){
@@ -335,7 +397,7 @@ public class ManagerDao {
 			try {
 				Cstmt = conn.createStatement();
 
-				String sql = "select * from Car where rent = '1' order by carcode";
+				String sql = "select * from Car where rentck = '1' order by carcode";
 
 				// 결과받기
 				Crs = Cstmt.executeQuery(sql);
@@ -348,7 +410,8 @@ public class ManagerDao {
 							Crs.getString(4),
 							Crs.getInt(5),
 							Crs.getInt(6),
-							Crs.getString(7)
+							Crs.getString(7),
+							Crs.getInt(8)
 							));
 				}
 			} catch (SQLException e) {
@@ -376,7 +439,7 @@ public class ManagerDao {
 			try {
 				Cstmt = conn.createStatement();
 
-				String sql = "select * from Car where rent = '0' order by carcode";
+				String sql = "select * from Car where rentck = '0' order by carcode";
 
 				// 결과받기
 				Crs = Cstmt.executeQuery(sql);
@@ -390,7 +453,8 @@ public class ManagerDao {
 							Crs.getString(4),
 							Crs.getInt(5),
 							Crs.getInt(6),
-							Crs.getString(7)
+							Crs.getString(7),
+							Crs.getInt(8)
 							));
 				}
 

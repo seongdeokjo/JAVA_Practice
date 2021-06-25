@@ -13,9 +13,7 @@ import memberT.*;
 public class MemberManage {
 	//메소드
 	// 회원 정보 관리
-	// 조회
-	// 삭제
-	//등록 ?? 회원가입?
+	//25일 : 회원 정보 수정
 	
 	private ManagerDao dao;
 	private Scanner scan;
@@ -100,11 +98,7 @@ public int login2(String id, String Pw) {
 		System.out.println("오류");
 		return -2; // db 오류
 	}
-	
-	
-	
-	
-	
+		
 	//회원 리스트 출력 메소드 
 	//Dao에서 데이터 리스트를 받고 출력 처리
 public	void memberList() {

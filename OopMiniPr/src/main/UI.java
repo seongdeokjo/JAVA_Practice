@@ -1,4 +1,8 @@
 package main;
+//2021.06.25
+//문제점 : 1.로그인 확인후 회원의 렌트 현황에서 새로운 메소드를 추가해야하지 하는지? -> 회원의 id or 이름을 입력 받아야하는 번거로움 
+//2. 
+
 
 import java.util.Scanner;
 
@@ -80,12 +84,11 @@ public class UI {
 	
 	public void menuMember() {
 	// 회원은 로그인을 먼저 진행해주세요.
-		//1.대여 2.반납 3.결제 4.차량 정보 5.로그아웃 
+		//1.대여 2.반납 3.대여 내역 4.회원정보수정 5. 로그아웃  
 		// 2021 06 23
-		//회원정보수정 기능은 아직 추가 x
-		//대여,반납,결제 기능 아직 추가 x
+		//대여,반납 -> 25일 완료
 		//2021 06 24
-		//회원정보 수정, 결제기능 추가 x
+		//회원정보 수정, 결제기능 추가 x -> 
 		int num = 0;
 		System.out.println("회원 로그인을 진행해주세요.");
 		//로그인
@@ -98,19 +101,21 @@ public class UI {
 		
 		while(true) {
 			System.out.println("메뉴 선택을 해주세요.");
-			System.out.println("1.대여 2.반납 3.차량이용현황 4.결제 정보 5.로그아웃");
+			System.out.println("1.대여 2.반납 3.대여이용현황 4.결제 정보 5.로그아웃");
 			num = Integer.parseInt(getUserInput());
 			switch(num) {	
 			case 1 :
 				//대여 메서드
 				System.out.println("대여합니다.");
 				cm.rentCar();
+				cm.rentCar2();
 			
 				break;
 			case 2 : 
 				//반납 메서드
 				System.out.println("반납을 합니다.");
 				cm.returnCar();
+				cm.returnCar2();
 				break;
 			case 3 : 
 				//차량 이용 현황 메서드
@@ -190,8 +195,7 @@ public class UI {
 				}
 			}	
 		}		
-	}
-	
+	}	
 	public static String getUserInput() {
 		Scanner scan = new Scanner(System.in);
 		String input = scan.nextLine();

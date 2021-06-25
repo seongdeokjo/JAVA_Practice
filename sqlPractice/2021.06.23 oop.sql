@@ -28,7 +28,8 @@ carname varchar2(20) not null,
 carsize varchar2(10) not null,
 carseat number(2) not null,
 caryear number(4) not null,
-fuel varchar2(20) not null
+fuel varchar2(20) not null,
+rentck number(1) constraint car_rentck_ck check(rentck between 0 and 1) not null
 
 -- rent 는 대여현황을 체크하기 위한 컴럼으로 
 -- 0 이면 대여가 가능한 상태임을 나타내고 1이면 대여중임을 나타낸다
@@ -39,28 +40,39 @@ create table manager(
 managercode number(4) constraint manager_managercode_pk primary key,
 mid varchar2(20) not null,
 mpw varchar2(20) not null
-)
-;
+);
+--manager 데이터 입력
+insert into manager values(1,'admin','1234');
 
+--rent table 생성 
 create table rent(
 rentcode number(4) constraint rent_rentcode_pk primary key,
 pay number(6) not null,
 rentperiod number(1) constraint rent_period_ck check(rentperiod between 1 and 3)  not null,
 rent_date date default sysdate , --대여 날짜
-carcode number constraint rent_carcode_fk REFERENCES car(carcode) on delete cascade,
-membercode number constraint rent_membercode_fk REFERENCES member(membercode) on delete cascade constraint rent_membercode_uk unique,
-managercode number constraint rent_managercode_fk REFERENCES manager(managercode) on delete cascade,
-rentck number(1) constraint rent_rentck_ck check(rentck between 0 and 1) not null
-)
-;
+carcode number constraint rent_carcode_fk REFERENCES car(carcode) on delete cascade not null,
+membercode number constraint rent_membercode_fk REFERENCES member(membercode) on delete cascade constraint rent_membercode_uk unique not null,
+managercode number constraint rent_managercode_fk REFERENCES manager(managercode) on delete cascade
+);
+insert into rent values(rent_rentcode_seq.nextval,10000,3,sysdate+3,(select carcode from car where carnumber = 3333),(select membercode from member where carreg = 1113),1);
+
+
+
+
+
+
+
+
+
+select * from car;
+select * from rent;
+select * from member;
+
 delete from rent natural join car on carnumber = '1111';
 delete from rent
 where carcode = (select carcode from car where carnumber = '1111');
-select * from car;
-select * from rent;
 
-select sysdate from dual;
-insert into manager values(1,'admin','1234');
+
 
 insert into rent values(rent_rentcode_seq.nextval,10000,3,sysdate+3,(select carcode from car where carnumber = 3333),(select membercode from member where carreg = 1113),1,1);
 select * from rent ;
@@ -68,14 +80,9 @@ select to_char(rent_date, 'yyyy-mm-dd hh24:mi:ss') from rent;
 select * from rent;
 --데이터 출력
 desc member;
-select * from member;
-select * from car;
---rent 데이터 보기
-desc rent;
-select * from rent;
---데이터 보기
-desc car;
-select * from car;
+
+
+
 
 select *
 from car natural join rent;
