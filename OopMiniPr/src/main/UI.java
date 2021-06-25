@@ -38,6 +38,7 @@ public class UI {
 				break;
 			// 2번은 비회원 회원가입
 			case 2 :
+				mm.
 				menuNoneMM();
 				break;
 			// 3번은 관리자 기능	
