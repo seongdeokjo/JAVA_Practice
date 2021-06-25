@@ -142,7 +142,7 @@ delete from member;
 drop table member;
 
 
-insert into car values(CAR_CARCODE_SEQ.nextval, '2222', 'RAY', 'big', 5, 2018, '가솔린','1');
+insert into car values(CAR_CARCODE_SEQ.nextval, '2222', 'RAY', 'big', 5, 2018, '가솔린','0');
 insert into car values(CAR_CARCODE_SEQ.nextval, '4444', 'lambo', 'small', 2, 2021, '디젤','0');
 --car 데이터 삭제
 delete from car;
