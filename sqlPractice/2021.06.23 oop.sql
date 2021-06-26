@@ -18,8 +18,7 @@ name varchar2(20) not null,
 carreg varchar2(14) constraint member_carrg_uk unique not null,
 email varchar2(40) not null,
 address varchar2(40) not null
-)
-;
+);
 --car 테이블 생성
 create table car(
 carcode number(4) constraint car_carcode_pk primary key,
@@ -31,10 +30,9 @@ caryear number(4) not null,
 fuel varchar2(20) not null,
 rentck number(1) constraint car_rentck_ck check(rentck between 0 and 1) not null
 
--- rent 는 대여현황을 체크하기 위한 컴럼으로 
+-- rentck 는 대여현황을 체크하기 위한 컴럼으로 
 -- 0 이면 대여가 가능한 상태임을 나타내고 1이면 대여중임을 나타낸다
-)
-;
+);
 --manager 테이블 생성
 create table manager(
 managercode number(4) constraint manager_managercode_pk primary key,
@@ -65,10 +63,11 @@ delete from rent;
 
 
 
-
+select * from manager;
 select * from car;
 select * from rent;
 select * from member;
+select * from pay;
 
 delete from rent natural join car on carnumber = '1111';
 delete from rent
@@ -76,7 +75,7 @@ where carcode = (select carcode from car where carnumber = '1111');
 
 
 
-insert into rent values(rent_rentcode_seq.nextval,10000,3,sysdate+3,(select carcode from car where carnumber = 3333),(select membercode from member where carreg = 1113),1,1);
+insert into rent values(rent_rentcode_seq.nextval,10000,3,sysdate+3,(select carcode from car where carnumber = 3333),(select membercode from member where carreg = 1113),1);
 select * from rent ;
 select to_char(rent_date, 'yyyy-mm-dd hh24:mi:ss') from rent;
 select * from rent;

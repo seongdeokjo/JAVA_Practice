@@ -21,7 +21,7 @@ alter sequence rent_rentcode_seq increment by 1;
 commit;
 
 --member table 데이터 추가
-insert into member values (member_membercode_seq.nextval, 'member3', '123456', '손흥민', '1114', 'member1@naver.com', 'SEOUL');
+insert into member values (member_membercode_seq.nextval, 'member4', '123456', '손흥민', '1111', 'member1@naver.com', 'SEOUL');
 --car table 데이터 추가
 insert into car values(CAR_CARCODE_SEQ.nextval, '3333', 'RAY', 'big', 5, 2018, '가솔린','0');
 --rent table 데이터 추가

@@ -11,7 +11,7 @@ select r.rentcode, c.carnumber, c.carname, c.carsize, m.id, m.name, m.carreg, r.
 create sequence pay_paycode_seq
 start with 1
 increment by 1;
-
+--pay table 생성
 create table pay(
 paycode number(4) constraint pay_paycode_pk primary key,
 paymoney number(8) constraint pay_paymoney_ck check(paymoney= 10000 or paymoney=20000 or paymoney=30000), --결제 금액을 제약 조건으로 (소,중,대)
@@ -21,5 +21,5 @@ carsize varchar2(10) not null
 insert into pay values(pay_paycode_seq.nextval, 10000,'small');
 insert into pay values(pay_paycode_seq.nextval, 20000,'middle');
 insert into pay values(pay_paycode_seq.nextval, 30000,'big');
-
+select * from pay;
 commit;

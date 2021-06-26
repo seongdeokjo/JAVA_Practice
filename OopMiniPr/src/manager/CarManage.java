@@ -1,5 +1,4 @@
 package manager;
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -37,13 +36,14 @@ public class CarManage {
 						car.getFuel()
 						);
 			}
+			System.out.println("-------------------------------------------------------------------");
 	}
 	// 차량 등록
 	public void addCar() {
 
 			System.out.println("새로운 차량을 등록합니다.");
 			System.out.println("차번호 차이름 차크기 탑승인원 연식 연료  형식으로 입력해주세요.");
-			System.out.println("예시) 1234 sonata middle 5 2020 휘발유");
+			System.out.println("예시) 123456 sonata middle 5 2020 휘발유 ");
 			String inputData = scan.nextLine();
 			String[] carData = inputData.split(" ");
 			// car 생성자 : car 테이블
@@ -74,7 +74,7 @@ public class CarManage {
 			System.out.println("차량 번호로 입력하세요.");
 			int carreg = Integer.parseInt(scan.nextLine());
 
-			int result = dao.deleteCar(carreg);
+			int result = dao.deleteCar( carreg);
 
 			if (result > 0) {
 				System.out.println("차량이 삭제되었습니다.");
@@ -84,30 +84,29 @@ public class CarManage {
 	}
 	
 	//차량 대여
-	public void rentCar() {
-		
+	public void rentCar() {		
 			System.out.println("대여할 차량번호 입력");
 			String carnumber = scan.nextLine();
 			
 			int result = dao.checkRentCar(carnumber);
 			
 			if(result > 0)	{
-				System.out.println("대여가 완료되었습니다.");
+				System.out.println("대여를 시작합니다.");				
 			}else {
-				System.out.println("대여 실패!");
+				System.out.println("수정 실패");
 			}
 	}
 	// 자동차 대여
 	public	void rentCar2() {
-		while(true) {
-			System.out.println("뒤로가시려면 0번을 입력하세요./ 계속 진행은 space키");
+			while(true) {
+			System.out.println("메뉴로 돌아기는 0번을 눌러주세요./ 계속하려면 enter키");
 			String out = scan.nextLine();
-			if(out.equals("0")) {
+		if(out.equals("0")) {
 				break;
-			}else {
-		    System.out.println("대여가능한 차량의 목록을 나타냅니다.");
+		}else {
+			System.out.println("대여가능한 차량의 목록을 나타냅니다.");
 			availableList();
-			System.out.println("대여할 차량의 종류를 입력해주세요.");
+			System.out.println("챠랑의 종류를 입력하세요");
 			String carsize = scan.nextLine();
 			System.out.println("대여할 기간을 입력하세요.");
 			String period = scan.nextLine();
@@ -119,16 +118,17 @@ public class CarManage {
 			//2021 06.24
 		//예외 처리 추가 1이외에 다른 데이터가 들어올시 예외처리 
 		//문제점 : 차번호 입력시 db에 없는 값이 들어와도 대여완료가 출력		
-			int result = dao.addRentCar(period,carsize, carnumber,carreg);
-			
+			int result = dao.addRentCar(period,carsize,carnumber,carreg);
+						
 				if(result > 0) {
-						rentCar();
-						break;
+					System.out.println("대여가 완료 되었습니다.");
+					rentCar();
+					break;
 				}else {
 					System.out.println("번호를 다시 입력하세요.");
 				} 
+				}
 			}
-		}
 	}
 
 	// 자동차 반납
@@ -141,41 +141,40 @@ public class CarManage {
 		
 				if(result > 0) {
 					System.out.println("반납이 완료되었습니다.");
-									
 				} else  {
-					System.out.println("반납 실패!");
+					System.out.println("반납실패!!");
 				}				
 	}
-	//차량 반납 
+	//렌트 현황 삭제
 	public void returnCar2() {
+	
 		while(true) {
-		System.out.println("나가기는 0번을 눌러주세요. / 계속 진행은 space키");
+		System.out.println("뒤로가기 하시려면 0번을 눌러주세요./ 계속 진행은 enter키");
 		String out = scan.nextLine();
 		if(out.equals("0")) {
 			break;
-		}else {
+		}else {		
 		rentList();
 		System.out.println("회원아이디를 입력하세요");
 		String id = scan.nextLine();
-		
 		int result = dao.deleteRentInfo(id);
 		
-		if(result > 0) {			
-			returnCar();
+		if(result > 0) {
+			returnCar() ;
 		}else {
 			System.out.println("반납 실패");
 			}
 		}
-	}
+	}		
 }
-	// 렌트 중인 차량 목록	
+	// 렌트 중인 차량 목록		
 	public	void rentList() {
 			
 			List<Car> Clist = dao.rentList();
 			
 			System.out.println("렌트 중인 차량 목록");
 			System.out.println("---------------------------------------------------");
-			System.out.println("코드번호\t차번호\t차이름 \t차크기\t탑승인원 \t연식\t연료");
+			System.out.println("코드번호 \t차번호 \t차이름 \t차종류 \t탑승인원 \t연식 \t연료");
 			System.out.println("---------------------------------------------------");
 			
 			for(Car car : Clist) {
@@ -199,11 +198,11 @@ public class CarManage {
 			
 			System.out.println("대여 가능 차량 목록");
 			System.out.println("--------------------------------------------------");
-			System.out.println("코드번호\t차번호\t차이름 \t차크기\t탑승인원 \t연식\t연료");
+			System.out.println("코드번호 \t차번호 \t차이름 \t차종류 \t탑승인원 \t연식 \t연료");
 			System.out.println("--------------------------------------------------");
 						
 			for(Car car : Clist) {
-				System.out.printf("%d\t%s\t%s\t%s\t%d\t%d\t%s\n",
+				System.out.printf("%d \t%s \t%s \t%s \t%d \t%d \t%s \n",
 				car.getCarcode(),
 				car.getCarnumber(),
 				car.getCarname(),
@@ -214,6 +213,6 @@ public class CarManage {
 				car.getRentck()
 				);
 			}			
-			System.out.println("--------------------------------------------------");
+			System.out.println("--------------------------------------------------");	
 	}
 }
