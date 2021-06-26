@@ -353,7 +353,7 @@ public class ManagerDao {
 	}
 
 	// rent 테이블에 새로운 데이터 입력
-	int addRentCar(String period, String carnumber,String carreg) {
+	int addRentCar(String period,String carsize, String carnumber,String carreg) {
 		// 원래는 boolean 타입을 사용하여 차량번호만 받아 대여 상태를 표시하고 싶었지만
 		// sql에서 boolean타입을 처리하는법과 대여 메소드를 만드는 법을 해결하지 못하여
 		// 사용자에게 0 과1 을 입력 받음으로 자동차의 대여현황이 변화는 방법으로 선회하였습니다.
@@ -363,14 +363,15 @@ public class ManagerDao {
 		PreparedStatement Cpstmt = null;
 		try {
 			String sql = 
-					"insert into rent values(rent_rentcode_seq.nextval,10000,?,sysdate+?,(select carcode from car where carnumber = ?),(select membercode from member where carreg = ?),1)";	 // 
+					"insert into rent values(rent_rentcode_seq.nextval,? * (select paymoney from pay where carsize = ?),?,sysdate+?,(select carcode from car where carnumber = ?),(select membercode from member where carreg = ?),1)";	 // 
 
-			Cpstmt = conn.prepareStatement(sql);
-			Cpstmt.setString(1, period);
-			Cpstmt.setString(2, period);
-			Cpstmt.setString(3, carnumber);
-			Cpstmt.setString(4, carreg);
-					
+					Cpstmt = conn.prepareStatement(sql);
+					Cpstmt.setString(1, period);
+					Cpstmt.setString(2, carsize);
+					Cpstmt.setString(3, period);
+					Cpstmt.setString(4, period);
+					Cpstmt.setString(5, carnumber);
+					Cpstmt.setString(6, carreg);
 			result = Cpstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -548,7 +549,7 @@ public class ManagerDao {
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) { 		
-					System.out.println("렌트 번호\t 차량 번호\t 차 이름\t 차량 종류\t 고객id\t고객 이름\t면허번호\t결제 금액\t 결제 기간\t 반납 날짜");
+					System.out.println("렌트 번호\t 차량 번호\t 차 이름\t 차량 종류\t 고객id\t고객 이름\t면허번호\t결제 금액\t 기간\t 반납 날짜");
 					System.out.println(rs.getInt(1) + "\t" + rs.getString(2) + "\t" + rs.getString(3) + "\t" + rs.getString(4) + "\t" + rs.getString(5) + "\t" + rs.getString(6)+ "\t" + rs.getString(7)+ "\t" + rs.getInt(8) + "\t" + rs.getInt(9) + "\t" + rs.getString(10)); 
 					}
 			} catch (SQLException e) {

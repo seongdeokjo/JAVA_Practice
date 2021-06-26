@@ -102,6 +102,8 @@ public class CarManage {
 	// 자동차 대여
 	public	void rentCar2() {
 			
+			System.out.println("대여할 차량의 종류를 입력해주세요.");
+			String carsize = scan.nextLine();
 			System.out.println("대여할 기간을 입력하세요.");
 			String period = scan.nextLine();
 			System.out.println("자동차 번호를 입력하세요.");
@@ -112,7 +114,7 @@ public class CarManage {
 			//2021 06.24
 		//예외 처리 추가 1이외에 다른 데이터가 들어올시 예외처리 
 		//문제점 : 차번호 입력시 db에 없는 값이 들어와도 대여완료가 출력		
-			int result = dao.addRentCar(period, carnumber,carreg);
+			int result = dao.addRentCar(period,carsize, carnumber,carreg);
 						
 				if(result > 0) {
 					System.out.println("대여가 완료 되었습니다.");
