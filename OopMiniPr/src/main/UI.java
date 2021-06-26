@@ -24,7 +24,7 @@ public class UI {
 	//전체 메뉴
 	public void start() {
 		System.out.println("프로그램을 시작합니다.");
-		System.out.println("1.회원 2.비회원 3.관리자 4.종료");
+		System.out.println("1.회원 2.회원가입 3.관리자 4.종료");
 		while(true) {
 		int num = 0;
 		
@@ -72,7 +72,7 @@ public class UI {
 		while(true) {
 			
 			System.out.println("메뉴 선택을 해주세요.");
-			System.out.println("1.대여 2.반납 3.현재대여정보 4.전체차량정보 5.결제 6.로그아웃");
+			System.out.println("1.대여 2.반납 3.현재대여정보 4.전체차량정보 5.로그아웃");
 			num = Integer.parseInt(getUserInput());
 			switch(num) {				
 			
@@ -96,9 +96,6 @@ public class UI {
 				cm.carList();
 				break;
 			case 5 :
-				//결제 정보
-				break;
-			case 6 :
 				//로그인 상태일 경우
 				if(ck == true) {
 				System.out.println("로그아웃되었습니다.");

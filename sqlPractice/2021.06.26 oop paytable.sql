@@ -2,6 +2,9 @@ select * from car;
 select *  from member;
 select * from rent;
 select * from pay;
+--                                               ?                                                ?      ?         ?                                            ?                                                     ?
+insert into rent values(rent_rentcode_seq.nextval,3 * (select paymoney from pay where carsize = 'small'),3,sysdate+3,(select carcode from car where carnumber = 4444),(select membercode from member where carreg = '3'),1);
+
 
 select r.rentcode, c.carnumber, c.carname, c.carsize, m.id, m.name, m.carreg, r.pay,r.rentperiod,r.rent_date from car c, member m, rent r where c.carcode = r.carcode and m.membercode = r.membercode and m.id = 'member';
 
@@ -18,12 +21,5 @@ carsize varchar2(10) not null
 insert into pay values(pay_paycode_seq.nextval, 10000,'small');
 insert into pay values(pay_paycode_seq.nextval, 20000,'middle');
 insert into pay values(pay_paycode_seq.nextval, 30000,'big');
-
-
-
-
-
-
-
 
 commit;

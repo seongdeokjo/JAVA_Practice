@@ -24,9 +24,7 @@ public class Car {
 		this.rentck = rentck;
 
 	}
-
-
-
+	// 생성자 오버로딩
 	public Car(String carnumber, String carname, String carsize, int carseat, int caryear, String fuel) {
 		this.carnumber = carnumber;
 		this.carname = carname;

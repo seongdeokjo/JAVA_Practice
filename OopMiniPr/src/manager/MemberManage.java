@@ -21,7 +21,7 @@ public class MemberManage {
 	public void addMember() {
 		System.out.println("회원가입을 시작합니다.");
 		System.out.println("아이디 비밀번호 이름 운전면허 이메일 주소 형식으로 입력해주세요.");
-		System.out.println("에시) hi 1234 홍길동 111111 t@naver.com seoul");
+		System.out.println("에시) member 1234 홍길동 111111 t@naver.com seoul");
 		String inputData = scan.nextLine();
 		String[] memberdata = inputData.split(" ");
 		
@@ -94,9 +94,6 @@ public class MemberManage {
 			return result;
 }
 		
-
-		
-
 //2021.06.25 각각의 예외 사항 : 회원가입시 발생할 수 있는 예외 처리 -> db 제약조건에 따라 자바에서도 처리 해줄 수 있게
 //정보추가 : 생년월일, 운전경력 등 
 	

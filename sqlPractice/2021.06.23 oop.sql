@@ -56,9 +56,11 @@ managercode number constraint rent_managercode_fk REFERENCES manager(managercode
 );
 insert into rent values(rent_rentcode_seq.nextval,10000,3,sysdate+3,(select carcode from car where carnumber = 3333),(select membercode from member where carreg = 1113),1);
 
+update car set rentck = 0 where rentck = 1;
 
-
-
+select * from car;
+select * from rent;
+delete from rent;
 
 
 
@@ -110,7 +112,7 @@ CREATE SEQUENCE member_membercode_SEQ
 INCREMENT BY 1
 START WITH 1;
 -- member 시퀀스 삭제
-delete from member_membercode_seq;
+drop sequence member_membercode_seq;
 
 --car 시퀀스 생성
 CREATE SEQUENCE car_carcode_SEQ
