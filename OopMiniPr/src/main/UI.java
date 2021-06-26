@@ -57,22 +57,22 @@ public class UI {
 		//대여,반납 -> 25일 완료
 		//2021 06 24
 		//회원정보 수정, 결제기능 추가 x -> 
-		int num = 0;								
+		int num = 0;
+		System.out.println("회원 로그인을 진행합니다.");
+		//로그인			
+		if(ck == false) {		
+			if(mm.memberLogin() == true) {
+				checkLogin();
+			}else {			
+				menuMember();
+				}		
+		}else {
+			System.out.println("이미 로그인 중입니다.");
+		}
 		while(true) {
-			System.out.println("회원 로그인을 진행합니다.");
-			//로그인
-				
-			if(ck == false) {		
-				if(mm.memberLogin() == true) {
-					checkLogin();
-				}else {			
-					menuMember();
-					}		
-			}else {
-				System.out.println("이미 로그인 중입니다.");
-			}
+			
 			System.out.println("메뉴 선택을 해주세요.");
-			System.out.println("1.대여 2.반납 3.대여이용현황 4.결제 정보 5.로그아웃");
+			System.out.println("1.대여 2.반납 3.현재대여정보 4.전체차량정보 5.결제 6.로그아웃");
 			num = Integer.parseInt(getUserInput());
 			switch(num) {				
 			
@@ -87,14 +87,18 @@ public class UI {
 				cm.returnCar();
 				break;
 			case 3 : 
-				//차량 이용 현황 메서드
-				System.out.println("차량 정보를 나타냅니다.");
-				cm.carList();
+				//현재 이용 정보	
+				mm.currInfo();
 				break;
 			case 4 :
-				//결제 정보
+				//차량 이용 현황 메서드
+				System.out.println("전체 차량 정보를 나타냅니다.");
+				cm.carList();
 				break;
 			case 5 :
+				//결제 정보
+				break;
+			case 6 :
 				//로그인 상태일 경우
 				if(ck == true) {
 				System.out.println("로그아웃되었습니다.");

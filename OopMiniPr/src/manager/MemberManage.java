@@ -115,4 +115,18 @@ public class MemberManage {
 				System.out.println("해당 멤버의 정보가 없습니다.");
 			}
 	}
+	//사용자의 현재 대여 정보 출력
+		public void currInfo() {
+			System.out.println("이용자의 렌트 현황을 출력합니다.");
+			System.out.println("이용자의 id를 입력해주세요.");
+			String id = scan.nextLine();
+				
+			if(id != null) {
+				System.out.println(id+"의 대여 정보 입니다.");
+				dao.currRentInfo(id);
+			}else {
+				System.out.println("id를 다시 입력하여주세요.");
+				return;
+			}
+		}
 }

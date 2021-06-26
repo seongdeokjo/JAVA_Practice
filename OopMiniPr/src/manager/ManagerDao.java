@@ -534,4 +534,42 @@ public class ManagerDao {
 			}
 			return Clist;
 		}
+	//현재 대여 중인 고객의 렌트 정보 출력
+		public void currRentInfo(String id) {
+			
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+		
+			try {
+				String sql = "select r.rentcode, c.carnumber, c.carname, c.carsize, m.id, m.name, m.carreg, r.pay,r.rentperiod,r.rent_date from car c, member m, rent r where c.carcode = r.carcode and m.membercode = r.membercode and m.id = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) { 		
+					System.out.println("렌트 번호\t 차량 번호\t 차 이름\t 차량 종류\t 고객id\t고객 이름\t면허번호\t결제 금액\t 결제 기간\t 반납 날짜");
+					System.out.println(rs.getInt(1) + "\t" + rs.getString(2) + "\t" + rs.getString(3) + "\t" + rs.getString(4) + "\t" + rs.getString(5) + "\t" + rs.getString(6)+ "\t" + rs.getString(7)+ "\t" + rs.getInt(8) + "\t" + rs.getInt(9) + "\t" + rs.getString(10)); 
+					}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				if(rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				
+				if(pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				
+			}		
+		}
 }
