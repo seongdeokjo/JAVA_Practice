@@ -143,8 +143,14 @@ delete from member;
 drop table member;
 
 
-insert into car values(CAR_CARCODE_SEQ.nextval, '2222', 'RAY', 'big', 5, 2018, '가솔린','0');
-insert into car values(CAR_CARCODE_SEQ.nextval, '4444', 'lambo', 'small', 2, 2021, '디젤','0');
+insert into car values(CAR_CARCODE_SEQ.nextval, '1111', 'RAY', 'small', 5, 2018, '휘발유','0');
+insert into car values(CAR_CARCODE_SEQ.nextval, '2222', 'spark', 'small', 5, 2017, '휘발유','0');
+insert into car values(CAR_CARCODE_SEQ.nextval, '3333', 'sonata', 'middle', 5, 2016, '디젤','0');
+insert into car values(CAR_CARCODE_SEQ.nextval, '4444', 'k5', 'middle', 5, 2019, '휘발유','0');
+insert into car values(CAR_CARCODE_SEQ.nextval, '5555', 'sportage', 'big', 6, 2020, '휘발유','0');
+insert into car values(CAR_CARCODE_SEQ.nextval, '6666', 'corando', 'big', 7, 2021, '휘발유','0');
+insert into car values(CAR_CARCODE_SEQ.nextval, '7777', 'morning', 'small', 5, 2015, '디젤','0');
+insert into car values(CAR_CARCODE_SEQ.nextval, '8888', 'tusan', 'big', 6, 2021, '디젤','0');
 --car 데이터 삭제
 delete from car;
 
@@ -152,7 +158,8 @@ delete from car;
 
 -- 데이터 보기
 desc manager;
-select * from manager;
+select * from car 
+order by carcode;
 --데이터 입력
 insert into manager values(1, 'admin', '1234');
 --manager 시퀀스 생성
