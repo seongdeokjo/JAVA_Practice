@@ -17,7 +17,7 @@ public class UI {
 		System.out.println("1.회원 2.비회원 3.관리자 4.종료");
 		while (true) {
 			int num = 0;
-
+			try {
 			num = Integer.parseInt(getUserInput());
 			switch (num) {
 			// 1번은 회원의 기능
@@ -37,6 +37,10 @@ public class UI {
 				mm.endDb();
 				System.exit(0);
 			}
+		}catch(NumberFormatException e) {
+			e.printStackTrace();
+			System.out.println("숫자만 입력해주세요.");
+		}
 		}
 	}
 

@@ -72,6 +72,7 @@ public class CarManage {
 			System.out.println("차량의 삭제를 시작합니다.");
 			carList();
 			System.out.println("차량 번호로 입력하세요.");
+			
 			int carreg = Integer.parseInt(scan.nextLine());
 
 			int result = dao.deleteCar( carreg);
