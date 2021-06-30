@@ -120,28 +120,73 @@
         
         /* 바로뒤에 위치하는 요소를 선택 : + */
       #title1 + h2 {
-          background-color: palegreen;
+          background-color: rebeccapurple;
       }
+
+      /* 기준 요소 뒤로 존재하는 요소를 선택 :~ */
+      #title1 ~ h2 {
+          background-color: black;
+      }
+
+      /* 선택 영역에 마우스 커서가 위치하는 경우 -> hover */
+      #btn00:hover {
+          background-color: crimson;
+          color: white;
+      }
+      #btn00:active{
+          background-color: teal;
+          color: white;
+      }
+
+      h1>a:hover {
+        color: deeppink;
+      }
+
+      /* 입력 양식 태그의 상태로 선택 */
+      input:disabled{
+          background-color: black;
+      }
+      input:enabled{
+          width: 200px;
+          height: 35px;
+          font-size: 1.2em; /* 120% */
+      }
+
+      input:focus{
+          border: 5px solid red;
+      }
+
 
     </style>
     
 </head>
 <body>
+    <input> 
+    <input disabled value="cool">
+    <hr>
+    <h1><a href="#">click</a></h1>
+
+    <h1 id="btn00">Button</h1>
+
+    <hr>
     <h2>header2-0</h2>
     <h1 id="title1" >header1</h1>
     <h2>header2-1</h2>
     <h2>header2-2</h2>
     <h2>header2-3</h2>
     <h2>header2-4</h2>
+    <h2>header2-5</h2>
 
 
 
 
     <hr>
+    <h2>header2-6</h2>
     <div id="header1">
         <h1 class="title">Lorem ipsum</h1>
         <div id="nav">
         <h1>Navigation</h1>
+        <h2>header2-7</h2>
         </div>
         </div>
         <div id="section">
@@ -183,5 +228,6 @@
     <hr>
     <h1 id ="title" class="back_color_green ">"위성인터넷 33조 투자"...머스크의 또 다른 도전</h1>
     <p class="font_a font_b">일론 머스크 테슬라 최고경영자(CEO)는 29일(현지시간) 위성 기반 인터넷·통신 서비스인 스타링크에 200억∼300억 달러(약 22조6천300억원∼33조9천500억원)의 투자가 이뤄질 것이라고 밝혔다.</p>
+    <h2>header2-8</h2>
 </body>
 </html>
