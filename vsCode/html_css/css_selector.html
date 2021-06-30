@@ -98,6 +98,11 @@
         img[src $=gif] {
             border: 5px solid black;
         }
+        /* 자손 선택자 
+         부모선택>선택자 */
+        #header1 > h1 {
+            background-color: palegoldenrod;
+        }
     /*  후손 선택자 
         부모선택 (공백) 선택자 */
         #header1 h1 {
@@ -107,12 +112,32 @@
         #section h1 {
             color: orange;
         }
-
+ 
+    /*  등위 선택자
+        기준 선택요소 뒤에 오는 요소를 선택
+        1.바로뒤에 위치하는 요소 선택
+        2. 뒤에 존재하는 요소를 선택 */
+        
+        /* 바로뒤에 위치하는 요소를 선택 : + */
+      #title1 + h2 {
+          background-color: palegreen;
+      }
 
     </style>
     
 </head>
 <body>
+    <h2>header2-0</h2>
+    <h1 id="title1" >header1</h1>
+    <h2>header2-1</h2>
+    <h2>header2-2</h2>
+    <h2>header2-3</h2>
+    <h2>header2-4</h2>
+
+
+
+
+    <hr>
     <div id="header1">
         <h1 class="title">Lorem ipsum</h1>
         <div id="nav">
