@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #main_wrap {
+            width: 768px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fff;
+            margin: 10px auto;
+            padding: 15px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        header {
+            padding: 10px;
+            text-align: left;
+            padding-bottom: 30px;
+
+        }
+
+        /* nav 영역 */
+        nav {
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            overflow: hidden;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        nav>ul {
+            float: left;
+            overflow: hidden;
+        }
+
+        nav>ul>li {
+            float: left;
+            padding: 0 30px;
+        }
+
+        input[type="search"]{
+            border-radius: 5%;
+            margin-right: -7px;
+        }
+        input[type="submit"]{
+            border-radius: 5%;
+        }
+        .nav_input{
+            float: right;
+        }
+      
+      
+
+        #content_wrap {
+            overflow: auto;
+
+        }
+
+        /* section 영역 */
+        section {
+            margin: 0 10px;
+        }
+
+        article {
+            padding-top: 30px;
+            width: 570px;
+            float: left;
+            line-height: 200%;
+        }
+        
+        img[src$=jpg] {
+            border: 1px solid #ddd;
+            width: 428px;
+            height: 280px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+       
+        /* aside 영역 */
+        aside {
+            
+            width: 170px;
+            float: right;
+            text-align: center;
+        }
+        aside h4{
+            padding-top: 30px;
+        }
+
+
+        hr {
+            margin-top: 10px;
+        }
+    </style>
+
+<body>
+    <div id="main_wrap">
+        <header>
+            <h1>HTML5 Example Preview</h1>
+            <h4>한빛아카데미</h4>
+        </header>
+        <nav>
+            <ul>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+            </ul>
+            <div class="nav_input">
+                <input type="search">   
+                <input type="submit" value="검색">
+                          
+            </div>
+        </nav>
+        <div id="content_wrap">
+            <section>
+                <article>
+                    <h2>HTML5 개요</h2>
+                    <h5>2021년 07월 01일</h5>
+                    <img src="../images/html5.jpg">
+                    <p>HTML5는 HTML의 완전한 5번째 버전으로 월드 와이드 웹 (World Wide Web)의 핵심 마크업 언어이다. 2004년 7월 Web Hypertext
+                        Application Technology Working Group(WHATWG)에서 웹 애플리케이션 1.0이라는 이름으로 세부 명세 작업을 시작하였다.</p>
+                    <hr>
+                    <h2>CSS3 개요</h2>
+                    <h5>2021년 07월 01일</h5>
+                    <img src="../images/css3.jpg">
+                    <p>웹 문서의 전반적인 스타일을 미리 저장해 둔 스타일시트이다. 문서 전체의 일관성을 유지할 수 있고, 세세한 스타일 지정의 필요를 줄어들게 하였다..
+                        기존의 HTML은 웹 문서를 다양하게 설계하고 수시로 변경하는데 많은 제약이 따르는데, 이를 보완하기 위해 만들어진 것이 스타일 시트이고 스타일 시트의 표준안이 바로 CSS이다. 간단히 스타일 시트라고도 한다.
+                        HTML을 이용해서 웹 페이지를 제작할 경우 전반적인 틀에서 세세한 글꼴 하나 하나를 일일이 지정해주어야 하지만, 웹 페이지의 스타일(작성형식)을 미리 저장해 두면 웹페이지의 한 가지 요소만 변경해도 관련되는 전체 페이지의 내용이 한꺼번에 변경되므로, 문서 전체의 일관성을 유지할 수 있고 작업 시간도 단축된다.
+                        따라서 웹 개발자들은 보다 풍부한 디자인으로 웹을 설계할 수 있고, 글자의 크기, 글자체, 줄간격, 배경 색상, 배열위치 등을 자유롭게 선택하거나 변경할 수 있으며 유지·보수도 간편하게 할 수 있다.HTML과 XHTML에 주로 쓰이며, XML에서도 사용할 수 있다. W3C의 표준이며, 레이아웃과 스타일을 정의할 때의 자유도가 높다.
+
+                    </p>
+                    <hr>
+                </article>
+            </section>
+            <aside>
+                <h4>카테고리</h4>
+                <ul>
+                    <li>Data</li>
+                    <li>Data</li>
+                    <li>Data</li>
+                    <li>Data</li>
+                    <li>Data</li>
+                </ul>
+
+                <h4>카테고리</h4>
+                <ul>
+                    <li>Data</li>
+                    <li>Data</li>
+                    <li>Data</li>
+                    <li>Data</li>
+                    <li>Data</li>
+                </ul>
+            </aside>
+
+        </div>
+
+        <footer>
+            <h6>Created By Joe</h6>
+        </footer>
+    </div>
+</body>
+
+</html>
