@@ -20,7 +20,7 @@
             background-color: red;
             left: 50px;
             top: 50px;
-            z-index: 1000;
+            z-index: 9;
         }
         #b2{
             background-color: green;
@@ -34,14 +34,39 @@
             top: 150px;
             /* right: 50px;
             bottom: 50px; */
-            z-index:100;
+            z-index:1000;
+        }
+        header{
+            font-size: 2.0em;
+            border: 1px solid #ddd;
+        }
+        footer{
+            border: 1px solid #ddd;
+        }
+
+        #wrap{
+            height: 100px;
+            width: 500px;
+            border: 1px solid #ddd;
+
+            position: relative;
+
+            /* overflow: auto; */
+            overflow-x:auto;
         }
     </style>
 </head>
 <body>
+    <header>헤더 영역입니다.</header>
 
-    <div id="b1" class="box"></div>
-    <div id="b2" class="box"></div>
-    <div id="b3" class="box"></div>
+    <div id="wrap">
+        <div id="b1" class="box"></div>
+        <div id="b2" class="box"></div>
+        <div id="b3" class="box"></div>
+    </div>
+ 
+
+
+    <footer>footer 영역입니다.</footer>
 </body>
 </html>
