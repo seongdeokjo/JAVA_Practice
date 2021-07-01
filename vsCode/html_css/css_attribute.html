@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>css_attribute</title>
     <style>
         p:first-child{
             /* background-color: mediumvioletred; */
@@ -12,19 +12,38 @@
             /* background-color: rgba(250, 0, 1.0); */
             background-color: #eee;
         }
-        p:nth-child(2) {font-size: 100%;}
-        p:nth-child(3){font-size: 150%;}
-        p:nth-child(4){font-size: 200%; color: olive;}
+        p:nth-child(2) {
+            font-size: 100%;
+        }
+        p:nth-child(3){
+            font-size: 150%;
+        }
+        p:nth-child(4){
+            font-size: 200%; color: olive;
+        }
 
-        p:nth-child(5) {font-size: 1.0em;}
-        p:nth-tchild(6){font-size: 1.5em;}
-        p:nth-child(7){font-size: 2.0em;}
+        p:nth-child(5) {
+            font-size: 1.0em;
+        }
+        p:nth-child(6){
+            font-size: 1.5em;
+        }
+        p:nth-child(7){
+            font-size: 2.0em;
+        }
 
-        p:nth-child(8){font-size: 16px;}
-        p:nth-child(9){font-size: 24px;}
-        p:nth-child(10){font-size: 32px;}
+        p:nth-child(8){
+            font-size: 16px;
+        }
+        p:nth-child(9){
+            font-size: 24px;
+        }
+        p:nth-child(10){
+            font-size: 32px;
+        }
         p:last-child{
             background-color: midnightblue
+            
          }
     </style>
     <style>
@@ -35,44 +54,47 @@
             background-image:url(../mini.jpg);
         }
         div.box{
-            width: 150px;
-            height: 50px;
+            width: 50%;
+            height: 300px;
+            background-image: url(../images/미니언스.jpg);
         }
     </style>
     <style>
         body,div{
             margin: 0;
             padding: 0;
+            
         }
-    </style>
-    <style>
         div.border_box{
-            width: 300px;
-            height: 300px;
+            width: 240px;
+            height: 240px;
             background-color:#fff;
 
-            border-width: 10px;
-            border-style: dashed;
+            /* border-width: 10px;
+            border-style: dashed; */
 
+            border: 10px double royalblue ;
+            margin: 10px;
             padding: 10px;
         }
     </style>
 </head>
 <body>
     <div class="border_box">
-
+        border_box
     </div>
-    <p>안녕하세요.</p>
-    <p>안녕하세요.</p>
-    <p>안녕하세요.</p>
-    <p>안녕하세요.</p>
+    <div class="box"></div>
+    <p>안녕하세요1.</p>
+    <p>안녕하세요2.</p>
+    <p>안녕하세요3.</p>
+    <p>안녕하세요4.</p>
 
-    <p>안녕하세요.</p>
-    <p>안녕하세요.</p>
-    <p>안녕하세요.</p>
+    <p>안녕하세요5.</p>
+    <p>안녕하세요6.</p>
+    <p>안녕하세요7.</p>
 
-    <p>안녕하세요.</p>
-    <p>안녕하세요.</p>
-    <p>안녕하세요.</p>
+    <p>안녕하세요8.</p>
+    <p>안녕하세요9.</p>
+    <p>안녕하세요10.</p>
 </body>
 </html>
