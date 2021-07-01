@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Nanum+Pen+Script&display=swap');
+
+.font_nanum{
+    font-family: 'nanum gothic';
+
+}
+
+.font_nanum_pen{
+    font-family: 'Nanum Pen Script', cursive;
+}
