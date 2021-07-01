@@ -35,22 +35,68 @@
         #circle {
             width: 200px;
             height: 200px;
-            border: 1px solid #DDD;
+            border: 1px solid blue;
             margin-bottom: 50px;
             /* 원 표현 */
             border-radius: 50%;
 
-            background-image: url(../images/미니언스.jpg);
+            background-image: url(../rupi.jpg);
             background-size: 100%;
         }
+        hr{
+            margin: 100px 0;
+        }
+        /* div는 블럭이지만 인라인 처리 */
+        #box3{
+            background-color: blanchedalmond;
+            /* display: none; */
+            display: inline;
+
+        }
+        /* 원래는 인라인 이지만 블럭,인라인-블럭 처리 */
+        a{
+            background-color: chartreuse;
+            display: inline-block;
+            /* display: block; */
+
+            width: 300px;
+            height: 300px;
+
+            background-image: url(../images/미니언스.jpg);
+            background-size: contain;
+        }
+        body{
+            background-image: url(../mini.jpg),url(../images/미니언스.jpg);
+              /* background-size: 100%,150px; */
+            background-size: 200px 150px;
+                            /* width height */
+            /* background-size: 100%; */
+            /* background-size: cover; */
+            /* background-size: contain; */
+
+            background-repeat: no-repeat;
+            /* background-repeat: repeat-x; */
+            /* background-repeat: repeat-y; */
+
+            background-attachment:fixed;
+
+            /* background-position: 10px 100px; */
+            /* background-position:right; */
+            /* background-position: center left; */
 
 
 
-
+        }
 
     </style>
 </head>
 <body>
+    <span>text s-1</span>
+    <div id="box3">text div</div>
+    <a href="#"></a>
+    <span>text s-2</span>
+
+    <hr>
 
     <div id="circle"></div>
 
