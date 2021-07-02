@@ -10,53 +10,60 @@ p {
     font-size: 16px;
     font-family: "돋움체";
 }
-body{
-    background-color: #f0f2f5;
-    
-}
+/* main 영역 */
 #main_wrap{
-    width: auto;
+    width: 100%;
+    background: #f0f2f5;
     overflow: hidden;
-    margin: 150px;
 }
+/* header 영역 */
 header{
     width: 400px;
-    margin-top: 40px;
     border: 1px solid #ddd;
     float: left;
+    margin: 150px 0 200px 200px;
 }
-article{
-    width: 390px;
-    /* border: 5px solid #aaa; */
+header>img{
+    width: 200px;
+    height: 60px;
+}
+header>h3{
+   padding-top: -30px;
+}
+/* section 영역 */
+section{
+    width: 400px;
+    border: 2px solid #ddd;
     float: right;
-    /* margin: 10px; */
-    
+    margin: 100px 200px 200px 0;
+}
+/* article 영역 */
+article{
+    border: 2px solid #ddd;
 }
 article>div{
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
 }
 
+/* footer 영역 */
 footer{
-    width: auto;
     height: 150px;
     background-color: white;
+    border: 2px solid #DDD;
+    clear: both;
+    
+}
+ul>li{
+    list-style: none;
+    float: left;
+    padding: 0 15px;
+    margin: 0 auto;
 }
 
 
-/* 공통으로 쓰일 class */
-.input_border{
-    width: 300px;
-    height: 40px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-}
 
-.text_center{
-    text-align: center;
-}
-.article_padding{
-    padding: 10px;
-}
-.article_margin{
-    margin: 10px;
-}
+
+/* 공통으로 영역 정의 */
+
+  
+    
