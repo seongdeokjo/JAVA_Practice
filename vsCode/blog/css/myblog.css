@@ -77,6 +77,37 @@ nav>ul>li{
 nav>div{
     float: right;
 }
+nav>div>input[type=text]{
+    height: 24px;
+    margin-top: 4px;
+    border-radius: 11px 0 0 11px;
+    padding: 0 5px;
+    border: 1px solid #aaa;
+}
+nav>div>input[type=submit]{
+    height: 26px;
+    margin-top: 4px;
+    margin-left: -10px;
+    margin-right: 5px;
+    border-radius: 0 13px 13px 0;
+    padding: 0 15px;
+    border: 1px solid #aaa;
+}
+
+/* 콘텐츠 영역 */
+#content_wrap{
+    overflow: hidden;
+    margin-top: 20px;
+}
+section{
+    float: left;
+    width: 550px;
+    padding: 5px;
+}
+aside{
+    float: right;
+    width: 170px;
+}
 
 
 /* 공통으로 사용할 클래스 */
@@ -84,7 +115,35 @@ nav>div{
 .font_jua{
     font-family: 'Jua', sans-serif;
 }
+.border_bottom_a{
+    border-bottom: 1px solid #aaa;
+}
+.margin_bottom_20 {
+    margin-bottom: 20px;
+}
+
 /* 리스트 스타일 none */
 .list_none{
     list-style: none;
+}
+.title{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 5px 0;
+    font-family: 'Sunflower', sans-serif;
+}
+.date{
+    font-weight: 600;
+    font-style: italic;
+}
+.post_img{
+    width: 410px;
+    height: 280px;
+    margin: 10px 5px;
+    border: 0;
+}
+.post_content{
+    font-family: 'Nanum Gothic', sans-serif;
+    line-height: 180%;
+    margin-bottom: 15px;
 }
