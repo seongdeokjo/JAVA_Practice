@@ -3,3 +3,99 @@
     margin : 0;
     padding: 0;
 }
+/* 전체 영역 */
+ #full_wrap{
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+} 
+/* 메인 영역 */
+#main_wrap{
+    width: 800px;
+    height: 800px;
+    margin: 0 auto;
+    
+    text-align: center;
+    overflow: hidden;
+}
+/* nav 영역 */
+nav{
+    width: 785px;
+    height: 30px;
+    padding: 15px 30px 0 0;
+}
+nav>select{
+    float: right;
+    width: 100px;
+    height: 30px;
+    padding: 5px;
+}
+/* header 영역 */
+header{
+    padding: 10px;
+    margin: 50px 0;
+ }
+ /* header logo img 영역 */
+#logo>img{
+    width: 230px;
+    height: 45px;
+}
+/* section 영역 */
+section{
+    width: 800px;
+    
+}
+#join_wrap>input{
+    background-color: #03c75a;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+}
+/* check박스 설정 실패 */
+/* #section_ckbox{
+    margin: 0 auto;
+    width: 440px;
+    height: 50px;
+}
+#section_ckbox>input[id='ck']+label{
+    float: left;
+} */
+footer{
+    width: 800px;
+}
+#footer_head>h3{
+    width: 440px;
+    border-top: 1px solid #ddd;
+    margin: 20px auto 10px ;
+    padding-top: 20px;
+}
+#footer_box>input{
+    background-color: #fff;
+    padding: 5px 20px;
+    text-align: left;
+    color: black;
+    font-size: 16px;
+}
+footer>h5{
+    color: #8e8e8e;
+    font-weight: lighter;
+}
+footer>h5>a{
+    color: #8e8e8e;
+}
+
+/* 공통 영역 class  */
+.login_box{
+    width: 418px;
+    height: 50px;
+    margin: 5px 0;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+}
+.box{
+    width: 440px;
+    height: 50px;
+    margin: 5px 0;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+}

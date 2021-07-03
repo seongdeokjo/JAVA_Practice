@@ -1,12 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Naver_loginPage</title>
+    <link rel="stylesheet" href="css/Naver_login.css">
 </head>
+
 <body>
-    
+    <div id="full_wrap">
+        <!--main_wrap시작-->
+        <div id="main_wrap">        
+            <nav>
+                <select name="lang">
+                    <option value="한국어">한국어</option>
+                    <option value="English" selected="selected">English</option>
+                    <option value="중문1">중문1</option>
+                    <option value="중문2">중문2</option>
+                </select>
+            </nav>
+            <header>  <!--header 시작-->
+                <div id="logo">
+                    <img src="../../images/naver_logo.png" alt="">
+                </div>
+            </header>
+            <!--header 끝-->
+            <section>
+                <!--section 시작-->
+                <div id="login_wrap">
+                    <input class="login_box" type="login" placeholder="Username">
+                    <input class="login_box" type="password" placeholder="Password">
+                </div>
+                <div id="join_wrap">
+                    <input class="box" type="submit" value="Sign in">
+                </div>
+                <!-- <div id="section_ckbox" >
+                    <input id="ck" type="checkbox" checked>
+                    <label for="ck">Stay Signed in</label>
+                </div> -->
+                <!-- <hr> -->
+            </section>
+            <!--section 끝-->
+            <footer>
+                <!--footer 시작-->
+                <div id="footer_head">
+                    <h3>Easier sign in</h3>
+                </div>
+                <div id="footer_box">
+                     <input class="box" type="submit" value="Sign in with QR code">
+                    <input class="box" type="submit" value="Facebook">
+                    <input class="box" type="submit" value="line">
+                </div>
+                <H5>Forgot your <a href="#">Username</a> or <a href="#">Passowrd?</a> <a href="#">Sign up</a></H5>
+            </footer>
+            <!--footer 끝-->
+        </div> <!-- main_wrap 끝-->
+    </div>
+    <!--full_wrap 끝-->
+
 </body>
+
 </html>
