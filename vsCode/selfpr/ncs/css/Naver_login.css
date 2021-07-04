@@ -71,10 +71,26 @@ footer{
 }
 #footer_box>input{
     background-color: #fff;
-    padding: 5px 20px;
-    text-align: left;
+    padding: 5px 50px;
+    text-align:left;
     color: black;
     font-size: 16px;
+}
+/* qr,fb,line icon 설정 */
+#b1{
+    background-image: url(../../../images/qrCodelogo.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+#b2{
+    background-image: url(../../../images/fbicon.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+#b3{
+    background-image: url(../../../images/lineicon.png);
+    background-repeat: no-repeat;
+    background-position: left;
 }
 footer>h5{
     color: #8e8e8e;
