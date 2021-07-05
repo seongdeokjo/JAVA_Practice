@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,6 +37,7 @@
     </script> -->
 
 </head>
+
 <body>
     <!-- <script>
         alert('body 태그 안에서\n 스크립트를 작성');
@@ -43,6 +45,7 @@
     </script> -->
 
 </body>
+
 </html>
 <!-- <script>
     //javascript에서의 숫자는 정수와 실수를 구분하지 않고 하나의 타입으로 관리
@@ -194,22 +197,28 @@
 </script> -->
 
 <!-- <script>
-//     //window 객체에서 제공하는 기본 함수
-//     // alert('string'); // 데이터를 출력
-//    var str = prompt('숫자를 입력하세요~!');
-//    console.log('str :',typeof str);
-//    alert(str);
-      var chk = confirm('정말 삭제하시겠습니까?');
-      console.log('chk :',chk);
-      console.log('chk : ',typeof chk);
-      if(chk) {
-          alert('데이터를 삭제하는 코드가 실행됩니다.');
-      }else{
-          alert('데이터를 삭제하지 않습니다.');
-      }
+    //window 객체에서 제공하는 기본 함수
+    // alert('string'); // 데이터를 출력
+    var str = prompt('숫자를 입력하세요~!');
+    console.log('str :', typeof str);
+    alert(str);
+    var chk = confirm('정말 삭제하시겠습니까?');
+    console.log('chk :', chk);
+    console.log('chk : ', typeof chk);
+    if (chk) {
+        alert('데이터를 삭제하는 코드가 실행됩니다.');
+    } else {
+        alert('데이터를 삭제하지 않습니다.');
+    }
+
+  
+
+
+
+
 </script> -->
 
-<!-- <script>
+<script>
     //문자열과 다른 타입간의 덧셈 : 문자열 우선 연산
     // console.log(273 + '22'); // 숫자 + 문자 => 문자 + 문자
     // console.log('273' + 22); // 문자 + 숫자 => 문자 + 문자
@@ -224,18 +233,60 @@
     // console.log(5 * '12'); // 숫자 * 문자 -> 숫자 * 숫자
     // console.log('5' * '12');  // 문자 * 문자 -> 숫자 * 숫자
 
-    var year = prompt("태어난 년도를 입력해주세요.");
+    // var year = prompt("태어난 년도를 입력해주세요.");
+    var year = 2000;
     var numYear = Number(year); // Number() -> 숫자타입으로 강제적인 형변환, 문자열이 숫자 형식이 아닌 경우 NaN 반환 
     console.log('numYear type :', typeof numYear);
     console.log(numYear + 10);
     //isNaN(숫자 데이터)-> NaN 일때 true값 반환
-    if(!isNaN(numYear)){
-        alert(2021-numYear + '살 입니다.'); //year 문자열을 숫자 타입으로 자동 형변환 
-    }else{
+    // if (!isNaN(numYear)) {
+    // if (Boolean(numYear)) {
+      if(!!numYear){      
+        alert(2021 - numYear + '살 입니다.'); //year 문자열을 숫자 타입으로 자동 형변환 
+    } else {
         alert('숫자로 입력해주세요.');
     }
-</script> -->
+
+    //boolean 타입으로 강제 형변환
+    //boolean() => 논리값 반환
+    //0, NaN, ''(공백문자), null, undefined => false
+    //나머지 모두 true
+    console.log('Boolean(0)',Boolean(0));
+    console.log('Boolean(NaN)',Boolean(NaN));
+    console.log('Boolean(\'\')',Boolean(''));
+    console.log('Boolean(null)',Boolean(null));
+    console.log('Boolean(undefined)', Boolean(undefined));
+
+    //논리부정 연산자 사용시 
+    //0, NaN, '', null,undefined 다섯개의 데이터는 자동으로 형변환 -> false
+    console.log(!!0);
+    console.log(!!NaN);
+    console.log(!!'');
+    console.log(!!null);
+    console.log(!!undefined);
+
+    //비교연산의 경우 0 == false, '' == false => true
+    console.log('0 == false :',0 == false);
+    console.log('\'\' == false :','' == false);
+    console.log('\'\' == 0 :','' == 0);
+    console.log('273' == 273);  
+
+    //0 === false => false ,'' === false => false
+    // 데이터의 비교와 타입의 일치 여부도 확인   
+    console.log('0 === false :',0 === false);
+    console.log('\'\' === false :','' === false);
+    console.log('\'\' === 0 :','' === 0);
+    console.log('273' === 273);
+
+    
+    //매개변수로 값을 받는다.
+    //window ,event 객체를 핸들러 함수의 매개변수로 받는다.
+    numYear || alert('좌변이 true 입니다.');
+    numYear || alert('좌변이 false 입니다.');
+    // e==null || alert('좌변이 false 입니다.');
 
 
 
 
+
+</script>
