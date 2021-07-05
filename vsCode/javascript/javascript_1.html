@@ -44,7 +44,7 @@
     alert('가' != '하');
 </script> -->
 
-<script>
+<!-- <script>
     alert(true);
     alert(false);
     //논리부정연산자 : !
@@ -63,4 +63,77 @@
         alert('num의 값은 0보다 크고 100보다 작습니다.');
     }
 
+</script> -->
+<!-- <script>
+
+
+    //javascript의 변수
+    //변수는 해당 값을 저장하는 것이 아니라 값이 저장된 메모리의 주소 값을 저장!!
+
+    //변수의 선언 : var 키워드 사용;
+    //var 식별자;
+    //변수 pi 선언
+
+    var pi; // 변수 pi 생성 -> undefined 값이 초기화 
+    alert(pi); // undefined 출력
+    //변수 pi에 값을 할당(대입)
+    pi = 3.141592; //숫자 타입의 값을 저장 -> 정수와 실수를 구분하지 않는다.
+    alert(pi); // 3.141592 출력
+
+    //변수 선언과 할당을 한번에 처리
+    var PI = 3.14;
+    alert(PI);
+
+</script> -->
+
+<script>
+    //javascript의 타입
+    //1.문자열 : '',""
+    //2/숫자 : 정수, 실수를 구분하지 않고 하나의 타입으로 처리, 8바이트 부동소숫점 형식으로 저장
+    //3.bool : true,false 논리값을 저장
+    //4.함수 : 함수를 저장
+    //5.객체 : 객체를 저장
+    //6.undefined : undefined 상태의 값을 저장
+
+    var str = 'string!';
+    var num = 100;
+    var check = false;
+    var printStr = function () {alert('함수를 저장하는 변수로 호출')}; // 익명 함수로 정의
+    var objectVar = {
+        name:'son',
+        age:30,
+        hello:function(){
+            alert('메소드 호출!!');
+        }
+    }; //객체를 정의하는 간단한 방법
+    // alert(str);
+    // alert(num);
+    // alert(check);
+    // alert(printStr);
+    // alert(objectVar);
+    
+    //함수호출
+    printStr();
+
+    //객체 참조
+    alert(objectVar.name);
+    alert(objectVar.age);
+    objectVar.hello();
+
+    // 내장함수 객체 생성
+    var now = new Date();
+    alert(now);
+
+    //객체 정의 : 속성(객체가 가지는 변수),메소드(객체가 가지는 기능(함수))
+    var person = {
+        name:'son',
+        age:30,
+        hello: function(){
+
+        }
+    };
+    
+    // alert(person);
+
+    
 </script>
