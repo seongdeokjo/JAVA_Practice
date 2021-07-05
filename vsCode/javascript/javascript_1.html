@@ -225,7 +225,7 @@
     // console.log('5' * '12');  // 문자 * 문자 -> 숫자 * 숫자
 
     var year = prompt("태어난 년도를 입력해주세요.");
-    var numYear = Number(year);
+    var numYear = Number(year); // Number() -> 숫자타입으로 강제적인 형변환, 문자열이 숫자 형식이 아닌 경우 NaN 반환 
     console.log('numYear type :', typeof numYear);
     console.log(numYear + 10);
     //isNaN(숫자 데이터)-> NaN 일때 true값 반환
