@@ -218,7 +218,8 @@
 
 </script> -->
 
-<script>
+<!-- <script>
+
     //문자열과 다른 타입간의 덧셈 : 문자열 우선 연산
     // console.log(273 + '22'); // 숫자 + 문자 => 문자 + 문자
     // console.log('273' + 22); // 문자 + 숫자 => 문자 + 문자
@@ -284,9 +285,44 @@
     numYear || alert('좌변이 true 입니다.');
     numYear || alert('좌변이 false 입니다.');
     // e==null || alert('좌변이 false 입니다.');
+</script> -->
+
+<!-- <script>
+
+    //배열 : 여러개의 변수를 하나의 묶음으로 관리
+    //배열의 생성 : []
+    //배열의 요소는 타입으로 제한을 두지 않는다.
+    //배열도 객체다
+    var arr1 = [11,22,33,44,55];
+    console.log(typeof arr1);
+    // alert(arr1);
+    console.log(arr1);
+
+    //요소는 어떠한 타입이 와도 된다.
+    var arr2 = [100,'string',function(){},{},[1,100]];
+    console.log(arr2);
+
+    //for 반복문을 이용한 요소 출력
+    for(var i = 0; i < arr2.length; i++) {
+        console.log(i,arr2[i]);
+    }
+
+
+    //for in 반복문을 통해서 배열의 요소를 일괄 출력
+    for(var e in arr1){
+        console.log(e); // 인덱스 출력
+        console.log(arr1[e]); // 요소 출력 
+    }
+
+
+</script> -->
 
 
 
 
 
-</script>
+
+
+
+
+
