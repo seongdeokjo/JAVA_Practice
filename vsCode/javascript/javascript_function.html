@@ -54,7 +54,7 @@
         hello('king',20,30);
 
     </script> -->
-    <script>
+    <!-- <script>
         function sumAll () {
             var sum = 0;
 
@@ -64,7 +64,72 @@
             return sum;
         }
         console.log('1~10까지의 합 :',sumAll(1,2,3,4,5,6,7,8,9,10));
-    </script>
+    </script> -->
+    <!-- <script>
+        function returnFunc() {
+            alert('AAA');
+            return; //함수의 종료
+            alert('BBB');
+        }
+       var value = returnFunc();
+       console.log(typeof value, value);
+    </script> -->
+    <!-- <script>
+        //콜백 함수 -> 매개변수로 전달 받은 함수 
+        //매개변수로 전달받은 함수를 10번 실행하는 함수를 정의
+        function callTentimes(callBackFn){
+            //데이터처리 .......
+            for(var i=0; i<10; i++){
+                callBackFn();
+            }
+        } 
+        //명시적 함수
+        // function callBack(){
+        //     console.log('callBackFunction call');
+        // }
+
+        // 익명함수
+        var callBack = function(){
+            console.log('callBack Function call');
+        }
+        callTentimes(callBack);
+    </script> -->
+    <!-- <script>
+        // 1초마다 시간을 출력
+        var id = setInterval(function(){
+            // var hmtl = '<h3>'+new Date()+'</h3>'
+            document.body.innerHTML = '<h3>'+new Date()+'</h3>';
+        },1000);
+
+        //10초 후에 인터벌함수를 종료
+        setTimeout(function(){
+            clearInterval(id);
+        },10000);
+    </script> -->
+    <!-- <script>
+        // javascript 문자열을 생성 
+        var jsStr = '';
+        jsStr += 'var num11 = 10;';
+        jsStr += 'alert(num11);';
+
+        //문자열을 javascript 코드로 실행
+        eval(jsStr);
+    </script> -->
+    <!-- <script>
+        var won = '1000원';
+        var dollar = '1.5$';
+
+        console.log(Number(won)); //NaN
+        console.log(Number(dollar)); // NaN
+        console.log(parseInt(won));
+        console.log(parseInt(dollar));
+        console.log(parseFloat(dollar));
+        console.log(parseInt('0x273')); //16진수 표현 
+        console.log(parseInt('0273')); //8진수 표현
+        console.log(parseInt('273',8));
+        console.log(parseInt('1000',2));//2진수 표현
+
+    </script> -->
 
 
 
