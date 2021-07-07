@@ -7,12 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javascript Event</title>
     <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
         h1 {
             background-color: greenyellow;
         }
 
         h2 {
             background-color: hotpink;
+        }
+
+        #myDiv {
+            background-color: coral;
+            border: 1px solid;
+            padding: 50px;
+            color: white;
         }
     </style>
     <script>
@@ -27,7 +39,6 @@
                 //이벤트 제거  
                 header.onclick = null;
             };
-
 
             document.getElementById('btn1').onclick = function () {
                 //   document.getElementById('btn1').style.backgroundColor = 'black';
@@ -45,33 +56,64 @@
             var cntB = document.getElementById('cntB');
 
             //버튼에 클릭이벤트 연결
-            btnA.onclick = function(){
+            btnA.onclick = function () {
                 //카운트를 증가시키고 화면을 갱신
-                 var cnt = Number(cntA.innerText) + 1;
+                var cnt = Number(cntA.innerText) + 1;
                 cntA.innerText = cnt;
-                
+
             };
-            btnB.onclick = function(){
+            btnB.onclick = function () {
                 //카운트를 증가시키고 화면을 갱신
                 var cnt = Number(cntB.innerText) + 1;
                 cntB.innerText = cnt;
                 btnA.onclick();
             };
-          
+
 
             //form 태그 캐스팅
             var form = document.getElementById('myForm');
-            form.onsubmit = function() {
+            form.onsubmit = function () {
                 console.log('submit 이벤트');
 
-           var id = document.getElementById('userID').value;
+                var id = document.getElementById('userID').value;
                 console.log(typeof id, id);
-                if(id.length<1){
+                if (id.length < 1) {
                     alert('아이디를 입력해주세요.');
                     return false;
                 };
-             
+
             };
+
+            var p1 = document.getElementById('p1');
+            p1.onclick = function (e) {
+                var event = e || window.event;
+
+                alert('p click');
+
+                //IE 일때
+                event.cancelBubble = true;
+                // IE 이외의 브라우저 일때
+                if (event.stopPropagation) {
+                    event.stopPropagation();
+                };
+            };
+
+            // var header = document.getElementById('my-header');
+            // header.addEventListener('click',function() {
+            //     this.innerHTML += '+';
+            // });
+
+            // var div = document.getElementById('myDiv');
+            // div.addEventListener('mousemove',myFunction);
+
+            // function myFunction() {
+            //     var demo = document.getElementById('demo');
+            //     demo.innerHTML = Math.random();
+            // };
+
+            // function removeHandler() {
+            //     document.getElementById('myDiv').removeEventListener('mousemove',myFunction);
+            // };
 
 
         };
@@ -80,11 +122,46 @@
             alert('클릭했어요');
         };
     </script>
+    <script>
+        window.onload = function() {
+        document.getElementById('myDiv').addEventListener('mousemove', myFunction);
 
+        function myFunction() {
+            document.getElementById('demo').innerHTML = Math.random();
+        };
+
+        function removeHandler() {
+            document.getElementById('myDiv').removeEventListener('mousemove', myFunction,true);
+        };
+    };
+    </script>
 
 </head>
 
 <body>
+    <div id="myDiv">This div element has an onmousemove event handler that displays a random number every time you move
+        your mouse inside this orange field.
+        <p>Click the button to remove the DIV's event handler.</p>
+        <button id="myBtn" onclick="removeHandler()" >try it</button>
+    </div>
+
+    <p><strong>Note:</strong> The addEventListener() and removeEventListener() methods are not supported in Internet
+        Explorer 8 and earlier versions.</p>
+        
+    <p id="demo"></p>
+
+
+
+    <h1 id="my-header">Click</h1>
+
+    <div style="border: 2px solid black;" onclick="alert('div1')">
+        <div style="border: 2px solid green" onclick="alert('div2')">
+            <h1 style="border: 2px solid blue;" onclick="alert('h1')">
+                <p id="p1" style="border: 2px solid red; width: 50%; background-color: red;">클릭하세요</p>
+            </h1>
+        </div>
+    </div>
+
     <!-- get post 방식 이해를 위한 검색해보기  -->
     <form id="myForm" action="http://www.naver.com" method="POST">
         id <input type="text" id="userID" name="userID"> <br>
@@ -93,12 +170,11 @@
     </form>
 
     <button id="btnA">ButtonA</button>
-    <input id="btnB" type="button" value="ButtonB"> 
+    <input id="btnB" type="button" value="ButtonB">
     <!-- <input type="submit" value="ButtonC"> -->
 
     <h3>Button A - <span id="cntA">0</span></h3>
     <h3>Button B - <span id="cntB">0</span></h3>
-
 
     <h1 id="btn">click</h1>
 
