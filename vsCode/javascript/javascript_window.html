@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javascript_window Object</title>
-    <script>
+    <!-- <script>
         // var output = '';
 
         // for(var key in window) {
@@ -66,6 +66,12 @@
 
             document.body.appendChild(img);
 
+            console.log(document.body.innerHTML);
+            console.log(document.body.innerText);
+
+            // document.body.innerText = '<h1>test</h1>';
+            document.body.innerHTML = '<h1>test</h1>';
+
 
 
         }
@@ -73,9 +79,48 @@
 
             
     
+    </script> -->
+    <script>
+
+        window.onload = function() {
+        //HMTL 문서에 작성된 태그 요소들을 캐스팅 -> 문서객체로 만드는 것
+        var header1 = document.getElementById('header-1');
+        var header2 = document.getElementById('header-2');
+
+        console.log(typeof header1, header1.innerHTML);
+        console.log(typeof header2, header2.innerHTML);
+
+        header1.innerHTML = '안녕히 계세요!';
+        header2.innerHTML = '<i>다음에 만나요!<i>';
+
+        header1.style.backgroundColor = 'red';
+        header1.style.color = 'white';
+        header1.style.padding = '10px';    
+        
+        var lang = document.getElementsByName('language');
+        console.log(typeof lang,lang)
+
+        var inputs = document.getElementsByName('input');
+        console.log(typeof inputs,inputs);
+        
+        var checkbox = document.querySelector('#header-2+input');
+        console.log(typeof checkbox, checkbox);
+        console.log(checkbox);
+
+
+
+        }
     </script>
+
+
+
 </head>
 <body>
-    
+    <h1 id="header-1"><i>안녕하세요.</i></h1>
+    <h2 id="header-2">반갑습네다.</h2>
+
+    <input type="checkbox" name="language" value="java" checked>java <br>
+    <input type="checkbox" name="language" value="javascript" checked>javascript <br>
+    <input type="checkbox" name="language" value="HTML5">HTML5 
 </body>
 </html>
