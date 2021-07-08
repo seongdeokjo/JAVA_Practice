@@ -12,6 +12,12 @@ function Member(id,pw,name) {
 Member.prototype.makeHtml = function(){
     return '[id:'+this.userId+' ,pw: '+this.pw+',name:'+this.userName+' ]'
 };
+////////////////////////////////////////////////////
+
+//회원의 정보를 저장하는 배열
+var members = []; // new Array()
+
+
 
 ///////////////////////////////////////////////
 
@@ -19,52 +25,104 @@ Member.prototype.makeHtml = function(){
 //submit 이벤트 연결
 
 window.onload = function(){
+
+    var userid = document.querySelector('#userID');
+    var pw = document.querySelector('#pw');
+    var repw = document.querySelector('#repw');
+    var name = document.querySelector('#userName');
+
+
     //regForm 캐스팅
     var regForm = document.getElementById('regForm');
     regForm.onsubmit = function() {
 
         //사용자가 입력한 값
-        var userid = document.querySelector('#userID').value;
-        var pw = document.querySelector('#pw').value;
-        var repw = document.querySelector('#repw').value;
-        var name = document.querySelector('#userName').value;
+        // var userid = document.querySelector('#userID').value;
+        // var pw = document.querySelector('#pw').value;
+        // var repw = document.querySelector('#repw').value;
+        // var name = document.querySelector('#userName').value;
 
-        if(userid.trim().length < 1){
-            alert('이름을 입력해주세요.');
+        //유효성 검사
+        //아이디 공백체크
+        if(userid.value.trim().length < 1){
+            // alert('이름을 입력해주세요.');
+            document.querySelector('#userID+div.msg').innerHTML ='필수 항목입니다.';
+            document.querySelector('#userID+div.msg').style.display= 'block';
             return false;
         }
-        if(pw.trim().length < 1 || repw.trim().length < 1) {
-            alert('비밀번호를 입력해주세요.');
+        //비밀번호 공백체크
+        if(pw.value.trim().length < 1) {
+            // alert('비밀번호를 입력해주세요.');
+            document.querySelector('#pw+div.msg').innerHTML ='필수 항목입니다.';
+            document.querySelector('#pw+div.msg').style.display= 'block';
+            return false;
+        }
+
+        //비밀번호 확인 공백체크
+        if(repw.value.trim().length < 1) {
+            // alert('비밀번호를 입력해주세요.');
+            document.querySelector('#repw+div.msg').innerHTML ='필수 항목입니다.';
+            document.querySelector('#repw+div.msg').style.display= 'block';
             return false;
         }
 
         // 비밀번호 비밀번호 확인 일치 여부 체크 
-        if(pw.trim() != repw.trim()) {
-            alert('비밀번호와 비밀번호확인과 일치하지 않습니다.\n 다시확인해주세요.');
+        if(pw.value.trim() != repw.value.trim()) {
+            // alert('비밀번호와 비밀번호확인과 일치하지 않습니다.\n 다시확인해주세요.');
+            document.querySelector('#repw+div.msg').innerHTML ='비밀번호가 일치하지 않습니다..';
+            document.querySelector('#repw+div.msg').style.display= 'block';
+            // repw.value = '';
             return false;
         }
 
-        console.log(userid);
-        console.log(pw);
-        console.log(repw);
-        console.log(name);
+        //사용자 이름 정보 공백체크
+        if(userName.value.trim() < 1) {
+            // alert('이름을 입력해주세요.');
+            document.querySelector('#userName+div.msg').innerHTML ='필수 항목입니다.';
+            document.querySelector('#userName+div.msg').style.display= 'block';
+            return false;
+        }
 
-        var member = new Member(userid,pw,name);
+        console.log(userid.value);
+        console.log(pw.value);
+        console.log(repw.value);
+        console.log(name.value);
+        //객체 생성
+        // var member = new Member(userid.value,pw.value,name.value);
 
-        console.log(typeof member, member.makeHtml());
+        // console.log(typeof member, member.makeHtml());
 
+        //배열에 사용자 정보를 추가
+        members.push(new Member(userid.value,pw.value,name.value));
 
-
-
-
-
-
+        alert('등록되었습니다.');
+        console.log('회원리스트',members);
+        
+        //form 초기화
+        this.reset();
 
         return false;
     }
+    //커서가 해당 영역에 위치할때 박스를 숨기는 이벤트
+    userid.addEventListener('focus',function(){
+        document.querySelector('#userID+div.msg').style.display= 'none';
+        document.querySelector('#userID+div.msg').innerHTML ='';
+    });
 
+    pw.addEventListener('focus',function(){
+        document.querySelector('#pw+div.msg').style.display= 'none';
+        document.querySelector('#pw+div.msg').innerHTML ='';
+    });
+    repw.addEventListener('focus',function(){
+        document.querySelector('#repw+div.msg').style.display= 'none';
+        document.querySelector('#repw+div.msg').innerHTML ='';
+        repw.value = '';
+    });
 
-
+    userName.addEventListener('focus',function(){
+        document.querySelector('#userName+div.msg').style.display= 'none';
+        document.querySelector('#userName+div.msg').innerHTML ='';
+    });
 
 }
 
