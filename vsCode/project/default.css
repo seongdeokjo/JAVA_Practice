@@ -99,12 +99,20 @@ div.msg{
     background-color: lightcyan;
 
     padding: 20px;
+
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    margin-left: -175px;
+
+    display: none;
 }
 
 #div_header{
     border-bottom: 1px solid #aaa;
 
     overflow: hidden;
+    padding-bottom: 5px;
 }
 #div_header>h2{
     float: left;

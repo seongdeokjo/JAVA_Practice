@@ -178,7 +178,7 @@ function setList() {
         // var chk = confirm('삭제하시겠습니까?');
 
         //배열의  index 요소를 삭제
-        //splice(index,count) : index에서 시작해서 count 만큼의 요소를 삭제하고 남은 요소
+        //splice(index,count) : index에서 시작해서 count 만큼의 요소를 삭제하고 남은 요소의 배열을 반환
         //splice(index, 1)
         if (confirm('삭제하시겠습니까?')) {
             members.splice(index, 1);
@@ -191,5 +191,53 @@ function setList() {
 
     //배열의 요소 수정 함수
     function editMember(index) {
-        alert(index + '인덱스의 요소를 수정합니다.');
+
+        //수정 폼 영역이 노출되어야 한다.
+        document.querySelector('#editFormArea').style.display = 'block';
+
+
+        // alert(index + '인덱스의 요소를 수정합니다.');
+
+        //전달받은 index 값으로 members 배열의 객체 하나를 얻을 수 있다.
+        console.log(index, members[index]);
+
+        //editForm의 태그들의 value값을 세팅
+        var editUserId = document.querySelector('#editID');
+        var editPw = document.querySelector('#editPw');
+        var editRePw = document.querySelector('#editRePw');
+        var editName = document.querySelector('#editName');
+        var editIndex = document.querySelector('#index');
+
+        //이전 데이터를 폼에 세팅
+        editUserId.value = members[index].userId;
+        editPw.value = members[index].pw;
+        editRePw.value= members[index].repw;
+        editName.value=members[index].userName;
+        editIndex.value = index;
+
+        document.querySelector('#editForm').onsubmit = function(){
+            // var member = new Member(editUserId.value,editPw.value,editName.value);
+
+            // console.log(editIndex.value,member);
+
+            //비밀번호와 비밀번호 확인이 같은지 체크
+            if(editPw.value != editRePw.value) {
+                alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+                return false;
+            }
+
+            if(!confirm('수정하시겠습니까?')){
+                return false;
+            };
+
+            members[editIndex.value].pw = editPw.value;
+            members[editIndex.value].userName = editName.value;
+
+            alert('수정되었습니다.');
+
+            setList();
+
+            return false;
+        };
+
     }
