@@ -42,7 +42,8 @@ window.onload = function () {
         //테이블 세팅
         setList();
     }
-
+    // querySelector :
+    // getElementById : 
     var userid = document.querySelector('#userID');
     var pw = document.querySelector('#pw');
     var repw = document.querySelector('#repw');
@@ -145,7 +146,6 @@ window.onload = function () {
         document.querySelector('#userName+div.msg').style.display = 'none';
         document.querySelector('#userName+div.msg').innerHTML = '';
     });
-
 }
 
 //배열에 있는 요소를 -> table tr 행을 만들어서 출력 
@@ -205,7 +205,6 @@ function deleteMember(index) {
 
         //테이블 리스트를 갱신
         setList();
-
     }
 }
 
@@ -264,6 +263,7 @@ function editMember(index) {
 
 }
 
+//수정완료,닫기 버튼 기능
 function editMemberClose() {
     document.querySelector('#editFormArea').style.display = 'none';
 }
