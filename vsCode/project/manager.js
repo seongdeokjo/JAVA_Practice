@@ -28,6 +28,8 @@ window.onload = function () {
     //테이블 세팅
     setList();
 
+    
+
     var userid = document.querySelector('#userID');
     var pw = document.querySelector('#pw');
     var repw = document.querySelector('#repw');
@@ -157,15 +159,37 @@ function setList() {
     } else {
 
         for (var i = 0; i < members.length; i++) {
-           tbody += '<tr>';
-            tbody += '  <td>'+i+'</td>';
-            tbody += '  <td>'+members[i].userId+'</td>';
-            tbody += '  <td>'+members[i].pw+'</td>';
-            tbody += '  <td>'+members[i].userName+'</td>';
-            tbody += '  <td>수정 | 삭제</td>';
+            tbody += '<tr>';
+            tbody += '  <td>' + i + '</td>';
+            tbody += '  <td>' + members[i].userId + '</td>';
+            tbody += '  <td>' + members[i].pw + '</td>';
+            tbody += '  <td>' + members[i].userName + '</td>';
+            tbody += '  <td><a href="javascript:editMember('+i+'); ">수정</a> | <a href="javascript:deleteMember('+i+');">삭제</a></td>';
             tbody += '</tr>';
         }
     }
     list.innerHTML = tbody;
-
 }
+
+    //배열의 요소 삭제 함수
+    function deleteMember(index) {
+        //alert(index + '인덱스의 요소를 삭제합니다.');
+
+        // var chk = confirm('삭제하시겠습니까?');
+
+        //배열의  index 요소를 삭제
+        //splice(index,count) : index에서 시작해서 count 만큼의 요소를 삭제하고 남은 요소
+        //splice(index, 1)
+        if (confirm('삭제하시겠습니까?')) {
+            members.splice(index, 1);
+            alert('삭제되었습니다.');
+            //테이블 리스트를 갱신
+            setList();
+
+        }
+    }
+
+    //배열의 요소 수정 함수
+    function editMember(index) {
+        alert(index + '인덱스의 요소를 수정합니다.');
+    }
