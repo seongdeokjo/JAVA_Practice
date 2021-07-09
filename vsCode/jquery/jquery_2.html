@@ -12,8 +12,13 @@
             list-style: none;
             overflow: hidden;
         }
+
         .floatLeft{
             float: left;
+        }
+
+        h1{
+            color: aqua;
         }
     </style>
 
@@ -54,13 +59,57 @@
 
             $('.img').removeAttr('height');
 
+            //태그의 css 속성값 확인 
+            var color = $('h1.title').css('color');
+            console.log(color);
+
+            //css 적용
+            // $('h1').css('background','red');
+            var colors = ['black','orange','yellow'];
+            // $('h1').css('background',function(index){
+            //     return colors[index];
+            // });
+            $('h1').css({
+                color : 'green',
+                backgroundColor : function(index){
+                    return colors[index];
+                }
+            });
+
+            var strHtml = $('h1').html();
+            console.log('html',strHtml);
+
+
+            console.log('#menu').html();
+            console.test('#menu').text();
+        
+        
+            $('div').html(function(index){
+                console.log(index,html);
+                $(this).html('<h1>'+html+ '!!!!!/<h1>)'
+            });
+        
         });
 
     </script>
+        $('#btn03).click(fncrion)
 
 </head>
 
 <body>
+
+    <div>Div- 0</div>
+    <div>Div- 0</div>
+
+    <div>Div- 0</div>
+
+
+
+
+    <h1 class="title">header - 0</h1>
+    <h1>header - 1</h1>
+    <h1>header - 2</h1>
+
     <img class="img" src="../images/naver_logo.png">
     <img class="img" src="../images/naver_logo.png">
     <img class="img" src="../images/naver_logo.png">
@@ -74,6 +123,8 @@
     </ul>
     <button id="btn01">변경</button>
     <button id="btn02">초기화</button>
+    <button id="btn03">메뉴 삭제</button>
+    <button id="btn04">내용삭제</button>
 
 
 </body>
