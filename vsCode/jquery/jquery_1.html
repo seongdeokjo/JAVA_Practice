@@ -94,6 +94,15 @@
                 color: 'white'
             });
 
+            $('h2').css('background','orange').filter(':even').css('color','white').end().filter(':odd').css('color','red');
+
+            $('h1').eq(1).css('background','orange');
+            $('h1').last().css('background','blue');
+            $('h1').first().css('background','green');
+
+            $('h1').css('background', 'gray').add('h2').css('float','left');
+
+
         });
 
     </script>
