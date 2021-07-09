@@ -8,7 +8,15 @@
     <title>Document</title>
 
     <style>
-
+        div>img{
+            width: 250px;
+            height: 200px;
+        }
+        #banner{
+            width: 250px;
+            height: 200px;
+            border: 2px solid #aaa;
+        }
     </style>
 
     <!-- jquey는 사용하려는 모든 페이지에 적용해야함!-->
@@ -27,13 +35,48 @@
             $('<h1></h1>').html('hello~').appendTo('body');
             $('<h1>hello javas</h1>').appendTo('body');
 
+            //text node를 갖지 않는 문서 객체 생성
+            // $('<img>').attr('src','../mini.jpg').appendTo('body');
+            $('<img>').attr({
+                src: '../mini.jpg',
+                width: 200
+            }).appendTo('body');
+
+            var html1 = '<a href="#">test</a>';
+            var html2 = '<p>test</P>';
+            var html3 = '<div>DIV - 0 </div><div>DIV - 1 </div><div>DIV - 2 </div>';
+            
+            $('body').append('<h3>hello~ JS</h3>');
+            $('body').append(html1,html2,html3,'<hr>');
+
+              // 배열생성
+              var links = [
+                { name: '네이버', url: 'http://www.naver.com' },
+                { name: '다음', url: 'http://www.daum.net' },
+                { name: '카카오', url: 'http://www.kakao.com' }
+            ];
+
+            $('div').append(function(index){
+               
+                return '<h3><a href="'+links[index].url+'">'+links[index].name+'</a></h3>';
+            });
+            setInterval(function() {
+                $('#banner>img').first().appendTo('#banner');
+            }, 3000);
+            
+
         });
 
     </script>
 </head>
 
 <body>
-
+    <div id="banner">
+        <img src="../rupi.jpg">
+        <img src="../mini.jpg">
+        <img src="../images/naver_logo.png">
+        <img src="../images/미니언스.jpg">
+    </div>
 </body>
 
 </html>

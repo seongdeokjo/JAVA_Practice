@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div>img {
+            width: 250px;
+            height: 200px;
+        }
+
+        #banner {
+            width: 250px;
+            height: 200px;
+            border: 10px solid #aaa;
+
+            overflow: hidden;
+        }
+    </style>
+
+
+    <!-- jquey는 사용하려는 모든 페이지에 적용해야함!-->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"
+        integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+            //사진을 바꾸기 위한 함수
+            function banner() {
+                $('#banner>img').first().appendTo('#banner');
+            };
+            //2초마다 함수 반복
+            var interval = setInterval(banner,2000);
+            var toggle = true;
+
+            $('#stop_banner').onclick() = function(e){
+                    clearInterval(interval);
+                }
+             
+        });
+
+
+
+    </script>
+
+</head>
+
+<body>
+    <div id="banner">
+        <img src="../rupi.jpg">
+        <img src="../mini.jpg">
+        <img src="../images/naver_logo.png">
+        <img src="../images/미니언스.jpg">
+    </div>
+    <!-- addEventHandler -->
+    <input id="stop_banner" type="button" value="pause">
+    <!-- removeHandler -->
+    <input id="play" type="button" value="play">
+</body>
+
+</html>
