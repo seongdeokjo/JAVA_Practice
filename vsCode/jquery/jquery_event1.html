@@ -38,6 +38,27 @@
                 $('#wrap').append('<h1>'+length+'-'+oldhtml+'</h1>');
 
             });
+
+            $('textarea').keyup(function(){
+                var cnt = $(this).val().length;
+                var remain = 150 - cnt;
+
+                console.log(cnt,remain);
+
+                if(remain<0){
+                    alert('소개서는 150자 까지 가능합니다.');
+                    var str = $(this).val().substr(0,150);
+                    $(this).val(str);
+                    $('span').text('150');
+                    return false;
+                }
+
+                $('span').text(cnt);
+            });
+
+
+
+
         });
     </script>
 
@@ -45,9 +66,7 @@
 </head>
 
 <body>
-    <textarea cols="" rows="">
-
-    </textarea>
+    <textarea cols="50" rows="10"></textarea><span>0</span>/150
 
     <div id="wrap">
         <h1>header</h1>
