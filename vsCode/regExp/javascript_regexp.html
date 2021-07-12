@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <script>
+        var regExp = /script/;
+        var string = 'Javascript jquery Ajax';
+
+        var result = regExp.test(string);
+
+        // console.log(result);
+
+        // 문자열 타입의 메소드 : split
+        result = string.split(regExp);
+        // console.log(result);
+
+        regExp = /a/g;
+        string = 'Javascript\njquery Ajax';
+
+        //문자열의 해당 패턴을 찾아 특정 문자열로 변경
+        result = string.replace(regExp,'+$&+'); // $& -> a -> +a+
+        // console.log(result);
+
+        //함수를 이용해서 변경하고자 하는 값을 지정
+        result = string.replace(regExp,function(value){
+            return '+'+value+'+';
+        });
+
+        // console.log(result);
+
+        regExp = /^j/igm;
+        // regExp = /x$/igm;
+        string = 'Javascript\njquery Ajax';
+        result = string.replace(regExp,'+$&+');
+        console.log(result);
+
+        regExp = /[aj]/ig;
+        string = 'Javascript jquery Ajax';
+        result = string.replace(regExp,'+$&+');
+        console.log(result);
+
+
+
+
+
+    </script>
+
+
+</head>
+<body>
+    
+</body>
+</html>
