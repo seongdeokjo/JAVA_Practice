@@ -44,8 +44,13 @@
         result = string.replace(regExp,'+$&+');
         console.log(result);
 
-        var string = prompt('소문자와 숫자로 된 단어를 입력해주세요.');
-        regExp = /([0-9|[a-z])/g;
+        // var string = prompt('소문자와 숫자로 된 단어를 입력해주세요.');
+        // 영문자(소문자)와 숫자만 가능
+        // regExp = /([0-9]|[a-z])/g;
+        //한글만 가능한 패턴
+        // regExp = /([가-힣])/g;
+        //이메일을 체크하는 패턴
+        regExp = /\w+@\w+\.\w+/;
         result = string.replace(regExp,'');
         if(result.length ==0){
             console.log(result,'패턴에 일치하는 문자열');
@@ -61,6 +66,9 @@
 
 </head>
 <body>
-    
+    <form>
+        <input type="email">
+        <input type="submit">
+    </form>
 </body>
 </html>
