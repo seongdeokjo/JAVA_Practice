@@ -44,7 +44,15 @@
         result = string.replace(regExp,'+$&+');
         console.log(result);
 
-
+        var string = prompt('소문자와 숫자로 된 단어를 입력해주세요.');
+        regExp = /([0-9|[a-z])/g;
+        result = string.replace(regExp,'');
+        if(result.length ==0){
+            console.log(result,'패턴에 일치하는 문자열');
+        }else{
+            console.log(result,'패턴에 맞지 않는 문자열을 포함!');
+        }
+        
 
 
 
