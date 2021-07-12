@@ -1,4 +1,13 @@
+// @charset "utf-8";
 
+// @import url('https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@700&family=Sunflower:wght@500&display=swap');
+
+
+// /* 나눔고딕,주아,선플라워 kor
+// font-family: 'Jua', sans-serif;
+// font-family: 'Nanum Gothic', sans-serif;
+// font-family: 'Sunflower', sans-serif; 
+// */
 //회원의 정보 : 아이디,비밀번호,이름
 //member -> 생성자 함수를 정의
 
