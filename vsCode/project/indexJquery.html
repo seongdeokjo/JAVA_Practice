@@ -15,6 +15,17 @@
         integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous">
         </script>
     <script>
+        //회원의 정보 : 아이디,비밀번호,이름
+        //member -> 생성자 함수를 정의
+
+        function Member1(id, pw, name) {
+            this.userid = id;
+            this.pw = pw;
+            this.username = name;
+        }
+        var members1 = [];
+    </script>
+    <script>
         $(document).ready(function () {
             //전체 영역 css
             $('*').css({
@@ -71,7 +82,7 @@
                 'width': 350,
                 'border': '1px solid #aaa',
                 'border-radius': 10,
-                'background-color':'lightcyan',
+                'background-color': 'lightcyan',
                 'padding': 20,
                 'position': 'absolute',
                 'left': '50%',
@@ -84,8 +95,8 @@
                 'overflow': 'hidden',
                 'padding-bottom': 5
             });
-            $('#div_header>h2').css('float','left');
-            $('#div_header>div').css('float','right');
+            $('#div_header>h2').css('float', 'left');
+            $('#div_header>div').css('float', 'right');
             $('#editFormArea>table').css({
                 'width': '100%',
                 'margin-top': 15
@@ -94,8 +105,8 @@
                 'padding': '5px 10px',
                 'text-align': 'center'
             });
+
             //javascript -> jquery 영역
-            
 
         });
 
