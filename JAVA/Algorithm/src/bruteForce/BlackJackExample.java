@@ -3,59 +3,37 @@ package bruteForce;
 import java.util.Scanner;
 
 public class BlackJackExample {
-//Brute Force : ¿ÏÀüÅ½»ö ¾Ë°í¸®Áò 
+//Brute Force : ë¬´ì‹í•œ í˜ -> ì™„ì „ íƒìƒ‰ 
 	public static void main(String[] args) {
-		
-//		¹®Á¦: Á¦ÇÑµÈ ½Ã°£ ¾È¿¡ NÀåÀÇ Ä«µå Áß¿¡¼­ 3ÀåÀÇ Ä«µå¸¦ °ñ¶ó¾ß ÇÑ´Ù. °í¸¥ Ä«µåÀÇ ÇÕÀº MÀ» ³ÑÁö ¾ÊÀ¸¸é¼­ M°ú ÃÖ´ëÇÑ °¡±õ°Ô ¸¸µé¾î¾ß ÇÑ´Ù.
-//		NÀåÀÇ Ä«µå¿¡ ½áÁ® ÀÖ´Â ¼ıÀÚ°¡ ÁÖ¾îÁ³À» ¶§, MÀ» ³ÑÁö ¾ÊÀ¸¸é¼­ M¿¡ ÃÖ´ëÇÑ °¡±î¿î Ä«µå 3ÀåÀÇ ÇÕÀ» ±¸ÇØ Ãâ·ÂÇÏ½Ã¿À.
-				
-//		Ã¹Â° ÁÙ¿¡ Ä«µåÀÇ °³¼ö N(3 ¡Â N ¡Â 100)°ú M(10 ¡Â M ¡Â 300,000)ÀÌ ÁÖ¾îÁø´Ù. µÑÂ° ÁÙ¿¡´Â Ä«µå¿¡ ¾²¿© ÀÖ´Â ¼ö°¡ ÁÖ¾îÁö¸ç, ÀÌ °ªÀº 100,000À» ³ÑÁö ¾Ê´Â ¾çÀÇ Á¤¼öÀÌ´Ù.
-//		ÇÕÀÌ MÀ» ³ÑÁö ¾Ê´Â Ä«µå 3ÀåÀ» Ã£À» ¼ö ÀÖ´Â °æ¿ì¸¸ ÀÔ·ÂÀ¸·Î ÁÖ¾îÁø´Ù.
-		
-//		Ãâ·Â
-//		Ã¹Â° ÁÙ¿¡ MÀ» ³ÑÁö ¾ÊÀ¸¸é¼­ M¿¡ ÃÖ´ëÇÑ °¡±î¿î Ä«µå 3ÀåÀÇ ÇÕÀ» Ãâ·ÂÇÑ´Ù.
-		
+
 		Scanner scan = new Scanner(System.in);
-		
-		//  N(3 ¡Â N ¡Â 100) , M(10 ¡Â M ¡Â 300,000)
-		System.out.println("NÀÇ ÀÚ¸´¼ö¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 		int N = scan.nextInt();
-		System.out.println("MÀÇ Å©±â¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 		int M = scan.nextInt();
-		
-		//Å©±â°¡ NÀÎ ¹è¿­»ı¼º
+
 		int arr[] = new int[N];
-		//NÀÇ Å©±â¸¦ ¼¼ÁÖ´Â Ä«¿îÆ®
-		int cnt = N;
-		for(int i =0; i<N; i++) {
-			System.out.println(N+"Å©±âÀÇ ¹è¿­¿¡ µé¾î°¥ ¼ıÀÚ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
-			System.out.println(cnt--+"¹ø ³²¾Ò½À´Ï´Ù.");
+		for (int i = 0; i < N; i++) {
 			arr[i] = scan.nextInt();
 		}
-		//ÀÔ·ÂµÈ ¹è¿­ Ãâ·Â
-		int result = search(arr,N,M);
+		int result = search(arr, N, M);
 		System.out.println(result);
 	}
-	static int search(int arr[], int N, int M) {	
+
+	static int search(int arr[], int N, int M) {
 		int result = 0;
-		//Ä«µå 3ÀåÀÇ ÇÕÀÌ MÀ» ³ÑÁö¾Ê¾Æ¾ßÇÑ´Ù.
-		//3Áß for¹® »ç¿ë 
-		for(int i = 0; i<N; i++) {
-			for(int j = i+1; j<N-1; j++) {
-				for(int k = j+1; k<N-2; k++) {
-				int	sum = arr[i] + arr[j] + arr[k];
-				//3°³ÀÇ ÇÕÀÌ MÀÌ¸é Á¾·á
-					if(sum == M) {
+		for (int i = 0; i < N; i++) {
+			for (int j = i + 1; j < N - 1; j++) {
+				for (int k = j + 1; k < N - 2; k++) {
+					int sum = arr[i] + arr[j] + arr[k];
+					if (sum == M) {
 						return result;
 					}
-					//¼¼ Ä«µåÀÇ ÇÕÀÌ ÀÌÀü ÇÕº¸´Ù Å©¸é¼­ Mº¸´Ù ÀÛÀ»°æ¿ì °»½Å
-					if(result < sum && sum < M ) {
+					if (result < sum && sum < M) {
 						result = sum;
 					}
 				}
 			}
 		}
-		
+
 		return result;
 	}
 }
