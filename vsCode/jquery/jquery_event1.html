@@ -57,6 +57,26 @@
             });
 
 
+            $('myForm').submit(function(){
+                alert('my form submit');
+
+                return false;
+            });
+
+            $('#allCheck').change(function(){
+
+                // 선택 상태이면 true, 미 선택 상태 이면 false 
+                if(this.checked){
+                    //#checkItem 안에 있는 input type = checkbox -> checked = true
+                    $('#checkItem').children().prop('checked', true);
+                }else {
+                    $('#checkItem').children().prop('checked',false);
+                }
+
+
+
+            });
+
 
 
         });
@@ -66,6 +86,24 @@
 </head>
 
 <body>
+
+    <input type="checkbox" id="allCheck">
+    <label for="allcheck">all 전체 동의</label>
+
+    <div id="checkItem">
+        <input type="checkbox"> <label >A type</label>
+        <input type="checkbox"> <label >B type</label>
+        <input type="checkbox"> <label >C type</label>
+
+    </div>
+
+    <form id="myForm">
+        <input type="submit">
+
+
+    </form>
+
+
     <textarea cols="50" rows="10"></textarea><span>0</span>/150
 
     <div id="wrap">
