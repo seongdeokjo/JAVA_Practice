@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class FindSevenDwarf {
-
+	//일곱 난쟁이 
 	public static void main(String[] args) {
 
 		Scanner scan = new Scanner(System.in);
