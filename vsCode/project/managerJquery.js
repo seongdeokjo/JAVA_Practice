@@ -8,6 +8,13 @@ function Member(id, pw, name) {
 
 //회원의 정보를 저장하는 배열
 var members = []; // new Array()
+//아이디유효성 검사
+//id -> 이메일 형식 
+var id_reg = RegExp(/^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/);
+//비밀 번호 영소,대문자로 6-20자 이하로 최소 1개의 숫자 혹은 특수문자 포함
+var pw_reg = RegExp(/^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/ );
+//사용자 이름 :한글만 가능
+var name_reg = RegExp(/^[가-힣]+$/);
 
 //사용자가 입력한 정보를 가지고 Member객체를 생성
 $(document).ready(function () {
@@ -23,72 +30,62 @@ $(document).ready(function () {
         //테이블 세팅
         setList();
     }
-    var id = $('#userID');
-    var pw = $('#pw');
-    var repw = $('#repw');
-    var name = $('#userName');
+
 
     //regForm 캐스팅
     $('#regForm').submit(function () {
-        //아이디유효성 검사
-        //id -> 이메일 형식 
-        var id_reg = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/;
-        //비밀 번호 영소,대문자로 6-20자 이하로 최소 1개의 숫자 혹은 특수문자 포함
-        var pw_reg = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
-        //사용자 이름 :한글만 가능
-        var name_reg = /^[가-힣]+$/;
+        var id = $('#userID').val();
+        var pw = $('#pw').val();
+        var repw = $('#repw').val();
+        var username = $('#userName').val();
 
         //아이디 공백체크
-        if (id.val().trim().length < 1) {
+        if (id.trim().length < 1) {
             $('#userID + div.msg').css('display', 'block').html('필수 항목입니다.');
             return false;
         }
         //아이디 조건 체크
-        if (!id_reg.test(id.val())) {
+        if (!id_reg.test(id)) {
             $('#userID + .msg').css('display', 'block').html('id는 이메일형식으로 입력하세요.');
             return false;
         }
         //비밀번호 공백체크
-        if (pw.val().trim().length < 1) {
+        if (pw.trim().length < 1) {
             $('#pw + .msg').html('필수 항목입니다.').css('display', 'block');
             return false;
         }
         //비밀번호 유효성 체크
-        if (!pw_reg.test(pw.val())) {
+        if (!pw_reg.test(pw)) {
             $('#pw + .msg').css('display', 'block').html('pw는6-20자 이하로 영문자로 시작, 최소 1개 숫자 혹은 특수문자를 입력해주세요.');
 
             return false
         }
         //비밀번호 확인 공백체크
-        if (repw.val().trim().length < 1) {
+        if (repw.trim().length < 1) {
             $('#repw + .msg').html('필수 항목입니다.').css('display', 'block');
             return false;
         }
         // 비밀번호 비밀번호 확인 일치 여부 체크 
-        if (pw.val().trim() != repw.val().trim()) {
+        if (pw.trim() != repw.trim()) {
             $('#repw + .msg').css('display', 'block').html('비밀번호가 일치하지 않습니다.');
             return false;
         }
         //사용자 이름 정보 공백체크
-        if (name.val().trim() < 1) {
+        if (username.trim() < 1) {
             $('#userName + .msg').html('필수 항목입니다.').css('display', 'block');
             return false;
         }
         // 사용자이름 유효성 체크
-        if (!name_reg.test(name.val())) {
+        if (!name_reg.test(username)) {
             $('#userName + .msg').css('display', 'block').html('이름은 한글만 입력 가능합니다.');
             return false;
         }
-        console.log(id.val());
-        console.log(pw.val());
-        console.log(repw.val());
-        console.log(name.val());
 
         //배열에 사용자 정보를 추가
-        members.push(new Member(id.val(), pw.val(), name.val()));
+        members.push(new Member(id, pw, username));
 
         // 저장
-        // localStorage.setItem('members', JSON.stringify(members));
+        localStorage.setItem('members', JSON.stringify(members));
 
         alert('등록되었습니다.');
         console.log('회원리스트', members);
@@ -103,18 +100,18 @@ $(document).ready(function () {
 
     });
     //커서가 해당 영역에 위치할때 박스를 숨기는 이벤트
-    $(id).on('focus', function () {
+    $('#userID').on('focus', function () {
         $('#userID+div.msg').css('display', 'none');
     });
 
-    $(pw).on('focus', function () {
+    $('#pw').on('focus', function () {
         $('#pw+div.msg').css('display', 'none');
     });
-    $(repw).on('focus', function () {
+    $('#repw').on('focus', function () {
         $('#repw+div.msg').css('display', 'none');
     });
 
-    $(name).on('focus', function () {
+    $('#userName').on('focus', function () {
         $('#userName+div.msg').css('display', 'none');
     });
 
@@ -156,7 +153,7 @@ function setList() {
             tbody += '</tr>';
         }
     }
-    $('#list').html(tbody);
+    list.html(tbody);
 }
 
 //배열의 요소 삭제 함수
@@ -179,43 +176,28 @@ function deleteMember(index) {
 //배열의 요소 수정 함수
 function editMember(index) {
 
-    //수정 폼 영역이 노출되어야 한다.
+    //수정버튼 클릭시 화면에 보여준다.
     $('#editFormArea').css('display', 'block');
 
-    //전달받은 index 값으로 members 배열의 객체 하나를 얻을 수 있다.
-    console.log(index, members[index]);
-
-    //editForm의 태그들의 value값을 세팅
-    var editUserId = $('#editID');
-    var editPw = $('#editPw');
-    var editRePw = $('#editRePw');
-    var editName = $('#editName');
-    var editIndex = $('#index');
-
-    //이전 데이터를 폼에 세팅
-    editUserId.val(members[index].id);
-    editPw.val(members[index].pw);
-    editRePw.val(members[index].repw);
-    editName.val(members[index].name);
-    editIndex.val(index);
+    //editForm의 태그 캐스팅 -> 이전 데이터를 폼에 세팅
+    $('#editID').val(members[index].userid);
+    $('#editPw').val(members[index].pw);
+    $('#editRePw').val(members[index].pw);
+    $('#editName').val(members[index].username);
+    $('#index').val(index);
 
     $('#editForm').submit(function () {
-        //비밀 번호 영소,대문자로 6-20자 이하로 최소 1개의 숫자 혹은 특수문자 포함
-        var pw_reg = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
-        //사용자 이름 :한글만 가능
-        var name_reg = /^[가-힣]+$/;
         //비밀번호 유효성 체크
-        if(!pw_reg.test(editPw.val())){
+        if (!pw_reg.test($('#editPw').val())) {
             alert('6-20자의 영문자와 최소 1개의 숫자 혹은 특수문자를 입력하세요.');
             return false;
         }
-
         //비밀번호와 비밀번호 확인이 같은지 체크
-        if (editPw.va1() != editRePw.val()) {
+        if ($('#editPw').val() != $('#editRePw').val()) {
             alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
             return false;
         }
-        if(!name_reg.test(editName.val())){
+        if (!name_reg.test($('#editName').val())) {
             alert('이름은 한글만 가능합니다.');
             return false;
         }
@@ -224,8 +206,8 @@ function editMember(index) {
             return false;
         };
 
-        members[editIndex.val()].pw = editPw.val();
-        members[editIndex.val()].name = editName.val();
+        members[$('#index').val()].pw = $('#editPw').val();
+        members[$('#index').val()].username = $('#editName').val();
 
         //저장
         localStorage.setItem('members', JSON.stringify(members));
@@ -241,5 +223,5 @@ function editMember(index) {
 
 //수정완료,닫기 버튼 기능
 function editMemberClose() {
-    $('#editFormArea').css('display','none');
+    $('#editFormArea').css('display', 'none');
 }
