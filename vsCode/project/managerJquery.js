@@ -1,43 +1,16 @@
-// @charset "utf-8";
-
-// @import url('https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@700&family=Sunflower:wght@500&display=swap');
-
-
-// /* 나눔고딕,주아,선플라워 kor
-// font-family: 'Jua', sans-serif;
-// font-family: 'Nanum Gothic', sans-serif;
-// font-family: 'Sunflower', sans-serif; 
-// */
 //회원의 정보 : 아이디,비밀번호,이름
 //member -> 생성자 함수를 정의
-
 function Member(id, pw, name) {
     this.userid = id;
     this.pw = pw;
     this.username = name;
 }
-//객체가 가지는 메소드는 공통으로 사용 -> prototype
-Member.prototype.makeHtml = function () {
-    return '[id:' + this.userId + ' ,pw: ' + this.pw + ',name:' + this.userName + ' ]'
-};
-////////////////////////////////////////////////////
 
 //회원의 정보를 저장하는 배열
 var members = []; // new Array()
 
-//배열 -> json(문자열) -> localstorage 저장
-// 저장 
-// 수정
-// 삭제
-// setItem('members',jSON.stringfy(members))
-
-///////////////////////////////////////////////
-
 //사용자가 입력한 정보를 가지고 Member객체를 생성
-//submit 이벤트 연결
-
-window.onload = function () {
-
+$(document).ready(function () {
     //localStorage 저장된 데이터가 있는지 확인
     //localStorage.getItem('members') 없으면 null 반환
     if (localStorage.getItem('members') == null) {
@@ -46,79 +19,73 @@ window.onload = function () {
     } else {
         //JSON 문자열 -> 객체로 변환
         members = JSON.parse(localStorage.getItem('members'));
-        console.log(members);
+        // console.log(members);
         //테이블 세팅
         setList();
     }
-    // querySelector :
-    // getElementById : 
-    var userid = document.querySelector('#userID');
-    var pw = document.querySelector('#pw');
-    var repw = document.querySelector('#repw');
-    var userName = document.querySelector('#userName');
+    var id = $('#userID');
+    var pw = $('#pw');
+    var repw = $('#repw');
+    var name = $('#userName');
 
     //regForm 캐스팅
-    var regForm = document.getElementById('regForm');
-    regForm.onsubmit = function () {
+    $('#regForm').submit(function () {
+        //아이디유효성 검사
+        //id -> 이메일 형식 
+        var id_reg = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/;
+        //비밀 번호 영소,대문자로 6-20자 이하로 최소 1개의 숫자 혹은 특수문자 포함
+        var pw_reg = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
+        //사용자 이름 :한글만 가능
+        var name_reg = /^[가-힣]+$/;
 
-        //사용자가 입력한 값
-        // var userid = document.querySelector('#userID').value;
-        // var pw = document.querySelector('#pw').value;
-        // var repw = document.querySelector('#repw').value;
-        // var name = document.querySelector('#userName').value;
-
-        //유효성 검사
         //아이디 공백체크
-        if (userid.value.trim().length < 1) {
-            // alert('이름을 입력해주세요.');
-            document.querySelector('#userID+div.msg').innerHTML = '필수 항목입니다.';
-            document.querySelector('#userID+div.msg').style.display = 'block';
+        if (id.val().trim().length < 1) {
+            $('#userID + div.msg').css('display', 'block').html('필수 항목입니다.');
+            return false;
+        }
+        //아이디 조건 체크
+        if (!id_reg.test(id.val())) {
+            $('#userID + .msg').css('display', 'block').html('id는 이메일형식으로 입력하세요.');
             return false;
         }
         //비밀번호 공백체크
-        if (pw.value.trim().length < 1) {
-            // alert('비밀번호를 입력해주세요.');
-            document.querySelector('#pw+div.msg').innerHTML = '필수 항목입니다.';
-            document.querySelector('#pw+div.msg').style.display = 'block';
+        if (pw.val().trim().length < 1) {
+            $('#pw + .msg').html('필수 항목입니다.').css('display', 'block');
             return false;
         }
+        //비밀번호 유효성 체크
+        if (!pw_reg.test(pw.val())) {
+            $('#pw + .msg').css('display', 'block').html('pw는6-20자 이하로 영문자로 시작, 최소 1개 숫자 혹은 특수문자를 입력해주세요.');
 
+            return false
+        }
         //비밀번호 확인 공백체크
-        if (repw.value.trim().length < 1) {
-            // alert('비밀번호를 입력해주세요.');
-            document.querySelector('#repw+div.msg').innerHTML = '필수 항목입니다.';
-            document.querySelector('#repw+div.msg').style.display = 'block';
+        if (repw.val().trim().length < 1) {
+            $('#repw + .msg').html('필수 항목입니다.').css('display', 'block');
             return false;
         }
-
         // 비밀번호 비밀번호 확인 일치 여부 체크 
-        if (pw.value.trim() != repw.value.trim()) {
-            // alert('비밀번호와 비밀번호확인과 일치하지 않습니다.\n 다시확인해주세요.');
-            document.querySelector('#repw+div.msg').innerHTML = '비밀번호가 일치하지 않습니다..';
-            document.querySelector('#repw+div.msg').style.display = 'block';
-            // repw.value = '';
+        if (pw.val().trim() != repw.val().trim()) {
+            $('#repw + .msg').css('display', 'block').html('비밀번호가 일치하지 않습니다.');
             return false;
         }
-
         //사용자 이름 정보 공백체크
-        if (userName.value.trim() < 1) {
-            // alert('이름을 입력해주세요.');
-            document.querySelector('#userName+div.msg').innerHTML = '필수 항목입니다.';
-            document.querySelector('#userName+div.msg').style.display = 'block';
+        if (name.val().trim() < 1) {
+            $('#userName + .msg').html('필수 항목입니다.').css('display', 'block');
             return false;
         }
-
-        console.log(userid.value);
-        console.log(pw.value);
-        console.log(repw.value);
-        console.log(userName.value);
-        //객체 생성
-        // var member = new Member(userid.value,pw.value,name.value);
-
-        // console.log(typeof member, member.makeHtml());
+        // 사용자이름 유효성 체크
+        if (!name_reg.test(name.val())) {
+            $('#userName + .msg').css('display', 'block').html('이름은 한글만 입력 가능합니다.');
+            return false;
+        }
+        console.log(id.val());
+        console.log(pw.val());
+        console.log(repw.val());
+        console.log(name.val());
 
         //배열에 사용자 정보를 추가
-        members.push(new Member(userid.value, pw.value, userName.value));
+        members.push(new Member(id.val(), pw.val(), name.val()));
 
         // 저장
         // localStorage.setItem('members', JSON.stringify(members));
@@ -133,38 +100,35 @@ window.onload = function () {
         setList();
 
         return false;
-    }
+
+    });
     //커서가 해당 영역에 위치할때 박스를 숨기는 이벤트
-    userid.addEventListener('focus', function () {
-        document.querySelector('#userID+div.msg').style.display = 'none';
-        document.querySelector('#userID+div.msg').innerHTML = '';
+    $(id).on('focus', function () {
+        $('#userID+div.msg').css('display', 'none');
     });
 
-    pw.addEventListener('focus', function () {
-        document.querySelector('#pw+div.msg').style.display = 'none';
-        document.querySelector('#pw+div.msg').innerHTML = '';
+    $(pw).on('focus', function () {
+        $('#pw+div.msg').css('display', 'none');
     });
-    repw.addEventListener('focus', function () {
-        document.querySelector('#repw+div.msg').style.display = 'none';
-        document.querySelector('#repw+div.msg').innerHTML = '';
-        repw.value = '';
+    $(repw).on('focus', function () {
+        $('#repw+div.msg').css('display', 'none');
     });
 
-    userName.addEventListener('focus', function () {
-        document.querySelector('#userName+div.msg').style.display = 'none';
-        document.querySelector('#userName+div.msg').innerHTML = '';
+    $(name).on('focus', function () {
+        $('#userName+div.msg').css('display', 'none');
     });
-}
+
+});
 
 //배열에 있는 요소를 -> table tr 행을 만들어서 출력 
 function setList() {
 
-    console.log(members);
-    console.log(JSON.stringify(members));
-    localStorage.setItem('members',JSON.stringify(members));
+    // console.log(members);
+    // console.log(JSON.stringify(members));
+    localStorage.setItem('members', JSON.stringify(members));
 
     //table -> tbody 캐스팅
-    var list = document.querySelector('#list');
+    var list = $('#list');
 
     var tbody = '<tr>';
     tbody += '  <th>순번(index)</th>';
@@ -192,15 +156,11 @@ function setList() {
             tbody += '</tr>';
         }
     }
-    list.innerHTML = tbody;
+    $('#list').html(tbody);
 }
 
 //배열의 요소 삭제 함수
 function deleteMember(index) {
-    //alert(index + '인덱스의 요소를 삭제합니다.');
-
-    // var chk = confirm('삭제하시겠습니까?');
-
     //배열의  index 요소를 삭제
     //splice(index,count) : index에서 시작해서 count 만큼의 요소를 삭제하고 남은 요소의 배열을 반환
     //splice(index, 1)
@@ -220,35 +180,43 @@ function deleteMember(index) {
 function editMember(index) {
 
     //수정 폼 영역이 노출되어야 한다.
-    document.querySelector('#editFormArea').style.display = 'block';
-
-    // alert(index + '인덱스의 요소를 수정합니다.');
+    $('#editFormArea').css('display', 'block');
 
     //전달받은 index 값으로 members 배열의 객체 하나를 얻을 수 있다.
     console.log(index, members[index]);
 
     //editForm의 태그들의 value값을 세팅
-    var editUserId = document.querySelector('#editID');
-    var editPw = document.querySelector('#editPw');
-    var editRePw = document.querySelector('#editRePw');
-    var editName = document.querySelector('#editName');
-    var editIndex = document.querySelector('#index');
+    var editUserId = $('#editID');
+    var editPw = $('#editPw');
+    var editRePw = $('#editRePw');
+    var editName = $('#editName');
+    var editIndex = $('#index');
 
     //이전 데이터를 폼에 세팅
-    editUserId.value = members[index].userid;
-    editPw.value = members[index].pw;
-    editRePw.value = members[index].repw;
-    editName.value = members[index].userName;
-    editIndex.value = index;
+    editUserId.val(members[index].id);
+    editPw.val(members[index].pw);
+    editRePw.val(members[index].repw);
+    editName.val(members[index].name);
+    editIndex.val(index);
 
-    document.querySelector('#editForm').onsubmit = function () {
-        // var member = new Member(editUserId.value,editPw.value,editName.value);
-
-        // console.log(editIndex.value,member);
+    $('#editForm').submit(function () {
+        //비밀 번호 영소,대문자로 6-20자 이하로 최소 1개의 숫자 혹은 특수문자 포함
+        var pw_reg = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
+        //사용자 이름 :한글만 가능
+        var name_reg = /^[가-힣]+$/;
+        //비밀번호 유효성 체크
+        if(!pw_reg.test(editPw.val())){
+            alert('6-20자의 영문자와 최소 1개의 숫자 혹은 특수문자를 입력하세요.');
+            return false;
+        }
 
         //비밀번호와 비밀번호 확인이 같은지 체크
-        if (editPw.value != editRePw.value) {
+        if (editPw.va1() != editRePw.val()) {
             alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+            return false;
+        }
+        if(!name_reg.test(editName.val())){
+            alert('이름은 한글만 가능합니다.');
             return false;
         }
 
@@ -256,8 +224,8 @@ function editMember(index) {
             return false;
         };
 
-        members[editIndex.value].pw = editPw.value;
-        members[editIndex.value].userName = editName.value;
+        members[editIndex.val()].pw = editPw.val();
+        members[editIndex.val()].name = editName.val();
 
         //저장
         localStorage.setItem('members', JSON.stringify(members));
@@ -267,11 +235,11 @@ function editMember(index) {
         setList();
 
         return false;
-    };
+    });
 
 }
 
 //수정완료,닫기 버튼 기능
 function editMemberClose() {
-    document.querySelector('#editFormArea').style.display = 'none';
+    $('#editFormArea').css('display','none');
 }
