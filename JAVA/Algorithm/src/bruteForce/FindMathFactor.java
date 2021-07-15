@@ -22,11 +22,11 @@ public class FindMathFactor {
 				list.add(i);
 			}
 		}
-		for(int i =0; i<list.size(); i++) {
-			System.out.printf(list.get(i)+" ");
-		}
-		
-		System.out.println();
+//		for(int i =0; i<list.size(); i++) {
+//			System.out.printf(list.get(i)+" ");
+//		}
+//		
+//		System.out.println();
 		
 		for (int i = 0; i < list.size();) {
 				if(list.size() < k) {

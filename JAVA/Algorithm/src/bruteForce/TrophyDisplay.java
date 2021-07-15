@@ -12,12 +12,8 @@ public class TrophyDisplay {
 		int[] height = new int[N]; // 트로피 높이를 트로피 개수 만큼 담는 배열
 		
 		int cntL = 0; //왼쪽에서 보이는 개수
-		int result = 0;
 		int index = height[0];
-	
 		int cntR = 0; //오른쪽에서 보이는 개수
-		int result1 = 0;	
-		int index1 = height[0];
 		
 		//트로피 높이 입력
 		for(int i =0; i<N; i++) {
@@ -31,18 +27,17 @@ public class TrophyDisplay {
 				index = height[i];
 				cntL++;
 			}
-			result = cntL;
 		}
-		
+		System.out.println(cntL);
+		//다시 초기화
+		index = height[0];
 		//오른쪽에서 보이는 개수 => --
 		for(int i = height.length-1; i>=0; i--) {
-			if(height[i] >= index1) {
-				index1 = height[i];
+			if(height[i] >= index) {
+				index = height[i];
 				cntR++;
 			}
-			result1 = cntR; 
 		}
-		System.out.println(result);
-		System.out.println(result1);
+		System.out.println(cntR);
 	}
 }
