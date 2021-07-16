@@ -1,0 +1,182 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@700&family=Sunflower:wght@500&display=swap');
+
+/* 나눔고딕,주아,선플라워 kor
+font-family: 'Jua', sans-serif;
+font-family: 'Nanum Gothic', sans-serif;
+font-family: 'Sunflower', sans-serif; 
+*/
+
+/* 여러 브라우저에 상관없이 간격,위치 다르게 보이지 않게 하기 위해 설정 */
+*{
+    margin:  0;
+    padding: 0;
+}
+
+html,body,div,h1,h2,h3,h4,h5,h6,
+table,input,
+header,nav,aside,section,article,footer,
+p {
+    font-size: 16px;
+    font-family: '돋움체',Arial, Helvetica, sans-serif;
+}
+body{
+    background-color: antiquewhite;
+}
+
+/* 전체요소를 감싸는 블럭 */
+#main_wrap{
+    width: 776px; /* margin:-10 -10 border -1 -1 shadow:-2 */
+
+    background-color: #fff;
+
+    border: 1px solid #aaa;
+    border-radius: 10px;
+
+    margin: 10px auto;
+
+    box-shadow: 2px 2px 3px #ddd;
+
+    padding: 10px;
+}
+
+/* header 영역 */
+header{
+    padding: 20px;
+}
+
+header>h1{
+    font-size: 2.0em;
+}
+header>h4{
+    font-weight: 400;
+}
+
+/* navigation 영역 */
+nav{
+    height: 35px;
+
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    overflow: hidden;
+}
+nav>ul{
+    float: left;
+    overflow: hidden;
+}
+nav>ul>li{
+    float: left;
+    
+    height: 35px;
+    line-height: 35px;
+}
+nav>ul>li>a{
+    display: block;
+    padding: 0 20px;
+}
+nav>ul>li>a:hover{
+    background-color: khaki;
+
+}
+
+nav>div{
+    float: right;
+}
+nav>div>input[type=text]{
+    height: 24px;
+    margin-top: 4px;
+    border-radius: 11px 0 0 11px;
+    padding: 0 5px;
+    border: 1px solid #aaa;
+}
+nav>div>input[type=submit]{
+    height: 26px;
+    margin-top: 4px;
+    margin-left: -10px;
+    margin-right: 5px;
+    border-radius: 0 13px 13px 0;
+    padding: 0 15px;
+    border: 1px solid #aaa;
+}
+/* 콘텐츠 영역 */
+#content_wrap{
+    overflow: hidden;
+    margin-top: 20px;
+}
+section{
+    float: left;
+    width: 550px;
+    padding: 5px;
+}
+aside{
+    float: right;
+    width: 170px;
+}
+aside>h3{
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+aside>ul>li{
+    padding-left: 10px;
+    line-height: 180%;
+}
+/* footer 영역 */
+footer{
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+}
+
+/* 공통으로 사용할 클래스 */
+/* jua 폰트 */
+.font_jua{
+    font-family: 'Jua', sans-serif;
+}
+.border_bottom_a{
+    border-bottom: 1px solid #aaa;
+}
+.margin_bottom_20 {
+    margin-bottom: 20px;
+}
+
+/* 리스트 스타일 none */
+.list_none{
+    list-style: none;
+}
+/* a 태그 공통부분 설정 */
+a{
+    color: #333;
+    text-decoration: none;
+}
+a:hover{
+    color: hotpink;
+    text-decoration: underline;
+}
+.title{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 5px 0;
+    font-family: 'Sunflower', sans-serif;
+}
+.date{
+    font-weight: 600;
+    font-style: italic;
+}
+.post_img{
+    width: 410px;
+    height: 280px;
+    margin: 10px 5px;
+    border: 0;
+}
+.post_content{
+    font-family: 'Nanum Gothic', sans-serif;
+    line-height: 180%;
+    margin-bottom: 15px;
+}
+.aside_img{
+    width: 150px;
+    height: 100px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+}
