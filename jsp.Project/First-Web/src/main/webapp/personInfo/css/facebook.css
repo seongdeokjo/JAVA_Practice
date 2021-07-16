@@ -1,0 +1,229 @@
+@charset "utf-8";
+*{
+    margin : 0;
+    padding: 0;
+}
+/* main 영역 */
+#main_wrap{
+    width: 100%;
+    background: #f0f2f5;
+    overflow: hidden;
+}
+/* content 영역 */
+#content_wrap{
+    width: 1000px;
+    overflow: hidden;
+    margin: 130px auto;
+}
+/* header 영역 */
+header{
+    width: 450px;
+    height: 200px;
+    float: left;
+    margin-top: 70px;
+    margin-left: 30px;  
+}
+/* 로고 이미지 설정 */
+header>img{
+    width: 300px;
+    height: 50px;
+}
+header>h3{
+    width: auto;
+    font-size: 25px;
+    font-weight: bold;
+}
+/* login 영역 */
+#login_wrap{
+    width: 400px;
+    float: right;
+    text-align: center;
+    margin-right: 50px;
+}
+#login_set{
+  height: 340px;
+  /* border: 1px solid #ddd; */
+  background-color: white;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+  box-sizing: border-box;
+  line-height: 65px;
+  padding-top: 10px;
+}
+/* 비밀번호 찾기 영역 */
+#login_set>h5{
+    margin: -10px 0;
+    color: #1877f2;
+    font-size: 14px;
+    font-weight: 500;
+}
+#login_set>h5>a{
+    text-decoration: none;
+}
+#login_set>h5>a:hover{
+    cursor: pointer;
+   text-decoration: underline;
+}
+#login_set>h5>a:visited{
+    color: #1877f2;
+}
+/* 밑줄 */
+#login_set>hr{
+    width: 350px;
+    margin: 10px auto;
+}
+/* input 박스 둥글게 */
+#login_set>input{
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+/* id,pw 입력 박스  */
+.login_input{
+    width: 330px;
+    height: 20px;
+    padding: 14px 10px;
+}
+/* 로그인 박스 */
+.login_btn1{
+    width: 352px;
+    padding: 0 16px;
+    height: 50px;
+}
+.btn1_color{
+    background-color: #1877f2;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+/* 회원가입 박스 */
+.login_btn2{
+    width: 110px;
+    padding: 16px 0;
+}
+.btn2_color{
+    background-color: #42b72a;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+/* 페이지 만들기 링크 영역 */
+#login_wrap>h5{
+    margin-top: 20px;
+    font-weight: lighter;
+    font-size: 14px;
+}
+#login_wrap>h5>a{
+    text-decoration: none;
+    color: black;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+#login_wrap>h5>a:hover{
+    text-decoration: underline;
+    color: black;
+}
+#login_set> table{
+	
+	margin: 10px auto;
+}
+	
+   
+/* footer 영역 */
+footer{
+    height: 170px;
+    padding-top: 20px;
+    background-color: white;
+}
+#footer_box{
+    width: 1000px;
+   margin: 0 auto;
+}
+/* 언어선택 영역 */
+#lang_wrap{
+    overflow: hidden;
+    padding: 10px 25px;
+}
+#lang_wrap>ul>li{
+    float: left;
+    padding: 0 5px;
+}#lang_wrap>ul>li>a>input{
+    font-size: 12px;
+}
+/* 밑줄 구분 */
+footer hr{
+    width: 940px;
+    clear: both;
+    margin-left: 30px;
+}
+/* 추가 선택 영역 */
+#etc_wrap{
+    overflow: hidden;
+    padding: 10px 25px;
+}
+#etc_wrap>ul>li{
+    float: left;
+    padding: 0 5px;
+}
+/* footer의 a 태그 설정 */
+footer a{
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: lighter;
+    color: black;
+}
+footer a:hover{
+    text-decoration: underline;
+}
+footer p{
+    float: left;
+    margin-left: 30px;
+    font-size: 10px;
+}
+/* 공통 정의 영역 */
+ul{
+    list-style: none;
+}
+
+/* ============================================================================================= */
+/* fbJoin_result 영역 */
+#main_wrap2{
+	width: 800px;
+	height: 600px;
+	border: 1px solid #aaa;
+	margin: 0 auto;
+	background-color: #ddd;
+}
+#main_wrap2>h1{
+	margin-top: 80px;
+	text-align: center;
+	color : blue;
+}
+#form_area>table{
+	margin: 20px auto;
+ 	border: 1px solid #aaa;
+ 	border-radius: 10px;
+ 	padding: 20px;
+}
+#table_area{
+	width: 500px;
+}
+ #table_area input[type]{
+	margin: 5px 0;
+	
+}
+#btn{
+	width:600px;
+	margin: 0 auto;
+	
+}
+#btn>input[type="submit"]{
+	width: 200px;
+	height: 50px;
+	display: block;
+	margin: 0 auto;
+}
+
+
+
+
