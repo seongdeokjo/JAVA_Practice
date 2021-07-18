@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Facebook 회원가입</title>
-<link rel="stylesheet" href="/First-Web/personInfo/css/facebook.css">
+<link rel="stylesheet" href="/First-Web/personInfo/css/fbJoin.css">
 <style>
 </style>
 <script>
@@ -13,7 +13,7 @@
 </script>
 </head>
 <body>
-<div id="main_wrap2">
+<div class="main_wrap2">
 	<h1>Facebook 회원가입을 시작합니다.</h1>
 
 	<form id="form_area" action="fbJoin_result.jsp" method="post">

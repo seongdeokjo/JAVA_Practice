@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Facebook 로그인</title>
-<link rel="stylesheet" href="/First-Web/personInfo/css/facebook.css">
+<link rel="stylesheet" href="/First-Web/personInfo/css/fbLogin.css">
 </head>
 <body>
 	<div id="main_wrap">

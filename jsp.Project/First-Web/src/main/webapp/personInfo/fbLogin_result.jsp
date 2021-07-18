@@ -15,7 +15,7 @@ request.setAttribute("Pw", pw);
 <title>Insert title here</title>
 
 
-<link rel="stylesheet" href="/First-Web/personInfo/css/facebook.css">
+<link rel="stylesheet" href="/First-Web/personInfo/css/fbLogin.css">
 </head>
 <body>
 	<div id="main_wrap">

@@ -10,18 +10,20 @@
 	String month = request.getParameter("month");
 	String day = request.getParameter("day");
 	String sex = request.getParameter("sex");
-	String email = request.getParameter("email");
+ 	String email = request.getParameter("email");
 %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원가입 결과</title>
-<link rel="stylesheet" href="/First-Web/personInfo/css/facebook.css">
+<link rel="stylesheet" href="/First-Web/personInfo/css/fbJoin.css">
 
 </head>
 <body>
-		<table>
+	<div class="main_wrap2">
+	<h1>회원 가입을 축하합니다.</h1>
+		<table id="result_area">
 			<tr>
 				<td>아이디</td>
 				<td><%=id %></td>
@@ -29,10 +31,6 @@
 			<tr>
 				<td>비밀번호</td>
 				<td><%=pw %></td>
-			</tr>
-			<tr>
-				<td>비밀번호재확인</td>
-				<td><%=repw %></td>
 			</tr>
 			<tr>
 				<td>이름</td>
@@ -58,6 +56,8 @@
 			</tr>
 			
 		</table>
+	</div>	
+		
 
 </body>
 </html>
