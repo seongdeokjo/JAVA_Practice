@@ -17,7 +17,6 @@
 	<div id="wrap">
 		<%@ include file="include/news.jsp" %>
 		<%@ include file="include/shopping.jsp" %>
-		
 	</div>
 	<!-- 실행된jsp -> html(text)결과를 가져온다. -->
 	<!-- jsp: 액션태그 -> 실행됨 -->

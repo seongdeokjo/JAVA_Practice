@@ -8,7 +8,7 @@
 <script type="text/javascript">
 	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
 	function checkValue() {
-		if (!document.userInfo.id.value) {
+		if (document.userInfo.id.value.trim().length < 1) {
 			alert("아이디를 입력하세요.");
 			return false;
 		}
@@ -43,8 +43,8 @@
 			<table>
 				<tr>
 					<td id="title">아이디</td>
-					<td><input type="text" name="id" maxlength="50"> <input
-						type="button" value="중복확인"></td>
+					<td><input type="text" name="id" maxlength="50"> 
+					<input type="button" value="중복확인"></td>
 				</tr>
 
 				<tr>
