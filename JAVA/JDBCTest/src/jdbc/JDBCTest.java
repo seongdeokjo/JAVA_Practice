@@ -22,13 +22,21 @@ public class JDBCTest {
 		
 		try {
 			// 1. 드라이버 로드
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			//오라클
+//			Class.forName("oracle.jdbc.driver.OracleDriver");
+			//mysql
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("드라이버 로드 성공!");
 			
 			// 2. 연결
-			String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
-			String user = "hr";
-			String pw = "tiger";
+			//오라클
+//			String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+//			String user = "hr";
+//			String pw = "tiger";
+			//mysql
+			String jdbcUrl = "jdbc:mysql://localhost:3306/project?serverTimezone=UTC";
+			String user = "bit";
+			String pw = "bit";
 			
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
 			System.out.println("데이터베이스 연결 성공!!!");
@@ -36,13 +44,13 @@ public class JDBCTest {
 			// 3. sql 처리
 			stmt = conn.createStatement();
 			
-			int dno = 10;
-			String otype = "deptno";
+//			int dno = 10;
+//			String otype = "deptno";
 			
-			String sqlSelect = 
-					"select * from dept where deptno = "+dno+" order by " + otype;
-					
-			rs = stmt.executeQuery(sqlSelect);
+//			String sqlSelect = 
+//					"select * from dept where deptno = "+dno+" order by " + otype;
+			String sqlselect = "select * from dept";		
+			rs = stmt.executeQuery(sqlselect);
 			
 			// rs.next() -> 다음행의 존재 유무 확인
 			while(rs.next()) {
@@ -57,7 +65,7 @@ public class JDBCTest {
 			/////////////////////////////////////////////
 			// PreparedStatement -> Sql 먼저 등록 -> 매개변수처럼 ?를 이용해서 나중에 변수를 바인딩
 			
-			System.out.println("PrepqredStatement 사용");
+/*			System.out.println("PrepqredStatement 사용");
 			System.out.println("=========================================");
 			
 			String sqlSelect2 = "select * from dept where deptno = ? ";
@@ -73,67 +81,36 @@ public class JDBCTest {
 				System.out.print(dname + "\t");
 				String loc = rs.getString("loc");
 				System.out.println(loc + "\t");
-			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+			} */			
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 클래스를 찾지못함!!!");
 			e.printStackTrace();
 		} catch (SQLException e) {
 			System.out.println("데이터베이스 연결 실패!!!");
 			e.printStackTrace();
-		} finally {
-			
-			// 4. close
-			
+		} finally {			
+			// 4. close			
 			if(rs != null) {
 				try {
 					rs.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}
-			
-			
+			}			
 			if(stmt != null) {
 				try {
 					stmt.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}
-			
-			
+			}						
 			if(conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}
-			
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-
+			}			
+		}				
 	}
-
 }

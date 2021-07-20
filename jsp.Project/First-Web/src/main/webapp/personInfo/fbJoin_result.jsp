@@ -56,6 +56,8 @@
 			</tr>
 			
 		</table>
+		
+		<h5><a href="fblogin.jsp">로그인 하러가기</a></h5>
 	</div>	
 		
 
