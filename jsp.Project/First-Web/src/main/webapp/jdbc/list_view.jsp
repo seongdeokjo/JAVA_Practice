@@ -62,8 +62,5 @@ List<Dept> list = (List<Dept>) request.getAttribute("result");
 			}
 		}
 	</script>
-	<%-- <%
-	out.println(list);
-	%> --%>
 </body>
 </html>

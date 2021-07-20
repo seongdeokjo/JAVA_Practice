@@ -11,12 +11,12 @@
 </script>
 </head>
 <body>
-	<%@ include file="include/header.jsp" %>
+	<%@ include file="/include/header.jsp" %>
 	<hr>
-	<%@ include file="include/nav.jsp" %>
+	<%@ include file="/include/nav.jsp" %>
 	<div id="wrap">
-		<%@ include file="include/news.jsp" %>
-		<%@ include file="include/shopping.jsp" %>
+		<%@ include file="/include/news.jsp" %>
+		<%@ include file="/include/shopping.jsp" %>
 		
 	</div>
 
