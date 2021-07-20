@@ -1,3 +1,4 @@
+<%@page import="jdbc.util.ConnectionProvider"%>
 <%@page import="dept.domain.Dept"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -20,12 +21,8 @@
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-
-	String jdbcUrl = "jdbc:mysql://localhost:3306/project?serverTimezone=UTC";
-	String user = "bit";
-	String pw = "bit";
-	
-	conn = DriverManager.getConnection(jdbcUrl, user, pw);
+	try{
+	conn = ConnectionProvider.getConnection();
 	
 	Dept dept = null;
 	
@@ -42,10 +39,17 @@
 		dept.setDname(rs.getString("dname"));
 		dept.setLoc(rs.getString("loc"));
 	}
-	
 	out.println(dept);
 	
-	// 부서정보를 form_view.jsp 전달(공유)
 	request.setAttribute("dept",dept);
+	
+	}catch(Exception e){
+		
+	}
+	
+	
+	
+	// 부서정보를 form_view.jsp 전달(공유)
+	
 %>
 <jsp:forward page="form_view.jsp"/>

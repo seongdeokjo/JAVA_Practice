@@ -1,19 +1,14 @@
 <%@page import="jdbc.util.ConnectionProvider"%>
-<%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="java.sql.DriverManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%    
-// 1. 사용자가 입력한 데이터를 받고
-	
-	// 입력 데이터의 한글 처리
-	request.setCharacterEncoding("utf-8");
-	
+<%
+	// 사용자가 전달하는 deptno 받고
 	String deptno = request.getParameter("deptno");
-	String dname = request.getParameter("dname");
-	String loc = request.getParameter("loc");
 	
+	// DB 에 있는 데이터를 삭제
 	int resultCnt = 0;
 	// 2. db처리 : insert
 	
@@ -25,16 +20,12 @@
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 		
-	conn = ConnectionProvider.getConnection();
-	
-	String sqlUpdate ="update dept set dname=?, loc=? where deptno=?";
-	pstmt = conn.prepareStatement(sqlUpdate);
-	pstmt.setString(1, dname);
-	pstmt.setString(2, loc);
-	pstmt.setInt(3,Integer.parseInt(deptno));
+	conn = ConnectionProvider.getConnection();	
+	String sqlDelete = "delete from dept where deptno=?";
+	pstmt = conn.prepareStatement(sqlDelete);
+	pstmt.setInt(1, Integer.parseInt(deptno));
 	
 	resultCnt = pstmt.executeUpdate();
-	
 	}catch(Exception e){
 		
 	}
@@ -42,7 +33,7 @@
 	if(resultCnt > 0){
 		%>
 			<script>
-				alert('변경되었습니다.');
+				alert('삭제되었습니다.');
 				location.href='dept_list.jsp';
 			</script>
 		<% 
@@ -54,5 +45,6 @@
 			//window.history.go(-1); // 사용자가 입력했던 값 그대로
 			</script>
 		<%
-	}
-%>	
+	}	
+	// 실행결과에 맞는 응답
+%>

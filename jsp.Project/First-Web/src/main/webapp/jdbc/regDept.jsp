@@ -1,3 +1,4 @@
+<%@page import="jdbc.util.ConnectionProvider"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
@@ -23,12 +24,8 @@
 	// 연결
 	Connection conn = null;
 	PreparedStatement pstmt = null;
-	
-	String jdbcUrl = "jdbc:mysql://localhost:3306/project?serverTimezone=UTC";
-	String user = "bit";
-	String pw="bit";
-	
-	conn = DriverManager.getConnection(jdbcUrl, user, pw);
+		
+	conn = ConnectionProvider.getConnection();
 	
 	// PreparedStatement
 	String sqlInsert = "insert into dept values(?, ?, ?)";
@@ -68,8 +65,5 @@
 		</script>
 		<%
 	}
-		
-		
-		
-		
+
 %>

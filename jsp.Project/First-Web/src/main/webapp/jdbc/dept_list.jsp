@@ -1,3 +1,4 @@
+<%@page import="jdbc.util.ConnectionProvider"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dept.domain.Dept"%>
 <%@page import="java.util.List"%>
@@ -17,11 +18,8 @@
 	Statement stmt = null;
 	ResultSet rs = null;
 
-	String jdbcUrl = "jdbc:mysql://localhost:3306/project?serverTimezone=UTC";
-	String user = "bit";
-	String pw = "bit";
-	
-	conn = DriverManager.getConnection(jdbcUrl, user, pw);
+	try{
+	conn = ConnectionProvider.getConnection();
 
 	// 3.Statement 
 	stmt = conn.createStatement();
@@ -48,6 +46,9 @@
 	out.println(deptList);
 	// 6.결과 데이터를 request 의 속성에 저장 -> 데이터 공유(전달)
 	request.setAttribute("result", deptList);
+	}catch(Exception e){
+		
+	}
 	
 %>
  <jsp:forward page="list_view.jsp"/> <!-- view의 역활만! -->
