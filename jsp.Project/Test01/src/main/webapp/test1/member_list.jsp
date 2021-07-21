@@ -40,7 +40,8 @@
 						rs.getInt("memberCode"),
 						rs.getString("memberId"),
 						rs.getString("memberPw"),
-						rs.getString("memberName")
+						rs.getString("memberName"),
+						rs.getString("regDate")
 						)
 				);
 	}

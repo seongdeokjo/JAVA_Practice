@@ -1,11 +1,16 @@
 package member.domain;
 
+import java.sql.Date;
+
 public class Member {
 	private int memberCode;
 	private String memberId;
 	private String memberPw;
 	private String memberName;
+	private String regDate;
 	
+
+
 	public Member() {}
 	
 	public Member(String memberId, String memberPw, String memberName) {
@@ -14,11 +19,12 @@ public class Member {
 		this.memberName = memberName;
 	}
 	
-	public Member(int memberCode, String memberId, String memberPw, String memberName) {
+	public Member(int memberCode, String memberId, String memberPw, String memberName,String regDate) {
 		this.memberCode = memberCode;
 		this.memberId = memberId;
 		this.memberPw = memberPw;
 		this.memberName = memberName;
+		this.regDate = regDate;
 	}
 
 	public int getMemberCode() {
@@ -51,6 +57,14 @@ public class Member {
 
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
+	}
+	
+	public String getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
 
 	@Override

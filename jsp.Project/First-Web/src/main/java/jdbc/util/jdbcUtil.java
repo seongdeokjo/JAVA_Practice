@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class jdbcUtil {
+public class JdbcUtil {
 	//Connection
 	public static void close(Connection conn) {
 		if(conn != null) {

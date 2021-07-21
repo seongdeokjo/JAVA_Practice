@@ -26,6 +26,7 @@ List<Member> mList = (List<Member>)request.getAttribute("result");
 			<th>회원 아이디</th>
 			<th>회원 비밀번호</th>
 			<th>회원 이름</th>
+			<th>가입일</th>
 			<th>관리</th>
 		</tr>
 		<%
@@ -37,6 +38,7 @@ List<Member> mList = (List<Member>)request.getAttribute("result");
 			<td><%= mList.get(i).getMemberId() %></td>
 			<td><%= mList.get(i).getMemberPw() %></td>
 			<td><%= mList.get(i).getMemberName() %></td>
+			<td><%= mList.get(i).getRegDate() %></td>
 			<td><a href="member_editForm.jsp?memberCode=<%= mList.get(i).getMemberCode() %>">수정</a> 
 				<a href="javascript:delMember(<%= mList.get(i).getMemberCode()%>)">삭제</a></td>
 		</tr>

@@ -1,7 +1,8 @@
+<%@page import="jdbc.util.JdbcUtil"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="dept.dao.DeptDao"%>
 <%@page import="jdbc.util.ConnectionProvider"%>
-<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="java.sql.DriverManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -10,23 +11,22 @@
 	
 	// DB 에 있는 데이터를 삭제
 	int resultCnt = 0;
-	// 2. db처리 : insert
-	
+	// 2. db처리 : insert	
 	// 데이터베이스 드라이버 로드
-	
+	Connection conn = null;
+	DeptDao dao = DeptDao.getInstance();
 	try{
 	// 연결
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-		
-	conn = ConnectionProvider.getConnection();	
-	String sqlDelete = "delete from dept where deptno=?";
-	pstmt = conn.prepareStatement(sqlDelete);
-	pstmt.setInt(1, Integer.parseInt(deptno));
+	conn = ConnectionProvider.getConnection();
+
+	resultCnt = dao.deleteDept(conn, Integer.parseInt(deptno));
 	
-	resultCnt = pstmt.executeUpdate();
+	}catch(SQLException e){
+		e.printStackTrace();
 	}catch(Exception e){
-		
+		e.printStackTrace();
+	}finally{
+		JdbcUtil.close(conn);
 	}
 	
 	if(resultCnt > 0){
