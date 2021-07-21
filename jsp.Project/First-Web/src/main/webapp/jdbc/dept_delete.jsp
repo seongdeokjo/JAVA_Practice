@@ -13,7 +13,6 @@
 	// 2. db처리 : insert
 	
 	// 데이터베이스 드라이버 로드
-	Class.forName("com.mysql.cj.jdbc.Driver");
 	
 	try{
 	// 연결

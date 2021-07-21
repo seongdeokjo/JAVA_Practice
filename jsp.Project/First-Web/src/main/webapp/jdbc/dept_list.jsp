@@ -1,3 +1,4 @@
+<%@page import="dept.dao.DeptDao"%>
 <%@page import="jdbc.util.ConnectionProvider"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dept.domain.Dept"%>
@@ -11,44 +12,15 @@
 <%
 	// dept_list.jsp -> 요청을 받고 처리
 	
-	// 1.드라이버 로드
-	Class.forName("com.mysql.cj.jdbc.Driver");
+	// 1.드라이버 로드 : 서블릿 클래스 Loader에서 드라이버 로드
 	// 2.db 연결
-	Connection conn = null;
-	Statement stmt = null;
-	ResultSet rs = null;
+	Connection conn = null;	
+	DeptDao dao = new DeptDao();
 
-	try{
 	conn = ConnectionProvider.getConnection();
 
-	// 3.Statement 
-	stmt = conn.createStatement();
-	
-	//sql 
-	String sqlSelect = "select * from dept";
-	
-	// 4.ResultSet
-	rs = stmt.executeQuery(sqlSelect);
-	  
-	// 5.List<Dept> <- 결과
-	List<Dept> deptList = new ArrayList<Dept>();
-	
-	while(rs.next()){
-		// List에 객체 추가
-		deptList.add(
-			new Dept(
-				rs.getInt("deptno"),
-				rs.getString("dname"),
-				rs.getString("loc")
-					)
-			);
-	}
-	out.println(deptList);
 	// 6.결과 데이터를 request 의 속성에 저장 -> 데이터 공유(전달)
-	request.setAttribute("result", deptList);
-	}catch(Exception e){
-		
-	}
+	request.setAttribute("result", dao.getDetpList(conn));
 	
 %>
  <jsp:forward page="list_view.jsp"/> <!-- view의 역활만! -->
