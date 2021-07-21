@@ -138,7 +138,7 @@ window.onload = function () {
     repw.addEventListener('focus', function () {
         document.querySelector('#repw+div.msg').style.display = 'none';
         document.querySelector('#repw+div.msg').innerHTML = '';
-        repw.value = '';
+        
     });
 
     userName.addEventListener('focus', function () {
