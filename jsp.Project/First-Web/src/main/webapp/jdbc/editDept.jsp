@@ -1,6 +1,8 @@
+<%@page import="dept.domain.Dept"%>
+<%@page import="jdbc.util.JdbcUtil"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="dept.dao.DeptDao"%>
 <%@page import="jdbc.util.ConnectionProvider"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -18,24 +20,23 @@
 	// 2. db처리 : insert
 	
 	// 데이터베이스 드라이버 로드
+	Connection conn = null;
+	DeptDao dao = null;
 	
 	try{
-	// 연결
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-		
+	// 연결	
 	conn = ConnectionProvider.getConnection();
+	dao = DeptDao.getInstance();
+	resultCnt = dao.updateDept(conn, new Dept(Integer.parseInt(deptno), dname, loc));
 	
-	String sqlUpdate ="update dept set dname=?, loc=? where deptno=?";
-	pstmt = conn.prepareStatement(sqlUpdate);
-	pstmt.setString(1, dname);
-	pstmt.setString(2, loc);
-	pstmt.setInt(3,Integer.parseInt(deptno));
-	
-	resultCnt = pstmt.executeUpdate();
-	
+	}catch(SQLException e){
+		e.printStackTrace();
 	}catch(Exception e){
-		
+		e.printStackTrace();
+	}finally{
+		if(conn != null){
+			JdbcUtil.close(conn);
+		}
 	}
 	
 	if(resultCnt > 0){

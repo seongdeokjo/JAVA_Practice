@@ -1,9 +1,8 @@
+<%@page import="jdbc.util.JdbcUtil"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="dept.dao.DeptDao"%>
 <%@page import="jdbc.util.ConnectionProvider"%>
 <%@page import="dept.domain.Dept"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -13,41 +12,28 @@
 	
 	out.println(deptno);
 	
-	
-	// 전달받은 부서번호로 부서정보를 가져온다.
+	// 전달받은 부서번호로 부서정보를 가져온다. -> 처리 -> Dept -> 공유 
 	// 1.드라이버 로드
 	// 2.db 연결
 	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
+	DeptDao dao = null;
+	 
 	try{
 	conn = ConnectionProvider.getConnection();
-	
+	dao = DeptDao.getInstance();
 	Dept dept = null;
 	
-	String sqlSelect = "select * from dept where deptno=?";
-	pstmt = conn.prepareStatement(sqlSelect);
+	request.setAttribute("dept",dao.selectByDeptno(conn,Integer.parseInt(deptno)));
 	
-	pstmt.setInt(1, Integer.parseInt(deptno));
-	
-	rs = pstmt.executeQuery();
-	
-	if(rs.next()){
-		dept = new Dept();
-		dept.setDeptno(rs.getInt("deptno"));
-		dept.setDname(rs.getString("dname"));
-		dept.setLoc(rs.getString("loc"));
-	}
-	out.println(dept);
-	
-	request.setAttribute("dept",dept);
-	
+	}catch(SQLException e){
+		e. printStackTrace();	
 	}catch(Exception e){
-		
+		e.printStackTrace();
+	}finally{
+		if(conn != null){
+			JdbcUtil.close(conn);
+		}
 	}
-	
-	
-	
 	// 부서정보를 form_view.jsp 전달(공유)
 	
 %>

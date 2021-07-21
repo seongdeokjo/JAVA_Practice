@@ -22,6 +22,7 @@ public class DeptDao {
 	public static DeptDao getInstance() {		
 		return dao==null? new DeptDao(): dao;	
 	}
+	// dept 부서 조회
 	public List<Dept> getDetpList(Connection conn) {
 		List<Dept> deptList = null;
 
@@ -41,7 +42,7 @@ public class DeptDao {
 
 			while (rs.next()) {
 				// List에 객체 추가
-				deptList.add(new Dept(rs.getInt(1), rs.getString(2), rs.getString(3)));
+				deptList.add(makeDept(rs));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -100,6 +101,71 @@ public class DeptDao {
 		return resultCnt;
 	}
 	
+	public Dept selectByDeptno(Connection conn, int deptno) {
+		Dept dept = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sqlSelect = "select * from dept where deptno=?";
+		try {
+			pstmt = conn.prepareStatement(sqlSelect);
+			
+			pstmt.setInt(1,deptno);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				dept = makeDept(rs);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(rs != null) {
+				JdbcUtil.close(rs);
+			}
+			if(pstmt != null) {
+				JdbcUtil.close(pstmt);
+			}
+		}	
+		return dept;
+	}
+	
+	public int updateDept(Connection conn, Dept dept) {
+		int resultCnt = 0;
+		
+		PreparedStatement pstmt = null;
+		String sqlUpdate ="update dept set dname=?, loc=? where deptno=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sqlUpdate);
+			pstmt.setString(1, dept.getDname());
+			pstmt.setString(2, dept.getLoc());
+			pstmt.setInt(3,dept.getDeptno());
+			
+			resultCnt = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(pstmt != null) {
+				JdbcUtil.close(pstmt);
+			}
+		}
+		return resultCnt;
+	}
+	
+	private Dept makeDept(ResultSet rs) throws SQLException {
+		Dept dept = new Dept();
+		dept.setDeptno(rs.getInt("deptno"));
+		dept.setDname(rs.getString("dname"));
+		dept.setLoc(rs.getString("loc"));
+		
+		return dept;
+	}
+	
 	
 	
 }
+
+

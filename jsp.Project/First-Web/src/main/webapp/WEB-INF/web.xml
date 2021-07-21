@@ -35,17 +35,6 @@
   		<location>/error/errortypeNull.jsp</location>
   	</error-page>
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <!-- 서블릿 등록 -->
   <servlet>
 	<servlet-name>nowServlet</servlet-name>
