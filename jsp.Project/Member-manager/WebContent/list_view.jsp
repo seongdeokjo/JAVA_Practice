@@ -25,14 +25,14 @@ button {
 </head>
 <body>
 
-	<h1>부서 리스트</h1>
+	<h1>회원 리스트</h1>
 	<hr>
-
+	<button><a href="<%=request.getContextPath() %>/index.jsp">홈</a></button>
 	<!-- <button onclick="location.href='dept_regForm.jsp';">부서정보 등록</button> -->
-
+	<hr>
 	<table border=1>
 		<tr>
-			<th>idx</th>
+			<th>회원코드</th>
 			<th>아이디</th>
 			<th>비밀번호</th>
 			<th>이름</th>
@@ -45,11 +45,11 @@ button {
 			for(int i=0; i<list.size(); i++){
 				%>
 		<tr>
-			<td><%= list.get(i).getIdx() %></td>
-			<td><%= list.get(i).getMemberid() %></td>
-			<td><%= list.get(i).getPassword() %></td>
-			<td><%= list.get(i).getMembername() %></td>
-			<td><%= list.get(i).getRegdate() %></td>
+			<td><%= list.get(i).getMemberCode() %></td>
+			<td><%= list.get(i).getMemberId() %></td>
+			<td><%= list.get(i).getMemberPw() %></td>
+			<td><%= list.get(i).getMemberName() %></td>
+			<td><%= list.get(i).getRegDate() %></td>
 			<td><a href="#">수정</a> <a href="#">삭제</a></td>
 		</tr>
 		<%
@@ -61,7 +61,7 @@ button {
 	</table>
 	<script>
 		
-		function delDept(idx){
+		function delDept(memberCode){
 			
 			if(confirm('정말 삭제하시겠습니까?')){
 				//location.href = ''+idx;

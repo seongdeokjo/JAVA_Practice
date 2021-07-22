@@ -10,8 +10,8 @@
 	// 사용자가 전달한 데이터를 받고 -> DB에서 확인
 	// reid 확인 하고 값을 받아오면 쿠키 설정 
 	
-	String memberId = request.getParameter("memberid");
-	String password = request.getParameter("password");
+	String memberId = request.getParameter("memberId");
+	String memberPw = request.getParameter("memberPw");
 	String reid = request.getParameter("reid");
 	
 	boolean loginChk = false;
@@ -19,13 +19,13 @@
 	Connection conn = null;
 	MemberDao dao = null;
 	
-	if(memberId != null && password != null && memberId.trim().length() >0 && password.trim().length() > 0){
+	if(memberId != null && memberPw != null && memberId.trim().length() >0 && memberPw.trim().length() > 0){
 		
 		try{
 		conn = ConnectionProvider.getConnection();
 		dao = MemberDao.getInstance();
 		
-		Member member = dao.selectByLogin(conn, memberId,password);
+		Member member = dao.selectByLogin(conn, memberId,memberPw);
 		
 		if(member != null){
 			//회원의 정보를 session 객체에 저장 

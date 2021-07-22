@@ -49,10 +49,6 @@ public class CookieBox {
 		return cookieMap.get(name) != null; 
 	}
 	
-	
-	
-	
-	
 	// Cookie 객체 생성하는 메소드 : 오버로딩, static 
 	// 쿠키이름,쿠키 값
 	public static Cookie makeCookie(String name, String value) throws UnsupportedEncodingException {

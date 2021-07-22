@@ -28,18 +28,17 @@ public class MemberDao {
 
 		PreparedStatement pstmt = null;
 
-		String sql = "insert into member (memberid,password,membername) values (?, ?, ?)";
+		String sql = "insert into project.member (memberId,memberPw,memberName) values (?, ?, ?)";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, member.getMemberid());
-			pstmt.setString(2, member.getPassword());
-			pstmt.setString(3, member.getMembername());
+			pstmt.setString(1, member.getMemberId());
+			pstmt.setString(2, member.getMemberPw());
+			pstmt.setString(3, member.getMemberName());
 
 			resultCnt = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -69,7 +68,7 @@ public class MemberDao {
 						rs.getString(2), 
 						rs.getString(3), 
 						rs.getString(4),
-						rs.getTimestamp(6)));
+						rs.getTimestamp(5)));
 			}
 
 		} catch (SQLException e) {
@@ -83,27 +82,27 @@ public class MemberDao {
 
 	}
 	
-	public Member selectByLogin(Connection conn, String memberId, String password) {
+	public Member selectByLogin(Connection conn, String memberId, String memberPw) {
 		Member member = null;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sqlSel = "select * from project.member where memberid=? and password = ? ";
+		String sqlSel = "select * from project.member where memberId=? and memberPw = ? ";
 		try {
 		pstmt = conn.prepareStatement(sqlSel);
 		pstmt.setString(1, memberId);
-		pstmt.setString(2, password);
+		pstmt.setString(2, memberPw);
 		
 		rs = pstmt.executeQuery();
 		
 		if(rs.next()) {
 			member = new Member();
-			member.setIdx(rs.getInt("idx"));
-			member.setMemberid(rs.getString("memberid"));
-			member.setPassword(rs.getString("password"));
-			member.setMembername(rs.getString("membername"));
-			member.setRegdate(rs.getTimestamp("regdate"));
+			member.setIdx(rs.getInt("memberCode"));
+			member.setMemberId(rs.getString("memberId"));
+			member.setmemberPw(rs.getString(",memberPw"));
+			member.setMemberName(rs.getString("memberName"));
+			member.setRegDate(rs.getTimestamp("regDate"));
 		
 		}
 		

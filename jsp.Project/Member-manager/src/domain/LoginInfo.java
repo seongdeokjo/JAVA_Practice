@@ -1,18 +1,18 @@
 package domain;
 
 public class LoginInfo {
-	private int idx;
+	private int memberCode;
 	private String memberId;
 	private String memberName;
 	
-	public LoginInfo(int idx, String memberId, String memberName) {
-		this.idx = idx;
+	public LoginInfo(int memberCode, String memberId, String memberName) {
+		this.memberCode = memberCode;
 		this.memberId = memberId;
 		this.memberName = memberName;
 	}
 
-	public int getIdx() {
-		return idx;
+	public int getMemberCode() {
+		return memberCode;
 	}
 
 	public String getMemberId() {
@@ -25,7 +25,7 @@ public class LoginInfo {
 
 	@Override
 	public String toString() {
-		return "LoginInfo [idx=" + idx + ", memberId=" + memberId + ", memberName=" + memberName + "]";
+		return "LoginInfo [memberCode=" + memberCode + ", memberId=" + memberId + ", memberName=" + memberName + "]";
 	}
 	
 	

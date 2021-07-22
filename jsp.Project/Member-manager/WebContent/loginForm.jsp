@@ -35,11 +35,11 @@
 		<table>
 			<tr>
 				<th>ID</th>
-				<td><input type="text" name="memberid" value="<%=reid%>"></td>
+				<td><input type="text" name="memberId" value="<%=reid%>"></td>
 			</tr>
 			<tr>
 				<th>PW</th>
-				<td><input type="password" name="password"></td>
+				<td><input type="password" name="memberPw"></td>
 			</tr>
 			<tr>
 				<th></th>
