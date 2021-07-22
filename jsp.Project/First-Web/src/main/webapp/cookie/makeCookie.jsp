@@ -9,7 +9,7 @@
 	// 쿠키를 브라우저로 응답: 쿠키 굽는다!!!
 	//response.addCookie(cookie);
 	
-	response.addCookie(CookieBox.makeCookie("name","son"));
+	response.addCookie(CookieBox.makeCookie("name","son","/",5));
 	//response.addCookie(new Cookie("number","7"));
 	response.addCookie(CookieBox.makeCookie("number1", "7"));
 	

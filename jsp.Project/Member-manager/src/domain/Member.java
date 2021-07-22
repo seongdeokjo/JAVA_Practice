@@ -21,6 +21,8 @@ public class Member {
 	
 	public Member() {}
 
+	
+
 	public int getIdx() {
 		return idx;
 	}
@@ -72,6 +74,10 @@ public class Member {
 				+ ", regdate=" + regdate + "]";
 	}
 	
+	// Member -> LoginInfo 
+	public LoginInfo toLoginInfo() {
+		return new LoginInfo(this.idx,this.memberid,this.membername);
+	}
 	
 	
 	

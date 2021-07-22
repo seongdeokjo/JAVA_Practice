@@ -73,7 +73,6 @@ public class MemberDao {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			JdbcUtil.close(rs);
@@ -82,6 +81,41 @@ public class MemberDao {
 
 		return list;
 
+	}
+	
+	public Member selectByLogin(Connection conn, String memberId, String password) {
+		Member member = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sqlSel = "select * from project.member where memberid=? and password = ? ";
+		try {
+		pstmt = conn.prepareStatement(sqlSel);
+		pstmt.setString(1, memberId);
+		pstmt.setString(2, password);
+		
+		rs = pstmt.executeQuery();
+		
+		if(rs.next()) {
+			member = new Member();
+			member.setIdx(rs.getInt("idx"));
+			member.setMemberid(rs.getString("memberid"));
+			member.setPassword(rs.getString("password"));
+			member.setMembername(rs.getString("membername"));
+			member.setRegdate(rs.getTimestamp("regdate"));
+		
+		}
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+		
+		return member;
 	}
 
 }
