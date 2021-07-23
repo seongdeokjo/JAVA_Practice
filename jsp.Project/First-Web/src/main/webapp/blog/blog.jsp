@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +18,11 @@
 <body>
 	<div id="main_wrap">
 		<!-- header 시작 -->
-		<%@ include file="header.jsp"%>
+		<%-- <c:url value="/blog/header.jsp" var="head" scope="session"/>  --%>
+		<%-- <a href="${head}">head</a> --%>
+		 <c:import url="/blog/header.jsp" /> 
+	 	  
+		<%-- <%@ include file="header.jsp"%> --%>
 		<!-- header 끝 -->
 
 		<!-- nav 시작 -->

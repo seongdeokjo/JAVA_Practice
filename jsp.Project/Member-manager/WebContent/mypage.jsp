@@ -2,6 +2,7 @@
 <%@page import="domain.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <%
 	LoginInfo loginInfo = (LoginInfo)session.getAttribute("loginInfo");
 	
@@ -29,10 +30,10 @@
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/frame/header.jsp"%>
-
-	<%@ include file="/WEB-INF/frame/nav.jsp"%>
-
+	<c:url value="/WEB-INF/frame/header.jsp" var="header" scope="session"/>
+	<c:url value="/WEB-INF/frame/nav.jsp" var="nav" scope="session" />
+	<c:import url="${header}" />
+	<c:import url="${nav}" />
 	<div class="contents">
 
 		<h2>My Page</h2>

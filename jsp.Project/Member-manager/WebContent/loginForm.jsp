@@ -1,6 +1,7 @@
 <%@page import="util.CookieBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <%
 	CookieBox cBox = new CookieBox(request);
 	
@@ -14,19 +15,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="<%= request.getContextPath()%>/css/default.css">
-<style>
-</style>
+<c:url  value="/css/default.css" var="css"/>
+<link rel="stylesheet" href="${css}">
 <script>
 </script>
 </head>
+
 <body>
-
-	<%@ include file="/WEB-INF/frame/header.jsp"%>
-
-	<%@ include file="/WEB-INF/frame/nav.jsp"%>
-
+	
+	<c:url value="/WEB-INF/frame/header.jsp" var="header" scope="session" />
+	<c:url value="/WEB-INF/frame/nav.jsp" var="nav" scope="session" />
+	<c:import url="${header}" />
+	<c:import url="${nav}" />
 <div class="contents">
 
 	<h2>login</h2>

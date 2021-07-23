@@ -2,9 +2,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	List<Member> list = (List<Member>) request.getAttribute("result");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,11 +23,10 @@ button {
 </script>
 </head>
 <body>
-
+	<c:url value="/index.jsp" var="home"/>
 	<h1>회원 리스트</h1>
 	<hr>
-	<button><a href="<%=request.getContextPath() %>/index.jsp">홈</a></button>
-	<!-- <button onclick="location.href='dept_regForm.jsp';">부서정보 등록</button> -->
+	<a href="${home}">홈</a>
 	<hr>
 	<table border=1>
 		<tr>
@@ -39,50 +37,27 @@ button {
 			<th>가입일</th>
 			<th>관리</th>
 		</tr>
-
-		<%
-		if(list!=null && !list.isEmpty()){
-			for(int i=0; i<list.size(); i++){
-				%>
-		<tr>
-			<td><%= list.get(i).getMemberCode() %></td>
-			<td><%= list.get(i).getMemberId() %></td>
-			<td><%= list.get(i).getMemberPw() %></td>
-			<td><%= list.get(i).getMemberName() %></td>
-			<td><%= list.get(i).getRegDate() %></td>
-			<td><a href="#">수정</a> <a href="#">삭제</a></td>
-		</tr>
-		<%
-			}
-		}
-	%>
-
-
+		
+		<!--member_list.jsp request.setAttribute ->result로 저장  -->
+	  <c:if test="${result ne null && !empty result}" >
+		<c:forEach items="${result}" var="member">
+			<tr>
+				<td>${member.memberCode}</td>
+				<td>${member.memberId}</td>
+				<td>${member.memberPw}</td>
+				<td>${member.memberName}</td>
+				<td>${member.regDate}</td>
+				<td><a href="#">수정</a> <a href="#">삭제</a></td>
+			</tr>
+		</c:forEach>
+		</c:if>
 	</table>
 	<script>
-		
 		function delDept(memberCode){
-			
 			if(confirm('정말 삭제하시겠습니까?')){
 				//location.href = ''+idx;
-			}
-			
+			}		
 		}
-	
 	</script>
-
-	<%--
-		out.println(list);
-	--%>
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>
