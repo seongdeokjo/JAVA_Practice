@@ -17,8 +17,9 @@
 	${members} <br>
 	${members[0]} <br>
 	${members[1]} / ${members[1].name} <br>
-	<c:out value="${members[1].name}"></c:out>
-	<c:out value="${members[1].name}" escapeXml="false"></c:out>
+	<c:out value="${members[1].name}" escapeXml="false" >
+		<span style="color:red">입력된 정보 없음</span>
+	</c:out>
 	
 
 </body>
