@@ -20,9 +20,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet"
-	href="<%= request.getContextPath()%>/css/default.css">
+<title>my page</title>
+<link rel="stylesheet" href="${css}">
 <style>
 </style>
 <script>
@@ -30,9 +29,8 @@
 </head>
 <body>
 
-	<c:url value="/WEB-INF/frame/header.jsp" var="header" scope="session"/>
-	<c:url value="/WEB-INF/frame/nav.jsp" var="nav" scope="session" />
-	<c:import url="${header}" />
+
+	<c:import url="${head}" />
 	<c:import url="${nav}" />
 	<div class="contents">
 

@@ -14,19 +14,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<c:url  value="/css/default.css" var="css"/>
+<title>로그인</title>
 <link rel="stylesheet" href="${css}">
 <script>
 </script>
 </head>
 
 <body>
+
 	
-	<c:url value="/WEB-INF/frame/header.jsp" var="header" scope="session" />
-	<c:url value="/WEB-INF/frame/nav.jsp" var="nav" scope="session" />
-	<c:import url="${header}" />
-	<c:import url="${nav}" />
+<c:import url="${head}" />
+<c:import url="${nav}" />
+
+
 <div class="contents">
 
 	<h2>login</h2>
@@ -35,7 +35,7 @@
 		<table>
 			<tr>
 				<th>ID</th>
-				<td><input type="text" name="memberId" value="<%=reid%>"></td>
+				<td><input type="text" name="memberId" value="${reid}"></td>
 			</tr>
 			<tr>
 				<th>PW</th>
@@ -43,7 +43,7 @@
 			</tr>
 			<tr>
 				<th></th>
-				<td><input type="checkbox" name="reid" value="on" <%= checked %>>아이디 기억하기</td>
+				<td><input type="checkbox" name="reid" value="on" ${checked}>아이디 기억하기</td>
 			</tr>
 			<tr>
 				<th></th>

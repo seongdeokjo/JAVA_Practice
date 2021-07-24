@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>회원정보 page</title>
 <style>
 td {
 	text-align: center;
@@ -42,11 +42,13 @@ button {
 	  <c:if test="${result ne null && !empty result}" >
 		<c:forEach items="${result}" var="member">
 			<tr>
-				<td>${member.memberCode}</td>
-				<td>${member.memberId}</td>
-				<td>${member.memberPw}</td>
-				<td>${member.memberName}</td>
-				<td>${member.regDate}</td>
+				
+				<td><c:out value="${member.memberCode}"/></td>
+				<td><c:out value="${member.memberId}"/></td>
+				<td><c:out value="${member.memberPw}"/></td>
+				<td><c:out value="${member.memberName}"/></td>
+				<td><c:out value="${member.regDate}"/></td>
+				
 				<td><a href="#">수정</a> <a href="#">삭제</a></td>
 			</tr>
 		</c:forEach>
