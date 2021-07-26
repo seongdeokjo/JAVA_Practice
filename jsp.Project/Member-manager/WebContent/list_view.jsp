@@ -50,7 +50,7 @@ button {
 				<td><c:out value="${member.memberName}"/></td>
 				<td><c:out value="${member.regDate}"/></td>
 				
-				<td><a href="#">수정</a> <a href="#">삭제</a></td>
+				<td><a href="<c:url value="/editForm.jsp"/>?memberCode=${member.memberCode}">수정</a> <a href="#">삭제</a></td>
 			</tr>
 		</c:forEach>
 		</c:if>
