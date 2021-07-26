@@ -13,14 +13,16 @@
 <script>
 </script>
 </head>
-<c:url value="WEB-INF/frame/header.jsp" var="head" scope="session"/>
-<c:url value="WEB-INF/frame/nav.jsp" var="nav" scope="session"/>
+
 <body>
 
-
-
+<%-- <c:url value="WEB-INF/frame/header.jsp" var="head" scope="session"/>
+<c:url value="WEB-INF/frame/nav.jsp" var="nav" scope="session"/>
 <c:import url="${head}"/>
-<c:import url="${nav}"/>
+<c:import url="${nav}"/> --%>
+<%@ include file="/WEB-INF/frame/header.jsp" %>
+
+<%@ include file="/WEB-INF/frame/nav.jsp" %>
 	
 
 	<div class="contents">

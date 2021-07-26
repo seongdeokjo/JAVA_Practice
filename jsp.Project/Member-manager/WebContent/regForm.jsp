@@ -15,14 +15,15 @@
 </head>
 <body>
 
-	<c:import url="${head}" />
-	<c:import url="${nav}" />
-
+<%-- 	<c:import url="${head}" />
+	<c:import url="${nav}" /> --%>
+<%@ include file="/WEB-INF/frame/header.jsp" %>
+<%@ include file="/WEB-INF/frame/nav.jsp" %>
 	<div class="contents">
 
 		<h2>회원가입</h2>
 		<hr>
-		<form action="memberReg.jsp" method="post">
+		<form action="<c:url value="/memberReg.jsp"/>" method="post">
 			<table>
 				<tr>
 					<td>아이디</td>

@@ -1,3 +1,5 @@
+<%@page import="java.io.Console"%>
+<%@page import="org.apache.tomcat.util.bcel.classfile.ConstantLong"%>
 <%@page import="domain.Member"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="util.ConnectionProvider"%>
@@ -6,11 +8,13 @@
 <%@page import="util.CookieBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%
 	// 사용자가 전달한 데이터를 받고 -> DB에서 확인
 	// reid 확인 하고 값을 받아오면 쿠키 설정 
 	
 	String memberId = request.getParameter("memberId");
+	
 	String memberPw = request.getParameter("memberPw");
 	String reid = request.getParameter("reid");
 	
@@ -50,7 +54,8 @@
 	}
 	
 	if(loginChk){
-		response.sendRedirect("index.jsp");
+		
+		response.sendRedirect(request.getContextPath()+"/index.jsp");
 	}else{
 		%>
 		<script>

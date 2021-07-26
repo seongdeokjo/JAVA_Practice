@@ -31,7 +31,7 @@ public class CharacterEncodingFilter implements Filter {
 
 	public void init(FilterConfig fConfig) throws ServletException {
 		String paramValue = fConfig.getInitParameter("encoding");
-		if (paramValue != null) {
+		if (paramValue == null) {
 			this.encoding = "utf-8";
 		} else {
 			this.encoding = paramValue;

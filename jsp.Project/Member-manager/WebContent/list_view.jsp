@@ -23,9 +23,10 @@ button {
 </script>
 </head>
 <body>
-	<c:url value="/index.jsp" var="home"/>
+	
 	<h1>회원 리스트</h1>
 	<hr>
+	<c:url value="/index.jsp" var="home"/>
 	<a href="${home}">홈</a>
 	<hr>
 	<table border=1>
