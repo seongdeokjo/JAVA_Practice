@@ -19,5 +19,15 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+	<!--filter,listener 등록해보기 -->
+	<filter>
+		<filter-name>LogincheckFilter</filter-name>
+		<filter-class>filter.LoginCheckFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>LogincheckFilter</filter-name>
+		<url-pattern>/index.jsp</url-pattern>
+	</filter-mapping>
 
 </web-app>
