@@ -45,7 +45,8 @@
 		<h2>My Page</h2>
 		<hr>
 		
-		<h3>${loginInfo}</h3>
+		<h3>${loginInfo.getMemberName()}</h3>
+		<h3>${loginInfo.getMemberId()}</h3>
 
 
 	</div>

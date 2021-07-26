@@ -10,7 +10,7 @@
 <c:url value="/loginForm.jsp" var="loginForm" />
 <c:url value="/logout.jsp" var="logout" />
 <c:url value="/member_list.jsp" var="member_list" />
-<c:url value="/mypage.jsp" var="mypage" />	
+<c:url value="/mypage/mypage.jsp" var="mypage" />	
 
 <nav>
 	<%-- <ul>

@@ -100,7 +100,7 @@ public class MemberDao {
 			member = new Member();
 			member.setIdx(rs.getInt("memberCode"));
 			member.setMemberId(rs.getString("memberId"));
-			member.setmemberPw(rs.getString(",memberPw"));
+			member.setmemberPw(rs.getString("memberPw"));
 			member.setMemberName(rs.getString("memberName"));
 			member.setRegDate(rs.getTimestamp("regDate"));
 		
