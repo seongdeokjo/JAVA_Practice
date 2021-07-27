@@ -9,8 +9,16 @@ import guest.jdbc.JdbcUtil;
 
 public class MessageDao {
 	//싱글톤 처리
-	//private MessageDao() {}
-
+	private MessageDao() {}
+	private static MessageDao dao = new MessageDao();
+	public static MessageDao getInstance() {
+		if(dao == null) {
+			dao = new MessageDao();
+		}
+		return dao;
+	}
+	
+	
 	public int writeMessage(Connection conn, Message message) throws SQLException {
 		int result = 0;
 		
