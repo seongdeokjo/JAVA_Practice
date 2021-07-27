@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class Message {
 	
 	//mysql : guestbook_message table과 일치
-	private int memssageid;
+	private int messageid;
 	private String guestname;
 	private String password;
 	private String message;
@@ -20,20 +20,20 @@ public class Message {
 		this.message = message;
 	}
 
-	public Message(int memssageid, String guestname, String password, String message, Timestamp regdate) {
-		this.memssageid = memssageid;
+	public Message(int messageid, String guestname, String password, String message, Timestamp regdate) {
+		this.messageid = messageid;
 		this.guestname = guestname;
 		this.password = password;
 		this.message = message;
 		this.regdate = regdate;
 	}
 
-	public int getMemssageid() {
-		return memssageid;
+	public int getMessageid() {
+		return messageid;
 	}
 
-	public void setMemssageid(int memssageid) {
-		this.memssageid = memssageid;
+	public void setMemssageid(int messageid) {
+		this.messageid = messageid;
 	}
 
 	public String getGuestname() {
@@ -70,7 +70,7 @@ public class Message {
 
 	@Override
 	public String toString() {
-		return "Message [memssageid=" + memssageid + ", guestname=" + guestname + ", password=" + password
+		return "Message [messageid=" + messageid + ", guestname=" + guestname + ", password=" + password
 				+ ", message=" + message + ", regdate=" + regdate + "]";
 	}
 	

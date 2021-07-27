@@ -23,7 +23,6 @@ public class MessageListService {
 		return service;
 	}
 	
-	
 	public MessageListView getMessageList(int pageNumber) {
 		MessageListView listview = null;
 		Connection conn = null;
@@ -59,9 +58,6 @@ public class MessageListService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
 		return listview;
 	}
 }

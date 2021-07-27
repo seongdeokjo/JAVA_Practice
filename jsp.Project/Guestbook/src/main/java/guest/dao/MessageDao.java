@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import guest.domain.Message;
@@ -66,13 +65,13 @@ public class MessageDao {
 		
 		return totalCount;
 	}
-
+	//작성된 게시글을 지정된 값 만큼 보여주기 위한 기능
 	public List<Message> selectMessageList(Connection conn, int firstRow, int messageCountperPage) {
 		List<Message> messageList = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sqlSel ="select * from guestbook_message order by regdate limit ?,?";
+		String sqlSel ="select * from guestbook_message order by regdate desc limit ?,?";
 		try {
 			pstmt = conn.prepareStatement(sqlSel);
 			pstmt.setInt(1, firstRow);
@@ -98,6 +97,66 @@ public class MessageDao {
 		}
 		return messageList;
 	}
-
+	// mid로 저장되어있는 message 반환
+	public Message selectByMid(Connection conn, int mid) {
+		Message message = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sqlSel = "select * from guestbook_message where messageid = ?";
+		try {
+			pstmt = conn.prepareStatement(sqlSel);
+			pstmt.setInt(1, mid);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				message = new Message();
+				message.setMemssageid(rs.getInt(1));
+				message.setGuestname(rs.getString(2));
+				message.setPassword(rs.getString(3));
+				message.setMessage(rs.getString(4));
+				message.setRegdate(rs.getTimestamp(5));
+				
+//				message = new Message(
+//							
+//							rs.getInt(1),
+//							rs.getString(2),
+//							rs.getString(3),
+//							rs.getString(3),
+//							rs.getTimestamp(4)
+//						);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return message;
+	}
+	// 인덱스를 받아 해당 게시글 삭제하는 메서드
+	public int deleteMessage(Connection conn, int mid) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sqlDel ="delete from guestbook_message where messageid = ?";
+		try {
+			pstmt = conn.prepareStatement(sqlDel);
+			pstmt.setInt(1, mid);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(pstmt);
+		}	
+		return result;
+	}
+	
+	
+	
+	
+	
+	
 	
 }
