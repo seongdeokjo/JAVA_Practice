@@ -1,4 +1,4 @@
-package domain;
+package member.domain;
 
 public class LoginInfo {
 	private int memberCode;

@@ -1,4 +1,4 @@
-package domain;
+package member.domain;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -11,6 +11,16 @@ public class Member {
 	private String memberName;
 	private Timestamp regDate;
 	
+	public Member() {}
+	
+	public Member(String memberId, String memberPw, String memberName) {
+		super();
+		this.memberId = memberId;
+		this.memberPw = memberPw;
+		this.memberName = memberName;
+	}
+
+	
 	public Member(int memberCode, String memberId, String memberPw, String memberName, Timestamp regDate) {
 		this.memberCode = memberCode;
 		this.memberId = memberId;
@@ -19,10 +29,6 @@ public class Member {
 		this.regDate = regDate;
 	}
 	
-	public Member() {}
-
-	
-
 	public int getMemberCode() {
 		return memberCode;
 	}

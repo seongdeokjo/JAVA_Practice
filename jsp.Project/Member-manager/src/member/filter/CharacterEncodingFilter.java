@@ -1,4 +1,4 @@
-package filter;
+package member.filter;
 
 import java.io.IOException;
 import javax.servlet.DispatcherType;

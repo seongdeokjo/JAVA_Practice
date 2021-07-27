@@ -1,4 +1,4 @@
-package util;
+package member.util;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

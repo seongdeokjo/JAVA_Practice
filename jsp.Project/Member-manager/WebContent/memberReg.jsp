@@ -1,32 +1,14 @@
+<%@page import="member.service.InsertMemberService"%>
 <%@page import="java.sql.SQLException"%>
-<%@page import="util.ConnectionProvider"%>
-<%@page import="dao.MemberDao"%>
-<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:useBean id="member" class="domain.Member" />
-<jsp:setProperty property="*" name="member" />
+<jsp:useBean id="memberRequest" class="member.domain.MemberRequest" />
+<jsp:setProperty property="*" name="memberRequest" />
 
 <%
-	out.println(member);
+	out.println(memberRequest);
 
-	int result = 0;
-	Connection conn = null;
-	MemberDao dao = null;
-
-	try {
-		conn = ConnectionProvider.getConnection();
-		dao = MemberDao.getInstance();
-
-		result = dao.insertMember(conn, member);
-
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
-
-	//out.println(result);
-
-	if (result > 0) {
+	int result = InsertMemberService.getInstance();
 %>
 <script>
 	alert('등록되었습니다.');

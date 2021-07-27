@@ -1,11 +1,11 @@
 <%@page import="java.io.Console"%>
 <%@page import="org.apache.tomcat.util.bcel.classfile.ConstantLong"%>
-<%@page import="domain.Member"%>
+<%@page import="member.domain.Member"%>
 <%@page import="java.sql.SQLException"%>
-<%@page import="util.ConnectionProvider"%>
-<%@page import="dao.MemberDao"%>
+<%@page import="member.util.ConnectionProvider"%>
+<%@page import="member.dao.MemberDao"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="util.CookieBox"%>
+<%@page import="member.util.CookieBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     

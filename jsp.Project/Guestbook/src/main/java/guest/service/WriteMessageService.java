@@ -46,7 +46,6 @@ public class WriteMessageService {
 			
 			conn.commit();
 			
-			
 		} catch (SQLException e) {
 			//트랜젝션  rollback
 			JdbcUtil.rollback(conn);

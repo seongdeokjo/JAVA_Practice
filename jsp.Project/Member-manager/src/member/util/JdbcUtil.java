@@ -1,4 +1,4 @@
-package util;
+package member.util;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -42,7 +42,7 @@ public class JdbcUtil {
 		}
 	}
 	
-	public void rollback(Connection conn) {
+	public static void rollback(Connection conn) {
 		if(conn != null) {
 			try {
 				conn.rollback();

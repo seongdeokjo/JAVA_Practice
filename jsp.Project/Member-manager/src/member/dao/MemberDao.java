@@ -1,4 +1,4 @@
-package dao;
+package member.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,19 +8,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.Member;
-import util.JdbcUtil;
+import member.domain.Member;
+import member.util.JdbcUtil;
 
 public class MemberDao {
 
-	private MemberDao() {
-	}
+	private MemberDao() {}
 
 	private static MemberDao dao = new MemberDao();
 
 	public static MemberDao getInstance() {
 		return dao;
 	}
+	
 	//회원가입
 	public int insertMember(Connection conn, Member member) {
 
@@ -28,7 +28,7 @@ public class MemberDao {
 
 		PreparedStatement pstmt = null;
 
-		String sql = "insert into project.member (memberId,memberPw,memberName) values (?, ?, ?)";
+		String sql = "insert into member (memberId,memberPw,memberName) values (?, ?, ?)";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -40,6 +40,8 @@ public class MemberDao {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(pstmt);
 		}
 
 		return resultCnt;
