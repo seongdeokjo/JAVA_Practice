@@ -10,7 +10,10 @@ desc guestbook_message;
 
 -- select 
 select * from guestbook_message limit 0,3; -- limit index, count : 페이징 처리
-select * from guestbook_message order by regdate desc;
+select * from guestbook_message order by regdate desc limit 0,3;
+
+-- 전체 게시물의 개수
+select count(*) from guestbook_message;
 
 -- insert
 insert into project.guestbook_message(guestname,password,message) values('jo','1234','hey body good morning');

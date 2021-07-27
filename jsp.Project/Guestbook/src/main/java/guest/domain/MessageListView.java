@@ -22,7 +22,7 @@ public class MessageListView {
 		this.endRow = endRow;
 		calpageTotalCount();
 	}
-
+	
 	private void calpageTotalCount() {
 		if(this.messageTotalCount == 0) {
 			this.pageTotalCount = 0;
@@ -62,10 +62,13 @@ public class MessageListView {
 	public int getEndRow() {
 		return endRow;
 	}
+
+	@Override
+	public String toString() {
+		return "MessageListView [messageList=" + messageList + ", messageTotalCount=" + messageTotalCount
+				+ ", currentPagenumber=" + currentPagenumber + ", pageTotalCount=" + pageTotalCount
+				+ ", messageCountPerpage=" + messageCountPerpage + ", firstRow=" + firstRow + ", endRow=" + endRow
+				+ "]";
+	}
 	
 }
-
-
-
-
-

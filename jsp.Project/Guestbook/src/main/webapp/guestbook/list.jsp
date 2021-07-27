@@ -1,3 +1,5 @@
+<%@page import="guest.domain.MessageListView"%>
+<%@page import="guest.service.MessageListService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -8,7 +10,9 @@
 		pageNum = Integer.parseInt(pageNumStr);
 	}
 	
+	MessageListView listview = MessageListService.getInstance().getMessageList(pageNum);
 	
+	request.setAttribute("listview", listview);
 	
 %>
 <jsp:forward page="list_view.jsp"/>
