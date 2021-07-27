@@ -80,7 +80,7 @@
 			</table>
 		</div>
 		</c:forEach>
-	</c:if>
+	
 	<!-- 페이징  -->
 	<c:if test="${listview.pageTotalCount >0}">
 		<div class="paging">
@@ -89,6 +89,6 @@
 		</c:forEach>
 		</div>
 	</c:if>
-	${listview}
+	</c:if>
 </body>
 </html>

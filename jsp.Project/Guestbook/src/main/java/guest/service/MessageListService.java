@@ -8,6 +8,7 @@ import guest.dao.MessageDao;
 import guest.domain.Message;
 import guest.domain.MessageListView;
 import guest.jdbc.ConnectionProvider;
+import guest.jdbc.JdbcUtil;
 
 public class MessageListService {
 	
@@ -57,6 +58,8 @@ public class MessageListService {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(conn);
 		}
 		return listview;
 	}

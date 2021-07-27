@@ -19,9 +19,7 @@ public class JdbcDriverLoad extends HttpServlet {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}
-		
-		
+		}	
 	}
 	
 	

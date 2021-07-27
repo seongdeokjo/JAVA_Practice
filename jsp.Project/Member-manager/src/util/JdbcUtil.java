@@ -14,7 +14,6 @@ public class JdbcUtil {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -27,7 +26,6 @@ public class JdbcUtil {
 			try {
 				stmt.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -39,7 +37,16 @@ public class JdbcUtil {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void rollback(Connection conn) {
+		if(conn != null) {
+			try {
+				conn.rollback();
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}

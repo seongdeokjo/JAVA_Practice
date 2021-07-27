@@ -21,7 +21,7 @@ public class MemberDao {
 	public static MemberDao getInstance() {
 		return dao;
 	}
-
+	//회원가입
 	public int insertMember(Connection conn, Member member) {
 
 		int resultCnt = 0;
@@ -45,7 +45,7 @@ public class MemberDao {
 		return resultCnt;
 
 	}
-
+	// 회원 리스트 출력
 	public List<Member> selectList(Connection conn) {
 
 		List<Member> list = null;
@@ -81,7 +81,7 @@ public class MemberDao {
 		return list;
 
 	}
-	
+	// 로그인을 위한 db연결
 	public Member selectByLogin(Connection conn, String memberId, String memberPw) {
 		Member member = null;
 		

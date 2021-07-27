@@ -29,7 +29,7 @@ public class MessageListView {
 		}else {
 			//	10 / 3 -> 3   10%3 > 0 3 + 1
 			this.pageTotalCount = this.messageTotalCount / this.messageCountPerpage;
-			if(this.messageTotalCount / this.messageCountPerpage > 0) {
+			if(this.messageTotalCount % this.messageCountPerpage > 0) {
 				this.pageTotalCount ++;
 			}
 		}
@@ -62,7 +62,7 @@ public class MessageListView {
 	public int getEndRow() {
 		return endRow;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "MessageListView [messageList=" + messageList + ", messageTotalCount=" + messageTotalCount

@@ -51,7 +51,9 @@ public class WriteMessageService {
 			//트랜젝션  rollback
 			JdbcUtil.rollback(conn);
 			e.printStackTrace();
-		}	
+		}finally {
+			JdbcUtil.close(conn);
+		}
 		return resultCnt;
 	}
 	
