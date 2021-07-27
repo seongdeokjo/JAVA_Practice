@@ -12,4 +12,18 @@ desc guestbook_message;
 select * from guestbook_message limit 0,3; -- limit index, count : 페이징 처리
 select * from guestbook_message order by regdate desc;
 
+-- insert
+insert into project.guestbook_message(guestname,password,message) values('jo','1234','hey body good morning');
+
+-- update
+update project.guestbook_message
+set guestname = 'king', password ='1111', message ='bye body!'
+where messageid = 1 
+;
+
+-- delete
+delete from project.guestbook_message
+where messageid = 1;
+
+commit;
 
