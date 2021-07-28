@@ -9,23 +9,25 @@ public class Member {
 	private String memberId;
 	private String memberPw;
 	private String memberName;
+	private String memberPhoto;
 	private Timestamp regDate;
 	
 	public Member() {}
 	
-	public Member(String memberId, String memberPw, String memberName) {
-		super();
+	public Member(String memberId, String memberPw, String memberName,String memberPhoto) {
 		this.memberId = memberId;
 		this.memberPw = memberPw;
 		this.memberName = memberName;
+		this.memberPhoto = memberPhoto;
 	}
 
 	
-	public Member(int memberCode, String memberId, String memberPw, String memberName, Timestamp regDate) {
+	public Member(int memberCode, String memberId, String memberPw, String memberName,String memberPhoto, Timestamp regDate) {
 		this.memberCode = memberCode;
 		this.memberId = memberId;
 		this.memberPw = memberPw;
 		this.memberName = memberName;
+		this.memberPhoto = memberPhoto;
 		this.regDate = regDate;
 	}
 	
@@ -49,7 +51,7 @@ public class Member {
 		return memberPw;
 	}
 
-	public void setmemberPw(String memberPw) {
+	public void setMemberPw(String memberPw) {
 		this.memberPw = memberPw;
 	}
 
@@ -69,20 +71,29 @@ public class Member {
 		this.regDate = regDate;
 	}
 	
+	public String getMemberPhoto() {
+		return memberPhoto;
+	}
+
+	public void setMemberPhoto(String memberPhoto) {
+		this.memberPhoto = memberPhoto;
+	}
+
 	// java.sql.TimeStamp -> java.util.Date
 	public Date getDate() {
 		return new Date(getRegDate().getTime());
 	}
 
+
 	@Override
 	public String toString() {
-		return "Member [memberCode=" + memberCode + ", memberId=" + memberId + ", memberPw=" + memberPw + ", memberName=" + memberName
-				+ ", regdate=" + regDate + "]";
+		return "Member [memberCode=" + memberCode + ", memberId=" + memberId + ", memberPw=" + memberPw
+				+ ", memberName=" + memberName + ", memberPhoto=" + memberPhoto + ", regDate=" + regDate + "]";
 	}
-	
+
 	// Member -> LoginInfo 
 	public LoginInfo toLoginInfo() {
-		return new LoginInfo(this.memberCode,this.memberId,this.memberName);
+		return new LoginInfo(this.memberCode,this.memberId,this.memberName,this.memberPhoto);
 	}
 	
 	

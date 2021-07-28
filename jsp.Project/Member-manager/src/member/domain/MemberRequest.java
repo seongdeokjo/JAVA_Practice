@@ -4,11 +4,17 @@ public class MemberRequest {
 	private String memberId;
 	private String memberPw;
 	private String memberName;
+	private String memberPhoto;
+	
+	public MemberRequest() {
+	}
 
-	public MemberRequest(String memberId,String memberPw ,String memberName) {
+
+	public MemberRequest(String memberId,String memberPw ,String memberName,String memberPhoto) {
 		this.memberId = memberId;
 		this.memberPw = memberPw;
 		this.memberName = memberName;
+		this.memberPhoto = memberPhoto;
 	}
 
 
@@ -36,8 +42,18 @@ public class MemberRequest {
 		this.memberName = memberName;
 	}
 	
+	public String getMemberPhoto() {
+		return memberPhoto;
+	}
+
+
+	public void setMemberPhoto(String memberPhoto) {
+		this.memberPhoto = memberPhoto;
+	}
+
+
 	public Member toMember() {
-		return new Member(memberId,memberPw,memberName);
+		return new Member(memberId,memberPw,memberName,memberPhoto);
 	}
 
 	@Override

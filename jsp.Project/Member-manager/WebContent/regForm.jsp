@@ -23,7 +23,7 @@
 
 		<h2>회원가입</h2>
 		<hr>
-		<form action="<c:url value="/memberReg.jsp"/>" method="post">
+		<form action="<c:url value="/memberReg.jsp"/>" method="post" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td>아이디</td>
@@ -36,6 +36,10 @@
 				<tr>
 					<td>이름</td>
 					<td><input type="text" name="memberName"></td>
+				</tr>
+				<tr>
+					<td>사진</td>
+					<td><input type="file" name="memberPhoto"></td>
 				</tr>
 				<tr>
 					<td></td>

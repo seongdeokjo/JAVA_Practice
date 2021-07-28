@@ -28,14 +28,23 @@ public class MemberDao {
 
 		PreparedStatement pstmt = null;
 
-		String sql = "insert into member (memberId,memberPw,memberName) values (?, ?, ?)";
+		String sql1 = "insert into member (memberId,memberPw,memberName) values (?, ?, ?)";
+		String sql2 = "insert into member (memberId,memberPw,memberName,memberPhoto) values (?, ?, ?,?)";
 
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, member.getMemberId());
-			pstmt.setString(2, member.getMemberPw());
-			pstmt.setString(3, member.getMemberName());
-
+			if(member.getMemberPhoto() == null) {
+				pstmt = conn.prepareStatement(sql1);
+				pstmt.setString(1, member.getMemberId());
+				pstmt.setString(2, member.getMemberPw());
+				pstmt.setString(3, member.getMemberName());
+			}else {
+				pstmt = conn.prepareStatement(sql2);
+				pstmt.setString(1, member.getMemberId());
+				pstmt.setString(2, member.getMemberPw());
+				pstmt.setString(3, member.getMemberName());
+				pstmt.setString(4, member.getMemberPhoto());
+			}
+	
 			resultCnt = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -70,7 +79,8 @@ public class MemberDao {
 						rs.getString(2), 
 						rs.getString(3), 
 						rs.getString(4),
-						rs.getTimestamp(5)));
+						rs.getString(5),
+						rs.getTimestamp(6)));
 			}
 
 		} catch (SQLException e) {
@@ -102,7 +112,7 @@ public class MemberDao {
 			member = new Member();
 			member.setIdx(rs.getInt("memberCode"));
 			member.setMemberId(rs.getString("memberId"));
-			member.setmemberPw(rs.getString("memberPw"));
+			member.setMemberPw(rs.getString("memberPw"));
 			member.setMemberName(rs.getString("memberName"));
 			member.setRegDate(rs.getTimestamp("regDate"));
 		
