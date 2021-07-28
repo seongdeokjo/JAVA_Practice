@@ -57,7 +57,7 @@ public class MemberDao {
 
 	}
 	// 회원 리스트 출력
-	public List<Member> selectList(Connection conn) {
+	public List<Member> selectList(Connection conn) throws SQLException {
 
 		List<Member> list = null;
 
@@ -83,9 +83,7 @@ public class MemberDao {
 						rs.getTimestamp(6)));
 			}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
+		}  finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(stmt);
 		}

@@ -45,7 +45,9 @@ button {
 			<tr>
 				
 				<td><c:out value="${member.memberCode}"/></td>
-				<td><c:out value="${member.memberId}"/></td>
+				<td>
+				
+				<c:out value="${member.memberId}"/></td>
 				<td><c:out value="${member.memberPw}"/></td>
 				<td><c:out value="${member.memberName}"/></td>
 				<td><c:out value="${member.regDate}"/></td>

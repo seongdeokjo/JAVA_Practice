@@ -16,7 +16,6 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import member.dao.MemberDao;
 import member.domain.Member;
-import member.domain.MemberRequest;
 import member.util.ConnectionProvider;
 import member.util.JdbcUtil;
 
@@ -35,6 +34,8 @@ public class MemberRegService {
 		int result = 0;
 		Connection conn = null;
 		MemberDao dao = null;
+		
+		File newFile = null;
 
 		Member member = new Member();
 		try {
@@ -84,12 +85,13 @@ public class MemberRegService {
 						}
 
 						String paramName = item.getFieldName();
-						if (paramName.equals("photo")) {
+						if (paramName.equals("memberPhoto")) {
 
 							// 파일 이름, 사이즈
 							if (item.getName() != null && item.getSize() > 0) {
 								// 저장
-								item.write(new File(saveDir, item.getName()));
+								newFile = new File(saveDir, item.getName());
+								item.write(newFile);
 								// DB에 저장할 파일의 이름
 								member.setMemberPhoto(item.getName());
 							}
@@ -112,16 +114,23 @@ public class MemberRegService {
 
 			conn.commit();
 
-			JdbcUtil.close(conn);
 
 		} catch (SQLException e) {
 			//db오류시 파일은 저장되면서 더미데이터가 될 수 있기때문에 오류 발생시 폴더의 파일삭제 처리 
 			e.printStackTrace();
+			if(newFile !=null && newFile.exists()) {
+				newFile.delete();
+			}
+			
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(conn);
 		}
+		request.setAttribute("result", result);
+		
 		return result;
 	}
 }
