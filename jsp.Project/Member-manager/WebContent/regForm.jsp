@@ -30,7 +30,7 @@
 		$('#memberid').focusin(function(){
 			$('#msg').addClass('display_none');
 			$('#msg').removeClass('color_blue');
-			$('msg').removeClass('color_red');
+			$('#msg').removeClass('color_red');
 			
 			$(this).val('');
 		});
@@ -45,7 +45,7 @@
 				beforSend : function(){
 					$('#loadingimg').removeClass('display_none');
 				},
-				success : function(){
+				success : function(data){
 					// data : y / n 
 					if(data == 'Y'){
 						$('#msg').html('사용가능');
@@ -57,7 +57,7 @@
 						$('#msg').removeClass('display_none');
 					}
 				},
-				error : function(request,staus,error){
+				error : function(request,status,error){
 					alert('서버 통신에 문제가 발생했습니다. 다시 실행해주새요.');
 					console.log(request);
 					console.log(status);
