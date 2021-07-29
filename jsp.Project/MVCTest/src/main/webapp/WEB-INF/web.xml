@@ -10,13 +10,22 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-  <servlet>
+<!--   <servlet>
   	<servlet-name>simpleController</servlet-name>
   	<servlet-class>controller.SimpleController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>simpleController</servlet-name>
   	<url-pattern>/simple</url-pattern>
+  </servlet-mapping> -->
+  
+  <servlet>
+  	<servlet-name>FrontController</servlet-name>
+  	<servlet-class>controller.FrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>FrontController</servlet-name>
+  	<url-pattern>*.do</url-pattern>
   </servlet-mapping>
   
   
