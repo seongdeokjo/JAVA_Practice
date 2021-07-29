@@ -1,4 +1,4 @@
-package service;
+package command;
 
 import javax.servlet.http.HttpServletRequest;
 

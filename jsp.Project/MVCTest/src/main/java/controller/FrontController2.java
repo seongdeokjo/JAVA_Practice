@@ -16,16 +16,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
+import command.DateCommandImpl;
+import command.GreetingCommandImpl;
 import command.InvaildCommandImpl;
 
-public class FrontController extends HttpServlet {
+public class FrontController2 extends HttpServlet {
 	
 	private Map<String,Command> commands = new HashMap<String,Command>();
 	// 			요청(uri),new GreetingCommandImpl()
 	// commands.put("/",new GreetingCommandImpl())
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-				
+		
+		// commands 에 요청 문자열과 처리할 객체를 저장
+		
+		//commands.put("/", new GreetingCommandImpl()); // / 
+		//commands.put("/greeting.do", new GreetingCommandImpl());
+		//commands.put("/date.do", new DateCommandImpl());
+		//commands.put("/login.do", new DateCommandImpl());
+		
 		// 설정파일의 경로 가져오기
 		String configFile = config.getInitParameter("config");
 		
@@ -33,7 +42,9 @@ public class FrontController extends HttpServlet {
 		FileInputStream fis = null;
 		// 설정파일의 시스템 경로 가져오기
 		String configPath = config.getServletContext().getRealPath(configFile);
-				
+		
+		System.out.println(configPath);
+		
 		try {
 			fis = new FileInputStream(configPath);
 			prop.load(fis);
@@ -56,7 +67,9 @@ public class FrontController extends HttpServlet {
 				Command commandObj = (Command)commandClass.newInstance();
 				
 				commands.put(command, commandObj);
-								
+				
+				System.out.println(command+"="+commandClassName);
+				
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			} catch (InstantiationException e) {
@@ -103,9 +116,39 @@ public class FrontController extends HttpServlet {
 		  }
 		  viewPage = command.getPage(request);
 		  
+		  // 두번째 변경 코드 -2-
+		 /* 
+		  if (commandUri.equals("/greeting.do")) { command = new GreetingCommandImpl();
+		  } else if (commandUri.equals("/date.do")) { command = new DateCommandImpl();
+		  } else { command = new InvalidCommandImpl(); }
+		 */
+
+		
+		  // 제일 처음 코드 -1-
+		// view 페이지
+
+		// 2. 요청을 처리 : 모델 선택 실행 -> 요청을 처리할 수 있는 Service를 선택
+//		if (commandUri.equals("/greeting.do")) { // http://localhost:8080/mvc/greeting.do -> /greeting.do 추출
+//			// 처리할 수 있는 서비스의 메소드 실행 resultObj = "안녕하세요."; viewPage =
+//			// "/WEB-INF/views/greeting.jsp";
+//			GreetingService service = new GreetingService();
+//			viewPage = service.greeting(request);
+//		} else if (commandUri.equals("/date.do")) {
+//			DateService service = new DateService();
+//			viewPage = service.getDate(request);
+//		} else {
+//			resultObj = "Invaild Type Request";
+//		}
+
+		// 3. 결과 데이터를 공유(전달)
+//		request.setAttribute("result", resultObj);
 
 		// 4. viewPage로 포워딩
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
 	}
+	
+	
+	
+
 }
