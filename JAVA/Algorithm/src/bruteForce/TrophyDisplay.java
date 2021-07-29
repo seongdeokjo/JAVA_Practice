@@ -18,7 +18,6 @@ public class TrophyDisplay {
 		//트로피 높이 입력
 		for(int i =0; i<N; i++) {
 			height[i] = scan.nextInt();
-//			System.out.println(height[i]);
 		}
 		
 		//왼쪽에서 보이는 개수 => ++

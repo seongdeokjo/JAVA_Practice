@@ -1,8 +1,9 @@
 package stack;
 
 import java.util.Scanner;
+import java.util.Stack;
 
-public class CountBar {
+public class CountBar2 {
 
 	public static void main(String[] args) {
 //		아래 그림처럼 높이만 다르고 (같은 높이의 막대기가 있을 수 있음) 모양이 같은 막대기를 일렬로 세운 후, 왼쪽부터 차례로 번호를 붙인다. 
@@ -19,30 +20,8 @@ public class CountBar {
 //		출력
 //		오른쪽에서 N개의 막대기를 보았을 때, 보이는 막대기의 개수를 출력한다.
 
-		// 스캐너 사용
-		Scanner scan = new Scanner(System.in);
-		// 막대기 n개 개수 저장
-		int size = scan.nextInt();
-		// 각 막대기의 높이를 배열로 저장
-		int[] arr = new int[size];
-		for (int i = 0; i < arr.length; i++) {
-			arr[i] = scan.nextInt();
-		}
-		// 보이게 되는 막대의 개수 (첫 인덱스를 포함시키기 위해 1부터 시작)
-		int cnt = 1;
-		// 마지막 값부터 비교하기 위한 max변수
-		int max =arr[arr.length-1];
-		System.out.println(max);
-		// 마지막 index 값을 변수로 지정해서 시작값은 마지막 전 부터 
-		for (int i = arr.length - 2; i >= 0; i--) {
-			// 마지막 값을 max 비교시작 -> 마지막 인덱스 보다 크면 max 값 변경 , +1증가 시키기
-			
-			if(arr[i] > max) {
-				max = arr[i];
-				cnt++;
-			}
-		}
-		System.out.println(cnt);	
-		scan.close();
+		//stack,befferefReader,writer 사용해서 풀어보기
+		Stack<Integer> stack = new Stack<Integer>();
+		
 	}
 }
