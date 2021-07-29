@@ -1,8 +1,12 @@
 package controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -14,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import service.Command;
 import service.DateCommandImpl;
 import service.GreetingCommandImpl;
-import service.InvaildService;
 import service.InvaildCommandImpl;
 
 public class FrontController extends HttpServlet {
@@ -27,12 +30,55 @@ public class FrontController extends HttpServlet {
 		
 		// commands 에 요청 문자열과 처리할 객체를 저장
 		
-		commands.put("/", new GreetingCommandImpl()); // / 
-		commands.put("/greeting.do", new GreetingCommandImpl());
-		commands.put("/date.do", new DateCommandImpl());
-	//	commands.put("/login.do", new DateCommandImpl());
+		//commands.put("/", new GreetingCommandImpl()); // / 
+		//commands.put("/greeting.do", new GreetingCommandImpl());
+		//commands.put("/date.do", new DateCommandImpl());
+		//commands.put("/login.do", new DateCommandImpl());
 		
-	
+		// 설정파일의 경로 가져오기
+		String configFile = config.getInitParameter("config");
+		
+		Properties prop = new Properties();
+		FileInputStream fis = null;
+		// 설정파일의 시스템 경로 가져오기
+		String configPath = config.getServletContext().getRealPath(configFile);
+		
+		System.out.println(configPath);
+		
+		try {
+			fis = new FileInputStream(configPath);
+			prop.load(fis);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Iterator<Object> itr = prop.keySet().iterator();
+		
+		while(itr.hasNext()) {
+			String command = (String)itr.next();
+			String commandClassName = prop.getProperty(command);
+			
+			
+			// 클래스 이름으로 해당 클래스의 인스턴스 생성
+			try {
+				Class commandClass = Class.forName(commandClassName);
+				Command commandObj = (Command)commandClass.newInstance();
+				
+				commands.put(command, commandObj);
+				
+				System.out.println(command+"="+commandClassName);
+				
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} 
+		}
+		
 	}
 	
 	@Override
