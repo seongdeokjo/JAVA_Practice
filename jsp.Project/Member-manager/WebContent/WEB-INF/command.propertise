@@ -3,5 +3,6 @@
 /=member.command.DefaultCommandImpl
 /regForm.do=member.command.MemberRegFormCommandImpl
 /memberReg.do=member.command.MemberRegCommandImpl
+/loginForm.do=member.command.LoginFormCommandImpl
 /login.do=member.command.LoginCommandImpl
 /member_list.do=member.command.MemberListCommandImpl

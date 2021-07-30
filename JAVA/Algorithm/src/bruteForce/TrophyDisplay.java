@@ -13,7 +13,7 @@ public class TrophyDisplay {
 		
 		int cntL = 0; //왼쪽에서 보이는 개수
 		int index = height[0];
-		int cntR = 0; //오른쪽에서 보이는 개수
+		int cntR = 1; //오른쪽에서 보이는 개수
 		
 		//트로피 높이 입력
 		for(int i =0; i<N; i++) {
@@ -22,21 +22,22 @@ public class TrophyDisplay {
 		
 		//왼쪽에서 보이는 개수 => ++
 		for(int i =0; i<height.length; i++) {
-			if(height[i] >= index) {
+			if(height[i] > index) {
 				index = height[i];
 				cntL++;
 			}
 		}
-		System.out.println(cntL);
+		
 		//다시 초기화
-		index = height[0];
+		index = height[height.length-1];
 		//오른쪽에서 보이는 개수 => --
 		for(int i = height.length-1; i>=0; i--) {
-			if(height[i] >= index) {
+			if(height[i] > index) {
 				index = height[i];
 				cntR++;
 			}
 		}
+		System.out.println(cntL);
 		System.out.println(cntR);
 	}
 }
