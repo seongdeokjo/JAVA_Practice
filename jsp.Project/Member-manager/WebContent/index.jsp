@@ -16,19 +16,16 @@
 
 <body>
 
-<%-- <c:url value="WEB-INF/frame/header.jsp" var="head" scope="session"/>
-<c:url value="WEB-INF/frame/nav.jsp" var="nav" scope="session"/>
-<c:import url="${head}"/>
-<c:import url="${nav}"/> --%>
-<%@ include file="/WEB-INF/frame/header.jsp" %>
 
-<%@ include file="/WEB-INF/frame/nav.jsp" %>
+<c:import url="/WEB-INF/frame/header.jsp"/>
+<c:import url="/WEB-INF/frame/nav.jsp"/>
 	
 
 	<div class="contents">
 
-		<h1>Index</h1>
-
+		<h1>${result}</h1>
+		<h3>회원가입 mvc 패턴 변경완료</h3>
+		<h3>회원 리스트 mvc 패턴 변경완료 </h3>
 
 	</div>
 

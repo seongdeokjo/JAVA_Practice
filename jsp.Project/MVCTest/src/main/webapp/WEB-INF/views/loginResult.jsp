@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,12 +12,9 @@
 </script>
 </head>
 <body>
-	<h1>로그인 폼 : ${result}</h1>
-	<hr>
-	<form action="loginResult.do" method="post">
-	아이디 <input type="text" name="id"> <br>
-	비밀번호 <input type="password" name="pw"> <br>
-	<input type="submit" value="로그인">
-	</form>
+
+	data = ${result ne null} <br>
+	id = ${result[0] } <br>
+	pw = ${result[1] } <br>
 </body>
 </html>

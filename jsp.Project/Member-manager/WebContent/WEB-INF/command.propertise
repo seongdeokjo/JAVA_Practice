@@ -1,0 +1,7 @@
+## 메인페이지
+#/=mvc.command.IndexCommand
+/=member.command.DefaultCommandImpl
+/regForm.do=member.command.MemberRegFormCommandImpl
+/memberReg.do=member.command.MemberRegCommandImpl
+/login.do=member.command.LoginCommandImpl
+/member_list.do=member.command.MemberListCommandImpl

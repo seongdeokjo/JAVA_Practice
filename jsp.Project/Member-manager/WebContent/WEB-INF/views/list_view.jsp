@@ -23,14 +23,16 @@ button {
 </script>
 </head>
 <body>
+	<c:import url="/WEB-INF/frame/header.jsp"/>
+	<c:import url="/WEB-INF/frame/nav.jsp"/>
 	
 	<h1>회원 리스트</h1>
 	<hr>
-	<c:url value="/index.jsp" var="home"/>
-	<a href="${home}">홈</a>
+	<a href="/index.do">홈</a>
 	<hr>
 	<table border=1>
 		<tr>
+			<th>프로필</th>
 			<th>회원코드</th>
 			<th>아이디</th>
 			<th>비밀번호</th>
@@ -43,7 +45,9 @@ button {
 	  <c:if test="${result ne null && !empty result}" >
 		<c:forEach items="${result}" var="member">
 			<tr>
-				
+				<td>
+						<img src="<c:url value="/upload/${member.memberPhoto}"/>" style="width: 50px">
+				</td>
 				<td><c:out value="${member.memberCode}"/></td>
 				<td>
 				

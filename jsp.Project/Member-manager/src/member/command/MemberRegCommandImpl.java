@@ -1,4 +1,4 @@
-package member.service;
+package member.command;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -19,17 +20,8 @@ import member.domain.Member;
 import member.util.ConnectionProvider;
 import member.util.JdbcUtil;
 
-public class MemberRegService {
-
-	private MemberRegService() {
-	}
-
-	private static MemberRegService service = new MemberRegService();
-
-	public static MemberRegService getInstance() {
-		return service;
-	}
-
+public class MemberRegCommandImpl implements Command {
+	
 	public int regMember(HttpServletRequest request) throws FileUploadException {
 		int result = 0;
 		Connection conn = null;
@@ -129,8 +121,21 @@ public class MemberRegService {
 		}finally {
 			JdbcUtil.close(conn);
 		}
-		request.setAttribute("result", result);
 		
 		return result;
 	}
+	
+	@Override
+	public String getPage(HttpServletRequest request,HttpServletResponse response) {
+		
+		try {
+			request.setAttribute("result", regMember(request));
+		} catch (FileUploadException e) {
+			e.printStackTrace();
+		}
+	
+		
+		return "/WEB-INF/views/memberReg.jsp";
+	}
+
 }

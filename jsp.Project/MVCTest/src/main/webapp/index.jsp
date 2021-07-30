@@ -11,12 +11,7 @@
 </script>
 </head>
 <body>
-	<h1>로그인 폼 : ${result}</h1>
-	<hr>
-	<form action="loginResult.do" method="post">
-	아이디 <input type="text" name="id"> <br>
-	비밀번호 <input type="password" name="pw"> <br>
-	<input type="submit" value="로그인">
-	</form>
+	<h1>index</h1>
+	<h3><a href="login.do">로그인</a></h3>
 </body>
 </html>

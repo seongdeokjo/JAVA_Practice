@@ -83,9 +83,9 @@
 <%@ include file="/WEB-INF/frame/nav.jsp" %>
 	<div class="contents">
 
-		<h2>회원가입</h2>
+		<h2>${result}</h2>
 		<hr>
-		<form action="<c:url value="/memberReg.jsp"/>" method="post" enctype="multipart/form-data">
+		<form action="<c:url value="memberReg.do"/>" method="post" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td>아이디</td>
