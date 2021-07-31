@@ -32,7 +32,7 @@ public class CountBar {
 		int cnt = 1;
 		// 마지막 값부터 비교하기 위한 max변수
 		int max =arr[arr.length-1];
-		System.out.println(max);
+		
 		// 마지막 index 값을 변수로 지정해서 시작값은 마지막 전 부터 
 		for (int i = arr.length - 2; i >= 0; i--) {
 			// 마지막 값을 max 비교시작 -> 마지막 인덱스 보다 크면 max 값 변경 , +1증가 시키기

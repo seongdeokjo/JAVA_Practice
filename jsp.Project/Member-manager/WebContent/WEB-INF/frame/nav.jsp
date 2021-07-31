@@ -8,7 +8,7 @@
 
 <c:url value="/regForm.do" var="regForm" />
 <c:url value="/loginForm.do" var="loginForm" />
-<c:url value="/logout.jsp" var="logout" />
+<c:url value="/logout.do" var="logout" />
 <c:url value="/member_list.do" var="member_list" />
 <c:url value="/mypage/mypage.jsp" var="mypage" />	
 

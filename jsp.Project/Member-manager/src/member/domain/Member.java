@@ -93,11 +93,7 @@ public class Member {
 
 	// Member -> LoginInfo 
 	public LoginInfo toLoginInfo() {
-		return new LoginInfo(this.memberCode,this.memberId,this.memberName,this.memberPhoto);
+		return new LoginInfo(this.memberCode,this.memberId,this.memberName);
 	}
-	
-	
-	
-	
 
 }

@@ -50,9 +50,6 @@ public class ReverseWordOrder {
 			}
 			System.out.println();
 		}
-
-	
-	
 	}	
 
 }
