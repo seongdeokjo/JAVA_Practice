@@ -147,5 +147,60 @@ public class MemberDao {
 		}
 		return cnt;
 	}
+	
+	// 회원의 정보를 변경하는  db
+	public int editMember(Connection conn,Member member ) {
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+
+		String sql1 = "update member set memberPw =?, memberName = ? where memberId = ?";
+		String sql2 = "update member set memberPw =?, memberName = ? memberPhoto = ? where memberId = ?";
+
+		try {
+			if(member.getMemberPhoto() == null) {
+				pstmt = conn.prepareStatement(sql1);
+				pstmt.setString(1, member.getMemberPw());
+				pstmt.setString(2, member.getMemberName());
+				pstmt.setString(3, member.getMemberId());
+			}else {
+				pstmt = conn.prepareStatement(sql2);
+				pstmt.setString(1, member.getMemberPw());
+				pstmt.setString(2, member.getMemberName());
+				pstmt.setString(3, member.getMemberPhoto());
+				pstmt.setString(4, member.getMemberId());
+			}
+	
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(pstmt);
+		}
+		return result;
+	}
+
+	public int delMember(Connection conn, String code) {
+		int result = 0;
+		
+		 PreparedStatement pstmt = null;
+		String sql = "delete from member where memberCode = ? ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, code);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(pstmt);
+		}
+		
+		
+		
+		return result;
+	}
 
 }

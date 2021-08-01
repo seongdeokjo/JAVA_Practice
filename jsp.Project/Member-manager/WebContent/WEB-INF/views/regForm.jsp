@@ -27,17 +27,17 @@
 <script>
 	$(document).ready(function(){
 		
-		$('#memberid').focusin(function(){
+		$('#memberId').focusin(function(){
 			$('#msg').addClass('display_none');
 			$('#msg').removeClass('color_blue');
 			$('#msg').removeClass('color_red');
 			
 			$(this).val('');
 		});
-		$('#memberid').focusout(function(){
+		$('#memberId').focusout(function(){
 			// ajax 비동기 통신 > id를 서버로 보내고 사용 가능 유무의 응답 코드를 받는다. -> 화면에 메세지 출력
 			$.ajax({
-				url : 'idcheck.jsp',
+				url : 'idcheck.do',
 				type : 'post',
 				data : {
 					mid : $(this).val()
@@ -90,7 +90,7 @@
 				<tr>
 					<td>아이디</td>
 					<td>
-						<input type="text" name="memberId" id="memberid">
+						<input type="text" name="memberId" id="memberId">
 						<span id="msg" class="display_none"></span>
 						<img id="loadingimg" class="display_none" alt="loading" src="<c:url value="/image/loading.gif"/>"> 
 					</td>

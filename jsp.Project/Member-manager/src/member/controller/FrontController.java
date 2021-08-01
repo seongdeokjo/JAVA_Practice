@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import member.command.Command;
-import member.command.InvaildCommandImpl;
+import member.service.Command;
+import member.service.InvaildCommandImpl;
 
 public class FrontController extends HttpServlet {
 	private Map<String,Command> commands = new HashMap<String,Command>();

@@ -1,10 +1,14 @@
 ## 메인페이지
 #/=mvc.command.IndexCommand
-/=member.command.DefaultCommandImpl
-/index.do=member.command.IndexCommandImpl
-/regForm.do=member.command.MemberRegFormCommandImpl
-/memberReg.do=member.command.MemberRegCommandImpl
-/loginForm.do=member.command.LoginFormCommandImpl
-/login.do=member.command.LoginCommandImpl
-/logout.do=member.command.LogoutCommandImpl
-/member_list.do=member.command.MemberListCommandImpl
+/=member.service.DefaultCommandImpl
+/index.do=member.service.IndexCommandImpl
+/regForm.do=member.service.MemberRegFormCommandImpl
+/memberReg.do=member.service.MemberRegCommandImpl
+/idcheck.do=member.service.MemberIdCheckCommandImpl
+/loginForm.do=member.service.LoginFormCommandImpl
+/login.do=member.service.LoginCommandImpl
+/logout.do=member.service.LogoutCommandImpl
+/member_list.do=member.service.MemberListCommandImpl
+/editForm.do=member.service.MemberEditFormCommandImpl
+/editMember.do=member.service.MemberEditCommandImpl
+/deleteMember.do=member.service.MemberDeleteCommandImpl

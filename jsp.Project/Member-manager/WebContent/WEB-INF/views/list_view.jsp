@@ -28,7 +28,7 @@ button {
 	
 	<h1>회원 리스트</h1>
 	<hr>
-	<a href="/index.do">홈</a>
+	<a href="index.do">홈</a>
 	<hr>
 	<table border=1>
 		<tr>
@@ -56,15 +56,18 @@ button {
 				<td><c:out value="${member.memberName}"/></td>
 				<td><c:out value="${member.regDate}"/></td>
 				
-				<td><a href="<c:url value="/editForm.jsp"/>?memberCode=${member.memberCode}">수정</a> <a href="#">삭제</a></td>
+				<td>
+					<a href="<c:url value="/editForm.do"/>?memberId=${member.memberId}">수정</a> 
+					<a href="javascript:delMember('${member.memberCode}')">삭제</a>
+				</td>
 			</tr>
 		</c:forEach>
 		</c:if>
 	</table>
 	<script>
-		function delDept(memberCode){
+		function delMember(code){
 			if(confirm('정말 삭제하시겠습니까?')){
-				//location.href = ''+idx;
+				location.href ='deleteMember.do?memberCode='+code;
 			}		
 		}
 	</script>

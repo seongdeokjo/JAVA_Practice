@@ -26,6 +26,9 @@
 		<h1>${result}</h1>
 		<h3>회원가입 mvc 패턴 변경완료</h3>
 		<h3>회원 리스트 mvc 패턴 변경완료 </h3>
+		<h3>로그인,로그아웃 mvc 패턴 변경완료 </h3>
+		${loginInfo.memberId}
+		
 
 	</div>
 
