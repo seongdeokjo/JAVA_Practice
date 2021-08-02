@@ -2,6 +2,7 @@ package member.main;
 
 import javax.imageio.spi.RegisterableService;
 
+import member.dao.GuestDao;
 import member.dao.MemberDao;
 import member.service.ChangePasswordService;
 import member.service.MemberRegService;
@@ -15,12 +16,14 @@ public class Assembler {
 	// 필요한 객체를 반환 해주는 기능
 	
 	private MemberDao dao;
+	private GuestDao gDao;
 	private MemberRegService regService;
 	private ChangePasswordService passwordService;
 	
 	public Assembler() {
 		//인스턴스를 생성 -> 의존 주입
 		dao = new MemberDao();
+		gDao = new GuestDao();
 		regService = new MemberRegService(dao);
 		passwordService = new ChangePasswordService(dao);
 	}
