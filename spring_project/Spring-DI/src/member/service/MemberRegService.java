@@ -13,6 +13,7 @@ public class MemberRegService {
 	
 	public MemberRegService(Dao dao) {
 		this.dao = dao;
+		System.out.println("MeberRegService 인스턴스 생성");
 	}
 	
 	public void regMember(RegRequest request) throws Exception {
