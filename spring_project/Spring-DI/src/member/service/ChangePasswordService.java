@@ -4,7 +4,15 @@ import member.dao.Dao;
 import member.domain.Member;
 
 public class ChangePasswordService {
-	Dao dao;
+	private Dao dao;
+	
+	public void setDao(Dao dao) {
+		this.dao = dao;
+	}
+	
+	public ChangePasswordService() {
+		System.out.println("ChangePasswordService() 기본 생성자");
+	}
 	
 	public ChangePasswordService(Dao dao) {
 		this.dao = dao;

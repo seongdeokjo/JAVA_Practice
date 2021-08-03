@@ -12,7 +12,7 @@ public class MemberDao implements Dao {
 	// 			email, 	Member
 	
 	public MemberDao() {
-		System.out.println("memberDao 인스턴스 생성");
+		System.out.println("memberDao() 인스턴스 생성");
 	}
 	
 	@Override
