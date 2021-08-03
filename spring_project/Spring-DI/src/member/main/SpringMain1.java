@@ -14,7 +14,7 @@ public class SpringMain1 {
 	static ApplicationContext ctx;
 	
 	public static void main(String[] args) {
-		
+		// 설정파일을 읽어서 컨테이너로 만듬
 		ctx = new GenericXmlApplicationContext("classpath:appCtx1.xml");
 		
 		Scanner scan = new Scanner(System.in);

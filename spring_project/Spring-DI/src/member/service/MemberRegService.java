@@ -10,11 +10,30 @@ public class MemberRegService {
 	
 //	Dao dao = new MemberDao(); 
 	Dao dao;
+	int num;
 	
+	// setter: [property] 주입방식
+	public void setDao(Dao dao) {
+		this.dao = dao;
+	}
+	//정수 데이터를 받는 생성자
+		public MemberRegService(int num) {
+//			this.dao = dao;
+			System.out.println("MeberRegService 인스턴스 생성");
+		}
+	
+	//생성자 주입방식
 	public MemberRegService(Dao dao) {
 		this.dao = dao;
 		System.out.println("MeberRegService 인스턴스 생성");
 	}
+	
+	//생성자 주입방식
+		public MemberRegService(Dao dao,int num) {
+			this.dao = dao;
+			this.num = num;
+			System.out.println("MeberRegService 인스턴스 생성");
+		}
 	
 	public void regMember(RegRequest request) throws Exception {
 		
