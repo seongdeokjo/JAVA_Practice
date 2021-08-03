@@ -1,12 +1,10 @@
 package member.main;
 
-import java.util.Scanner;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 import member.dao.Dao;
-import member.domain.RegRequest;
 import member.service.ChangePasswordService;
 import member.service.MemberRegService;
 
@@ -35,7 +33,7 @@ public class SpringMain2 {
 		ChangePasswordService passwordService1 = ctx.getBean("changePasssword",ChangePasswordService.class);
 		ChangePasswordService passwordService2 = ctx.getBean("changePasssword",ChangePasswordService.class);
 		
-		System.out.println("passwordService1 == passwordService2" + passwordService1 == passwordService2);
+		System.out.println("passwordService1 == passwordService2" + (passwordService1 == passwordService2));
 		
 		
 		
