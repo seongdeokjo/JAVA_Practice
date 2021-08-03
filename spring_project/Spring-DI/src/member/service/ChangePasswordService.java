@@ -4,6 +4,7 @@ import member.dao.Dao;
 import member.domain.Member;
 
 public class ChangePasswordService {
+	
 	private Dao dao;
 	
 	public void setDao(Dao dao) {

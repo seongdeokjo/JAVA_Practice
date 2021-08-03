@@ -2,7 +2,10 @@ package member.service;
 
 import java.util.Date;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import member.dao.Dao;
 import member.domain.Member;
@@ -10,7 +13,9 @@ import member.domain.RegRequest;
 
 public class MemberRegService2 {
 	
-	@Autowired
+//	@Autowired
+//	@Qualifier("member")
+	@Resource(name="guestDao")
 	private Dao dao;
 	
 
