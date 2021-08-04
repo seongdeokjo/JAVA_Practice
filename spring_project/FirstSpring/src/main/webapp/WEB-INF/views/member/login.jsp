@@ -12,33 +12,24 @@
 </script>
 </head>
 <body>
-	<h1>loginForm</h1>
+	<h1>login requset Data</h1>
 	<hr>
-	<c:url value="/member/login.jsp" var="url"/>
 	 <%-- action="${url}" method="post" --%>
 	 <!-- /web/member/mypage/mypage.jsp -->
-	 <!-- action="/contextPath/member/login" -->
-	<form method="post" > 
+	 <!-- action="/conte" -->
 		<table border="1">
 			<tr>
 				<th>아이디</th>
 				<td>
-					<input type="text" name ="id">
+					
 				</td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
 				<td>
-					<input type="password" name="pw">
-				</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>
-					<input type="submit">
+				
 				</td>
 			</tr>
 		</table>
-	</form>
 </body>
 </html>
