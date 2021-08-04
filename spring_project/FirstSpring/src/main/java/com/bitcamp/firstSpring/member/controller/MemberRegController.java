@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.bitcamp.firstSpring.member.domain.MemberRegRequest;
 
 @Controller
-@RequestMapping("/member/regForm")
+@RequestMapping("/member/regMember")
 public class MemberRegController {
 	
 	@RequestMapping(method = RequestMethod.GET)
