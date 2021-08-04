@@ -23,7 +23,7 @@ public class OrderController {
 		System.out.println(orderCommand);
 		
 		
-		return null; //  /WEB-INF/views/order/orderForm.jsp
+		return "order/order"; //  /WEB-INF/views/order/orderForm.jsp
 	}
 	
 	
