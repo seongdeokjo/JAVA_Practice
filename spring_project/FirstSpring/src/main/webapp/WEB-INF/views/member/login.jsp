@@ -21,13 +21,13 @@
 			<tr>
 				<th>아이디</th>
 				<td>
-					
+					${id},${uid},${loginRequest.id},<br>${loginReq.id}
 				</td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
 				<td>
-				
+					${pw},${upw},${loginRequest.pw}<br>${loginReq.pw}
 				</td>
 			</tr>
 		</table>
