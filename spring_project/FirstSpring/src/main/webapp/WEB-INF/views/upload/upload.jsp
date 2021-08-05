@@ -13,5 +13,7 @@
 		학번 : ${sno}  <br>
 		이름 : ${sname} <br>
 		파일 : ${reportfile} <br>	
+		
+		<img src="../uploadFile/${reportfile}">
 </body>
 </html>
