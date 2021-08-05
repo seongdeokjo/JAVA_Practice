@@ -18,6 +18,7 @@
 		<li><a href="<c:url value="/cookie/make"/>">/cookie/maker</a></li>
 		<li><a href="<c:url value="/header/header"/>">/header/header</a></li>
 		<li><a href="<c:url value="/view/view1"/>">/view/view1</a></li>
+		<li><a href="<c:url value="/search/search"/>">/search/search</a></li>
 	</ul>
 </body>
 </html>
