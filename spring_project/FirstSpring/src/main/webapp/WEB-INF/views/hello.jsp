@@ -8,5 +8,7 @@
 </head>
 <body>
 	<h1>${greeting}</h1>
+	
+	<a href="/"> 홈</a>
 </body>
 </html>
