@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,12 +32,15 @@ public class LoginController {
 			//HttpServletRequest 이용
 			@RequestParam("memberid") String memberid,
 			@RequestParam("memberpw") String memberpw,
-			@RequestParam("reid") String reid,
+			@RequestParam(value="reid",required = false) String reid,
 			HttpSession session,
-			HttpServletResponse response
+			HttpServletResponse response,
+			Model model
 			) {
 		
 		//사용자가 입력한 id와 pw 서비스에 전달해서 로그인 처리
+		boolean loginChk = loginService.login(memberid, memberpw, reid, session, response);
+		model.addAttribute("loginChk", loginChk);
 		
 		
 		return "member/login";
