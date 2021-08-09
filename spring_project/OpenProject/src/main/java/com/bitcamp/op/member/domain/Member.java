@@ -3,7 +3,6 @@ package com.bitcamp.op.member.domain;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import org.springframework.web.multipart.MultipartFile;
 
 public class Member {
 	

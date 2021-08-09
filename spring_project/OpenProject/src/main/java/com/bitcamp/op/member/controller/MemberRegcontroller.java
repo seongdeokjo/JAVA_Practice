@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -26,15 +25,8 @@ public class MemberRegcontroller {
 	@RequestMapping(method = RequestMethod.POST)
 //	@ModelAttribute("reg")
 	public String memberReg( MemberRegRequest regRequest,HttpServletRequest request,Model model) {
-		
 		int result = service.regMember(regRequest,request);
-		
-	
 			model.addAttribute("result", result);
-			
-		
-
 		return"member/memberReg";
 	}
-
 }

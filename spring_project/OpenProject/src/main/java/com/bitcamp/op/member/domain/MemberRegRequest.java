@@ -34,16 +34,9 @@ public class MemberRegRequest {
 	public void setMemberphoto(MultipartFile memberphoto) {
 		this.memberphoto = memberphoto;
 	}
-	
-	
-	
 	@Override
 	public String toString() {
 		return "MemberRegRequest [memberid=" + memberid + ", memberpw=" + memberpw + ", membername=" + membername
 				+ ", memberphoto=" + memberphoto + "]";
 	}
-	
-
-	
-	
 }
