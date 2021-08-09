@@ -60,6 +60,7 @@
 				error : function(request,status,error){
 					alert('서버 통신에 문제가 발생했습니다. 다시 실행해주새요.');
 					console.log(request);
+					
 					console.log(status);
 					console.log(error);
 				},

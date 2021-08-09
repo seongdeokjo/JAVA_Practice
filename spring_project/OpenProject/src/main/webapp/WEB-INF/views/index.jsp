@@ -11,7 +11,7 @@
 	<%@ include file="/WEB-INF/views/frame/header.jsp"%>
 	<%@ include file="/WEB-INF/views/frame/nav.jsp"%>
 
-	<div>
+	<div id="content">
 		<h1>Content : index</h1>
 	</div>
 

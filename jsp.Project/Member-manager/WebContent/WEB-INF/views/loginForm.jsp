@@ -22,7 +22,7 @@
 
 <div class="contents">
 
-	<h2>${result}</h2>
+	<h2>login</h2>
 	<hr>
 	<form action="<c:url value="/login.do"/>" method="post">
 		<table>

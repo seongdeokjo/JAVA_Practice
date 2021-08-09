@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>Open Project</title>
 
+
+
 <%@ include file="/WEB-INF/views/frame/metaheader.jsp"%>
 
 
@@ -15,33 +17,39 @@
 	<%@ include file="/WEB-INF/views/frame/header.jsp"%>
 	<%@ include file="/WEB-INF/views/frame/nav.jsp"%>
 
-	<div>
-		<h1>Content : 로그인</h1>
+	<div id="content">
+
+		<h2>Login</h2>
+		<hr>
+		<form method="post">
+			<table>
+				<tr>
+					<th>ID</th>
+					<td>
+						<input type="text" name="memberid" value="${cookie.reid.value}">
+					</td>
+				</tr>
+				<tr>
+					<th>PW</th>
+					<td>
+						<input type="password" name="memberpw">
+					</td>
+				</tr>
+				<tr>
+					<th></th>
+					<td>
+						<input type="checkbox" name="reid" value="on" ${cookie.reid ne null ? 'checked' : ''}>아이디 기억하기
+					</td>
+				</tr>
+				<tr>
+					<th></th>
+					<td>
+						<input type="submit">
+					</td>
+				</tr>
+			</table>
+		</form>
 	</div>
-	
-	<form method="post">
-		<table>
-			<tr>
-				<th>아이디</th>
-				<td>
-					<input type="text" name="id">
-				</td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td>
-					<input type="password" name="pw">
-				</td>
-			</tr>
-			<tr>
-				<th></th>
-				<td>
-					<input type="submit" value="로그인">
-				</td>
-			</tr>
-		</table>
-	</form>
-	
-	
+
 </body>
 </html>
