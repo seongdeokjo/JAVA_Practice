@@ -38,7 +38,8 @@
 				<tr>
 					<th></th>
 					<td>
-						<input type="checkbox" name="reid" value="on" ${cookie.reid ne null ? 'checked' : ''}>아이디 기억하기
+						<input type="checkbox" name="reid" value="on"
+						${cookie.reid ne null ? 'checked' : ''}> 아이디 기억하기
 					</td>
 				</tr>
 				<tr>
