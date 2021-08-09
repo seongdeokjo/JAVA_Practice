@@ -40,6 +40,9 @@
 					<td>
 						<input type="checkbox" name="reid" value="on"
 						${cookie.reid ne null ? 'checked' : ''}> 아이디 기억하기
+						
+						<input type="text" name="redirectUri" value="${redirectUri ne null ? redirectUri : ''}">
+						
 					</td>
 				</tr>
 				<tr>
