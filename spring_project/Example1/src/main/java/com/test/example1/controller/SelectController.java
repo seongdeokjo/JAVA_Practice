@@ -1,5 +1,6 @@
 package com.test.example1.controller;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -35,13 +36,10 @@ public class SelectController {
 		model.addAttribute("date", date);	
 		
 		
-	
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.mm.dd.E");
-//		java.util.Date da = sdf.parse(date);
-//
-//		sdf.format(date);
-//		System.out.println(sdf.format(date));
-//		System.out.println(da);
+	String time	= date+ " 00:00:00";
+	     
+	        Timestamp timestamp = Timestamp.valueOf(time);
+	        System.out.println(timestamp);
 		
 			
 		return "selectResult";

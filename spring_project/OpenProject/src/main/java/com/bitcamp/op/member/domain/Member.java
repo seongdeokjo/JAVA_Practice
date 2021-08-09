@@ -3,6 +3,8 @@ package com.bitcamp.op.member.domain;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Member {
 	
 	private int memberCode;
@@ -13,6 +15,12 @@ public class Member {
 	private Timestamp regDate;
 	
 	public Member() {}
+	
+	public Member(String memberId, String memberPw, String memberName) {
+		this.memberId = memberId;
+		this.memberPw = memberPw;
+		this.memberName = memberName;
+	}
 	
 	public Member(String memberId, String memberPw, String memberName,String memberPhoto) {
 		this.memberId = memberId;
