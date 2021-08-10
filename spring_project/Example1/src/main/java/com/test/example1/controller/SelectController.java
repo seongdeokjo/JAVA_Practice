@@ -36,13 +36,13 @@ public class SelectController {
 		model.addAttribute("selectGroup", selectGroup);
 		model.addAttribute("date", date);	
 		
+// sql date 타입 형 변환 string to date		
+	String time	= date;
+	Date d = Date.valueOf(time);
 	
-		
-	String time	= date+ " 00:00:00";
-	     
-	        Timestamp timestamp = Timestamp.valueOf(time);
-	        System.out.println(timestamp);
-		
+//	        Timestamp timestamp = Timestamp.valueOf(time);
+	        System.out.println(d);
+	        System.out.println(d);
 			
 		return "selectResult";
 	}

@@ -36,7 +36,7 @@ public class MemberRegService {
 			member.setMemberPw(regRequest.getMemberpw());
 			member.setMemberName(regRequest.getMembername());
 
-			if (regRequest.getMemberphoto() != null) {
+			if (regRequest.getMemberphoto() != null ) {
 				member.setMemberPhoto(regRequest.getMemberphoto().getOriginalFilename());
 				 saveFile(request, regRequest.getMemberphoto());
 			}
@@ -66,6 +66,6 @@ public class MemberRegService {
 		// 새롭게 저장할 파일
 		File newFile = new File(saveDir, file.getOriginalFilename());
 		// 파일 저장
-		file.transferTo(newFile);
+		file.transferTo(newFile);	
 	}
 }
