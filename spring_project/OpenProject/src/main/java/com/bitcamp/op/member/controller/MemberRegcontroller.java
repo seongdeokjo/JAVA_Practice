@@ -27,6 +27,8 @@ public class MemberRegcontroller {
 	public String memberReg( MemberRegRequest regRequest,HttpServletRequest request,Model model) {
 		int result = service.regMember(regRequest,request);
 			model.addAttribute("result", result);
+//		model.addAttribute("reg", regRequest);
+//		System.out.println(regRequest);
 		return"member/memberReg";
 	}
 }

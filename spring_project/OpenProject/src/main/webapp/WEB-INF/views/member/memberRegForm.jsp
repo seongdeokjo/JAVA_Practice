@@ -10,7 +10,11 @@
 
 
 <%@ include file="/WEB-INF/views/frame/metaheader.jsp"%>
-
+<style>
+	#loadingimg {
+		height:20px;
+	}
+</style>
 
 
 </head>

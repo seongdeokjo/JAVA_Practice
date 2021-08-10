@@ -1,5 +1,6 @@
 package com.test.example1.controller;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,6 +36,7 @@ public class SelectController {
 		model.addAttribute("selectGroup", selectGroup);
 		model.addAttribute("date", date);	
 		
+	
 		
 	String time	= date+ " 00:00:00";
 	     

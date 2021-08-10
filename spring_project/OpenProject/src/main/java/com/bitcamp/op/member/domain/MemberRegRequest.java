@@ -34,9 +34,21 @@ public class MemberRegRequest {
 	public void setMemberphoto(MultipartFile memberphoto) {
 		this.memberphoto = memberphoto;
 	}
+	
+	
+	public Member toMember() {
+		return new Member(0,
+					this.memberid,
+					this.memberpw,
+					this.membername,
+					this.memberphoto.getOriginalFilename(),
+					null);
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "MemberRegRequest [memberid=" + memberid + ", memberpw=" + memberpw + ", membername=" + membername
-				+ ", memberphoto=" + memberphoto + "]";
+				+ ", memberphoto=" + memberphoto.getOriginalFilename() + "]";
 	}
 }
