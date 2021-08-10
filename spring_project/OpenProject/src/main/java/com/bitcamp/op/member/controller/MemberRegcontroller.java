@@ -34,6 +34,10 @@ public class MemberRegcontroller {
 		model.addAttribute("result", result);
 		
 		String view ="member/memberReg";
+		if(result == 1) {
+			// 인덱스 페이지로 리다이렉트
+			view = "redirect:/index";
+		}
 		
 		return view;
 	}

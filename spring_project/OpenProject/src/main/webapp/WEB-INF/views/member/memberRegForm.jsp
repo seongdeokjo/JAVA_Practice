@@ -14,8 +14,65 @@
 	#loadingimg {
 		height:20px;
 	}
+	.display_none{
+		display:none;
+	}
+	.color_blue{
+		color : blue;
+	}
+	.color_red{
+		color : red;
+	}
+	
 </style>
-
+<script>
+	$(document).ready(function(){
+		
+		$('#memberid').focusin(function(){
+			$('#msg').addClass('display_none');
+			$('#msg').removeClass('color_blue');
+			$('#msg').removeClass('color_red');
+			
+			$(this).val('');
+		});
+		$('#memberid').focusout(function(){
+			// ajax 비동기 통신 > id를 서버로 보내고 사용 가능 유무의 응답 코드를 받는다. -> 화면에 메세지 출력
+			
+			$.ajax({
+				url : '<c:url value="/member/idcheck"/>',
+				type : 'post',
+				data : {
+					mid : $(this).val()
+					},
+				beforSend : function(){
+					$('#loadingimg').removeClass('display_none');
+				},
+				success : function(data){
+					// data : y / n 
+					if(data == 'Y'){
+						$('#msg').html('사용가능');
+						$('#msg').addClass('color_blue');
+						$('#msg').removeClass('display_none');
+					}else{
+						$('#msg').html('사용불가');
+						$('#msg').addClass('color_red');
+						$('#msg').removeClass('display_none');
+					}
+				},
+				error : function(request,status,error){
+					alert('서버 통신에 문제가 발생했습니다. 다시 실행해주새요.');
+					console.log(request);
+					
+					console.log(status);
+					console.log(error);
+				},
+				complete : function(){
+					$('#loadingimg').addClass('display_none');
+				}
+			});
+		});		
+	});	
+</script>
 
 </head>
 <body>
@@ -31,7 +88,7 @@
 				<tr>
 					<th>아이디</th>
 					<td>
-						<input type="text" name="memberid" required >
+						<input type="text" name="memberid" id="memberid" required >
 						<span id="msg" class="display_none"></span>
 						<img id="loadingimg" class="display_none" alt="loading" src="<c:url value="/image/loading.gif"/>">
 						
@@ -58,7 +115,7 @@
 				<tr>
 					<th></th>
 					<td>
-						<input type="submit"><input type="reset">
+						<input type="submit">  <input type="reset">
 					</td>
 				</tr>
 			</table>
