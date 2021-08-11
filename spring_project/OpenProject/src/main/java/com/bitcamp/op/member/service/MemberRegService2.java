@@ -2,7 +2,6 @@ package com.bitcamp.op.member.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bitcamp.op.jdbc.ConnectionProvider;
-import com.bitcamp.op.jdbc.JdbcUtil;
+import com.bitcamp.op.member.dao.JdbcTemplateMemberDao;
 import com.bitcamp.op.member.dao.MemberDao;
 import com.bitcamp.op.member.domain.Member;
 import com.bitcamp.op.member.domain.MemberRegRequest;
@@ -19,14 +17,16 @@ import com.bitcamp.op.member.domain.MemberRegRequest;
 @Service
 public class MemberRegService2 {
 
-	@Autowired
-	private MemberDao dao;
+//	@Autowired
+//	private MemberDao dao;
 
+	@Autowired
+	JdbcTemplateMemberDao dao;
+	
 	final String UPLOAD_URI = "/uploadFile2";
 
 	public int regMember(MemberRegRequest regRequest, HttpServletRequest request) {
 		int result = 0;
-		Connection conn = null;
 		File newFile = null;
 		try {
 
@@ -48,20 +48,21 @@ public class MemberRegService2 {
 
 			// 새로운 File 객체
 			newFile = new File(newDir, newFileName);
+			Member member = regRequest.toMember();
 
 			// 파일 저장
 			if (regRequest.getMemberphoto() != null && !regRequest.getMemberphoto().isEmpty()) {
 
 				regRequest.getMemberphoto().transferTo(newFile);
+				member.setMemberPhoto(newFileName);
 
 				// 2. dao 저장
 			}
-			conn = ConnectionProvider.getConnection();
-			Member member = regRequest.toMember();
-			member.setMemberPhoto(newFileName);
+			
+			
 
 			System.out.println(member.getMemberPhoto());
-			result = dao.insertMember(conn, member);
+			result = dao.insertMember(member);
 
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
@@ -71,8 +72,8 @@ public class MemberRegService2 {
 				newFile.delete();
 				}
 			e.printStackTrace();
-		} finally {
-			JdbcUtil.close(conn);
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
 		return result;
 	}
