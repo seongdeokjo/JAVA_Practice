@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,28 +31,12 @@ $(function() {
         ,minDate: "-5y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
         ,maxDate: "+5y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
     	,beforeShowDay: noBefore
-    	,onSelect: function(){
-    		 var date = $('#datepicker').val();
-    		 console.log(date);
-    	  	$.ajax({
-    			url : '<c:url value="/selectResult"/>',
-    			type : 'get',
-    			data : {
-    				mid : date
-    				},
-    			success : function(data){
-    					console.log(data);
-    					$('#msg').html('가능인원:'+data);		
-    			},
-    		}); 
-    	}
     });                    
     
     //초기값을 오늘 날짜로 설정해줘야 합니다.
     $('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
     
-  
-});
+
 // 현재 날짜 이전의 날짜는 선택 비활성화
 function noBefore(date){
     if (date < new Date()){
@@ -61,6 +44,38 @@ function noBefore(date){
     }
     return [true];
 }	
+	$('#datepiceker').focusout(function(){
+		// ajax 비동기 통신 > id를 서버로 보내고 사용 가능 유무의 응답 코드를 받는다. -> 화면에 메세지 출력
+		
+		$.ajax({
+			url : '<c:url  value="/selectResult"/>',
+			type : 'post',
+			data : {
+				mid : $(this).val()
+				},
+			beforSend : function(){
+				$('#loadingimg').removeClass('display_none');
+			},
+			success : function(data){							
+					$('#msg').html('가능인원:'+data);
+					$('#msg').addClass('color_blue');
+					$('#msg').removeClass('display_none');
+			
+			},
+			error : function(request,status,error){
+				alert('서버 통신에 문제가 발생했습니다. 다시 실행해주새요.');
+				console.log(request);
+				
+				console.log(status);
+				console.log(error);
+			},
+			complete : function(){
+				$('#loadingimg').addClass('display_none');
+			}
+		});
+	});		
+});
+
 </script>
 
 
@@ -69,11 +84,27 @@ function noBefore(date){
 </head>
 <body>
 	<form  method="post">
-		<input type="text" id="datepicker" name="date"><br>
-		<span id="msg" class="display_none"></span>
+		<input type="text" id="datepicker" name="date">
+		<span id="msg" class="display_none"></span><br>
 		
-		
-	
+		<select name="selectTime">
+			<option value>시간선택</option>
+			<option value="13:00:00">"pm 1:00 (잔여석4)"</option>
+			<option value="13:30:00">"pm 1:30 (잔여석4)"</option>
+			<option value="14:00:00">pm 2:00 (잔여석4)</option>
+			<option value="15:00:00">pm 3:00 (잔여석4)</option>
+			<option value="16:00:00">pm 4:00 (잔여석4)</option>
+			<option value="17:00:00">pm 5:00 (잔여석4)</option>
+			<option value="18:00:00">pm 6:00 (잔여석4)</option>
+		</select><br>
+		<select name="selectGroup">
+			<option value="0">인원선택</option>
+			<option value="1">1명</option>
+			<option value="2">2명</option>
+			<option value="3">3명</option>
+			<option value="4">4명</option>
+		</select>
+		<button >제출</button>
 	</form>
 </body>
 </html>
