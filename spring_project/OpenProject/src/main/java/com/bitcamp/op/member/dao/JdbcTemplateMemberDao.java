@@ -38,13 +38,11 @@ public class JdbcTemplateMemberDao {
 		}
 
 		return resultCnt;
-
 	}
 
 	public int insertMember1(final Member member) {
 		int resultCnt = 0;
 		
-
 		// 자동 증가한 컬럼의 값을 저장할 객체
 		KeyHolder holder = new GeneratedKeyHolder();
 
