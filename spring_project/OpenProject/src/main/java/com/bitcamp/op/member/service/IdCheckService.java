@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.bitcamp.op.member.dao.JdbcTemplateMemberDao;
 import com.bitcamp.op.member.dao.MemberDao;
+import com.bitcamp.op.member.dao.MybatisMemberDao;
 
 @Service
 public class IdCheckService {
@@ -14,8 +15,11 @@ public class IdCheckService {
 //	@Autowired
 //	MemberDao dao;
 	
+//	@Autowired
+//	JdbcTemplateMemberDao dao;
+	
 	@Autowired
-	JdbcTemplateMemberDao dao;
+	private MybatisMemberDao dao;
 	
 	public String idcheck(String id) {
 		String result = "Y";

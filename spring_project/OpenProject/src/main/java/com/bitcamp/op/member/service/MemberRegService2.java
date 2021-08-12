@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.bitcamp.op.member.dao.JdbcTemplateMemberDao;
 import com.bitcamp.op.member.dao.MemberDao;
+import com.bitcamp.op.member.dao.MybatisMemberDao;
 import com.bitcamp.op.member.domain.Member;
 import com.bitcamp.op.member.domain.MemberRegRequest;
 
@@ -20,8 +21,11 @@ public class MemberRegService2 {
 //	@Autowired
 //	private MemberDao dao;
 
+//	@Autowired
+//	JdbcTemplateMemberDao dao;
+	
 	@Autowired
-	JdbcTemplateMemberDao dao;
+	private MybatisMemberDao dao;
 	
 	final String UPLOAD_URI = "/uploadFile2";
 

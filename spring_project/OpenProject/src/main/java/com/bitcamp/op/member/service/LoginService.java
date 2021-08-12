@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.bitcamp.op.member.dao.JdbcTemplateMemberDao;
 import com.bitcamp.op.member.dao.MemberDao;
+import com.bitcamp.op.member.dao.MybatisMemberDao;
 import com.bitcamp.op.member.domain.Member;
 
 @Service
@@ -18,15 +19,18 @@ public class LoginService {
 //	@Autowired
 //	MemberDao dao;
 	
+//	@Autowired
+//	private JdbcTemplateMemberDao dao;
+
 	@Autowired
-	private JdbcTemplateMemberDao dao;
+	private MybatisMemberDao dao;
 	
 	public boolean login(String id, String pw, String reid, HttpSession session, HttpServletResponse response) {
 		boolean loginChk = false;
 
 		try {
 			// 전달받은 id와 pw로 db에서 검색 => 있다면 로그인 처리, 없다면 false 리턴
-			Member member = dao.selectByLogin(id, pw);
+			Member member = dao.selectByIdPw(id, pw);
 
 			if (member != null) {
 				// 로그인 처리
