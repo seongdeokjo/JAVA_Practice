@@ -29,16 +29,17 @@ public class MemberRegcontroller {
 
 	public String memberReg(@ModelAttribute("reg") MemberRegRequest regRequest,HttpServletRequest request,Model model) {
 		
-		int result = service.regMember(regRequest,request);
+
+		int result = service.regMember(regRequest, request);
 		
 		model.addAttribute("result", result);
 		
-		String view ="member/memberReg";
+		String view = "member/reg" ;
 		if(result == 1) {
-			// 인덱스 페이지로 리다이렉트
+			// 인텍스 페이지로 리다이렉트
 			view = "redirect:/index";
 		}
-		
+	
 		return view;
 	}
 }

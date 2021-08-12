@@ -5,9 +5,11 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bitcamp.op.member.dao.Dao;
 import com.bitcamp.op.member.dao.JdbcTemplateMemberDao;
 import com.bitcamp.op.member.dao.MemberDao;
 import com.bitcamp.op.member.dao.MybatisMemberDao;
@@ -22,11 +24,20 @@ public class LoginService {
 //	@Autowired
 //	private JdbcTemplateMemberDao dao;
 
+//	@Autowired
+//	private MybatisMemberDao dao;
+	
 	@Autowired
-	private MybatisMemberDao dao;
+	private SqlSessionTemplate template;
+	
+	private Dao dao;
 	
 	public boolean login(String id, String pw, String reid, HttpSession session, HttpServletResponse response) {
 		boolean loginChk = false;
+		
+		// 인터페이스 Dao 구현체 Mapper
+		dao = template.getMapper(Dao.class);
+		
 
 		try {
 			// 전달받은 id와 pw로 db에서 검색 => 있다면 로그인 처리, 없다면 false 리턴

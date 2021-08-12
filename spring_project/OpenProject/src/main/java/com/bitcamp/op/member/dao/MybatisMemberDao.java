@@ -27,10 +27,8 @@ public class MybatisMemberDao {
 	// dml -> update method 사용
 	// 회원가입
 	public int insertMember(Member member) throws SQLException{
-		int resultCnt = 0;
-		template.update(NAME_SPACE+".insertMember", member);
-
-		return resultCnt;
+		
+		return template.update(NAME_SPACE+".insertMember", member);	
 	}
 
 	public int insertMember1(final Member member) {

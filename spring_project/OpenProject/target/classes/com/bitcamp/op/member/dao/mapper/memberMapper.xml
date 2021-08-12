@@ -4,8 +4,11 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="com.bitcamp.op.member.dao.memberMapper">
+ 
  	<insert id="insertMember" 
  			parameterType="com.bitcamp.op.member.domain.Member"
+ 			useGeneratedKeys="true"
+ 			keyProperty="memberCode"
  			>
  		insert into member (memberId,memberPw,memberName,memberPhoto) 
  		values (#{memberId}, #{memberPw}, #{memberName},#{memberPhoto})	
