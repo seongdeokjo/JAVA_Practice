@@ -71,7 +71,7 @@ public class Member {
 	}
 
 	public Timestamp getRegDate() {
-		return regDate;
+		return new Timestamp(regDate.getTime()-(1000*60*60*9));
 	}
 
 	public void setRegDate(Timestamp regDate) {

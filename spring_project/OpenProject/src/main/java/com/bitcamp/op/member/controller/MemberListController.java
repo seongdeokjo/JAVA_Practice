@@ -1,0 +1,18 @@
+package com.bitcamp.op.member.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class MemberListController {
+	
+	@RequestMapping("/member/memberList")
+	public String getList(Model model) {
+		
+		
+		
+		
+		return "member/memberList";
+	}
+}
