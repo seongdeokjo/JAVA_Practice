@@ -41,7 +41,7 @@ public class MemberRegRequest {
 					this.memberid,
 					this.memberpw,
 					this.membername,
-					this.memberphoto.getOriginalFilename(),
+					null,
 					null);
 	}
 	
@@ -49,6 +49,6 @@ public class MemberRegRequest {
 	@Override
 	public String toString() {
 		return "MemberRegRequest [memberid=" + memberid + ", memberpw=" + memberpw + ", membername=" + membername
-				+ ", memberphoto=" + memberphoto.getOriginalFilename() + "]";
+				+ ", memberphoto=" + memberphoto + "]";
 	}
 }
