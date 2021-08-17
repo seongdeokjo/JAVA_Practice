@@ -70,8 +70,9 @@ public class Member {
 		this.memberName = memberName;
 	}
 
-	public Timestamp getRegDate() {
-		return new Timestamp(regDate.getTime()-(1000*60*60*9));
+	public String getRegDate() {
+//		return new Timestamp(regDate.getTime()-(1000*60*60*9));
+		return regDate.toString();
 	}
 
 	public void setRegDate(Timestamp regDate) {
@@ -87,9 +88,9 @@ public class Member {
 	}
 
 	// java.sql.TimeStamp -> java.util.Date
-	public Date getDate() {
-		return new Date(getRegDate().getTime());
-	}
+//	public Date getDate() {
+//		return new Date(getRegDate().getTime());
+//	}
 
 
 	@Override

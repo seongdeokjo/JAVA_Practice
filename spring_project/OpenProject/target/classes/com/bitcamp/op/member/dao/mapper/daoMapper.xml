@@ -30,7 +30,17 @@
 		select count(*) from member
 		where memberId=#{mid}
 	</select>
-
+	
+	
+	<select id="selectByIdx" 
+			resultType="com.bitcamp.op.member.domain.Member"
+	>
+		select * from member where memberCode = #{memberCode}
+	</select>
+	
+	
+	
+	
 	<insert id="insertMember"
 		parameterType="com.bitcamp.op.member.domain.Member"
 		useGeneratedKeys="true" keyProperty="memberCode">
@@ -102,5 +112,18 @@
 		<sql id="searchName">
 			or memberName like concat('%',#{keyword},'%')
 		</sql>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 </mapper>
