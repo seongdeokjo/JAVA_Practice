@@ -15,7 +15,7 @@ import com.bitcamp.op.member.dao.MemberDao;
 import com.bitcamp.op.member.domain.Member;
 import com.bitcamp.op.member.domain.MemberRegRequest;
 
-@Service
+/*@Service
 public class MemberRegService {
 
 //	@Autowired
@@ -32,13 +32,13 @@ public class MemberRegService {
 		Member member = new Member();
 		try {
 			
-			member.setMemberId(regRequest.getMemberid());
-			member.setMemberPw(regRequest.getMemberpw());
-			member.setMemberName(regRequest.getMembername());
+			member.setMemberId(regRequest.getMemberId());
+			member.setMemberPw(regRequest.getMemberPw());
+			member.setMemberName(regRequest.getMemberName());
 
-			if (regRequest.getMemberphoto() != null ) {
-				member.setMemberPhoto(regRequest.getMemberphoto().getOriginalFilename());
-				 saveFile(request, regRequest.getMemberphoto());
+			if (regRequest.getMemberPhoto() != null ) {
+				member.setMemberPhoto(regRequest.getMemberPhoto().getOriginalFilename());
+				 saveFile(request, regRequest.getMemberPhoto());
 			}
 			System.out.println(member.getMemberPhoto());
 			result = dao.insertMember(member);
@@ -68,3 +68,4 @@ public class MemberRegService {
 		file.transferTo(newFile);	
 	}
 }
+*/

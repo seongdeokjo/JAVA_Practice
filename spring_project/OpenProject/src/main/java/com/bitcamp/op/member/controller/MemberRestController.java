@@ -22,7 +22,7 @@ import com.bitcamp.op.member.service.MemberRegService2;
 import com.bitcamp.op.member.service.MemberRestService;
 
 //@Controller
-@RestController
+@RestController()
 public class MemberRestController {
 	
 	@Autowired
@@ -43,9 +43,6 @@ public class MemberRestController {
 		return member;
 	}
 	
-//	@DeleteMapping
-//	@PutMapping
-//	@PostMapping
 	@GetMapping("/members")
 	public List<Member> getMembers(){
 		return restService.getMembers(); 
@@ -64,6 +61,7 @@ public class MemberRestController {
 			) {
 		System.out.println(regRequest);
 		return Integer.toString(regService.memberReg(regRequest, request));
+
 	}
 	
 	@PostMapping("/members/reg2")

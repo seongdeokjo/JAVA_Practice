@@ -97,19 +97,19 @@
 				<tr>
 					<th>비밀번호</th>
 					<td>
-						<input type="password" name="memberpw" required>
+						<input type="password" name="memberpw" id="memberpw" required>
 					</td>
 				</tr>
 				<tr>
 					<th>이름</th>
 					<td>
-						<input type="text" name="membername" required>
+						<input type="text" name="membername" id="membername" required>
 					</td>
 				</tr>
 				<tr>
 					<th>사진</th>
 					<td>
-						<input type="file" name="memberphoto" >
+						<input type="file" name="memberphoto" id="memberphoto" >
 					</td>
 				</tr>
 				<tr>
@@ -135,13 +135,13 @@
 		$(document).ready(function() {
 			$('#btnReg1').click(function() {
 				var photoFile = $('#memberphoto');
-				var file1 = photoFile[0].files[0];
+			//	var file1 = photoFile[0].files[0];
 				//console.log(file1);
 				var formData = new FormData();
 				formData.append("memberid", $('#memberid').val());
 				formData.append("memberpw", $('#memberpw').val());
 				formData.append("membername", $('#membername').val());
-				formData.append("memberphoto", file1);
+			//	formData.append("memberphoto", file1);
 				console.log(formData);
 				$.ajax({
 					url : '/op/members/reg1',

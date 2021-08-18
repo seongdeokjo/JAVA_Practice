@@ -15,7 +15,7 @@ import com.bitcamp.op.member.dao.MybatisMemberDao;
 import com.bitcamp.op.member.domain.Member;
 import com.bitcamp.op.member.domain.MemberRegRequest;
 
-@Service
+/*@Service
 public class MemberRegService3 {
 
 //	@Autowired
@@ -42,7 +42,7 @@ public class MemberRegService3 {
 			Member member = regRequest.toMember();
 				
 			// 파일 저장
-			if (regRequest.getMemberphoto() != null && !regRequest.getMemberphoto().isEmpty()) {
+			if (regRequest.getMemberPhoto() != null && !regRequest.getMemberPhoto().isEmpty()) {
 				// 시스템 경로
 				String path = request.getSession().getServletContext().getRealPath(UPLOAD_URI);
 
@@ -56,13 +56,13 @@ public class MemberRegService3 {
 				}
 				
 			// 파일 저장시에 파일 이름이 같으면 덮어쓴다 -> 회원별 고유한 파일 이름을 만들자
-			String newFileName = regRequest.getMemberid() + System.currentTimeMillis();
+			String newFileName = regRequest.getMemberId() + System.currentTimeMillis();
 			// cool 1231289123123123123
 
 			// 새로운 File 객체
 			newFile = new File(newDir, newFileName);
 			
-			regRequest.getMemberphoto().transferTo(newFile);
+			regRequest.getMemberPhoto().transferTo(newFile);
 			member.setMemberPhoto(newFileName);
 
 			}else {
@@ -91,3 +91,4 @@ public class MemberRegService3 {
 		return result;
 	}
 }
+*/

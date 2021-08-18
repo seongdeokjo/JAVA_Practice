@@ -21,21 +21,7 @@ public class Member {
 	private Timestamp regDate;
 	
 	public Member() {}
-	
-	public Member(String memberId, String memberPw, String memberName) {
-		this.memberId = memberId;
-		this.memberPw = memberPw;
-		this.memberName = memberName;
-	}
-	
-	public Member(String memberId, String memberPw, String memberName,String memberPhoto) {
-		this.memberId = memberId;
-		this.memberPw = memberPw;
-		this.memberName = memberName;
-		this.memberPhoto = memberPhoto;
-	}
-
-	
+		
 	public Member(int memberCode, String memberId, String memberPw, String memberName,String memberPhoto, Timestamp regDate) {
 		this.memberCode = memberCode;
 		this.memberId = memberId;

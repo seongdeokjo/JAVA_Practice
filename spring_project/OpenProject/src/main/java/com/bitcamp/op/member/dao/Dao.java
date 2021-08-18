@@ -12,7 +12,7 @@ public interface Dao {
 	// 아이디 체크
 	int selectById(String memberid);
 	// 회원가입
-	int insertMember(Member member) throws SQLException;
+	int insertMember(Member member);
 	// 회원 정보 수정
 	int updateMember(Member member);
 	// 회원 정보 삭제

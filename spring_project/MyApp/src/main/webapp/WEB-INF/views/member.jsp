@@ -93,19 +93,18 @@
 		});
 		
 		$('#submit').click(function(){
-			
 			var photoFile = $('#memberphoto');
-			var file1 = photoFile[0].files[0];
-			//console.log(file1);
+		//	var file1 = photoFile[0].files[0];
+		//	console.log(file1);
 			var formData = new FormData();
 			formData.append("memberid", $('#memberid').val());
 			formData.append("memberpw", $('#memberpw').val());
 			formData.append("membername", $('#membername').val());
-			formData.append("memberphoto", file1);
-			console.log(formData.getAll());
+		//	formData.append("memberphoto",file1);
+			console.log(formData);
 			$.ajax({
 				url : '/op/members/reg1',
-				type : 'post',
+				type : 'post' ,
 				data : formData,
 				enctype : 'multipart/form-data',
 				processData : false,
@@ -152,15 +151,15 @@
 			url : 'http://localhost:8080/op/members',
 			type : 'GET',
 			success : function(data){
-				console.log(data);
+				//console.log(data);
 				$.each(data, function(index, item){
-					console.log(index,item);
+					//console.log(index,item);
 					
 					var html = '<div class="card">';
 					html += "idx : " + item.memberCode + "<br>";
 					html += "아이디 : " + item.memberId + "<br>";
 					html += "이름 : " + item.memberName + "<br>";
-					html += '사진 : <img src="http://localhost:8080/op/uploadfile1/' + item.memberphoto + '"><br>';
+					html += '사진 : <img src="http://localhost:8080/op/uploadfile1/' + item.memberPhoto + '"><br>';
 					html += "등록일 : " + item.regDate + "<br>";
 					html += "</div>"
 					
@@ -183,9 +182,6 @@
 	<div id="regform" class="display_none">
 		<h1>회원가입</h1>
 		<hr>
-		
-		
-
 			<table>
 				<tr>
 					<td>아이디</td>

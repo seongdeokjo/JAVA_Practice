@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bitcamp.op.member.domain.MemberRegRequest;
-import com.bitcamp.op.member.service.MemberRegService;
+//import com.bitcamp.op.member.service.MemberRegService;
 import com.bitcamp.op.member.service.MemberRegService2;
 
 @Controller
