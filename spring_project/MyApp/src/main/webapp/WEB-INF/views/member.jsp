@@ -60,7 +60,7 @@
 		$('#memberid').focusout(function() {
 			// ajax 비동기 통신 > id를 서버로 보내고 사용 가능 유무의 응답 코드를 받는다 -> 화면에 메시지 출력
 			$.ajax({
-				url : 'http://localhost:8080/op/member/idcheck',
+				url : 'http://3.36.93.252:8080/op/member/idcheck',
 				type : 'post',
 				data : {
 					mid : $(this).val()
@@ -94,16 +94,16 @@
 		
 		$('#submit').click(function(){
 			var photoFile = $('#memberphoto');
-		//	var file1 = photoFile[0].files[0];
+			var file1 = photoFile[0].files[0];
 		//	console.log(file1);
 			var formData = new FormData();
 			formData.append("memberid", $('#memberid').val());
 			formData.append("memberpw", $('#memberpw').val());
 			formData.append("membername", $('#membername').val());
-		//	formData.append("memberphoto",file1);
+			formData.append("memberphoto",file1);
 			console.log(formData);
 			$.ajax({
-				url : '/op/members/reg1',
+				url : 'http://3.36.93.252:8080/op/members/reg1',
 				type : 'post' ,
 				data : formData,
 				enctype : 'multipart/form-data',
@@ -148,7 +148,7 @@
 	
 	function memberList(){
 		$.ajax({
-			url : 'http://localhost:8080/op/members',
+			url : 'http://3.36.93.252:8080/op/members',
 			type : 'GET',
 			success : function(data){
 				//console.log(data);
@@ -159,7 +159,7 @@
 					html += "idx : " + item.memberCode + "<br>";
 					html += "아이디 : " + item.memberId + "<br>";
 					html += "이름 : " + item.memberName + "<br>";
-					html += '사진 : <img src="http://localhost:8080/op/uploadfile1/' + item.memberPhoto + '"><br>';
+					html += '사진 : <img src="http://3.36.93.252:8080/op/uploadfile1/'+item.memberPhoto+'"><br>';
 					html += "등록일 : " + item.regDate + "<br>";
 					html += "</div>"
 					
@@ -216,7 +216,8 @@
 			</table>
 		
 	</div>
-	
+	<hr>
+	<img  src="http://3.36.93.252:8080/op/uploadfile1/asdada1629347561066.png">
 
 	<h1>회원 리스트</h1>
 	<hr>

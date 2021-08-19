@@ -110,7 +110,7 @@ public class MemberRegService2 {
 
 		// 토큰의 마지막 index의 문자열을 가져옴 : 배열의 개수-1
 		extension = nameTokens[nameTokens.length - 1].toLowerCase();
-
+		
 		// 이미지 파일 이외의 파일 업로드 금지
 		// 파일 확장자 체크
 		if (!(extension.equals("jpg") || extension.equals("png") || extension.equals("gif"))) {
