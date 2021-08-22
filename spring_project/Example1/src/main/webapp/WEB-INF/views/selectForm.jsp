@@ -12,15 +12,21 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 $(function() {
+	$('#cnt').children('option:not(:first)').hide();
+	
+	
+	
+	
+	
     //input을 datepicker로 선언
     $("#datepicker").datepicker({
-        dateFormat: 'yy-mm-dd' //달력 날짜 형태
+        dateFormat: 'yy-mm-dd ' //달력 날짜 형태
         ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
         ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
         ,changeYear: true //option값 년 선택 가능
         ,changeMonth: true //option값  월 선택 가능                
         ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
-        ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
+        ,buttonImage: "https://brewery.jejubeer.co.kr/static/images/reservationRenew/img_icon_calendar.png" //버튼 이미지 경로
         ,buttonImageOnly: true //버튼 이미지만 깔끔하게 보이게함
         ,buttonText: "선택" //버튼 호버 텍스트              
         ,yearSuffix: "년" //달력의 년도 부분 뒤 텍스트
@@ -33,7 +39,9 @@ $(function() {
         ,maxDate: "+5y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
     	,beforeShowDay: noBefore
     	,onSelect: function(){
-    		 var date = $('#datepicker').val();
+     		 var date = $('#datepicker').val();
+     		 selectReset();
+     	
     		 console.log(date);
     	  	$.ajax({
     			url : '<c:url value="/selectResult"/>',
@@ -42,15 +50,48 @@ $(function() {
     				mid : date
     				},
     			success : function(data){
-    					console.log(data);
-    					$('#msg').html('가능인원:'+data);		
-    			},
+    				$('#cnt').html();
+					var count = data;
+					console.log(count);
+				var num = $('#cnt option').length;
+				console.log(num);
+					$('#msg').text('가능인원:'+count);
+					if(count == 0){
+						$('#cnt').attr('disabled',true);
+					}
+					if(count < num){
+						for(var i=num; i>count; i--){
+							$('#cnt option[value='+i+']').hide();
+						}
+					}
+					  
+    			}  			
     		}); 
     	}
     });                    
     
     //초기값을 오늘 날짜로 설정해줘야 합니다.
-    $('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+    $('#datepicker').datepicker('setDate', '+1D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+    // select 옵션 초기화
+    function selectReset(){
+    	$('#cnt option').show();
+ 		$('#cnt').attr('disabled',false);
+    }
+    // 인원 선택 알림창
+    $('#submit').submit(function(){
+    	if($('#cnt').val()==0){
+    		alert('인원을 선택해주세요');
+    		return false;
+    	}
+    });
+    
+    // select 박스에서 option 값이 바뀌는걸 알려주는 함수
+    $('#cnt').change(function(){
+    	alert($(this).val());
+    });
+ 
+    
+    
     
   
 });
@@ -60,7 +101,11 @@ function noBefore(date){
     	return [false];
     }
     return [true];
-}	
+}
+
+
+
+
 </script>
 
 
@@ -68,9 +113,18 @@ function noBefore(date){
 
 </head>
 <body>
-	<form  method="post">
+	<form  method="post" id="submit">
 		<input type="text" id="datepicker" name="date"><br>
-		<span id="msg" class="display_none"></span>
+		<span id="msg"></span>
+		<select id="cnt" name="select">
+			<option selected value="0" >인원선택</option>
+			<option value="1">1명</option>
+			<option value="2">2명</option>
+			<option value="3">3명</option>
+			<option value="4">4명</option>
+		</select>
+		<input type="submit" value="예약"  >
+		<input type="hidden" value="tour" name="tour">
 		
 		
 	

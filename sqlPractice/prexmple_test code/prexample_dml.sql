@@ -128,6 +128,9 @@ select (ttotal - tcurrent) as available
 from tour
 where tdate = '2021-08-25';
 
+update tour set tcurrent = +9 where tdate='2021-08-26';
+
+
 -- review 
 insert into review(rtitle,rtext,rphoto,rrate,rcategory,pidx)
 values(
@@ -163,5 +166,5 @@ select * from prexample.order;
 select * from payment;
 
 desc review;
-
+desc tour;
 commit;
