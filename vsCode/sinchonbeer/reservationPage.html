@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>예약 페이지</title>
+    
     <link rel="stylesheet" type="text/css" href="css/reservation.css">
-
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+
+   
 </head>
 
 <body>
@@ -23,29 +24,28 @@
     <!-- submenu 영역 -->
     <div class="submenu_wrap">
         <ul>
-            <li><a href="#">투어 안내</a></li>
-            <li><a href="#" id="currentPage">예약</a></li>
-            <li><a href="#">투어 공지</a></li>
+            <li><a href="tourInfo.html">투어 안내</a></li>
+            <li><a href="reservationPage.html" id="currentPage">예약</a></li>
+            <li><a href="tourNotice.html">투어 공지</a></li>
         </ul>
     </div>
     <div class="detail_menu">
         <ul>
-            <li><a href="#" id="selectPage">프로그램 예약</a></li>
-            <li><a href="#">예약 확인/취소</a></li>
+            <li><a href="reservationPage.html" id="selectPage">프로그램 예약</a></li>
+            <li><a href="tourResChange.html">예약 확인/취소</a></li>
         </ul>
     </div>
     <div id="content_wrap" class="container-fulid totalPage">
         <div class="keyVisualBox full">
             <div class="select_box">
-                <div class="keyTd">
+                <div class="keyTd po">
                     <form>
                         <ul>
-
                             <li>
-                                <input type="text" id="datepicker">
+                                <input type="text" id="datepicker" class="jejuInputBox">
                             </li>
                             <li>
-                                <select>
+                                <select class="out">
                                     <option selected>인원선택</option>
                                     <option value="1">1명</option>
                                     <option value="2">2명</option>
@@ -53,10 +53,10 @@
                                     <option value="4">4명</option>
                                 </select>
                             </li>
-                            <li> <input type="submit" value="예약">
+                            <li> <input type="submit" value="예약" class="out">
                             </li>
                             <li>
-                                <input type="hidden" value="tour">
+                                <input type="hidden" value="tour" class="out">
                             </li>
                         </ul>
                     </form>
@@ -87,7 +87,6 @@
                             <dd class="columnDd">신촌맥주 4종 샘플러<sub>(250ml*4)</sub><br>
                                 또는 스파클링 음료와 신촌맥주 굿즈세트
                             </dd>
-
                         </dl>
                     </li>
                     <li class="columnLi mt100">
@@ -128,7 +127,7 @@
             경험하실 수 있습니다.
         </div>
         <div class="bgc_gray mt120">
-            <div class="alignBox mAuto plr">
+            <div class="alignBox mAuto plr img1">
                 <img src="https://dsfyc8ahox9m2.cloudfront.net/static/images/reservationRenew/beerwalk/img_info_beerwalk_01.jpg"
                     alt="key visual" class="contentImage">
             </div>
@@ -187,12 +186,78 @@
                 </ul>
             </div>
         </div>
-
-
     </div>
     <div id="footer">
         <h2>footer 영역</h2>
     </div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        $(function () {
+            //input을 datepicker로 선언
+            $("#datepicker").datepicker({
+                dateFormat: 'yy-mm-dd ' //달력 날짜 형태
+                , closeText: '닫기'
+                , showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+                , showMonthAfterYear: true // 월- 년 순서가아닌 년도 - 월 순서
+                , changeYear: true //option값 년 선택 가능
+                , changeMonth: true //option값  월 선택 가능                
+                , showOn: 'focus' //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
+                // , buttonImage: "https://brewery.jejubeer.co.kr/static/images/reservationRenew/img_icon_calendar.png" //버튼 이미지 경로
+                // , buttonImageOnly: true //버튼 이미지만 깔끔하게 보이게함
+
+                , buttonText: "선택" //버튼 호버 텍스트              
+                , yearSuffix: "년" //달력의 년도 부분 뒤 텍스트
+                , monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'] //달력의 월 부분 텍스트
+                , monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'] //달력의 월 부분 Tooltip
+                , dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'] //달력의 요일 텍스트
+                , dayNamesShort: ['일', '월', '화', '수', '목', '금', '토']
+                , dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'] //달력의 요일 Tooltip
+                , minDate: "-5y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+                , maxDate: "+5y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+                , beforeShowDay: noBefore
+                , beforeShow: function (input) {
+                    var i_offset = $(input).offset(); //클릭된 input의 위치값 체크
+                    setTimeout(function () {
+                        $('#ui-datepicker-div').css({  
+                                                     'top': i_offset.top+75,
+                                                     'bottom': '',
+                                                     'left': i_offset.left });      //datepicker의 div의 포지션을 강제로 input 위치에 그리고 좌측은 모바일이여서 작기때문에 무조건 10px에 놓았다.
+                    })
+                }
+                , onSelect: function () {
+                    var date = $('#datepicker').val();
+                    console.log(date);
+                }
+            });
+
+            //초기값을 오늘 날짜로 설정해줘야 합니다.
+            $('#datepicker').datepicker('setDate', '+1D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+            // 인원 선택 알림창
+            $('#submit').submit(function () {
+                if ($('#cnt').val() == 0) {
+                    alert('인원을 선택해주세요');
+                    return false;
+                }
+            });
+        });
+
+        // 현재 날짜 이전의 날짜는 선택 비활성화
+        function noBefore(date) {
+            if (date < new Date()) {
+                return [false];
+            }
+            return [true];
+        }
+    </script>
 </body>
 
 </html>

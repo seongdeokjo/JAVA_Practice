@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+   
+    
+</head>
+<body>
+   <!--  <input type="text" id="datepicker1"> -->
+    <div id="datepicker2"></div>
+    <input id="check" type="text" >
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script>
+        $.datepicker.setDefaults({
+            dateFormat: 'yy-mm-dd (D)',
+            prevText: '이전 달',
+            nextText: '다음 달',
+            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+            monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+            dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+            dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+            showMonthAfterYear: true,
+            yearSuffix: '년',
+            onSelect:function(){
+                var date = $('#datepicker2').val();
+                    console.log(date);
+                $('#check').val(date);
+                
+                date1 = Date.parse(date);
+                console.log(date1);
+             
+            }
+          });
+        
+          $(function(){
+           
+            $('#datepicker2').datepicker();
+              
+                   
+           
+
+
+
+        });
+        </script>
+</body>
+</html>

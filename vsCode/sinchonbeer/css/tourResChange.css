@@ -1,6 +1,7 @@
 *{
     margin: 0;
-    padding: 0;   
+    padding: 0;
+    
 }
 #header,#nav,#footer{
     text-align: center;
@@ -14,25 +15,14 @@
     height: 50px;
 }
 a{
-    text-decoration: none !important;
-    color: black !important;
-    display: block;
+    text-decoration: none;
+    color: black;
 }
 a:visited{
-    color: black !important;
+    color: black;
 }
 li{
-    list-style: none !important;
-}
-h4{
-    display: block;
-    margin-block-start: 1.33em;
-    margin-block-end: 1.33em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-}
-div{
-    display: block;
+    list-style: none;
 }
 
 /* 추후 jquery로 코드 수정할 것 */
@@ -41,8 +31,9 @@ div{
     color: white;
 }
 #selectPage{
-    color: #1ecad3 !important;
+    color: #1ecad3;
 }
+
 
 /* nav_submenu 영역 */
 .submenu_wrap{
@@ -58,6 +49,7 @@ div{
     display: inline-block; 
 }
 .submenu_wrap ul a{
+    display: block;
     padding: 0 50px;
 }
 
@@ -77,66 +69,45 @@ div{
 .detail_menu ul li{
     display: inline-block; 
 }
-
-/* submenu -> detailmenu의 a 태그는 inline-block 설정 할 것 */
 .detail_menu ul a{
-    display: inline-block;
-    margin: 0 15px;
+    display: block;
+    padding: 0 50px;
     font-size: 14px;
-}
-.detail_menu .active{
-    border-width: 0 0 1px 0;
-    border-style: solid;
 }
 
 .detail_menu a:hover{
     color: #1ecad3;
 }
-
-
-/* content 영역 */
-.content_wrap{
-    position: relative;
-}
-.content_header{
-    
-}
-.content_header p{
-    text-align: center;
-    color: #1ecad3;
-    font-size: 48px;
-    font-weight: 900;
-}
 .inline-row{
     width: 100%;
-    height: 50px;
+    height: 80px;
     border-top: 2px solid #f4f4f4;
     
 }
-.inline-row40{
+.inline-row2{
     width: 100%;
     height: 40px;
 }
-.inline-row80{
-    width: 100%;
-    height: 80px;
-} 
-
-/* collapse 되는 영역 -> faq*/
-
-
-.road .roadInfo{
-    text-align: center;
-    font-weight: bold;
-    font-size: 30px;
-}
-
-.img{
+.set_input{
     width: 90%;
-    height: 400px;
+    height: 60px;
 }
+.chDate_input{
+    width: 150px;
+    height: 90%;
+    padding: 0 10px;
+    border: 0;
+    float: left;
+    vertical-align: middle;   
 
-.btn-primary{
+}
+.color_input{
     background-color: #1ecad3;
-    color: white !important;
+    color: white;
+    border: 0;
+}
+.color_cancle{
+    background-color: #aaa;
+    border: 0;
+    color: white;
 }

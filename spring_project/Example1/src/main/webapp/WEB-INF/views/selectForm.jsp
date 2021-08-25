@@ -14,10 +14,6 @@
 $(function() {
 	$('#cnt').children('option:not(:first)').hide();
 	
-	
-	
-	
-	
     //input을 datepicker로 선언
     $("#datepicker").datepicker({
         dateFormat: 'yy-mm-dd ' //달력 날짜 형태

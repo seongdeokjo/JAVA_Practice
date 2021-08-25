@@ -109,6 +109,20 @@ li{
     display: table-cell;
     vertical-align: middle;
 }
+.po{
+    position: relative;
+}
+
+.jejuInputBox{
+    background: url(https://brewery.jejubeer.co.kr/static/images/reservationRenew/img_icon_calendar.png) 
+    no-repeat right 15px center;
+    background-color: #fff;
+    border: 0;
+    padding-left: 5px;
+}
+.out{
+    border: 0;
+}
 .select_box ul,.select_box li{
     display: inline-block;
 }
@@ -129,6 +143,9 @@ li{
     min-width: 1200px;
 }
 .img_wrap img{
+    width: 100%;
+}
+.img1 img{
     width: 100%;
 }
 .content_text{

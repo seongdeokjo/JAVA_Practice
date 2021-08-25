@@ -1,24 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <script>
+
+        $(function () {
+            var
+                //input을 datepicker로 선언
+                $("#datepicker").datepicker({
+                    dateFormat: 'yy-mm-dd ' //달력 날짜 형태
+                    , showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+                    , showMonthAfterYear: true // 월- 년 순서가아닌 년도 - 월 순서
+                    , changeYear: true //option값 년 선택 가능
+                    , changeMonth: true //option값  월 선택 가능                
+                    , showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
+                    , buttonImage: "https://brewery.jejubeer.co.kr/static/images/reservationRenew/img_icon_calendar.png" //버튼 이미지 경로
+                    , buttonImageOnly: true //버튼 이미지만 깔끔하게 보이게함
+                    , buttonText: "선택" //버튼 호버 텍스트              
+                    , yearSuffix: "년" //달력의 년도 부분 뒤 텍스트
+                    , monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'] //달력의 월 부분 텍스트
+                    , monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'] //달력의 월 부분 Tooltip
+                    , dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'] //달력의 요일 텍스트
+                    , dayNamesShort: ['일', '월', '화', '수', '목', '금', '토']
+                    , dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'] //달력의 요일 Tooltip
+                    , minDate: "-5y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+                    , maxDate: "+5y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+                    , beforeShowDay: noBefore
+                    , onSelect: function () {
+                        var date = $('#datepicker').val();
+                        console.log(date);
+                    }
+                });
+
+            //초기값을 오늘 날짜로 설정해줘야 합니다.
+            $('#datepicker').datepicker('setDate', '+1D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+            // 인원 선택 알림창
+            $('#submit').submit(function () {
+                if ($('#cnt').val() == 0) {
+                    alert('인원을 선택해주세요');
+                    return false;
+                }
+            });
+        });
+        // 현재 날짜 이전의 날짜는 선택 비활성화
+        function noBefore(date) {
+            if (date < new Date()) {
+                return [false];
+            }
+            return [true];
+        }
+    </script>
+
+
+
     <style>
-        .b li{
+        .b li {
             border: 1px solid #ddd;
             display: inline-block;
-            
+
         }
-        .b a{
+
+        .b a {
             display: block;
             border: 1px solid #aaa;
             padding: 0 20px;
         }
 
+        body {
+            background: #f9f9f9;
+            font-size: 16px;
+            font-family: 'Raleway', sans-serif
+        }
+
+        /*    .container {
+            margin-top: 200px
+        }
+
+        .title {
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 10px
+        } */
+
+        .content {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            margin: auto;
+            overflow: hidden
+        }
+
+        .content .content-overlay {
+            background: rgba(0, 0, 0, 0.7);
+            position: absolute;
+            height: 99%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            opacity: 0;
+            /*   -webkit-transition: all 0.4s ease-in-out 0s;
+            -moz-transition: all 0.4s ease-in-out 0s;
+            transition: all 0.4s ease-in-out 0s */
+        }
+
+        .content:hover .content-overlay {
+            opacity: 1
+        }
+
+        .content-image {
+            width: 100%
+        }
+
+        .content-details {
+            position: absolute;
+            text-align: center;
+            padding-left: 1em;
+            padding-right: 1em;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            opacity: 0;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            -webkit-transition: all 0.3s ease-in-out 0s;
+            -moz-transition: all 0.3s ease-in-out 0s;
+            transition: all 0.3s ease-in-out 0s
+        }
+
+        .content:hover .content-details {
+            top: 50%;
+            left: 50%;
+            opacity: 1;
+        }
+
+        .content-details h3 {
+            color: #fff;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5em;
+
+        }
+
+        .content-details p {
+            color: #fff;
+            font-size: 0.8em
+        }
     </style>
 </head>
+
 <body>
     <div class="a">
         <ul class="b">
@@ -27,5 +172,225 @@
         </ul>
 
     </div>
+
+    <form>
+        <ul>
+
+            <li>
+                <input type="text" id="datepicker">
+                <span></span>
+            </li>
+            <li>
+                <select>
+                    <option selected>인원선택</option>
+                    <option value="1">1명</option>
+                    <option value="2">2명</option>
+                    <option value="3">3명</option>
+                    <option value="4">4명</option>
+                </select>
+            </li>
+            <li> <input type="submit" value="예약">
+            </li>
+            <li>
+                <input type="hidden" value="tour">
+            </li>
+        </ul>
+    </form>
+    <div class="view overlay">
+        <img src="https://mdbootstrap.com/img/Photos/Others/forest-sm.jpg" class="img-fluid " alt="smaple image">
+        <div class="mask flex-center rgba-red-strong">
+            <p class="white-text">Strong overlay</p>
+        </div>
+    </div>
+
+
+    <div class="content">
+        <a href="#">
+            <div class="content-overlay"></div>
+            <img class="content-image" src="https://i.imgur.com/7cNRozs.jpg">
+            <div class="content-details">
+                <h3 class="content-title">Geysers Valley Hotel</h3>
+                <p class="content-text"><i class="fa fa-map-marker"></i> Russia</p>
+            </div>
+        </a>
+    </div>
+
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="content"> <a href="#">
+                        <div class="content-overlay"></div> <img class="content-image"
+                            src="https://i.imgur.com/7cNRozs.jpg">
+                        <div class="content-details fadeIn-bottom">
+                            <h3 class="content-title">Geysers Valley Hotel</h3>
+                            <p class="content-text"><i class="fa fa-map-marker"></i> Russia</p>
+                        </div>
+                    </a> </div>
+            </div>
+            <div class="col-md-4">
+                <div class="content"> <a href="#">
+                        <div class="content-overlay"></div> <img class="content-image"
+                            src="https://i.imgur.com/CS59IJZ.jpg">
+                        <div class="content-details fadeIn-bottom">
+                            <h3 class="content-title">Khumbu Valley Hotel</h3>
+                            <p class="content-text"><i class="fa fa-map-marker"></i> Nepal</p>
+                        </div>
+                    </a> </div>
+            </div>
+            <div class="col-md-4">
+                <div class="content"> <a href="#">
+                        <div class="content-overlay"></div> <img class="content-image"
+                            src="https://i.imgur.com/LITAKvq.jpg">
+                        <div class="content-details fadeIn-bottom">
+                            <h3 class="content-title">Waipi’o Valley Hotel</h3>
+                            <p class="content-text"><i class="fa fa-map-marker"></i> Hawaii</p>
+                        </div>
+                    </a> </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <hr>
+
+    <div class="container">
+        <div class="row border">
+            <div class="col-4 border">
+                <div class="row">
+                    <div class="col-6">
+                        <h1>1122</h1>
+                    </div>
+                    <div class="col-6">
+                        <h1>1122</h1>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <hr>
+        <div class="row justify-content-center ">
+            <div class="col-4 border mr-auto ">
+                <h2>111</h2>
+            </div>
+
+            <div class="col-4 border  ">
+                <h2>222</h2>
+            </div>
+            <div class="col-4 border">
+                <h3>333</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-8" style="border:1px solid #333;">
+            Level 1: col-sm-8
+            <div class="row">
+              <div class="col-8 col-sm-6" style="border:1px solid #666;">
+                Level 2: col-8 col-sm-6
+              </div>
+              <div class="col-4 col-sm-6" style="border:1px solid #666;">
+                Level 2:col-4 col-sm-6
+              </div>
+            </div> <!-- row -->
+          </div> <!-- col-sm-8 -->
+          <div class="col-sm-4"  style="border:1px solid #333;">
+            Level 1: col-sm-4
+          </div> <!-- col-sm-4 -->
+        </div> <!-- row -->
+      </div><!-- container -->
+
+      <hr>
+      <hr>
+
+      <div class="container">
+      <div class="row">
+        <div class="col-4 border">
+            <div class="row">
+                <div class="col-sm-12 border">
+                    <h2>신청자명</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 border">
+            <span>홍길동</span>
+        </div>
+      
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <h2>프로그램 명</h2>
+        </div>
+        <div class="col-4">
+            <p>dasd</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 pl-5">
+            <h2>일시</h2>
+        </div>
+        <div class="col-4">
+            <span>2021-08-29 (금)</span>
+        </div>
+        <div class="col-4">
+            <input type="button" value="예약 일시 변경">
+        </div>
+       
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <h2>인원</h2>
+        </div>
+        <div class="col-4">
+            <span>3명</span>
+        </div>
+        
+        
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <h2>휴대폰 번호</h2>
+        </div>
+        <div class="col-4">
+            <span>010-5555-2222</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <input type="button" value="예약일시 변경 확정">
+        </div>
+        <div class="col-6">
+            <input type="button" value="예약 취소">
+        </div>
+    </div>
+    </div>
+
+    <hr>
+    <hr>
+    <div class="container">
+                <table class="table text-center border">
+                    <tr>
+                        <th>신청자명</th>
+                        <td>홍길돈</td>
+                        <td> </td>
+                    </tr>
+
+                </table>
+    </div>
+    <br>
+    <hr>
+    
+
 </body>
+
 </html>

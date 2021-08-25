@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>투어 확인/변경/취소 페이지</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/tourResChange.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <div id="header">
+        <h1>헤더 영역</h1>
+    </div>
+    <div id="nav">
+        <h3>nav 영역</h3>
+    </div>
+    <!-- submenu 영역 -->
+    <div class="submenu_wrap">
+        <ul>
+            <li><a href="tourInfo.html">투어 안내</a></li>
+            <li><a href="reservationPage.html" id="currentPage">예약</a></li>
+            <li><a href="tourNotice.html">투어 공지</a></li>
+        </ul>
+    </div>
+    <div class="detail_menu">
+        <ul>
+            <li><a href="reservationPage.html">프로그램 예약</a></li>
+            <li><a href="tourResChange.html" id="selectPage">예약 확인/취소</a></li>
+        </ul>
+    </div>
+    <div class="container text-center p-2">
+        <div class="row  mt-5 ">
+            <div class="col">
+                <h1>투어 확인/변경/취소</h1>
+            </div>
+        </div>
+        <div class="inline-row"></div>
+        <div class="row m-3">
+            <div class="col-4">
+                <p>신청자명</p>
+            </div>
+            <div class="col-4 text-left">
+                <p>홍길동</p>
+            </div>
+            <div class="col-4 ">
+            </div>
+        </div>
+        <div class="row m-3">
+            <div class="col-4">
+                <p>프로그램 명</p>
+            </div>
+            <div class="col-4 text-left">
+                <p>양조장 투어</p>
+            </div>
+        </div>
+        <div class="row m-3">
+            <div class="col-4">
+                <p>일시</p>
+            </div>
+            <div class="col-4 text-left">
+                <p>2021-09-01</p>
+            </div>
+            <div class="col-4">
+                <input type="button" value="예약 일시 변경" class="chDate_input color_input">
+                <div></div>
+            </div>
+        </div>
+        <div class="row m-3">
+            <div class="col-4">
+                <p>인원</p>
+            </div>
+            <div class="col-4 text-left">
+                <p>2명</p>
+            </div>
+           
+        </div>
+        <div class="row m-3">
+            <div class="col-4">
+                <p>휴대폰 번호</p>
+            </div>
+            <div class="col-4 text-left">
+                <p>010-1111-2222</p>
+            </div>
+        </div>
+        <div class="inline-row2"></div>
+        <div class="row ">
+           
+            <div class="col-12 col-sm-6 p-3">
+                <input type="submit" value="예약일시 변경 확정" name="changeBtn" class="set_input color_input" >
+                <input type="hidden" value="tour" name="tour">
+            </div>
+            <div class="col-12 col-sm-6 p-3">
+                <input type="submit" value="예약 취소" name="cancleBtn" class="set_input color_cancle">
+            </div>
+        </div>
+
+        
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <div id="footer">
+        <h2>footer 영역</h2>
+    </div>
+</body>
+
+</html>
