@@ -1,56 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-   
-   
-    
-</head>
-<body>
-   <!--  <input type="text" id="datepicker1"> -->
-    <div id="datepicker2"></div>
-    <input id="check" type="text" >
+    <style>
+        #footer {
+            color: #999;
+        }          
+        .company-info {
+            font-size: 14px;
+             line-height: 1.8em; 
+        }
+       .company-info span {
+            font-size: 14px;
+            color: #bbb;
+            margin: 0 20px;
+        }
 
-
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script>
-        $.datepicker.setDefaults({
-            dateFormat: 'yy-mm-dd (D)',
-            prevText: '이전 달',
-            nextText: '다음 달',
-            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-            monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-            dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-            dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-            showMonthAfterYear: true,
-            yearSuffix: '년',
-            onSelect:function(){
-                var date = $('#datepicker2').val();
-                    console.log(date);
-                $('#check').val(date);
-                
-                date1 = Date.parse(date);
-                console.log(date1);
-             
+        .company-info a {
+            display: inline-block;
+            text-decoration: none;
+            color: #999;
+        }
+        .copyright {
+            font-size: 12px;
+        }
+        @media(max-width:990px) {
+            #footer p {
+                white-space: pre-line;
             }
-          });
-        
-          $(function(){
-           
-            $('#datepicker2').datepicker();
-              
-                   
-           
-
-
-
-        });
-        </script>
+            .company-info span{
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <div id="footer" class="container-fulid">
+        <div class="row ml-3">
+            <div class="col-12">
+                <p class="company-info">신촌맥주 주식회사<span>|</span>대표이사 한잔<br>본사 : 서울특별시 마포구 백범로 23
+                    (서울특별시 마포구 신수동 63-14)<br>사업자등록번호 : 214-85-24928
+                    <span>|</span>통신판매업신고번호 : 제 2020-서울신촌-0101 호<br>개인정보보호책임자 한잔
+                    <span>|</span>고객센터 : 02-707-1480,<a href="mailto:sinchonbeer@gmail.com">sinchonbeer@gmail.com</a>
+                </p>
+            </div>
+            <div class="col-12">
+                <p class="copyright"><br>COPYRIGHT 2021@ SINCHON BEER COMPANY</p>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

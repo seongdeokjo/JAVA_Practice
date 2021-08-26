@@ -6,30 +6,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BREWERY Page</title>
-    <link rel="stylesheet" type="text/css" href="css/BreweryPage.css">
- 
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/BreweryPage.css">
+    <link rel="stylesheet" type="text/css" href="frame/header+nav.css">
+    <link rel="stylesheet" type="text/css" href="frame/footer.css">
+    <link rel="stylesheet" type="text/css" href="frame/sidebar.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+
 </head>
 
 <body>
     <!-- header 영역 시작 -->
-    <div id="h_wrap">
-        <div id="h_logo" class="div_inline">
-            <h1 class="color"><a id="logo" href="#">신촌 맥주</a></h1>
+    <div id="header">
+        <div class="col-group">
+            <div class="col-left">
+                <a href="#"><img class="logo-transform" src="images/logo.png"></a>
+            </div>
+            <div class="col-center">
+                <a href="#"><img class="logo-fixed" src="images/logo.png"></a>
+            </div>
+            <div class="col-right">
+                <ul class="service-menu">
+                    <li><a href="#">LOGIN</a></li>
+                    <li><a href="#">JOIN</a></li>
+                    <li><a href="#">CART</a></li>
+                    <a href="#"><button class="rez-btn-icon">양조장 예약</button></a>
+                </ul>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"
+                    aria-expanded="false" aria-controls="collapsibleNavbar">
+                    <img class="navbar-toggler-icon" src="images/navbar_toggler_icon.png">
+                </button>
+            </div>
         </div>
-        <div id="h_nav" class="div_inline">
-            <ul>
-                <li><a href="#">login</a></li>
-                <li><a href="#">logout</a></li>
-                <li><a href="#">mypage</a></li>
-                <li><a id="reservation_btn" href="#">양조장 예약</a></li>
-            </ul>
-        </div>
-    </div>
-    <!-- header 영역 끝 -->
-
+    </div> <!-- header 끝 -->
     <!-- nav 영역 시작 -->
-    <div id="nav_wrap">
-        <div class="nav_menu">
+    <div class="navbar-collapse collapse" id="collapsibleNavbar">
+        <div class="slide-menu-header">
+            <div>
+                <a href="#"><img class="logo-transform" src="images/logo.png"></a>
+            </div>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                data-target="#collapsibleNavbar" aria-controls="collapsibleNavbar" aria-expanded="false">
+                <img class="navbar-closer-icon" src="images/navbar_closer_icon.png">
+            </button>
+        </div>
+        <ul class="slide-menu-nav">
+            <li class="nav-service-menu">
+                <a href="#">LOGIN</a>
+                <a href="#">JOIN</a>
+                <a href="#">CART</a>
+            </li>
+            <li class="nav-rez-btn"><a href="#">양조장 예약</a></li>
+        </ul>
+        <div class="slide-menu-list">
             <ul>
                 <li><a href="#">DIVERSITY</a></li>
                 <li><a href="#">ABOUT</a></li>
@@ -38,17 +70,28 @@
                 <li><a href="#">REVIEW</a></li>
             </ul>
         </div>
-
-        <div class="inline-row"></div>
-        <div class="submenu_wrap">
+    </div>
+    <div id="gnb">
+        <div class="col-group">
             <ul>
-                <li><a href="tourInfo.html">투어 안내</a></li>
-                <li><a href="reservationPage.html">예약</a></li>
-                <li><a href="tourNotice.html">투어 공지</a></li>
+                <li><a href="#"><span>DIVERSITY</span></a></li>
+                <li><a href="#"><span>ABOUT</span></a></li>
+                <li><a href="#"><span>SHOP</span></a></li>
+                <li><a href="#"><span>BREWERY</span></a></li>
+                <li><a href="#"><span>REVIEW</span></a></li>
             </ul>
         </div>
     </div>
     <!-- nav 영역 끝 -->
+    <!-- nav-sub 영역 시작 -->
+    <div class="submenu_wrap">
+        <ul>
+            <li><a href="tourInfo.html">투어 안내</a></li>
+            <li><a href="reservationPage.html">예약</a></li>
+            <li><a href="tourNotice.html">투어 공지</a></li>
+        </ul>
+    </div>
+    <!-- nav-sub 영역 끝 -->
 
     <!-- content 영역 시작 -->
     <div id="content_wrap">
@@ -79,7 +122,7 @@
         </div>
         <div class="inline-row"></div>
         <div style="text-align: center; margin-bottom: 50px;">
-            <a href="#"><img src="image/tour_link.png"></a>
+            <a href="#"><img src="images/tour_link.png"></a>
             <p> 양조장 투어</p>
             <p>22000원</p>
         </div>
@@ -149,17 +192,47 @@
     </div>
     <div class="inline-row"></div>
     <!-- content 영역 끝 -->
-    
-    <!-- footer 영역 시작 -->
-    <div id="footer" class="font_14px">
-        <p>신촌맥주 주식회사 &nbsp;&nbsp; 대표이사 한잔<br>
-        본사)서울특별시 마포구 백범로 23 3층<br>
-        호스팅 제공자 (주)아임웹&nbsp;&nbsp; 사업자등록번호 616-86-27415&nbsp;&nbsp; 통신판매업신고번호 제 2020-신촌신수-0101호<br>
-        개인정보보호책임자&nbsp;&nbsp; 이용석 고객센터 02-707-1480,<a href="#">sinchonbeer6@gmail.com</a></p>
-        
-        <p><br>COPYRIGHT 2021@ SINCHON BEER COMPANY</p>
 
-    </div>
+    <!-- footer 영역 시작 -->
+    <div id="footer" class="container-fulid">
+        <div class="row ml-3 mt-5">
+            <div class="col-12">
+                <p class="company-info">신촌맥주 주식회사<span>|</span>대표이사 한잔<br>본사 : 서울특별시 마포구 백범로 23
+                    (서울특별시 마포구 신수동 63-14)<br>사업자등록번호 : 214-85-24928
+                    <span>|</span>통신판매업신고번호 : 제 2020-서울신촌-0101 호<br>개인정보보호책임자 한잔
+                    <span>|</span>고객센터 : 02-707-1480,<a href="mailto:sinchonbeer@gmail.com">sinchonbeer@gmail.com</a>
+                </p>
+            </div>
+            <div class="col-12">
+                <p class="copyright"><br>COPYRIGHT 2021@ SINCHON BEER COMPANY</p>
+            </div>
+        </div>
+    </div> <!-- footer 영역 끝 -->
+
+    <!-- side bar 영역  시작-->
+    <ul id="floating-btn">
+        <li class="channelTalk">
+            <a href="#" class="channel-talk-button">
+                <img src="https://cdn.imweb.me/upload/S20200702f03eaee38b16e/2616c012b78f3.png"></a>
+        </li>
+        <li class="share">
+            <a href="javascript:SNS_NEW.set('popup');">
+                <img src="https://jbimweb.s3.ap-northeast-2.amazonaws.com/resource/images/button-share.png"></a>
+        </li>
+        <li class="top">
+            <a href="#"><img src="https://jbimweb.s3.ap-northeast-2.amazonaws.com/resource/images/button-top.png"></a>
+        </li>
+    </ul>
+    <!-- side bar 영역 끝 -->
+
+    <script>
+        const x = window.matchMedia("(min-width: 990px)")
+
+        x.addListener(function (a) {
+            $('#collapsibleNavbar').removeClass('show');
+        });
+    </script>
+
 
 </body>
 
