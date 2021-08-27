@@ -292,7 +292,7 @@
         $(function () {
             //input을 datepicker로 선언
             $("#datepicker").datepicker({
-                dateFormat: 'yy-mm-dd ' //달력 날짜 형태
+                dateFormat: 'yy-mm-dd (D) ' //달력 날짜 형태
                 , closeText: '닫기'
                 , showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
                 , showMonthAfterYear: true // 월- 년 순서가아닌 년도 - 월 순서
@@ -325,6 +325,10 @@
                 , onSelect: function () {
                     var date = $('#datepicker').val();
                     console.log(date);
+                    $('#result').val(date);
+                    // 서버로 전달할 데이터
+                    var sub = date.substring(0,10);
+                    console.log(sub);
                 }
             });
 
@@ -339,12 +343,40 @@
             });
         });
 
-        // 현재 날짜 이전의 날짜는 선택 비활성화
+        // [다음날 ~ 그 다음달 말일]까지만 선택 가능한 함수
         function noBefore(date) {
-            if (date < new Date()) {
+            // 현재 날짜 가져오기
+           var cur = new Date();
+        //    console.log(cur);
+
+        // 가져온 날짜의 연,월,일 저장
+           var curYear = cur.getFullYear();
+           var curMonth = cur.getMonth();
+           var curDay = cur.getDate();
+           /* console.log(curYear);
+           console.log(curMonth);
+           console.log(curDay); */
+
+        //   그 달의 말일을 구하는 함수 : js 는 0 부터 11 까지로 표현 (0 -> 1월 / 0> 1일)  -> 각각 자리는 year,month,day 
+        // datepicker 에서 보여지는 날짜가 다음날 부터가 기본 값이므로 day 자리에 0이 아닌 1부터 시작 ->해당 월의 마지막 일 정상 출력                      
+           var next = new Date(curYear,curMonth+2,1);
+
+        //    console.log('next='+next);
+
+        /* 
+            if ( date < cur ) {
                 return [false];
             }
-            return [true];
+            if(date >= next){
+                return [false];
+            } */
+            // 현재 날짜 보다 이전이거나 다음달 말일 이후인 경우에는 사용 불가
+             if ( cur >=  date || date >= next  ) {
+                return [false];
+            } 
+           
+                return [true];        
+
         }
         const x = window.matchMedia("(min-width: 990px)")
 

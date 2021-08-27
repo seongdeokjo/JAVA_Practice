@@ -18,16 +18,17 @@ $(document).ready(function(){
 });
 
 $(function() {
+	$('#count').children('option:not(:first)').hide();
     //input을 datepicker로 선언
     $("#datepicker").datepicker({
-        dateFormat: 'yy-mm-dd' //달력 날짜 형태
+        dateFormat: 'yy-mm-dd (D)' //달력 날짜 형태
         ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
         ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
         ,changeYear: true //option값 년 선택 가능
         ,changeMonth: true //option값  월 선택 가능                
-        ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
-        ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
-        ,buttonImageOnly: true //버튼 이미지만 깔끔하게 보이게함
+        ,showOn: "focus" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
+    /*     ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
+        ,buttonImageOnly: true //버튼 이미지만 깔끔하게 보이게함 */
         ,buttonText: "선택" //버튼 호버 텍스트              
         ,yearSuffix: "년" //달력의 년도 부분 뒤 텍스트
         ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 텍스트
@@ -39,14 +40,20 @@ $(function() {
         ,maxDate: "+5y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
     	,beforeShowDay: noBefore
     	,onSelect: function(){
-     		 var date = $('#datepicker').val(); 
- 			
-    		 console.log(date);
+    		
+    		  var date = $('#datepicker').val();
+              console.log(date);
+              selectReset();
+              $('#result').html(date);
+              // 서버로 전달할 데이터
+              var sub = date.substring(0,10);
+              console.log(sub);
+    		 
     	  	$.ajax({
     			url : '/fp/selectcount',
     			type : 'get',
     			data : {
-    				mid : date
+    				mid : sub
     				},
     			success : function(data){
     				
@@ -67,19 +74,60 @@ $(function() {
     			}
     		}); 
     	}
+
     });                    
     
     //초기값을 오늘 날짜로 설정해줘야 합니다.
     $('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
-
+    $('#submit').submit(function () {
+        if ($('#cnt').val() == 0) {
+            alert('인원을 선택해주세요');
+            return false;
+        }
+    });
 });
-// 현재 날짜 이전의 날짜는 선택 비활성화
-function noBefore(date){
-    if (date < new Date()){
-    	return [false];
+function selectReset(){
+	$('#count option').show();
+		$('#count').attr('disabled',false);
+}
+
+
+
+// [다음날 ~ 그 다음달 말일]까지만 선택 가능한 함수
+function noBefore(date) {
+    // 현재 날짜 가져오기
+   var cur = new Date();
+//    console.log(cur);
+
+// 가져온 날짜의 연,월,일 저장
+   var curYear = cur.getFullYear();
+   var curMonth = cur.getMonth();
+   var curDay = cur.getDate();
+   /* console.log(curYear);
+   console.log(curMonth);
+   console.log(curDay); */
+
+//   그 달의 말일을 구하는 함수 : js 는 0 부터 11 까지로 표현 (0 -> 1월 / 0> 1일)  -> 각각 자리는 year,month,day 
+// datepicker 에서 보여지는 날짜가 다음날 부터가 기본 값이므로 day 자리에 0이 아닌 1부터 시작 ->해당 월의 마지막 일 정상 출력                      
+   var next = new Date(curYear,curMonth+2,1);
+
+//    console.log('next='+next);
+
+/* 
+    if ( date < cur ) {
+        return [false];
     }
-    return [true];
-}	
+    if(date >= next){
+        return [false];
+    } */
+    // 현재 날짜 보다 이전이거나 다음달 말일 이후인 경우에는 사용 불가
+     if ( cur >=  date || date >= next  ) {
+        return [false];
+    } 
+   
+        return [true];        
+
+}
 
 
 </script>
@@ -92,6 +140,7 @@ function noBefore(date){
 	<form  method="post">
 		<input type="text" id="datepicker" name="date">
 		<span id="msg" class="display_none"></span>
+		<span id="result"></span>
 		<h1>${result}</h1>
 		<select id="count"  >
 			<option selected>인원선택</option>
