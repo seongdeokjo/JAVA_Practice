@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <input type="button" value="아이디/비밀번호 찾기" id="btn-changeDate" class="chDate_input color_input">
+    <!-- modal control -->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
+        id="mi-modal">
+        <div class="modal-dialog modal-m">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">날짜 변경</h4>
+
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="nav nav-tabs justify-content-center nav-fill">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#id">아이디 찾기</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#pw">비밀번호 찾기</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Tab panes -->
+                    <div class="col-12 mt-5 text-center">
+                        <div class="tab-content">
+                            <div class="tab-pane active container" id="id">
+                                <div>
+                                    <input type="checkbox" checked id="ckId">
+                                    <label name="ckId">가입한 이메일로 찾기</label>
+                                </div>
+                                <input type="text" placeholder="이메일 또는 아이디" id="id_input">
+                                <hr>
+                                <div>
+                                    <input type="checkbox" id="ckPh">
+                                    <label name="ckId">가입한 휴대폰으로 찾기</label>
+                                </div>
+                                <input type="text" placeholder="이름 또는 닉네임" class="ph_input"> <br>
+                                <input type="text" placeholder="휴대폰 번호" class="ph_input">
+                            </div>
+                            <div class="tab-pane container" id="pw">
+                                <input type="text" placeholder="가입한 아이디">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="modal-btn-si">변경</button>
+                    <button type="button" class="btn btn-warning" id="modal-btn-no">변경취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+
+    <!-- Nav tabs -->
+
+    <ul class="nav nav-tabs ">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#id">아이디 찾기</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#pw">비밀번호 찾기</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane active container" id="id">...</div>
+        <div class="tab-pane container" id="pw">...</div>
+    </div>
+
+
+
+
+    <script>
+        $(function () {
+            /* modal 관리 js */
+            var modalConfirm = function (callback) {
+
+                $("#btn-changeDate").on("click", function () {
+                    $("#mi-modal").modal('show');
+                });
+
+                $("#modal-btn-si").on("click", function () {
+                    callback(true);
+                    $("#mi-modal").modal('hide');
+                });
+
+                $("#modal-btn-no").on("click", function () {
+                    callback(false);
+                    $("#mi-modal").modal('hide');
+                });
+            };
+            /* modal 확인/취소 버튼 */
+            modalConfirm(function (confirm) {
+                if (confirm) {
+
+                    $("#result").html($('#check').val());
+                } else {
+
+                    $('#result').val();
+                }
+            });
+
+            
+
+
+
+
+
+        });
+    </script>
+</body>
+
+</html>

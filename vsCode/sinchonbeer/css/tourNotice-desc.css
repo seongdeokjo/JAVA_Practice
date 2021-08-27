@@ -114,3 +114,6 @@ div{
     background-color: #1ecad3;
     color: white;
 }
+.b-b{
+    border-bottom: 1px solid #ddd;
+}

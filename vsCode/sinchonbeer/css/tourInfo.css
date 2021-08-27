@@ -68,10 +68,7 @@ div{
 }
 
 /* content 영역 */
-.content_wrap{
-    position: relative;
-}
-.content_header p{
+.col p{
     text-align: center;
     color: #1ecad3;
     font-size: 48px;
@@ -100,11 +97,31 @@ div{
 }
 
 .img{
-    width: 90%;
+    width: 100%;
     height: 400px;
 }
 
 .btn-primary{
     background-color: #1ecad3;
     color: white !important;
+}
+
+.r-p{
+    float: right;
+    padding-right: 30px;
+}
+.icon{
+    font-size: 30px;
+}
+.p_font {
+    font-size: 13px;
+}
+.card-header {
+    background-color: white;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.border_b {
+    border-bottom: 1px solid #ddd;
 }

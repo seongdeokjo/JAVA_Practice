@@ -1,0 +1,26 @@
+.p_f{
+    color:  #1ecad3;
+    font-weight: 900;
+    font-size: 50px;
+}
+p{
+    display: inline-block;
+}
+.container{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.table{
+    font-size: 11px;
+}
+@media (max-width:768px) {
+   /*  .table th, .table td{
+        float: left;
+    } */
+    .table td{
+        display: block;
+    }
+    .table th{
+        display: inline-block;
+    }
+}
