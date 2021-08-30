@@ -16,10 +16,23 @@ END$$
 call test();
 DELIMITER $$
 
+DELIMITER $$
+DROP PROCEDURE IF EXISTS test1$$
+CREATE PROCEDURE test1()
+BEGIN
+	DECLARE i INT DEFAULT 1;
+	DECLARE log_date date;	
+	WHILE i <= 30 DO
+		SET log_date = DATE_add('2021-09-01', INTERVAL i DAY);
+		INSERT INTO test1 (tdate) VALUES (log_date);
+		SET i = i + 1;
+	END WHILE;
+END$$
+call test1();
+DELIMITER $$
 
 
-set @count1 =0;
-update test1 set tidx1=@count1:=count1+1;
 
+commit;
 
  

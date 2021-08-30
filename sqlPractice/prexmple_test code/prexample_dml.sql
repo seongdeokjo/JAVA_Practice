@@ -30,7 +30,9 @@ insert into tour (tdate) values('2021-08-26');
 insert into tour (tdate) values('2021-08-27');
 insert into tour (tdate) values('2021-08-28');
 insert into tour (tdate) values('2021-08-29');
-insert into tour (tdate) values('2021-08-30');
+
+
+
 
 -- order(상품)
 insert into prexample.order(ocategory,oprice,midx,aidx) 
@@ -128,7 +130,7 @@ select (ttotal - tcurrent) as available
 from tour
 where tdate = '2021-08-25';
 
-update tour set tcurrent = +9 where tdate='2021-08-26';
+update tour set tcurrent = +12 where tdate='2021-08-27';
 
 
 -- review 
