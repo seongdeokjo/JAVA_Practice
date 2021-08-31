@@ -29,8 +29,9 @@ insert into tour (tdate) values('2021-08-25');
 insert into tour (tdate) values('2021-08-26');
 insert into tour (tdate) values('2021-08-27');
 insert into tour (tdate) values('2021-08-28');
-insert into tour (tdate) values('2021-08-29');
+insert into tour (tdate) values('2021-09-01');
 
+select * from tour;
 
 
 

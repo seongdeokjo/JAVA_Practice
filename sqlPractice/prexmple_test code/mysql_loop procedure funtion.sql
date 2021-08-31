@@ -24,13 +24,13 @@ BEGIN
 	DECLARE log_date date;	
 	WHILE i <= 30 DO
 		SET log_date = DATE_add('2021-09-01', INTERVAL i DAY);
-		INSERT INTO test1 (tdate) VALUES (log_date);
+		INSERT INTO tour (tdate) VALUES (log_date);
 		SET i = i + 1;
 	END WHILE;
 END$$
-call test1();
-DELIMITER $$
 
+DELIMITER $$
+call test1();
 
 
 commit;
