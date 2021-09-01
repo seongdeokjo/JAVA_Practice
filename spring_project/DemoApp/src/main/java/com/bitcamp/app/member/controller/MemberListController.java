@@ -16,7 +16,7 @@ public class MemberListController {
 	@Autowired
 	private MemberListService service;
 
-	@RequestMapping("/member/memberList")
+	@RequestMapping("/member/list")
 	public String getList(SearchType searchType, Model model) {
 		
 		System.out.println(searchType);
@@ -31,6 +31,6 @@ public class MemberListController {
 		}
 		model.addAttribute("memberList", list);
 
-		return "member/memberList";
+		return "member/list";
 	}
 }
