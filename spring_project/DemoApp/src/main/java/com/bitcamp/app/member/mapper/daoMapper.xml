@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bitcamp.app.member.mapper.MemberMapper">
+	<!-- 인터페이스의 full name을 namespace로 설정해야 한다!. -->
+
+	<!-- select의 결과를 매핑하는 설정 -->
+	<resultMap id="memberListResult"
+		type="com.bitcamp.app.member.domain.Member">
+		<id column="memberCode" property="memberCode" />
+		<result column="memberId" property="memberId" />
+		<result column="memberName" property="memberName" />
+		<result column="memberPw" property="memberPw" />
+		<result column="memberPhoto" property="memberPhoto" />
+		<result column="regDate" property="regDate" />
+	</resultMap>
+
+
+	<!-- sql tag 식별은 인터페이스의 메소드 이름과 일치 시킨다. -->
+	<!-- 로그인을 위한 select -->
+	<select id="selectByIdPw"
+		resultType="com.bitcamp.app.member.domain.Member">
+		select * from member where memberId=#{param1} and
+		memberPw=#{param2}
+	</select>
+
+	<select id="selectById" resultType="int">
+		select count(*) from member
+		where memberId=#{mid}
+	</select>
+	
+	
+	<select id="selectByIdx" 
+			resultType="com.bitcamp.app.member.domain.Member"
+	>
+		select * from member where memberCode = #{memberCode}
+	</select>
+	
+	
+	
+	
+	<insert id="insertMember"
+		parameterType="com.bitcamp.app.member.domain.Member"
+		useGeneratedKeys="true" keyProperty="memberCode">
+		insert into member
+		(memberId,memberPw,memberName,memberPhoto)
+		values(#{memberId},#{memberPw},#{memberName},#{memberPhoto})
+	</insert>
+
+	<update id="updateMember"
+		parameterType="com.bitcamp.app.member.domain.Member">
+		update member set
+		memberPw=#{memberPw},memberName=#{memberName} where
+		memberCode=#{memberCode}
+	</update>
+
+	<delete id="deleteMember">
+		delete from member where memberCode=#{memberCode}
+	</delete>
+
+	<!-- 전체 회원의 리스트 -->
+	<!-- <select id="selectAll" resultType="com.bitcamp.op.member.domain.Member"> 
+		select * from member order by memberId </select> -->
+
+	<!--ResultMap 으로 설정 -->
+	<select id="selectAll" resultMap="memberListResult">
+		select * from member order by memberCode
+	</select>
+
+	<!-- 페이징 처리가 가능한 회원 리스트 -->
+	<select id="selectList"
+		resultType="com.bitcamp.app.member.domain.Member">
+		select * from member order by memberCode limit
+		#{param1},#{param2}
+	</select>
+
+	<select id="selectTotalCount" resultType="int">
+		select count(*) from
+		member
+	</select>
+
+	<!--검색을 통한 회원 리스트 -->
+	<select id="selectMember"
+		parameterType="com.bitcamp.app.member.domain.SearchType"
+		resultType="com.bitcamp.app.member.domain.Member">
+		select * from member
+
+		<where>
+			<if test="searchType == 'id'">
+				<!--  memberId like concat('%',#{keyword},'%') -->
+				<include refid="searchId"/>
+			</if>
+			<if test="searchType == 'name'">
+				<!--  memberName like concat('%',#{keyword},'%') -->
+				<include refid="searchName"/>
+			</if>
+			<if test="searchType == 'both'">
+			<!--  	memberId like concat('%',#{keyword},'%') or
+				memberName like concat('%',#{keyword},'%') -->
+				<include refid="searchId"/>
+				<include refid="searchName"/>
+			</if>
+		</where>
+	</select>
+	
+		<sql id="searchId">
+			or memberId like concat('%',#{keyword},'%')
+		</sql>
+		<sql id="searchName">
+			or memberName like concat('%',#{keyword},'%')
+		</sql>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+</mapper>
