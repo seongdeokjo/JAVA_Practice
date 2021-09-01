@@ -22,7 +22,14 @@
     <input type="text" id="datepicker">
     <input type="text" id="result">
     <span id="test"></span>
-
+    <select name="sel" id="time">
+        <option value>시간선택</option>
+        <option value="13:00">PM 13:00</option>
+        <option value="14:00">PM 14:00</option>
+        <option value="15:00">PM 15:00</option>
+        <option value="16:00">PM 16:00</option>
+        <option value="17:00">PM 17:00</option>
+    </select>
 
 
 
@@ -63,6 +70,7 @@
                     var date = $('#datepicker').val();
                     var test1 = day(date);
                     $('#test').text(date+' ('+test1+')');
+                    console.log()
 
                 }
             });

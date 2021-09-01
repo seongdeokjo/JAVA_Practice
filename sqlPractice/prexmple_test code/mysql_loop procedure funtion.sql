@@ -1,21 +1,32 @@
 select * from test1;
 select * from date_t;
+select * from tour;
 
 DELIMITER $$
-DROP PROCEDURE IF EXISTS test$$
-CREATE PROCEDURE test()
+DROP PROCEDURE IF EXISTS test2$$
+CREATE PROCEDURE test2()
 BEGIN
 	DECLARE i INT DEFAULT 1;
-	DECLARE log_date VARCHAR(255);	
+	DECLARE log_date date;	
 	WHILE i <= 30 DO
 		SET log_date = DATE_FORMAT(DATE_add(NOW(), INTERVAL i DAY), '%Y-%m-%d');
-		INSERT INTO test1 (tdate) VALUES (log_date);
+		INSERT INTO dayTest(day) VALUES (log_date);
 		SET i = i + 1;
 	END WHILE;
 END$$
-call test();
-DELIMITER $$
 
+DELIMITER $$
+call test2();
+
+
+
+
+
+
+
+
+
+-- --------------------------- -
 DELIMITER $$
 DROP PROCEDURE IF EXISTS test1$$
 CREATE PROCEDURE test1()
@@ -28,9 +39,9 @@ BEGIN
 		SET i = i + 1;
 	END WHILE;
 END$$
-
-DELIMITER $$
 call test1();
+DELIMITER $$
+
 
 
 commit;
