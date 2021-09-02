@@ -8,9 +8,9 @@ CREATE PROCEDURE test2()
 BEGIN
 	DECLARE i INT DEFAULT 1;
 	DECLARE log_date date;	
-	WHILE i <= 30 DO
+	WHILE i <= 60 DO
 		SET log_date = DATE_FORMAT(DATE_add(NOW(), INTERVAL i DAY), '%Y-%m-%d');
-		INSERT INTO dayTest(day) VALUES (log_date);
+		INSERT INTO tour(tdate) VALUES (log_date);
 		SET i = i + 1;
 	END WHILE;
 END$$
@@ -27,7 +27,7 @@ call test2();
 
 
 -- --------------------------- -
-DELIMITER $$
+ -- DELIMITER $$
 DROP PROCEDURE IF EXISTS test1$$
 CREATE PROCEDURE test1()
 BEGIN
@@ -40,7 +40,7 @@ BEGIN
 	END WHILE;
 END$$
 call test1();
-DELIMITER $$
+ -- DELIMITER $$
 
 
 
