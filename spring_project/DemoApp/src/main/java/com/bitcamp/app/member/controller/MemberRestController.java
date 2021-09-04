@@ -29,24 +29,24 @@ public class MemberRestController {
 	@Autowired
 	private MemberRegService2 regService;
 	
-	@RequestMapping("/members/{id}")
-//	@ResponseBody
-	public Member getMember(
-		@PathVariable("id") int idx
-			) {
-		Member member = restService.getMember(idx);
-		System.out.println(member);
-		
-		
-		return member;
-	}
-	
-	@GetMapping("/members")
-	@CrossOrigin
-	public List<Member> getMembers(){
-		return restService.getMembers(); 
-	}
-	
+//	@RequestMapping("/members/{id}")
+////	@ResponseBody
+//	public Member getMember(
+//		@PathVariable("id") int idx
+//			) {
+//		Member member = restService.getMember(idx);
+//		System.out.println(member);
+//		
+//		
+//		return member;
+//	}
+//	
+//	@GetMapping("/members")
+//	@CrossOrigin
+//	public List<Member> getMembers(){
+//		return restService.getMembers(); 
+//	}
+//	
 	@GetMapping("/members1")
 	@CrossOrigin
 	public Map<Integer,Member> getMembers1(){

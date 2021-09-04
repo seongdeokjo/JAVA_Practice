@@ -13,17 +13,17 @@ import com.bitcamp.app.member.mapper.MemberMapper;
 @Service
 public class MemberListService {
 
-	private MemberMapper dao;
-	@Autowired
-	private SqlSessionTemplate template;
-
-	public List<Member> getList() {
-		return template.getMapper(MemberMapper.class).selectAll();
-	}
-	// 오버로딩
-	
-	public List<Member> getMemberList(SearchType searchType) {
-		return template.getMapper(MemberMapper.class).selectMember(searchType);
-	}
+//	private MemberMapper dao;
+//	@Autowired
+//	private SqlSessionTemplate template;
+//
+//	public List<Member> getList() {
+//		return template.getMapper(MemberMapper.class).selectAll();
+//	}
+//	// 오버로딩
+//	
+//	public List<Member> getMemberList(SearchType searchType) {
+//		return template.getMapper(MemberMapper.class).selectMember(searchType);
+//	}
 
 }

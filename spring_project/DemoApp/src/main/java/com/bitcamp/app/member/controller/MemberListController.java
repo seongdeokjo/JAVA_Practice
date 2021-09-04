@@ -24,10 +24,10 @@ public class MemberListController {
 		List<Member> list = null;
 		
 		if (searchType.getKeyword() != null && searchType.getKeyword().trim().length() > 0) {
-			list = service.getMemberList(searchType);
+//			list = service.getMemberList(searchType);
 			
 		}else {
-			list = service.getList();
+//			list = service.getList();
 		}
 		model.addAttribute("memberList", list);
 

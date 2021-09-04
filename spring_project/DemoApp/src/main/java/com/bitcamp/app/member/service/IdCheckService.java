@@ -29,10 +29,10 @@ public class IdCheckService {
 		
 		//인터페이스의 메퍼 Dao 생성
 		dao = template.getMapper(MemberMapper.class);
-		
-		if(dao.selectById(id) > 0) {
-			result = "N";
-		}
+//		
+//		if(dao.selectById(id) > 0) {
+//			result = "N";
+//		}
 				
 		return result ;
 	}

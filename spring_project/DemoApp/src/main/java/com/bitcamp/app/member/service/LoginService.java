@@ -38,14 +38,14 @@ public class LoginService {
 
 		try {
 			// 전달받은 id와 pw로 db에서 검색 => 있다면 로그인 처리, 없다면 false 리턴
-			Member member = dao.selectByIdPw(id, pw);
-
-			if (member != null) {
-				// 로그인 처리
-				session.setAttribute("loginInfo", member.toLoginInfo());
-
-				loginChk = true;
-			}
+//			Member member = dao.selectByIdPw(id, pw);
+//
+//			if (member != null) {
+//				// 로그인 처리
+//				session.setAttribute("loginInfo", member.toLoginInfo());
+//
+//				loginChk = true;
+//			}
 
 		} finally {
 		}

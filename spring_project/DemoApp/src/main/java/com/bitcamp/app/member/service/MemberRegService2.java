@@ -67,10 +67,10 @@ public class MemberRegService2 {
 			// conn = ConnectionProvider.getConnection();
 			
 			dao = template.getMapper(MemberMapper.class);
-
-			resultCnt = dao.insertMember(member);
-
-			System.out.println("새롭게 등록된 idx => " + member.getMemberCode());
+//
+//			resultCnt = dao.insertMember(member);
+//
+//			System.out.println("새롭게 등록된 idx => " + member.getMemberCode());
 
 			// idx 값은 자식 테이블의 insert 시 외래키로 사용
 
