@@ -4,6 +4,12 @@ spring:
     url: jdbc:mysql://mysql205.cc9o83bs1jzk.ap-northeast-2.rds.amazonaws.com:3306/prexample?serverTimezone=UTC
     username: bit
     password: bit
+  session:
+    timeout: 600
+    store-type: jdbc  
+    jdbc:
+      initialize-schema: always
+      table-name: SPRING_SESSION
   thymeleaf:
     prefix: classpath:templates/
     check-template-location: true

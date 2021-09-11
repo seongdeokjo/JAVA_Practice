@@ -8,13 +8,13 @@
 	<h1>test2</h1>
 	<h2>로그인 정보 후</h2>
 
-	<div th:if="${session['authInfo'] !=null}" >
+
 	<div th:if="${session.authInfo !=null}" >
 		<span th:text="${session.authInfo.memail}"></span>
 		<span th:text="${session.authInfo.midx}"></span> 
 		<form method="post" th:action="@{/test3}" th:object="${tour}">
 			<input type="text" name="price"  placeholder="가격을 입력하세요."> 
-			<input type="hidden" th:field="*{category}" value="tour"> 
+			<input type="hidden" name="category" value="tour"> 
 			<input type="text" name="count" placeholder="인원을 입력하세요"> 
 			<input type="submit" value="결제하기">
 		</form>
@@ -22,7 +22,7 @@
 	<div th:if="${session.authInfo == null}">
 		<script type="text/javascript">
 			alert('로그인 후 이용해 주세요');
-			history.replace('/test');
+			history.go(-1);
 		</script>
 	</div>
 		

@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+          # 내 aws db 
+    url: jdbc:mysql://mysql205.cc9o83bs1jzk.ap-northeast-2.rds.amazonaws.com/project?serverTimezone=UTC
+    username: bit
+    password: bit
+  thymeleaf:
+    prefix: classpath:templates/
+    check-template-location: true
+    suffix: .html
+    mode: HTML5
+    cache: false
+    template-resolver-order: 0
+  
+    
+       
+mybatis:
+  mapper-locations: 
+      - mapper/**/*.xml  
+      - com/bitcamp/sc/member/mapper/**/*.xml
+
+   
+     
+server:
+  port: 8080
