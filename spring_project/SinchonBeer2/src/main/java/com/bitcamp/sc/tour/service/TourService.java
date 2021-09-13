@@ -11,6 +11,9 @@ public interface TourService {
 	// 투어 예약 정보 가져오기
 	List<TourOrderInfo> getTourOrder(int midx,String category);
 	// 주문에 투어 예약 정보 변경
-	void changeTourOrder(Map<String,Object> params);
+	boolean changeTourOrder(Map<String,Object> params);
+	// 예약 변경시 예약 내역 메일 전송 
+	boolean sendMailChangeDate(Map<String,Object> params);
+	
 
 }

@@ -15,17 +15,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RequestMapping("/mail")
 public class MailController {
-
-	private final MailService mailService;
-
 	@RequestMapping(method = RequestMethod.GET)
-	public String getMailForm() {
-		return "mail/mailForm";
-	}
-
-	@RequestMapping(method = RequestMethod.POST)
-	public String execMail(MailDto mailDto) {
-		mailService.mailSend(mailDto);
-		return "mail/mailForm";
+	public String getTestPage() {
+		return "tour/changeReservation/sendMailChangeDate";
 	}
 }

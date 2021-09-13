@@ -53,9 +53,10 @@
 						<p>신청자명</p>
 					</div>
 					<div class="col-4 text-left outline_del">
-						<input type="text" th:value="${list.mname}" readonly
+						<input type="text" th:value="${list.mname}" id="name" readonly
 							class="border-0">
-						<input type="hidden" id="idx" th:value="${session.loginInfo.idx}">	
+						<input type="hidden" id="idx" th:value="${session.loginInfo.idx}">
+						<input type="hidden" id="email" th:value="${session.loginInfo.email}">	
 					</div>
 					<div class="col-4 "></div>
 				</div>
@@ -72,10 +73,8 @@
 						<p>일시</p>
 					</div>
 					<div class="col-4 text-left outline_del">
-						<input type="text" id="newDate" th:value="${list.tdate}"
-							name="newDate" class="border-0" readonly> <input
-							type="hidden" id="resDate" th:value="${list.tdate}"
-							name="resDate">
+						<input type="text" id="newDate" th:value="${list.tdate}" name="newDate" class="border-0" readonly> 
+						<input type="hidden" id="resDate" th:value="${list.tdate}" name="tdate">
 					</div>
 					<div class="col-4">
 						<input type="button" value="예약 일시 변경" id="btn-changeDate"
@@ -96,7 +95,7 @@
 						<p>휴대폰 번호</p>
 					</div>
 					<div class="col-4 text-left outline_del">
-						<input type="text" th:value="${list.mphone}" class="border-0"
+						<input type="text" th:value="${list.mphone}" class="border-0" id="phone"
 							readonly>
 					</div>
 				</div>
@@ -208,7 +207,10 @@
 						alert('변경된 내역이 없습니다.');
 						return false;
 					} else {
-
+						let email = $('#email').val();
+						let name = $('#name').val();
+						let phone = $('#phone').val();
+						let people = $('#tourPeople').val();
 						// 변경된 날짜	
 						var newDate = $('#newDate').val();
 
@@ -227,9 +229,33 @@
 							},
 							success : function(data) {
 
-								//	console.log(data);
+									console.log(data);
+									
+									if(data == true){
+										$.ajax({
+											url : '/tour/sendMail',
+											type : 'post',
+											data : {
+												"email" : email,
+												"name" : name,
+												"phone" : phone,
+												"people" : people,
+												"newDate" : newDate
+											},
+											
+											error : function(data){
+												if(data == false){
+													alert('오류로 인하여 전송이 실패되었습니다.');
+												}
+									
+											}
+										});				
+									}
+								
+								// 예약 변경 내역 메일 발송하기
+								// ajax 이용
+								// 현재 페이지 다시로드
 								alert('예약이 변경되었습니다.');
-								// 현재 페이지 다시로드	
 								location.reload();
 
 							},
@@ -317,8 +343,7 @@
 												true);
 									} else {
 										$('#count').text('가능인원: ' + data);
-										$("#modal-btn-si").attr("disabled",
-												false);
+										$("#modal-btn-si").attr("disabled",false);
 									}
 								},
 								complete : function() {
