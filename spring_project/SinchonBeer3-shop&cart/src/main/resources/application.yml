@@ -1,8 +1,8 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
- #   url: jdbc:mysql://localhost:3306/project?servertimezone=UTC
-    url: jdbc:mysql://mysql205.c0inhtd4aeqi.ap-northeast-2.rds.amazonaws.com/project?serverTimezone=UTC
+         # 내 aws db 
+    url: jdbc:mysql://mysql205.cc9o83bs1jzk.ap-northeast-2.rds.amazonaws.com/project?serverTimezone=UTC
     username: bit
     password: bit
     
@@ -19,6 +19,6 @@ mybatis:
       - mapper/**/*.xml  
 
 server:
-  port: 8080
+  port: 8082
   
   

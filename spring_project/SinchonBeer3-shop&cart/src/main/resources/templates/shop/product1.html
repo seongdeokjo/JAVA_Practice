@@ -65,6 +65,7 @@
 
  
     <div class="container"> 
+    <input type="text" th:value="${session.loginInfo.idx}" >
             <img class="gim_thumbnail" src="/images/shop/gimbugag.png " alt="김부각가가가가" >
             <div class="product_1">
                 <h1 class="product_name">CRISPY LAVAR SNACK</h1>
@@ -93,7 +94,7 @@
                             </div>
 		                    <div class="row">
 		                            <input type="submit" id="BuyNow" value="BuyNow"   class="button_form1" style="color: #fff; background-color: #5ae5ec;">	<!-- formation="/shop/shop_payment" -->
-		                            <input type="submit" id="basket" value="Basket" formaction="/cart/cart" class="button_form2"  style="color: #5ae5ec; background-color: #fff;">	
+		                            <input type="submit" id="basket" value="Basket" formaction="/basket/basket" class="button_form2"  style="color: #5ae5ec; background-color: #fff;">	
 		                         
 		
 		                    </div>	                

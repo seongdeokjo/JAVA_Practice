@@ -29,22 +29,8 @@ public class ShopController {
 	// 상품 상세페이지
 	@RequestMapping(value="/shop/{idx}", method = RequestMethod.GET)
 	public String getShopDesc(@PathVariable("idx") int idx) {
-		String result = "shop/product";
-			
-		if(idx == 1) {
-			result += "1";
-			System.out.println("결과 : " + result + " : " + idx);
-		} else if(idx == 2) {
-			result += "2";
-			System.out.println("결과 : " + result + " : " + idx);
-		} else if(idx == 3) {
-			result += "3";
-			System.out.println("결과 : " + result + " : " + idx);
-		} else if(idx == 4) {
-			result += "4";
-			System.out.println("결과 : " + result + " : " + idx);
-		}
-		return result;
+		return "shop/product"+idx;
+	
 		
 	}
 	
@@ -78,35 +64,7 @@ public class ShopController {
 			return "shop/shop_payment";
 		
 	}
-	// cart 페이지로 가기
-	@RequestMapping(value="/cart/cart", method= RequestMethod.GET)
-	public String getCart(
-			GoodsToCart goodsToCart,
-			@RequestParam("gphotoname") String gphotoname,
-			@RequestParam("gname") String gname,
-			@RequestParam("gidx") int gidx,
-			@RequestParam("amount") int amount,
-			@RequestParam("gprice") int gprice,
-		
-			Model model
-			) {
-		
-		model.addAttribute("gphotoname", gphotoname);
-		model.addAttribute("amount", amount);
-		model.addAttribute("gname", gname);
-		model.addAttribute("gidx", gidx);
-		model.addAttribute("gprice",gprice);
-		List<GoodsToCart> list = new ArrayList<>();
-		
-		list.add(new GoodsToCart(goodsToCart.getIdx(), goodsToCart.getGprice(), goodsToCart.getAmount()));
-//		list.add(new GoodsToCart(goodsToCart.getIdx(), goodsToCart.getGprice(), goodsToCart.getAmount()));
-//		list.add(new GoodsToCart(goodsToCart.getIdx(), goodsToCart.getGprice(), goodsToCart.getAmount()));
-//		list.add(new GoodsToCart(goodsToCart.getIdx(), goodsToCart.getGprice(), goodsToCart.getAmount()));
-		System.out.println(list.get(0).getIdx());
-		model.addAttribute("list", list);
-		return "cart/cart";
-		
-	}
+
 	
 	
 }
