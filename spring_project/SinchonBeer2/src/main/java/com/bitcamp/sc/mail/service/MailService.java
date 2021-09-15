@@ -24,12 +24,14 @@ public class MailService {
 	// 보내는 사람 이메일
 	private static final String FROM_EMAIL ="seongdeok217@gmail.com";
 	
+	
+	
 	public void mailSend(Map<String,Object> params) throws MessagingException {
 		
 			MimeMessage message = mailSender.createMimeMessage();
 			// 파일 첨부 가능 
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
-			
+//			String subject = pickSubject(num);
 			// 메일 제목 
 			helper.setSubject("신촌맥주 양조장 투어 예약이 변경되었습니다.");
 			// 받는 사람
@@ -48,9 +50,22 @@ public class MailService {
 			// 가져온 메시지 내용저장
 			helper.setText(html, true);
 			
+			
 	       
 			// 메일 전송
 	        mailSender.send(message);
+	}
+	
+	public String pickSubject(int num) {
+		String result = "신촌맥주 양조장 투어 예약이";
+		if(num == 1) {
+			 result+="변경되었습니다.";
+		}else if(num == 2) {
+			result+="완료되었습니다.";
+		}else if(num == 3) {
+			 result+="취소되었습니다.";
+		}
+		return result;
 	}
 
 }
