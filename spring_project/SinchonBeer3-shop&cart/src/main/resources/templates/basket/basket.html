@@ -6,11 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <th:block th:include="frame/metaheader"></th:block>
-    <link rel="stylesheet" href="/css/cart.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
- 	<script>
+    <link rel="stylesheet" th:href="@{/css/cart/cart.css}">
+    <style>
+    #amountVal{
+    	width:50px;
+    }
+    .modal-dialog{
+    	   vertical-align: middle;
+    }
+    .high{
+    	height: 20px;
+    }
+    #amountModal {
+		 top: 30%;
+		margin-top: -30px;	
+	 } 
+ 
+    </style>
+
+ 	<script th:inline="javascript">
  		// 전체 선택
  		function checkAll(){
  			if($("#th_checkAll").is(':checked')){
@@ -19,10 +33,104 @@
  				$("input[name=checkRow]").prop("checked", false);
  			} 			
  		} 		
- 		/* 삭제(체크박스된 것 전부) */
-		$(document).ready(function(){			
-		});
  		
+		$(document).ready(function(){
+	
+
+			/* + 버튼 클릭시 증가 */
+			$('#plus').on('click',function(){
+				let plus = $('#cnt').val();
+				console.log('1.plus'+plus);
+				if(plus >= 1){
+					$('#minus').removeAttr('disabled');
+				}
+				plus++;
+				$('#cnt').val(plus);
+				
+				console.log('2.plus'+plus);
+			});
+			/* - 버튼 클릭시 감소  */
+			$('#minus').on('click',function(){
+				let minus = $('#cnt').val();
+				console.log('1.minus'+minus);
+				if(minus <= 1){
+					$(this).attr('disabled','disabled');
+				}
+				minus--;
+				$('#cnt').val(minus);
+				
+				console.log('2.minus'+minus);	
+			});
+			
+			/* 장바구니 수량 변경 */
+			$('#modalY').on('click',function(){
+				let change =  $('#amountVal').val();
+				console.log(change);
+				let gidx2 = $('#gidx2').val();
+				console.log('상품 번호:'+gidx2);
+				return false;
+				$.ajax({
+					url : '/changeAmount',
+					type : 'get',
+					data : {
+						change : change,
+						midx : midx
+						
+					}
+					
+				});
+				
+			});
+			
+			
+			let midx = $('#midx').val();
+			let gidx = $('#gidx').val();
+			/* 전체 장바구니 삭제 */
+			$('#removeAll').on('click',function(){
+				if(!$('#th_checkAll').is(':checked')){
+					alert('선택된 항목이 없습니다.');
+					$('#th_checkAll').focus();
+				}else{
+					if(confirm('장바구니를 비우시겠습니까?')){
+						$.ajax({
+							url : '/deleteAllByMidx/'+midx,
+							type : 'get'	
+						});
+						alert('삭제 되었습니다.');
+						location.reload();
+						
+					}else{
+						return false;
+					}				
+				}		
+				
+			});
+			/* 한 로우만 삭제  */
+			$('.deleteRow').on('click',function(){
+				
+					console.log(midx+" : "+gidx);
+				$.ajax({
+					url : '/deleteRow',
+					type : 'get',
+					data : {
+						midx : midx,
+						gidx : gidx
+					},
+					success : function(data) {
+							if(data == true){
+								alert('삭제되었습니다.');
+								
+							}
+						
+							location.reload();
+					
+					}
+				});
+			});
+			
+			
+			
+		});		
  	</script>
 </head>
 <body>
@@ -51,7 +159,7 @@
                     <col style="width: 150px;">
                 </colgroup>
                 <thead class="thead_main">
-                    <tr >
+                    <tr>
                         <th style="width: 3%;"> 
                             <label>
                                 <div class="checkbox">
@@ -65,12 +173,22 @@
                         <th></th> 
                         <th >배송수단</th> 
                         <th >가격</th> 
-                        <th >삭제</th> 
+                        <th >삭제</th>
+                     </tr>    
                 </thead>               
                 <!-- 장바구니 상품 목록 -->
+               
+             	<th:block th:if="${list == null or total == 0}">
+              	<tbody>
+                	<tr>
+                		<td colspan="8" style="height:200px;" class="text-center">장바구니가 비었습니다.</td>
+                	</tr>
+               	</tbody>              	
+                </th:block>              
                 <tbody id="GoodsTable">
-                    <tr>
-                    <span th:each="list: ${list}" >
+                <th:block th:unless="${list == null or total == 0}">    
+                	       
+                    <tr th:each="list : ${list}">
                         <td>
                             <div class="checkbox">
                                 <label>
@@ -80,9 +198,11 @@
                         </td>
                         <td class="text-left">
                             <!-- 이미지 클릭시 경로이동 -->
-                            <a href="">
+                            <a th:href="@{/shop/{gidx}(gidx = ${list.gidx})}">
+                          
 								<div>
-									<img th:src="@{${'/images/shop/' + gphotoname + '.png'}}" width="60" height="60">
+									<img th:src="@{${'/images/shop/' + list.gphoto + '.png'}}" width="60" height="60">
+									<span th:text="${list.gname}"></span>
 								</div>
                             </a>
                         </td>
@@ -91,24 +211,55 @@
                                 <sapn class="hidden-lg">상품개수</sapn>
                                 <em class="hidden-lg">총</em>
                                 <!-- 상품 수량 -->
-                                <input type="text" th:value="${amount + '개'}"> 
+                                <input type="text" th:value="${list.bcount}" class="border-0 high"  >
+                                 
                                 <em class="hidden-lg"></em>
                             </div>
-                            <div class="text-center">
-                                <span class="cart-btn"></span>
-                            </div>
+                            
                         </td>
-                        <td></td>
-                        <td></td>
+                        <td>
+                        	<div class="text-center">
+                                <span class="cart-btn"></span>
+                                <button class="btn" data-toggle="modal"  data-target="#myModal" th:attrappend="data-target=${list.gidx}">변경</button>
+                                
+                            </div>
+	                        	<input type="hidden" th:value="${list.midx}" id= "midx">
+	                        	<input type="text" th:value="${list.gidx}" id="gidx">
+                        </td>
+                        <td>                        
+                        	<div class="modal" id="myModal" th:attrappend="id=${list.gidx}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog modal-sm" role="document">
+										<div class="modal-content">
+											<div class="modal-header mx-auto">
+												<h5 class="modal-title " id="exampleModalLabel">수량변경</h5>		
+											</div>
+											<div class="modal-body mx-auto">
+												<div>
+													
+													<button  class="btn" id="plus">+</button>
+													<button  class="btn" id="minus" >-</button>
+													<input type="text" th:value="${list.gidx}" id="gidx">
+												</div>
+
+											</div>
+											<div class="modal-footer mx-auto">
+												<button class="btn" id="modalY">변경</button>
+												<button class="btn" type="button" data-dismiss="modal">취소</button>
+											</div>
+										</div>
+									</div>
+								</div>
+                        </td>
                         <td>
                         	<div >택배</div>
                         </td>
-                        <td class="price" >
+                        <td class="price">
                         <!--총 가격 -->
-                        <span  th:text="${amount * gprice}"></span>                        
+                        <span  th:text="${list.gprice}"></span>
+                        <span>원</span>                        
                         </td>                       
-                        <td class="cart-btn">
-                        	<input type="button" value="삭제" id="deleteRow" onclick="DeleteRowFunction(this)">                 
+                        <td class="cart-btn">                        	
+                        	<input type="button" value="삭제" class="deleteRow">           
                         </td>
                     </tr>
                     <tr class="payment-info">
@@ -118,37 +269,72 @@
                         </td>
                         <td class="pay-number">
                             <p class="cart-price">
-                                 <span th:text="${amount * gprice + '원' }">  
+                                 <span th:text="${total}"></span>
+                                 <span>원</span>
                             </p>
                         </td>
-                        <td></td>
-                        <span>
+                        <td></td>                 
                     </tr>
-                </tbody>                
-                <tfoot>
+                 </th:block>    
+                </tbody>        
+                <th:block th:unless="${list == null or total == 0}">           
+                <tfoot >                                         
                     <tr>
                         <td class="cart-btn" colspan="5">
                             <!-- 자바스크립트 -->
                             <a href="javascript:;" class="btn" onclick="deleteGoods">선택상품 삭제</a>
+                            <button id="removeAll" >전체 상품 삭제</button>
                         </td>
-                        <td class="amout-txt">
+                         <td class="amout-txt">
                             <span>결제금액</span>
                         </td>
-                        <td class="amount-text-brand">
-							<span style="font-size:  20px; font-weight: 600; color: #5ae5ec;" th:text="${amount * gprice + '원'}"></span>                   
-                        </td> 
+                         <td class="amount-text-brand" style="font-size: 20px; font-weight: 600; color: #5ae5ec;">
+                        	<form style="display: inline-block;" th:object="${order}">
+                        	
+							 <span th:text="${total}"></span>
+							</form> 
+							<span>원</span>                  
+                        </td>
+                        <td>
+                        	
+                        </td>
+                       
+                       
+                      
+                       
                         <td></td>
                     </tr>
                 </tfoot>
+              </th:block>       
             </table>
-        </div>
-        <div class="shoporbuy" >
+        </div>      	
+      	<div class="shoporbuy" >
             <div class="row " >
-                <!-- 주문하는 페이지로, onclcick="자바 스크립"  -->
-                <a href="javascript:;" class="btn " onclick="" style="margin-left: 650px; background-color: #5ae5ec; color: #fff;">주문하기</a> 
-            </div>
-        </div>
+               			 <!-- 주문하는 페이지로, onclcick="자바 스크립"  -->
+                <th:block th:unless="${list == null or total == 0}">
+                	<a href="javascript:;" class="btn " onclick="" style="margin-left: 650px; background-color: #5ae5ec; color: #fff;">주문하기</a> 
+            	</th:block>
+            	<th:block th:if="${list == null or total == 0}">
+            		<hr>
+            		<a href="#"  class="btn" style="margin-left: 650px; background-color: #5ae5ec; color: #fff;">계속 쇼핑하기</a>
+            	</th:block>       		
+            </div>          	
+       	</div>
     </div>
+    
+    
+	
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <!-- END -->
 	<th:block th:include="frame/footer"></th:block>
 </body>

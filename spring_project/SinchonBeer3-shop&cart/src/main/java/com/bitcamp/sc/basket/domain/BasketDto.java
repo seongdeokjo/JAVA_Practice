@@ -10,6 +10,5 @@ import lombok.ToString;
 public class BasketDto {
 	private int gidx;
 	private int midx;
-	private int amount;
-	private int gprice;
+	private int amount;	
 }
