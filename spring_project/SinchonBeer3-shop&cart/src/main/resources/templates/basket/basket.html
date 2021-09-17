@@ -23,21 +23,11 @@
 	 } 
  
     </style>
-    
-    
-    <script th:inline="javascript">
-    /*<![CDATA[*/ 
-    	var list = /*[[ ${list} ]]*/;
-    /*]]*/
-	console.log(list);
+	   	 <script >
+	 
+     	 </script>
 
-    
-    </script>
-    
-    
-    
-
- 	<script >
+ 	<script th:inline="javascript">
  		// 전체 선택
  		function checkAll(){
  			if($("#th_checkAll").is(':checked')){
@@ -46,52 +36,10 @@
  				$("input[name=checkRow]").prop("checked", false);
  			} 			
  		}
- 	
- 		
- 		
- 		 function change(idx){
- 			let $cnt = $('#cnt'+idx).val();
- 			console.log($cnt);
- 			
- 			
- 			 	$('#plus'+idx).on('click',function(){
- 					let plus = $cnt;
- 					console.log('1.plus'+plus);
- 					
- 					
- 					plus++;
- 					$cnt = $('#cnt'+idx).val(plus);
- 					console.log('2.plus'+$cnt);
- 				}); 
- 				/* - 버튼 클릭시 감소  */
- 		 		$('#minus'+idx).on('click',function(){
- 					let minus = $('#cnt'+idx).val();;
- 					console.log('1.minus'+minus);
- 						
- 					$('#cnt'+idx).val(--minus);
- 					
- 					console.log('2.minus'+minus);	
- 				});
- 			
- 			/* 	
- 			 	$('#minus'+idx).on('click',function(){
- 					let minus = $('#cnt'+idx).val();
- 					console.log('1.minus'+minus);
- 					if(minus <= 1){
- 						$(this).attr('disabled','disabled');
- 					}
- 					minus--;
- 					$('#cnt'+idx).val(minus);
- 					
- 					console.log('2.minus'+minus);	
- 				});  */
- 			
- 		
- 		 } 
  		
  		
 		$(document).ready(function(){
-
+			  
 			
 			/* 장바구니 수량 변경 */
 			$('#modalY').on('click',function(){
@@ -242,7 +190,7 @@
                                 <sapn class="hidden-lg">상품개수</sapn>
                                 <em class="hidden-lg">총</em>
                                 <!-- 상품 수량 -->
-                                <input type="text" th:value="${list.bcount}" class="border-0 high"  >
+                                <input type="text" th:value="${list.bcount}" class="border-0 high" id="count" th:attrappend="id=${list.gidx}">
                                  
                                 <em class="hidden-lg"></em>
                             </div>
@@ -252,11 +200,11 @@
                         	<div class="text-center">
                                 <span class="cart-btn"></span>
                                 <button class="btn" data-toggle="modal" name="changeButton"  
-                                		data-target="#myModal" th:attrappend="data-target=${list.gidx}" 
-                                		th:id="changeModal+${list.gidx}"
-                                		th:onclick="|change(${list.gidx})|"
-                                		>변경</button>
-                               	 
+                                		data-target="#myModal" th:attrappend="data-target=${list.gidx}"
+                                		th:data-gidx ="${list.gidx}"
+                          		>변경
+                                </button>
+                            
                             </div>
 	                        	<input type="hidden" th:value="${list.midx}" id= "midx">
 	                        	<input type="text" th:value="${list.gidx}" id="gidx">
@@ -337,12 +285,61 @@
 						<div class="modal-body mx-auto">
 							<div>
 								
-								<button  class="btn" id="plus"  th:attrappend="id=${list.gidx}" >+</button>
-							수량	<input type="text" th:value="${list.bcount}" id="cnt"  th:attrappend="id=${list.gidx}">
-								<button  class="btn" id="minus"  th:attrappend="id=${list.gidx}"  >-</button>
+								<button  class="btn" id="plus" th:attrappend="id=${list.gidx}" >+</button>
+							수량	<input type="text" th:value="${list.bcount}" id="cnt" th:attrappend="id=${list.gidx}" >
+								<button  class="btn" id="minus" th:attrappend="id=${list.gidx}" >-</button>
 								<input type="text" th:value="${list.gidx}" id="gidx">
 							</div>
-
+							<script th:inline="javascript">
+								 $("#myModal"+[[${list.gidx}]]).on('show.bs.modal', function(e) {
+							            var gidx = $(e.relatedTarget).data('gidx');
+										console.log('gidx:'+gidx);
+							            let cnt = $('#cnt'+gidx).val();
+							          	let count = $('#count'+gidx).val();
+							            console.log('원래 값 : count: '+count);
+							            console.log('cnt : '+cnt);
+							            console.log('----------------------1---------------------');
+							            
+										$('#plus'+gidx).on('click',function(){
+											if(cnt == 1){
+												$('#minus'+gidx).removeAttr("disabled");
+												   console.log('마이너스 해제-cnt : '+cnt);
+											}
+											cnt++;
+											$('#cnt'+gidx).val(cnt);
+										console.log('plus-cnt:'+cnt+" / gidx:"+gidx);
+										console.log('--------------------plus end---------------------');	
+										});
+										
+										console.log('----------------------2---------------------');
+										console.log('cnt: '+cnt+' / gidx: '+gidx);
+										console.log('----------------------2---------------------');
+										
+										$('#minus'+gidx).on('click',function(){
+											cnt--;
+											$('#cnt'+gidx).val(cnt);
+											console.log('minus-cnt: '+cnt+" / gidx: "+gidx);
+											if(cnt < 2){
+												$(this).attr('disabled','disabled');
+												   console.log('minus-마이너스 락-cnt : '+cnt);
+											}
+												
+										console.log('--------------------minus end---------------------');	
+										});	
+										console.log('----------------------3---------------------');
+										console.log('cnt: '+cnt+' / gidx: '+gidx);		
+										console.log('----------------------3---------------------');	
+							        });
+					
+								 
+							        $("#myModal"+[[${list.gidx}]]).on('hidden.bs.modal', function(e) {
+							        	
+							        let c =	 $('#count'+[[${list.gidx}]]).val();
+							       $('#cnt'+[[${list.gidx}]]).val(c);
+							        console.log('모달창 닫힘 기존 값: '+c+ ' / b 값 '+b);
+							        });
+											
+		       				 </script>							
 						</div>
 						<div class="modal-footer mx-auto">
 							<button class="btn" id="modalY">변경</button>
