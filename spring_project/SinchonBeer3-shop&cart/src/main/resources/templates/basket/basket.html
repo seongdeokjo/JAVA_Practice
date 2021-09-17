@@ -23,8 +23,21 @@
 	 } 
  
     </style>
+    
+    
+    <script th:inline="javascript">
+    /*<![CDATA[*/ 
+    	var list = /*[[ ${list} ]]*/;
+    /*]]*/
+	console.log(list);
 
- 	<script th:inline="javascript">
+    
+    </script>
+    
+    
+    
+
+ 	<script >
  		// 전체 선택
  		function checkAll(){
  			if($("#th_checkAll").is(':checked')){
@@ -32,35 +45,53 @@
  			} else{
  				$("input[name=checkRow]").prop("checked", false);
  			} 			
- 		} 		
+ 		}
+ 	
+ 		
+ 		
+ 		 function change(idx){
+ 			let $cnt = $('#cnt'+idx).val();
+ 			console.log($cnt);
+ 			
+ 			
+ 			 	$('#plus'+idx).on('click',function(){
+ 					let plus = $cnt;
+ 					console.log('1.plus'+plus);
+ 					
+ 					
+ 					plus++;
+ 					$cnt = $('#cnt'+idx).val(plus);
+ 					console.log('2.plus'+$cnt);
+ 				}); 
+ 				/* - 버튼 클릭시 감소  */
+ 		 		$('#minus'+idx).on('click',function(){
+ 					let minus = $('#cnt'+idx).val();;
+ 					console.log('1.minus'+minus);
+ 						
+ 					$('#cnt'+idx).val(--minus);
+ 					
+ 					console.log('2.minus'+minus);	
+ 				});
+ 			
+ 			/* 	
+ 			 	$('#minus'+idx).on('click',function(){
+ 					let minus = $('#cnt'+idx).val();
+ 					console.log('1.minus'+minus);
+ 					if(minus <= 1){
+ 						$(this).attr('disabled','disabled');
+ 					}
+ 					minus--;
+ 					$('#cnt'+idx).val(minus);
+ 					
+ 					console.log('2.minus'+minus);	
+ 				});  */
+ 			
+ 		
+ 		 } 
+ 		
  		
 		$(document).ready(function(){
-	
 
-			/* + 버튼 클릭시 증가 */
-			$('#plus').on('click',function(){
-				let plus = $('#cnt').val();
-				console.log('1.plus'+plus);
-				if(plus >= 1){
-					$('#minus').removeAttr('disabled');
-				}
-				plus++;
-				$('#cnt').val(plus);
-				
-				console.log('2.plus'+plus);
-			});
-			/* - 버튼 클릭시 감소  */
-			$('#minus').on('click',function(){
-				let minus = $('#cnt').val();
-				console.log('1.minus'+minus);
-				if(minus <= 1){
-					$(this).attr('disabled','disabled');
-				}
-				minus--;
-				$('#cnt').val(minus);
-				
-				console.log('2.minus'+minus);	
-			});
 			
 			/* 장바구니 수량 변경 */
 			$('#modalY').on('click',function(){
@@ -189,7 +220,7 @@
                 <th:block th:unless="${list == null or total == 0}">    
                 	       
                     <tr th:each="list : ${list}">
-                        <td>
+                        <td >
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" name="checkRow"  class="_cartItemCheckbox"  checked="checked">
@@ -220,35 +251,18 @@
                         <td>
                         	<div class="text-center">
                                 <span class="cart-btn"></span>
-                                <button class="btn" data-toggle="modal"  data-target="#myModal" th:attrappend="data-target=${list.gidx}">변경</button>
-                                
+                                <button class="btn" data-toggle="modal" name="changeButton"  
+                                		data-target="#myModal" th:attrappend="data-target=${list.gidx}" 
+                                		th:id="changeModal+${list.gidx}"
+                                		th:onclick="|change(${list.gidx})|"
+                                		>변경</button>
+                               	 
                             </div>
 	                        	<input type="hidden" th:value="${list.midx}" id= "midx">
 	                        	<input type="text" th:value="${list.gidx}" id="gidx">
                         </td>
-                        <td>                        
-                        	<div class="modal" id="myModal" th:attrappend="id=${list.gidx}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog modal-sm" role="document">
-										<div class="modal-content">
-											<div class="modal-header mx-auto">
-												<h5 class="modal-title " id="exampleModalLabel">수량변경</h5>		
-											</div>
-											<div class="modal-body mx-auto">
-												<div>
-													
-													<button  class="btn" id="plus">+</button>
-													<button  class="btn" id="minus" >-</button>
-													<input type="text" th:value="${list.gidx}" id="gidx">
-												</div>
-
-											</div>
-											<div class="modal-footer mx-auto">
-												<button class="btn" id="modalY">변경</button>
-												<button class="btn" type="button" data-dismiss="modal">취소</button>
-											</div>
-										</div>
-									</div>
-								</div>
+                        <td >                     
+                        	 
                         </td>
                         <td>
                         	<div >택배</div>
@@ -261,6 +275,8 @@
                         <td class="cart-btn">                        	
                         	<input type="button" value="삭제" class="deleteRow">           
                         </td>
+                        
+                        
                     </tr>
                     <tr class="payment-info">
                         <td colspan="5"></td>
@@ -276,7 +292,11 @@
                         <td></td>                 
                     </tr>
                  </th:block>    
-                </tbody>        
+                </tbody>
+                
+                
+                
+                        
                 <th:block th:unless="${list == null or total == 0}">           
                 <tfoot >                                         
                     <tr>
@@ -307,6 +327,31 @@
                 </tfoot>
               </th:block>       
             </table>
+            <th:block th:each = "list : ${list}">
+            <div   class="modal"  id="myModal" th:attrappend="id=${list.gidx}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-sm" role="document">
+					<div class="modal-content">
+						<div class="modal-header mx-auto">
+							<h5 class="modal-title " id="exampleModalLabel">수량변경 </h5>		
+						</div>
+						<div class="modal-body mx-auto">
+							<div>
+								
+								<button  class="btn" id="plus"  th:attrappend="id=${list.gidx}" >+</button>
+							수량	<input type="text" th:value="${list.bcount}" id="cnt"  th:attrappend="id=${list.gidx}">
+								<button  class="btn" id="minus"  th:attrappend="id=${list.gidx}"  >-</button>
+								<input type="text" th:value="${list.gidx}" id="gidx">
+							</div>
+
+						</div>
+						<div class="modal-footer mx-auto">
+							<button class="btn" id="modalY">변경</button>
+							<button class="btn" type="button" data-dismiss="modal">취소</button>
+						</div>
+					</div>
+				</div>
+			</div>
+           </th:block>
         </div>      	
       	<div class="shoporbuy" >
             <div class="row " >

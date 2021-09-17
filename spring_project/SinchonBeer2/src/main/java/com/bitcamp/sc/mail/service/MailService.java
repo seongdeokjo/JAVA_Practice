@@ -50,8 +50,7 @@ public class MailService {
 			// 가져온 메시지 내용저장
 			helper.setText(html, true);
 			
-			
-	       
+		
 			// 메일 전송
 	        mailSender.send(message);
 	}
