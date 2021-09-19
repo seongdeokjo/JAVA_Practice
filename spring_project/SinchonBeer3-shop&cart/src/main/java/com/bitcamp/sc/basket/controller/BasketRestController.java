@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bitcamp.sc.basket.domain.BasketDto;
 import com.bitcamp.sc.basket.service.BasketService;
 
 @RestController
@@ -33,6 +34,17 @@ public class BasketRestController {
 	@GetMapping("/deleteAllByMidx/{midx}")
 	public void deleteAll(@PathVariable("midx") int midx) {
 		service.deleteAllByMidx(midx);
+	}
+	@GetMapping("/basket/changeAmount")
+	public boolean modifyAmount(BasketDto bDto) {
+		boolean result = false;
+		int check = service.changeBasketAmount(bDto);
+		if(check == 1) {
+			result = true;
+		}
+		
+		return result;
+		
 	}
 	
 }

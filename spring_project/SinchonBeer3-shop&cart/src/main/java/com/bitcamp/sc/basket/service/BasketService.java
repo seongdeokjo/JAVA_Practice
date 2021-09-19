@@ -12,6 +12,7 @@ public interface BasketService {
 	int getTotalPayByMidx(int midx);
 	int getDeleteRowByGidx(int gidx,int midx);
 	void deleteAllByMidx(int midx);
+	int changeBasketAmount(BasketDto bDto);
 	
 	
 }

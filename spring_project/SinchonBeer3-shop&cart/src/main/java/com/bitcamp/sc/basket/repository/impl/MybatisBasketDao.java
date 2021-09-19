@@ -57,6 +57,24 @@ public class MybatisBasketDao implements BasketDao {
 	public void deleteAll(int midx) {
 		template.delete(NAME_SPACE+".deleteAll",midx);
 	}
+
+	@Override
+	public int checkBasket(int gidx, int midx) {
+		Map<String,Object> params = new HashMap<>();
+		params.put("gidx", gidx);
+		params.put("midx", midx);
+		return template.selectOne(NAME_SPACE+".checkBasket", params);
+	}
+
+	@Override
+	public void modifyAmount(BasketDto bDto) {
+		template.update(NAME_SPACE+".updateBasket", bDto);
+	}
+
+	@Override
+	public int changeBasketAmount(BasketDto bDto) {
+		return template.update(NAME_SPACE+".changeAmount", bDto);
+	}
 	
 	
 }

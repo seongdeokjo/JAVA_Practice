@@ -10,18 +10,28 @@
 		<result property="bcount" column="bcount"/>
 		<result property="gprice" column="gprice"/>
 	</resultMap>
-
+	<!--  00. 장바구니 gidx 존재여부 -->
+	<select id="checkBasket" resultType="int">
+		select gidx from basket where gidx = #{gidx} and midx = #{midx}
+	</select>
 	<!-- 01.장바구니 추가 -->
 	<insert id="insertBasket" parameterType="com.bitcamp.sc.basket.domain.BasketDto">
 		INSERT INTO basket(bcount, midx, gidx) VALUES( #{amount}, #{midx}, #{gidx})
 	</insert>
-
+	<!-- 장바구니 페이지에서 버튼을 통한 수량 변경  -->
+	<update id="changeAmount">
+		update basket set bcount = #{amount} where gidx = #{gidx} and midx = #{midx}
+	</update>
+	
+	<!-- 상품 목록에서 장바구니 담기 클릭시 이미 존재할 경우 수량만 추가 -->
+	<update id="updateBasket">
+		update basket set bcount =bcount+ #{amount} where gidx = #{gidx} and midx = #{midx}
+	</update>
 	<!-- 02.장바구니 리스트 -->
 	<select id="getBasketList" resultMap="BasketDomain" parameterType="int">
-		select bidx,midx,gidx,sum(bcount) as bcount,gname,sum(bcount*gprice) as gprice,gphoto 
+		select bidx,midx,gidx,bcount,gname,(bcount*gprice) as gprice,gphoto 
 		from basket natural join goods 
 		where midx = #{midx}  
-		group by gidx 
 		order by gidx
 	</select>
 	<!-- 각 고객의 장바구니에 담긴 총 금액 -->

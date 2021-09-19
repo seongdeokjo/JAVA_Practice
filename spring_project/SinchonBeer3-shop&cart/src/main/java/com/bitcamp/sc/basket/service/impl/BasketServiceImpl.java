@@ -22,19 +22,27 @@ public class BasketServiceImpl implements BasketService {
 	public BasketServiceImpl(BasketDao bDao) {
 		this.bDao = bDao;
 	}
+
 	
-	
+	// 장바구니 생성
 	@Override
 	public void saveBasket(BasketDto bDto) {
-		int result =bDao.createBasket(bDto);
-		if(result == 1) {
-			logger.info("장바구니 생성 완료");
+		int avaiableBasket = bDao.checkBasket(bDto.getGidx(), bDto.getMidx());
+		if(avaiableBasket > 0) {
+			logger.info("이미 장바구니에 값이 존재합니다.");
+			bDao.modifyAmount(bDto);
+		}else {
+			logger.info("생성된 장바구니가 존재하지 않습니다.");
+			if(	bDao.createBasket(bDto) == 1) {
+				logger.info("장바구니 생성 완료");
+			}
 		}
+			
 		
 		
 	}
 
-
+	// 장바구니 리스트 가져오기
 	@Override
 	public List<BasketVo> getList(int midx) {
 		List<BasketVo> list = new ArrayList<>();
@@ -57,7 +65,7 @@ public class BasketServiceImpl implements BasketService {
 		
 	}
 
-
+	// 장바구니 한 행만 삭제
 	@Override
 	public int getDeleteRowByGidx(int gidx,int midx) {
 
@@ -65,10 +73,18 @@ public class BasketServiceImpl implements BasketService {
 		return 	bDao.deleteRowByGidx(gidx,midx);
 	}
 
-
+	// 장바구니 모두 삭제
 	@Override
 	public void deleteAllByMidx(int midx) {
 			bDao.deleteAll(midx);
+	}
+	
+	// 장바구니 페이지에서 수량 변경
+	@Override
+	public int changeBasketAmount(BasketDto bDto) {
+		
+		
+		return bDao.changeBasketAmount(bDto);
 	}
 
 }

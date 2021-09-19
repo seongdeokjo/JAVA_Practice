@@ -20,12 +20,15 @@
     #amountModal {
 		 top: 30%;
 		margin-top: -30px;	
-	 } 
+	 }
+	.size{
+		width:50px;
+		text-align: center;
+	}  
  
     </style>
-	   	 <script >
-	 
-     	 </script>
+
+ 
 
  	<script th:inline="javascript">
  		// 전체 선택
@@ -37,29 +40,87 @@
  			} 			
  		}
  		
- 		
-		$(document).ready(function(){
-			  
-			
-			/* 장바구니 수량 변경 */
-			$('#modalY').on('click',function(){
-				let change =  $('#amountVal').val();
-				console.log(change);
-				let gidx2 = $('#gidx2').val();
-				console.log('상품 번호:'+gidx2);
-				return false;
-				$.ajax({
-					url : '/changeAmount',
-					type : 'get',
-					data : {
-						change : change,
-						midx : midx
-						
-					}
-					
-				});
+ 		/* 변경 버튼 클릭시 모달 값 초기화 */
+		function button(gidx){	
+ 			console.log('modal start : '+gidx);
+			$('#myModal'+gidx).on('shown.bs.modal',function(e){
+				let count = $('#count'+gidx).val();
+				if(count != $('#cnt'+gidx).val()){
+					$('#cnt'+gidx).val(count);
+				}
 				
 			});
+			
+ 		}
+		
+		/* +,- 버튼 클릭시 값이 1씩 증가 또는 감소 */
+ 		function count(gidx,type){
+ 			
+ 			let cnt = $('#cnt'+gidx).val();
+	
+ 			console.log('맨 처음 cnt  값 : '+cnt);
+ 		
+ 				if(type === 'plus'){
+ 					
+ 					console.log('plus 실행');
+ 					cnt++;
+ 					console.log('plus 연산 완료  : '+cnt)
+ 					if(cnt > 1){
+ 						$('#minus'+gidx).removeAttr('disabled');
+ 						console.log('cnt > 1 보다 큰 경우 실행');
+ 					}
+ 					console.log('plus 연산 종료');
+	 			}else if(type === 'minus'){
+	 				
+	 				console.log('minus 실행'+cnt);
+	 				--cnt;
+	 				if(cnt < 1){
+	 	 				$('#minus'+gidx).attr('disabled','disabled');
+	 	 				console.log('cnt <= 1 일 경우 블락');
+	 	 				return false;
+	 	 			}
+	 			
+	 				console.log('minus 연산 종료 : '+cnt);
+	 			}
+	 			
+	 	 		$('#cnt'+gidx).val(cnt);
+
+
+ 		}
+ 		/* 모달 안의 수량 수정 후 변경 버튼 클릭시  */
+ 		function modify(gidx,midx){
+ 			let count = $('#count'+gidx).val();
+ 			let cnt = $('#cnt'+gidx).val();
+ 			if(count == cnt){
+ 				console.log('변경된 값이 없습니다.');
+ 				
+ 				return false;
+ 			}
+ 			$.ajax({
+ 				url : '/basket/changeAmount',
+ 				type : 'get',
+ 				data : {
+ 					gidx : gidx,
+ 					midx : midx,
+ 					amount : cnt
+ 				},
+ 				success : function(data){
+ 					if(data == true){
+ 						alert('변경 되었습니다.');
+ 						location.reload();
+ 					}
+ 				},
+ 				error : function(){
+ 					
+ 				}
+ 			});
+ 		}
+ 		
+		$(document).ready(function(){
+			
+			
+			/* 장바구니 수량 변경 */
+		
 			
 			
 			let midx = $('#midx').val();
@@ -190,7 +251,7 @@
                                 <sapn class="hidden-lg">상품개수</sapn>
                                 <em class="hidden-lg">총</em>
                                 <!-- 상품 수량 -->
-                                <input type="text" th:value="${list.bcount}" class="border-0 high" id="count" th:attrappend="id=${list.gidx}">
+                                <input type="text" th:value="${list.bcount}" class="border-0 high" th:id="count+${list.gidx}">
                                  
                                 <em class="hidden-lg"></em>
                             </div>
@@ -199,18 +260,41 @@
                         <td>
                         	<div class="text-center">
                                 <span class="cart-btn"></span>
-                                <button class="btn" data-toggle="modal" name="changeButton"  
+                                <button class="btn" data-toggle="modal" name="changeButton"
                                 		data-target="#myModal" th:attrappend="data-target=${list.gidx}"
-                                		th:data-gidx ="${list.gidx}"
+                                		th:onclick="|button(${list.gidx})|"             		                              	                              		
                           		>변경
                                 </button>
+                                <div   class="modal"  th:id="myModal+${list.gidx}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog modal-sm" role="document">
+										<div class="modal-content">
+											<div class="modal-header mx-auto">
+												<h5 class="modal-title " id="exampleModalLabel">수량변경 </h5>		
+											</div>
+											<div class="modal-body mx-auto">
+												<div>				
+													<button  class="btn" th:id="plus+${list.gidx}" th:onclick="|count(${list.gidx},'plus')|">+</button>
+													<span id="test1"></span>
+													<input type="text" name="test" th:value="${list.bcount}" th:id="cnt+${list.gidx}" class="size">
+													<button  class="btn" th:id="minus+${list.gidx}" th:onclick="|count(${list.gidx},'minus')|" >-</button>
+													
+												</div>
+																	
+											</div>
+											<div class="modal-footer mx-auto">
+												<button class="btn" id="modalY" th:onclick="|modify(${list.gidx},${list.midx})|">변경</button>
+												<button class="btn" type="button" data-dismiss="modal">취소</button>
+											</div>
+										</div>
+									</div>
+								</div>
                             
                             </div>
 	                        	<input type="hidden" th:value="${list.midx}" id= "midx">
-	                        	<input type="text" th:value="${list.gidx}" id="gidx">
+	                        	<input type="hidden" th:value="${list.gidx}" id="gidx">
                         </td>
-                        <td >                     
-                        	 
+                        <td >
+                        	
                         </td>
                         <td>
                         	<div >택배</div>
@@ -222,9 +306,7 @@
                         </td>                       
                         <td class="cart-btn">                        	
                         	<input type="button" value="삭제" class="deleteRow">           
-                        </td>
-                        
-                        
+                        </td>                     
                     </tr>
                     <tr class="payment-info">
                         <td colspan="5"></td>
@@ -241,10 +323,7 @@
                     </tr>
                  </th:block>    
                 </tbody>
-                
-                
-                
-                        
+        
                 <th:block th:unless="${list == null or total == 0}">           
                 <tfoot >                                         
                     <tr>
@@ -252,109 +331,32 @@
                             <!-- 자바스크립트 -->
                             <a href="javascript:;" class="btn" onclick="deleteGoods">선택상품 삭제</a>
                             <button id="removeAll" >전체 상품 삭제</button>
+                            
                         </td>
                          <td class="amout-txt">
                             <span>결제금액</span>
                         </td>
-                         <td class="amount-text-brand" style="font-size: 20px; font-weight: 600; color: #5ae5ec;">
+                        <td class="amount-text-brand" style="font-size: 20px; font-weight: 600; color: #5ae5ec;">
                         	<form style="display: inline-block;" th:object="${order}">
                         	
 							 <span th:text="${total}"></span>
 							</form> 
 							<span>원</span>                  
                         </td>
-                        <td>
-                        	
-                        </td>
-                       
-                       
-                      
-                       
                         <td></td>
+                      	<td></td>
                     </tr>
                 </tfoot>
               </th:block>       
             </table>
-            <th:block th:each = "list : ${list}">
-            <div   class="modal"  id="myModal" th:attrappend="id=${list.gidx}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-sm" role="document">
-					<div class="modal-content">
-						<div class="modal-header mx-auto">
-							<h5 class="modal-title " id="exampleModalLabel">수량변경 </h5>		
-						</div>
-						<div class="modal-body mx-auto">
-							<div>
-								
-								<button  class="btn" id="plus" th:attrappend="id=${list.gidx}" >+</button>
-							수량	<input type="text" th:value="${list.bcount}" id="cnt" th:attrappend="id=${list.gidx}" >
-								<button  class="btn" id="minus" th:attrappend="id=${list.gidx}" >-</button>
-								<input type="text" th:value="${list.gidx}" id="gidx">
-							</div>
-							<script th:inline="javascript">
-								 $("#myModal"+[[${list.gidx}]]).on('show.bs.modal', function(e) {
-							            var gidx = $(e.relatedTarget).data('gidx');
-										console.log('gidx:'+gidx);
-							            let cnt = $('#cnt'+gidx).val();
-							          	let count = $('#count'+gidx).val();
-							            console.log('원래 값 : count: '+count);
-							            console.log('cnt : '+cnt);
-							            console.log('----------------------1---------------------');
-							            
-										$('#plus'+gidx).on('click',function(){
-											if(cnt == 1){
-												$('#minus'+gidx).removeAttr("disabled");
-												   console.log('마이너스 해제-cnt : '+cnt);
-											}
-											cnt++;
-											$('#cnt'+gidx).val(cnt);
-										console.log('plus-cnt:'+cnt+" / gidx:"+gidx);
-										console.log('--------------------plus end---------------------');	
-										});
-										
-										console.log('----------------------2---------------------');
-										console.log('cnt: '+cnt+' / gidx: '+gidx);
-										console.log('----------------------2---------------------');
-										
-										$('#minus'+gidx).on('click',function(){
-											cnt--;
-											$('#cnt'+gidx).val(cnt);
-											console.log('minus-cnt: '+cnt+" / gidx: "+gidx);
-											if(cnt < 2){
-												$(this).attr('disabled','disabled');
-												   console.log('minus-마이너스 락-cnt : '+cnt);
-											}
-												
-										console.log('--------------------minus end---------------------');	
-										});	
-										console.log('----------------------3---------------------');
-										console.log('cnt: '+cnt+' / gidx: '+gidx);		
-										console.log('----------------------3---------------------');	
-							        });
-					
-								 
-							        $("#myModal"+[[${list.gidx}]]).on('hidden.bs.modal', function(e) {
-							        	
-							        let c =	 $('#count'+[[${list.gidx}]]).val();
-							       $('#cnt'+[[${list.gidx}]]).val(c);
-							        console.log('모달창 닫힘 기존 값: '+c+ ' / b 값 '+b);
-							        });
-											
-		       				 </script>							
-						</div>
-						<div class="modal-footer mx-auto">
-							<button class="btn" id="modalY">변경</button>
-							<button class="btn" type="button" data-dismiss="modal">취소</button>
-						</div>
-					</div>
-				</div>
-			</div>
-           </th:block>
         </div>      	
       	<div class="shoporbuy" >
             <div class="row " >
                			 <!-- 주문하는 페이지로, onclcick="자바 스크립"  -->
                 <th:block th:unless="${list == null or total == 0}">
-                	<a href="javascript:;" class="btn " onclick="" style="margin-left: 650px; background-color: #5ae5ec; color: #fff;">주문하기</a> 
+             	   <a href="#" class="btn" style="margin-left: 650px; background-color:#ddd; color:#black;">선택 상품 주문하기</a> 
+             	   <a href="javascript:;" class="btn " onclick="" style="margin-left: 650px; background-color: #5ae5ec; color: #fff;">주문하기</a>
+                	
             	</th:block>
             	<th:block th:if="${list == null or total == 0}">
             		<hr>
@@ -362,21 +364,7 @@
             	</th:block>       		
             </div>          	
        	</div>
-    </div>
-    
-    
-	
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    </div>   
     <!-- END -->
 	<th:block th:include="frame/footer"></th:block>
 </body>
