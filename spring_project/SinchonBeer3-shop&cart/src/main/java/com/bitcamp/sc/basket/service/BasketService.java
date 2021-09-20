@@ -11,8 +11,10 @@ public interface BasketService {
 	List<BasketVo> getList(int midx);
 	int getTotalPayByMidx(int midx);
 	int getDeleteRowByGidx(int gidx,int midx);
+	int getDeleteRowByGidx(List<Integer> gidxList, int midx);
 	void deleteAllByMidx(int midx);
 	int changeBasketAmount(BasketDto bDto);
+
 	
 	
 }

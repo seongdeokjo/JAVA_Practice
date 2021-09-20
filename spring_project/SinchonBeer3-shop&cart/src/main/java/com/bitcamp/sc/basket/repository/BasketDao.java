@@ -16,4 +16,5 @@ public interface BasketDao {
 	void deleteAll(int midx);
 	void modifyAmount(BasketDto bDto);
 	int changeBasketAmount(BasketDto bDto);
+	
 }

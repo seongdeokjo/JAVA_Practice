@@ -60,10 +60,16 @@ public class MybatisBasketDao implements BasketDao {
 
 	@Override
 	public int checkBasket(int gidx, int midx) {
+		logger.info("장바구니 체크 진입");
 		Map<String,Object> params = new HashMap<>();
 		params.put("gidx", gidx);
 		params.put("midx", midx);
-		return template.selectOne(NAME_SPACE+".checkBasket", params);
+	Integer test =	template.selectOne(NAME_SPACE+".checkBasket", params);
+	logger.info("test :"+test);
+	int result = (test == null) ? 0 : test;
+	logger.info("result int 변환 :"+result);
+		return result;
+	
 	}
 
 	@Override
@@ -75,6 +81,13 @@ public class MybatisBasketDao implements BasketDao {
 	public int changeBasketAmount(BasketDto bDto) {
 		return template.update(NAME_SPACE+".changeAmount", bDto);
 	}
+
+	
+
+
+	
+
+
 	
 	
 }

@@ -28,6 +28,7 @@ public class BasketServiceImpl implements BasketService {
 	@Override
 	public void saveBasket(BasketDto bDto) {
 		int avaiableBasket = bDao.checkBasket(bDto.getGidx(), bDto.getMidx());
+		logger.info("체크 결과 : "+avaiableBasket);
 		if(avaiableBasket > 0) {
 			logger.info("이미 장바구니에 값이 존재합니다.");
 			bDao.modifyAmount(bDto);
@@ -72,6 +73,18 @@ public class BasketServiceImpl implements BasketService {
 		
 		return 	bDao.deleteRowByGidx(gidx,midx);
 	}
+	
+	// 장바구니 선택한 품목 삭제
+	@Override
+	public int getDeleteRowByGidx(List<Integer> gidxList, int midx) {
+		int result = 0;
+		for(int i = 0; i < gidxList.size(); i++) {
+			result += bDao.deleteRowByGidx((int)gidxList.get(i), midx);
+			logger.info("gidx반복 횟수"+i);
+		}
+		logger.info("result 값"+result);
+		return result;
+	}
 
 	// 장바구니 모두 삭제
 	@Override
@@ -86,5 +99,8 @@ public class BasketServiceImpl implements BasketService {
 		
 		return bDao.changeBasketAmount(bDto);
 	}
+
+
+	
 
 }
