@@ -152,18 +152,7 @@
 
 	<script>
 		$(function() {
-			console.log($('#idx').val());
-			/* 	 // 날짜 선택
-				 var reDate = $('#newDate').text();
-				// 해당 날짜의 요일을 리턴하는 함수	
-				  function day(reDate){
-			           var week=['월','화','수','목','금','토','일'];
-			           var dayOfWeek = week[new Date(reDate).getDay()];
-			       return dayOfWeek;
-				   }
-				  // 리턴된 요일을 날짜에 append로 추가 
-				  var result = day(reDate);
-				   $('#newDate').append(' ('+result+')'); */
+		
 
 			/* modal 관리 js */
 			var modalConfirm = function(callback) {
@@ -228,16 +217,18 @@
 								"tourPeople" : tourPeople
 							},
 							success : function(data) {
-
-								//	console.log(data);
-								alert('예약이 변경되었습니다.');
-								// 현재 페이지 다시로드	
-								location.reload();
+								console.log(data);
+								if(data == true){
+									alert('예약이 변경되었습니다.');
+									// 현재 페이지 다시로드	
+									location.reload();
+								}
+							
 
 							},
 							error : function(data,jqXHR, exception){
 								// 에러처리 
-								
+								console.log('시스템오류로 처리되지 않았습니다.');
 							}
 						}); /* ajax 끝 */
 					}

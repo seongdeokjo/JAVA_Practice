@@ -1,6 +1,10 @@
 package com.bitcamp.sc.order.domain;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.bitcamp.sc.tour.domain.TourOrderInfo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,4 +33,7 @@ public class OrderInfo {
 		this.memberIdx = memberIdx;
 		this.addressIdx = addressIdx;
 	}
+	
+
+	
 }
