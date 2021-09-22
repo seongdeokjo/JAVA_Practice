@@ -45,13 +45,6 @@ public class ChangeTourController {
 	
 	
 
-	// 예약 변경 확정 버튼 클릭 처리 -> orders테이블 tidx 수정 -> tour 테이블 날짜 각각 인원 수정
-	@PostMapping("/tour/changeTour")
-	@ResponseBody
-	public boolean changeTour(@ModelAttribute("changeTour") ChangeTourDto changeDto) {
-		boolean result = false;
-		logger.info(changeDto.toString());
-		return changeTourService.changeTourOrder(changeDto) == true ? true : result ;
-	}
+
 	
 }

@@ -207,6 +207,34 @@
 			});
 			
 			
+			
+		
+			$('#chooseOrder').on('click',function(){
+				let list = [];
+				let check = $('input[name=checkRow]:checked' );
+				if(check.length < 1){
+					alert('선택된 값이 없습니다.');
+					return false;
+				}
+			 	$.each(check,function(index,item){
+					// next() 선택된 raido 박스의  형제 선택자(gidx)
+				let num	 =$(this).nextAll('#bidx').val();
+					console.log(num);
+				
+					
+								
+				}); 
+				
+					
+				
+				
+				
+				
+			}); 
+			
+			
+			
+			
 		});		
  	</script>
 </head>
@@ -271,6 +299,8 @@
                                 <label>
                                     <input type="checkbox" name="checkRow"  class="_cartItemCheckbox"  checked="checked">
                                     <input type="hidden" th:value="${list.gidx}" id="gidx">
+                                    <input type="hidden" th:value="${list.bidx}" id="bidx" name="bidx">
+                                    
                                 </label>
                             </div>
                         </td>
@@ -330,6 +360,7 @@
                             </div>
 	                        	<input type="hidden" th:value="${list.midx}" id= "midx">
 	                        	<input type="hidden" th:value="${list.gidx}" id="gidx">
+	                        	
                         </td>
                         <td >
                         	
@@ -392,7 +423,12 @@
             <div class="row " >
                			 <!-- 주문하는 페이지로, onclcick="자바 스크립"  -->
                 <th:block th:unless="${list == null or total == 0}">
-             	   <a href="#" class="btn" style="margin-left: 650px; background-color:#ddd; color:#black;">선택 상품 주문하기</a> 
+                <form action="test" method="post" id="orderform">
+                	<input type="hidden" name="bidx[]" id="order">
+                </form>
+                
+                
+             	   <button class="btn" style="margin-left: 650px; background-color:#ddd; color:#black;" id="chooseOrder" >선택 상품 주문하기</button>
              	   <a href="javascript:;" class="btn " onclick="" style="margin-left: 650px; background-color: #5ae5ec; color: #fff;">주문하기</a>
                 	
             	</th:block>
