@@ -5,6 +5,7 @@ spring:
     url: jdbc:mysql://mysql205.cc9o83bs1jzk.ap-northeast-2.rds.amazonaws.com/project?serverTimezone=UTC
     username: bit
     password: bit
+    
   thymeleaf:
     prefix: classpath:templates/
     check-template-location: true
@@ -12,6 +13,7 @@ spring:
     mode: HTML5
     cache: false
     template-resolver-order: 0
+    
   mail:
     host: smtp.gmail.com
     port: 587
@@ -23,7 +25,29 @@ spring:
           auth: true
           starttls:
             enable: true
-    
+   
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: cb1f6bafc2fa0564c810ddf21bf1adb8
+            redirect-uri: "http://localhost:8085/login/oauth2/code/kakao"
+            client-authentication-method: POST
+            authorization-grant-type: authorization_code
+            scope: profile_nickname, profile_image, account_email
+            client-name: Kakao
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id    
+            
+  
+
+
+
        
 mybatis:
   mapper-locations: 
@@ -33,4 +57,7 @@ mybatis:
    
      
 server:
-  port: 8081
+  port: 8085
+  error:
+   include-exception: true
+   include-stacktrace:  always 
